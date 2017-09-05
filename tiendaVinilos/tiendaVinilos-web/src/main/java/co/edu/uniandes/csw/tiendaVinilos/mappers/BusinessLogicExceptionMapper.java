@@ -24,7 +24,8 @@ SOFTWARE.
 package co.edu.uniandes.csw.tiendaVinilos.mappers;
 
 
-import co.edu.uniandes.csw.monitoria.exceptions.BusinessLogicException;
+
+import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
