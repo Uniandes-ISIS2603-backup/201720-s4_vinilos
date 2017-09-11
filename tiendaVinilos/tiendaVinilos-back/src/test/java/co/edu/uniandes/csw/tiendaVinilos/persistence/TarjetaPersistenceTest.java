@@ -5,14 +5,15 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.persistence;
 
-import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
+import java.util.ArrayList;
+import java.util.List;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.After;
@@ -21,30 +22,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-import java.util.*;
-import javax.transaction.UserTransaction;
 
 /**
  *
- * @author jd.arenas
+ * @author Julian
  */
-public class UsuarioPersistenceTest {
-
+public class TarjetaPersistenceTest {
+    
     /**
-     * Inyección de la dependencia a la clase UsuarioPersistence cuyos métodos
+     * Inyección de la dependencia a la clase TarjetaPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private UsuarioPersistence persistence;
+    private TarjetaPersistence persistence;
 
     /**
      * Contexto de Persistencia que se va a utilizar para acceder a la Base de
@@ -63,7 +55,7 @@ public class UsuarioPersistenceTest {
     /**
      *
      */
-    private List<UsuarioEntity> data = new ArrayList<UsuarioEntity>();
+    private List<TarjetaEntity> data = new ArrayList<TarjetaEntity>();
 
     /**
      *
@@ -74,13 +66,13 @@ public class UsuarioPersistenceTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(TarjetaEntity.class.getPackage())
+                .addPackage(TarjetaEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
-    public UsuarioPersistenceTest() {
+    public TarjetaPersistenceTest() {
     }
 
     @BeforeClass
@@ -117,10 +109,10 @@ public class UsuarioPersistenceTest {
     public void testCreate() throws Exception {
         // TODO review the generated test code and remove the default call to fail.
         PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        UsuarioEntity result = (UsuarioEntity) persistence.create(newEntity);
+        TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
+        TarjetaEntity result = (TarjetaEntity) persistence.create(newEntity);
         assertNotNull(result);
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
+        TarjetaEntity entity = em.find(TarjetaEntity.class, result.getId());
         assertNotNull(entity);
         assertEquals(entity.getName(), result.getName());
     }
@@ -129,13 +121,13 @@ public class UsuarioPersistenceTest {
     public void testUpdate() throws Exception {
         // TODO review the generated test code and remove the default call to fail.
         for (int i = 0; i < data.size(); i++) {
-            UsuarioEntity entity = data.get(i);
+            TarjetaEntity entity = data.get(i);
 
             PodamFactory factory = new PodamFactoryImpl();
-            UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
+            TarjetaEntity newEntity = factory.manufacturePojo(TarjetaEntity.class);
             newEntity.setId(entity.getId());
             persistence.update(newEntity);
-            UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
+            TarjetaEntity resp = em.find(TarjetaEntity.class, entity.getId());
             assertEquals(newEntity.getName(), resp.getName());
         }
     }
@@ -144,9 +136,9 @@ public class UsuarioPersistenceTest {
     public void testDelete() throws Exception {
         // TODO review the generated test code and remove the default call to fail.
         for (int i = 0; i < data.size(); i++) {
-            UsuarioEntity entity = data.get(i);
+            TarjetaEntity entity = data.get(i);
             persistence.delete(entity.getId());
-            UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
+            TarjetaEntity deleted = em.find(TarjetaEntity.class, entity.getId());
             assertNull(deleted);
         }
     }
@@ -154,8 +146,8 @@ public class UsuarioPersistenceTest {
     @Test
     public void testFind() throws Exception {
         for (int i = 0; i < data.size(); i++) {
-            UsuarioEntity entity = data.get(i);
-            UsuarioEntity newEntity = (UsuarioEntity) persistence.find(entity.getId());
+            TarjetaEntity entity = data.get(i);
+            TarjetaEntity newEntity = (TarjetaEntity) persistence.find(entity.getId());
             assertNotNull(newEntity);
             assertEquals(entity.getName(), newEntity.getName());
 
@@ -165,11 +157,11 @@ public class UsuarioPersistenceTest {
     @Test
     public void testFindAll() throws Exception {
         List list = persistence.findAll();
-        ArrayList<UsuarioEntity> ar = (ArrayList<UsuarioEntity>) list;
+        ArrayList<TarjetaEntity> ar = (ArrayList<TarjetaEntity>) list;
         assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : ar) {
+        for (TarjetaEntity ent : ar) {
             boolean existe = false;
-            for (UsuarioEntity entity : data) {
+            for (TarjetaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
 
                     existe = true;
@@ -180,13 +172,13 @@ public class UsuarioPersistenceTest {
     }
 
     private void clearData() {
-        em.createQuery("delete from UsuarioEntity").executeUpdate();
+        em.createQuery("delete from TarjetaEntity").executeUpdate();
     }
 
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+            TarjetaEntity entity = factory.manufacturePojo(TarjetaEntity.class);
 
             em.persist(entity);
             data.add(entity);
