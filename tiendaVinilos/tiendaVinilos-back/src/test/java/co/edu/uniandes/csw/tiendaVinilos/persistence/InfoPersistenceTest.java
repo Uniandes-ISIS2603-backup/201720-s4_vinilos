@@ -168,7 +168,7 @@ public void updateInfoTest() {
 }
 
 @Test
-public void deleteInfoTest() {
+public void testDelete() throws Exception {
     InfoEntity entity = data.get(0);
     persistence.delete(entity.getId());
     InfoEntity deleted = em.find(InfoEntity.class, entity.getId());
@@ -203,9 +203,9 @@ public void deleteInfoTest() {
     /**
      * Test of delete method, of class InfoPersistence.
      */
-    @Test
-    public void testDelete() {
-    }
+   // @Test
+    //public void testDelete() {
+    //}
 
     /**
      * Test of find method, of class InfoPersistence.
