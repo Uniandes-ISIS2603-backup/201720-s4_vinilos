@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.persistence;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +13,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Julian
  */
+@Stateless
 public class TarjetaPersistence extends DefaultPersistence{
     
     @PersistenceContext(unitName="tiendaVinilosPU")
