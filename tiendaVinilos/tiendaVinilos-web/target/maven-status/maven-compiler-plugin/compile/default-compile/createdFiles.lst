@@ -1,9 +1,0 @@
-co\edu\uniandes\csw\tiendaVinilos\mappers\UnsupportedOperationExceptionMapper.class
-co\edu\uniandes\csw\tiendaVinilos\dtos\CantanteDetailDTO.class
-co\edu\uniandes\csw\tiendaVinilos\adapters\DateAdapter.class
-co\edu\uniandes\csw\tiendaVinilos\mappers\BusinessLogicExceptionMapper.class
-co\edu\uniandes\csw\tiendaVinilos\resources\CantanteResource.class
-co\edu\uniandes\csw\tiendaVinilos\resources\RestConfig.class
-co\edu\uniandes\csw\tiendaVinilos\dtos\CantanteDTO.class
-co\edu\uniandes\csw\tiendaVinilos\mappers\WebApplicationExceptionMapper.class
-co\edu\uniandes\csw\tiendaVinilos\adapters\DateAdapter$1.class
