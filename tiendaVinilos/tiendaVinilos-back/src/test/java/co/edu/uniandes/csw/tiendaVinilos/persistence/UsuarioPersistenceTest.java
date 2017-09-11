@@ -174,6 +174,7 @@ public class UsuarioPersistenceTest {
                 }
             }
             assertTrue(existe);
+            
         }
     }
 
