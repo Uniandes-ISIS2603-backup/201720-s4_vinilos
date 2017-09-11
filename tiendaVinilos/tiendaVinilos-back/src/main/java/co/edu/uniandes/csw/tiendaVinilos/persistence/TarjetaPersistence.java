@@ -5,10 +5,15 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.persistence;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 /**
  *
  * @author Julian
  */
 public class TarjetaPersistence extends DefaultPersistence{
     
+    @PersistenceContext(unitName="tiendaVinilosPU")
+    protected EntityManager em;
 }

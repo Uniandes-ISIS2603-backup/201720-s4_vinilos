@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.util.Date;
+import javax.persistence.Entity;
 
 /**
  *
  * @author Julian
  */
+@Entity
 public class TarjetaEntity extends DefaultEntity{
     
     private Integer numero;

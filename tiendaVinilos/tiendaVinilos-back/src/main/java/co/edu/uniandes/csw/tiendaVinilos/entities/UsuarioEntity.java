@@ -5,10 +5,13 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author jd.arenas
  */
+@Entity
 public class UsuarioEntity extends DefaultEntity {
     
     private String eMail;

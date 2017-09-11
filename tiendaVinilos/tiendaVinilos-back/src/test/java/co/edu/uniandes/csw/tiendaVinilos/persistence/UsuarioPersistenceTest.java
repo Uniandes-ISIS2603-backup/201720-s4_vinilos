@@ -37,8 +37,18 @@ import javax.transaction.UserTransaction;
  *
  * @author jd.arenas
  */
+@RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
 
+    
+        @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
+                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
+                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
+    }
     /**
      * Inyección de la dependencia a la clase UsuarioPersistence cuyos métodos
      * se van a probar.
@@ -71,14 +81,6 @@ public class UsuarioPersistenceTest {
      * embebido. El jar contiene las clases de XYZ, el descriptor de la base de
      * datos y el archivo beans.xml para resolver la inyección de dependencias.
      */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioEntity.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
 
     public UsuarioPersistenceTest() {
     }
@@ -165,12 +167,12 @@ public class UsuarioPersistenceTest {
     @Test
     public void testFindAll() throws Exception {
         List list = persistence.findAll();
-        ArrayList<UsuarioEntity> ar = (ArrayList<UsuarioEntity>) list;
+       // ArrayList<UsuarioEntity> ar = (ArrayList<UsuarioEntity>) list;
         assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : ar) {
+        for (Object ent : list) {
             boolean existe = false;
             for (UsuarioEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+                if (((UsuarioEntity)ent).getId().equals(entity.getId())) {
 
                     existe = true;
                 }
