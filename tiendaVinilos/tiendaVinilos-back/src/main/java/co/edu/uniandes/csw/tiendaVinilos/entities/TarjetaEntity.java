@@ -7,20 +7,22 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Julian
  */
 @Entity
-public class TarjetaEntity extends DefaultEntity{
+public class TarjetaEntity extends BaseEntity{
     
     private Integer numero;
     
     private String nombrePropietario;
     
     private Integer cvc;
-    
+    @Temporal(TemporalType.DATE)
     private Date goodThru;
     
 
