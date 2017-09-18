@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -21,6 +22,7 @@ public class TarjetaEntity extends DefaultEntity{
     
     private Integer cvc;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date goodThru;
     
 

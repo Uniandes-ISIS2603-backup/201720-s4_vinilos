@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -19,6 +20,7 @@ public class PagoProveedorEntity extends BaseEntity implements Serializable{
      /*
     * Fecha estimada de entrega
     */
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaEstimada;
     
     /*
