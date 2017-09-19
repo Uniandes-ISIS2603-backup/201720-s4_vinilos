@@ -160,7 +160,7 @@ public class TarjetaPersistenceTest {
     @Test
     public void testFindAll() throws Exception {
         List list = persistence.findAll();
-        //ArrayList<TarjetaEntity> ar = (ArrayList<TarjetaEntity>) list;
+//        ArrayList<TarjetaEntity> ar = (ArrayList<TarjetaEntity>) list;
         assertEquals(data.size(), list.size());
         for (Object ent : list) {
             boolean existe = false;

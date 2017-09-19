@@ -12,7 +12,8 @@ import javax.persistence.Entity;
  * @author jd.arenas
  */
 @Entity
-public class UsuarioEntity extends DefaultEntity {
+public class UsuarioEntity extends BaseEntity {
+    
     
     private String eMail;
     private int cantCompras;
