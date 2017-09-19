@@ -23,53 +23,80 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
-import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
+import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- * UsuarioDTO Objeto de transferencia de datos de Usuarioes. Los DTO
+ * TarjetaDTO Objeto de transferencia de datos de Tarjetaes. Los DTO
  * contienen las represnetaciones de los JSON que se transfieren entre el cliente y el servidor.
  *
- * @author jd.arenas
+ * @author ISIS2603
  */
-public class UsuarioDTO {
+public class TarjetaDTO {
 
     private Long id;
     private String name;
-    private String eMail;
-    private int cantCompras;
+    private Integer numero;
+    
+    private String nombrePropietario;
+    private Integer cvc;
+    @Temporal(TemporalType.DATE)
+    private Date goodThru;
 
-    public String geteMail() {
-        return eMail;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
 
-    public int getCantCompras() {
-        return cantCompras;
+    public String getNombrePropietario() {
+        return nombrePropietario;
     }
 
-    public void setCantCompras(int cantCompras) {
-        this.cantCompras = cantCompras;
+    public void setNombrePropietario(String nombrePropietario) {
+        this.nombrePropietario = nombrePropietario;
     }
 
+    public Integer getCvc() {
+        return cvc;
+    }
+
+    public void setCvc(Integer cvc) {
+        this.cvc = cvc;
+    }
+
+    public Date getGoodThru() {
+        return goodThru;
+    }
+
+    public void setGoodThru(Date goodThru) {
+        this.goodThru = goodThru;
+    }
+    
     /**
      * Constructor por defecto
      */
-    public UsuarioDTO() {
+    public TarjetaDTO() {
     }
 
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param usuario: Es la entidad que se va a convertir a DTO 
+     * @param Tarjeta: Es la entidad que se va a convertir a DTO 
      */
-    public UsuarioDTO(UsuarioEntity usuario) {
-        this.id = usuario.getId();
-        this.name = usuario.getName();
-        this.cantCompras=usuario.getCantCompras();
-        this.eMail=usuario.geteMail();
+    public TarjetaDTO(TarjetaEntity tarjeta) {
+        this.id = tarjeta.getId();
+        this.name = tarjeta.getName();
+        this.cvc=tarjeta.getCvc();
+        this.goodThru=tarjeta.getGoodThru();
+        this.numero=tarjeta.getNumero();
+        this.nombrePropietario=tarjeta.getNombrePropietario();
+      
+
     }
 
     /**
@@ -104,10 +131,14 @@ public class UsuarioDTO {
      * Convertir DTO a Entity
      * @return Un Entity con los valores del DTO 
      */
-    public UsuarioEntity toEntity() {
-        UsuarioEntity entity = new UsuarioEntity();
+    public TarjetaEntity toEntity() {
+        TarjetaEntity entity = new TarjetaEntity();
         entity.setId(this.id);
         entity.setName(this.name);
+        entity.setCvc(this.cvc);
+        entity.setGoodThru(this.goodThru);
+        entity.setNombrePropietario(this.nombrePropietario);
+        entity.setNumero(this.numero);
         return entity;
     }
 }
