@@ -1,0 +1,8 @@
+#surefire
+#Sat Sep 23 12:23:59 COT 2017
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\jd.arenas\\Desktop\\Master\\s4_vinilos\\tiendaVinilos-back
+file.encoding=UTF-8
+localRepository=C\:\\Users\\jd.arenas\\.m2\\repository
+basedir=C\:\\Users\\jd.arenas\\Desktop\\Master\\s4_vinilos\\tiendaVinilos-back
+test=co.edu.uniandes.csw.tiendaVinilos.persistence.ArtistaPersistenceTest
