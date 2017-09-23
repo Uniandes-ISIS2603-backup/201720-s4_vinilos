@@ -26,7 +26,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 
 /**
  *
- * @author ISIS2603
+ * @author jd.arenas
  */
 public class UsuarioDetailDTO extends UsuarioDTO {
 
