@@ -73,7 +73,7 @@ public class UsuarioResource {
     private static final Logger LOGGER = Logger.getLogger(UsuarioPersistence.class.getName());
 
     /**
-     * POST http://localhost:8080/backstepbystep-web/api/usuarios Ejemplo
+     * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo
      * json: { "name":"Norma" }
      *
      * @param usuario correponde a la representación java del objeto json
@@ -95,9 +95,8 @@ public class UsuarioResource {
 
     /**
      * GET para todas las usuarioes.
-     * http://localhost:8080/backstepbystep-web/api/usuarios
-     *
-     * @return la lista de todas las usuarioes en objetos json DTO.
+     * http://localhost:8080/tiendaVinilos-web/api/usuarios     *
+     * @return la lista de todas los usuarios en objetos json DTO.
      * @throws BusinessLogicException
      */
     @GET
@@ -106,15 +105,14 @@ public class UsuarioResource {
     }
 
     /**
-     * GET para una usuario
-     * http://localhost:8080/backstepbystep-web/api/usuarios/1
-     *
+     * GET para un usuario
+     * http://localhost:8080/tiendaVinilos-web/api/usuarios     *
      * @param id corresponde al id de la usuario buscada.
      * @return La usuario encontrada. Ejemplo: { "type": "usuarioDetailDTO",
      * "id": 1, "name": "Norma" }
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id de la usuario buscada se retorna un 404 con
+     * En caso de no existir el id del usuario buscado se retorna un 404 con
      * el mensaje.
      */
     @GET
@@ -128,7 +126,7 @@ public class UsuarioResource {
     }
 
     /**
-     * PUT http://localhost:8080/backstepbystep-web/api/usuarios/1 Ejemplo
+     * PUT http://localhost:8080/tiendaVinilos-web/api/usuarios/1 Ejemplo
      * json { "id": 1, "name": "cambio de nombre" }
      *
      * @param id corresponde a la usuario a actualizar.
@@ -152,7 +150,7 @@ public class UsuarioResource {
     }
 
     /**
-     * DELETE http://localhost:8080/backstepbystep-web/api/usuarios/1
+     * DELETE http://localhost:8080/tiendaVinilos-web/api/usuarios/1
      *
      * @param id corresponde a la usuario a borrar.
      * @throws BusinessLogicException

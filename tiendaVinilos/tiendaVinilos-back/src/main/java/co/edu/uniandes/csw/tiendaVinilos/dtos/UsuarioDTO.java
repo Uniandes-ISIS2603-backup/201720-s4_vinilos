@@ -108,6 +108,8 @@ public class UsuarioDTO {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setId(this.id);
         entity.setName(this.name);
+        entity.setCantCompras(this.cantCompras);
+        entity.seteMail(this.eMail);
         return entity;
     }
 }
