@@ -15,10 +15,11 @@ import javax.persistence.Entity;
  */
 @Entity
 public class InfoEntity extends BaseEntity implements Serializable{
+
     
     private String descripcion;
-    private String url;
-    private ArrayList<String> rutas;
+    private String urlCancion;
+    private String urlImagen;
 
     /**
      * @return the descripcion
@@ -35,31 +36,31 @@ public class InfoEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @return the url
+     * @return the urlCancion
      */
-    public String getUrl() {
-        return url;
+    public String getUrlCancion() {
+        return urlCancion;
     }
 
     /**
-     * @param url the url to set
+     * @param urlCancion the urlCancion to set
      */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrlCancion(String urlCancion) {
+        this.urlCancion = urlCancion;
     }
 
     /**
-     * @return the rutas
+     * @return the urlImagen
      */
-    public ArrayList<String> getRutas() {
-        return rutas;
+    public String getUrlImagen() {
+        return urlImagen;
     }
 
     /**
-     * @param rutas the rutas to set
+     * @param urlImagen the urlImagen to set
      */
-    public void setRutas(ArrayList<String> rutas) {
-        this.rutas = rutas;
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
     }
     
 }
