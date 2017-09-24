@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -30,7 +31,7 @@ public class PedidoClienteEntity extends BaseEntity implements Serializable{
      /*
     * Fecha estimada de entrega
     */
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date fechaEstimada;
     
     /*
