@@ -15,6 +15,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class InfoEntity extends BaseEntity implements Serializable{
+
     
     private String descripcion;
     private String urlCancion;
@@ -34,5 +35,32 @@ public class InfoEntity extends BaseEntity implements Serializable{
         this.descripcion = descripcion;
     }
 
+    /**
+     * @return the urlCancion
+     */
+    public String getUrlCancion() {
+        return urlCancion;
+    }
+
+    /**
+     * @param urlCancion the urlCancion to set
+     */
+    public void setUrlCancion(String urlCancion) {
+        this.urlCancion = urlCancion;
+    }
+
+    /**
+     * @return the urlImagen
+     */
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    /**
+     * @param urlImagen the urlImagen to set
+     */
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
     
 }

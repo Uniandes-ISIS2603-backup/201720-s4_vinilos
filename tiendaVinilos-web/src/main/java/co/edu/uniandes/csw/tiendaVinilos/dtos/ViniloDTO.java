@@ -26,6 +26,13 @@ public class ViniloDTO {
     public ViniloDTO(){
         
     }
+    public ViniloDTO(ViniloEntity entity){
+        this.anio= entity.getAnio();
+        this.cantUnidades= entity.getCantUnidades();
+        this.id= entity.getId();
+        this.nombre= entity.getName();
+        this.precio= entity.getPrecio();
+    }
     /**
      * @return the nombre
      */

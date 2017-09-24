@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
+
 /**
  *
  * @author jp.monsalvo
@@ -29,7 +31,12 @@ public class InfoDTO {
     public InfoDTO(){
     
 }
-    
+    public InfoDTO(InfoEntity entity){
+        this.descripcion= entity.getDescripcion();
+        this.id= entity.getId();
+        this.urlCancion= entity.getUrlCancion();
+        this.urlImagen= entity.getUrlImagen();
+    }
     /**
      * @return the urlImagen
      */
@@ -79,4 +86,16 @@ public class InfoDTO {
         return id;
     }
    
+    /**
+     * Convertir DTO a Entity
+     * @return Un Entity con los valores del DTO 
+     */
+    public InfoEntity toEntity() {
+        InfoEntity entity = new InfoEntity();
+        entity.setId(this.id);
+        entity.setDescripcion(descripcion);
+        entity.setUrlImagen(urlImagen);
+        entity.setUrlCancion(urlCancion);
+        return entity;
+    }
 }
