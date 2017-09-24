@@ -17,8 +17,8 @@ import javax.persistence.Entity;
 public class InfoEntity extends BaseEntity implements Serializable{
     
     private String descripcion;
-    private String url;
-    private ArrayList<String> rutas;
+    private String urlCancion;
+    private String urlImagen;
 
     /**
      * @return the descripcion
@@ -34,32 +34,5 @@ public class InfoEntity extends BaseEntity implements Serializable{
         this.descripcion = descripcion;
     }
 
-    /**
-     * @return the url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * @param url the url to set
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     * @return the rutas
-     */
-    public ArrayList<String> getRutas() {
-        return rutas;
-    }
-
-    /**
-     * @param rutas the rutas to set
-     */
-    public void setRutas(ArrayList<String> rutas) {
-        this.rutas = rutas;
-    }
     
 }
