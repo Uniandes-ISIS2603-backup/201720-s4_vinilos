@@ -37,7 +37,8 @@ public class PedidoClienteDTO {
         this.estado = pedido.getEstado();
         this.precio = pedido.getPrecio();
         this.fechaEstimada = pedido.getFechaEstimada();
-        
+        this.direccion = pedido.getDireccion();
+        this.telefono = pedido.getTelefono();
     }
     
     /**
@@ -50,6 +51,8 @@ public class PedidoClienteDTO {
         entity.setEstado(this.estado);
         entity.setPrecio(this.precio);
         entity.setFechaEstimada(this.fechaEstimada);
+        entity.setTelefono(this.telefono);
+        entity.setDireccion(this.direccion);
         return entity;
     }
     
