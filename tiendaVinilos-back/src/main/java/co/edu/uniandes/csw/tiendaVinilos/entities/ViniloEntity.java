@@ -15,22 +15,22 @@ import javax.persistence.Entity;
 @Entity
 public class ViniloEntity extends BaseEntity implements Serializable{
     
-    private int año;
+    private int anio;
     private double precio;
     private int cantUnidades;
 
     /**
      * @return the año
      */
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
     /**
      * @param año the año to set
      */
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int año) {
+        this.anio = año;
     }
 
     /**
