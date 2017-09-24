@@ -33,6 +33,16 @@ public class PedidoClienteEntity extends BaseEntity implements Serializable{
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaEstimada;
     
+    /*
+    * Dirección de entrega
+    */
+    private String direccion;
+    
+    /*
+    * Fecha estimada de entrega
+    */
+    private int telefono;
+    
     /**
      * Método que retorna la fecha estimada de entrega del pedido
      * @return fechaEstimada
@@ -82,4 +92,31 @@ public class PedidoClienteEntity extends BaseEntity implements Serializable{
         this.estado = estado;
     }
     
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
+    /**
+     * @return the telefono
+     */
+    public int getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
 }
