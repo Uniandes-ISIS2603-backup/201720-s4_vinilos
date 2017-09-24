@@ -21,6 +21,12 @@ public class ViniloDTO {
     private int cantUnidades;
     
     /**
+     * Constructor por defecto
+     */
+    public ViniloDTO(){
+        
+    }
+    /**
      * @return the nombre
      */
     public String getNombre() {
