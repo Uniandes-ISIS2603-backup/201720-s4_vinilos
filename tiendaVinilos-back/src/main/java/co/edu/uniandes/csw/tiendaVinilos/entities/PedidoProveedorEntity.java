@@ -36,38 +36,38 @@ public class PedidoProveedorEntity extends BaseEntity implements Serializable {
     */
     private double precio;
     
-    @PodamExclude
-    @ManyToOne()
-    private ProveedorEntity proveedorEntity ;
+//    @PodamExclude
+//    @ManyToOne()
+//    private ProveedorEntity proveedor ;
     
-    @PodamExclude
-    @OneToOne(mappedBy ="pagoProveedor")
-     private PagoProveedorEntity pagoProveedorEntity;
+    //@PodamExclude
+    //@OneToOne(mappedBy ="pagoProveedor")
+     //private PagoProveedorEntity pagoProveedorEntity;
     
-    @PodamExclude
-    @OneToMany(mappedBy ="vinilo")
-    private ViniloEntity viniloEntity;
+    //@PodamExclude
+    //@OneToMany(mappedBy ="vinilo")
+    //private ViniloEntity viniloEntity;
     
-    @PodamExclude
-    @ManyToOne()
-    private PedidoClienteEntity pedidoCLiente;
+//    @PodamExclude
+//    @ManyToOne()
+//    private PedidoClienteEntity pedidoCLiente;
 
-    public ProveedorEntity getProveedorEntity() {
-        return proveedorEntity;
-    }
+//    public ProveedorEntity getProveedorEntity() {
+//        return proveedor;
+//    }
+//
+//    public void setProveedorEntity(ProveedorEntity proveedor) {
+//        this.proveedor = proveedor;
+//    }
 
-    public void setProveedorEntity(ProveedorEntity proveedorEntity) {
-        this.proveedorEntity = proveedorEntity;
-    }
-
-    public PagoProveedorEntity getPagoProveedorEntity() {
-        return pagoProveedorEntity;
-    }
-
-    public void setPagoProveedorEntity(PagoProveedorEntity pagoProveedorEntity) {
-        this.pagoProveedorEntity = pagoProveedorEntity;
-    }
-
+//    public PagoProveedorEntity getPagoProveedorEntity() {
+//        return pagoProveedorEntity;
+//    }
+//
+//    public void setPagoProveedorEntity(PagoProveedorEntity pagoProveedorEntity) {
+//        this.pagoProveedorEntity = pagoProveedorEntity;
+//    }
+/*
     public ViniloEntity getViniloEntity() {
         return viniloEntity;
     }
@@ -75,14 +75,14 @@ public class PedidoProveedorEntity extends BaseEntity implements Serializable {
     public void setViniloEntity(ViniloEntity viniloEntity) {
         this.viniloEntity = viniloEntity;
     }
-
-    public PedidoClienteEntity getPedidoCLiente() {
-        return pedidoCLiente;
-    }
-
-    public void setPedidoCLiente(PedidoClienteEntity pedidoCLiente) {
-        this.pedidoCLiente = pedidoCLiente;
-    }
+*/
+//    public PedidoClienteEntity getPedidoCLiente() {
+//        return pedidoCLiente;
+//    }
+//
+//    public void setPedidoCLiente(PedidoClienteEntity pedidoCLiente) {
+//        this.pedidoCLiente = pedidoCLiente;
+//    }
     
     
     
