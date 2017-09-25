@@ -42,7 +42,7 @@ public class InfoResource {
     private static final Logger LOGGER = Logger.getLogger(InfoPersistence.class.getName());
 
     /**
-     * POST http://localhost:8080/tiendaVinilos-web/api/Infos Ejemplo
+     * POST http://localhost:8080/tiendaVinilos-web/api/infos Ejemplo
      * json: { "name":"Norma" }
      *
      * @param Info correponde a la representación java del objeto json
