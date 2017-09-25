@@ -47,15 +47,20 @@ public class ProveedorLogic {
         ProveedorEntity ent = persistence.find(id);
         return ent.getFeedBacks();
     }
-    
+    /**
+     * @TODO  Es mejor hacer un método de la BD con un select con los dos ids 
+     * 
+     **/
     public FeedBackEntity getFeedBack(Long idProv, Long idFB)
     {
         ProveedorEntity ent = persistence.find(idProv);
         List<FeedBackEntity> list = ent.getFeedBacks();
         FeedBackEntity fbEntity = new FeedBackEntity();
         fbEntity.setId(idFB);
-        int index = list.indexOf(fbEntity);
+        if (list != null) {
+            int index = list.indexOf(fbEntity);      
         if (index>=0) return list.get(index);
+        }
         return null;
     }
     
