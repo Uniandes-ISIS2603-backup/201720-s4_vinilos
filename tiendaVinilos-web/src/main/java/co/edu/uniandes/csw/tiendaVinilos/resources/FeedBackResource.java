@@ -35,13 +35,7 @@ public class FeedBackResource {
       private static final Logger LOGGER = Logger.getLogger(FeedBackResource.class.getName());
     
     @Inject FeedBackLogic logic;
-    
-    @GET
-    @Path("{id:\\d+}/proveedor")
-   public ProveedorEntity getProveedor(Long id)
-   {
-       return logic.getProveedor(id);
-   }
+   
    @GET
    public List<FeedBackDetailDTO> getFeedBacks()
    {

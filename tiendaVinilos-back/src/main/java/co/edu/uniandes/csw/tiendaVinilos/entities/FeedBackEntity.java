@@ -21,8 +21,24 @@ public class FeedBackEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ProveedorEntity proveedor;
+    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+    
     private String comentario;
     private double calificacion;
+    
+    
+    public UsuarioEntity getUsuario()
+    {
+        return usuario;
+    }
+    
+    public void setUsuario(UsuarioEntity usuario)
+    {
+        this.usuario = usuario;
+    }
     
     public ProveedorEntity getProveedor(){
         return proveedor;
