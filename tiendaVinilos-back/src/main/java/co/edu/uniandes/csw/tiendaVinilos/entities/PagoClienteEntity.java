@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -17,6 +18,9 @@ import javax.persistence.Temporal;
 @Entity
 public class PagoClienteEntity extends BaseEntity implements Serializable{
 
+    @OneToOne
+    private PedidoClienteEntity pedido;
+    
     /**
      * Valor total del pago
      */
@@ -59,4 +63,15 @@ public class PagoClienteEntity extends BaseEntity implements Serializable{
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    public void setPedido( PedidoClienteEntity pedido )
+    {
+        this.pedido = pedido;
+    }
+    
+    public PedidoClienteEntity getPedido( )
+    {
+        return pedido;
+    }
+    
 }

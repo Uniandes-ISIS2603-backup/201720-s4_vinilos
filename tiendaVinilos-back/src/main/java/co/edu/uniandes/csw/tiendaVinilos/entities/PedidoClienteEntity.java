@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +24,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 public class PedidoClienteEntity implements Serializable{
     
+    @ManyToOne
+    private UsuarioEntity usuario;
+    
+    @OneToOne
+    private PagoClienteEntity pago;
     /*
     * nombre
     */
@@ -181,5 +188,24 @@ public class PedidoClienteEntity implements Serializable{
         }
         return super.hashCode();
     }
-   
+ 
+    public void setUsuario( UsuarioEntity usuario )
+    {
+        this.usuario = usuario;
+    }
+    
+    public UsuarioEntity getUsuario( )
+    {
+        return usuario;
+    }
+    
+    public void setPago( PagoClienteEntity pago )
+    {
+        this.pago = pago;
+    }
+    
+    public PagoClienteEntity getPago( )
+    {
+        return pago;
+    }
 }
