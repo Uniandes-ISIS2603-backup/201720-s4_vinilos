@@ -31,6 +31,12 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      */
     public ViniloEntity createVinilo(ViniloEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación del Vinilo");
+        if (persistence.findByName(entity.getName()) != null) {
+            throw new BusinessLogicException("Ya existe un vinilo con el nombre \"" + entity.getName() + "\"");
+        }
+        if(persistence.find(entity.getId())!=null){
+            throw new BusinessLogicException("Ya existe un vinilo con el id\"" + entity.getId() + "\"");
+        }
         // Invoca la persistencia para crear el vinilo
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Vinilo");
