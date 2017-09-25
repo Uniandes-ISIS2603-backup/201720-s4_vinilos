@@ -23,7 +23,6 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
-
 /**
  *
  * @author jd.arenas

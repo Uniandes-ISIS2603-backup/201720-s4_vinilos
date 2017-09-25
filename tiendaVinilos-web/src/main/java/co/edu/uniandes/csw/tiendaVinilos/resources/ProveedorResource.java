@@ -31,10 +31,10 @@ import javax.ws.rs.WebApplicationException;
 @Path("proveedores")
 @Produces("application/json")
 @Consumes("application/json")
+ @RequestScoped
 public class ProveedorResource {
     
     @Inject ProveedorLogic logic;
-    @RequestScoped
     
    @GET
    public List<ProveedorDetailDTO> getProveedores()
