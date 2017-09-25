@@ -8,9 +8,13 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -31,6 +35,57 @@ public class PedidoProveedorEntity extends BaseEntity implements Serializable {
     * Precio de la compra
     */
     private double precio;
+    
+    @PodamExclude
+    @ManyToOne()
+    private ProveedorEntity proveedorEntity ;
+    
+    @PodamExclude
+    @OneToOne(mappedBy ="pagoProveedor")
+     private PagoProveedorEntity pagoProveedorEntity;
+    
+    @PodamExclude
+    @OneToMany(mappedBy ="vinilo")
+    private ViniloEntity viniloEntity;
+    
+    @PodamExclude
+    @ManyToOne()
+    private PedidoClienteEntity pedidoCLiente;
+
+    public ProveedorEntity getProveedorEntity() {
+        return proveedorEntity;
+    }
+
+    public void setProveedorEntity(ProveedorEntity proveedorEntity) {
+        this.proveedorEntity = proveedorEntity;
+    }
+
+    public PagoProveedorEntity getPagoProveedorEntity() {
+        return pagoProveedorEntity;
+    }
+
+    public void setPagoProveedorEntity(PagoProveedorEntity pagoProveedorEntity) {
+        this.pagoProveedorEntity = pagoProveedorEntity;
+    }
+
+    public ViniloEntity getViniloEntity() {
+        return viniloEntity;
+    }
+
+    public void setViniloEntity(ViniloEntity viniloEntity) {
+        this.viniloEntity = viniloEntity;
+    }
+
+    public PedidoClienteEntity getPedidoCLiente() {
+        return pedidoCLiente;
+    }
+
+    public void setPedidoCLiente(PedidoClienteEntity pedidoCLiente) {
+        this.pedidoCLiente = pedidoCLiente;
+    }
+    
+    
+    
 
     public Date getFechaEstimada() {
         return fechaEstimada;
@@ -48,7 +103,5 @@ public class PedidoProveedorEntity extends BaseEntity implements Serializable {
         this.precio = precio;
     }
     
-    
-    
-    
+ 
 }
