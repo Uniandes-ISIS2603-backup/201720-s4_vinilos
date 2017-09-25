@@ -1,0 +1,139 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasUsuario",
+		"_postman_id": "2997f0fd-381a-8682-717d-7d46973fc365",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NormalGet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get all usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Normal get with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/53",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Normal get user with id"
+			},
+			"response": []
+		},
+		{
+			"name": "Normal put",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/53",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"usuarioDetailDTO\",\n        \"email\": \"hdenyukin1g@irs.gov\",\n        \"name\": \"Julian\",\n        \"numCompras\": 17\n }"
+				},
+				"description": "Normal put usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "Put fallido id inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs404\"]=responseCode.code==404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/123123",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"usuarioDetailDTO\",\n        \"email\": \"hdenyukin1g@irs.gov\",\n        \"name\": \"Julian\",\n        \"numCompras\": 17\n }"
+				},
+				"description": "id does not exist"
+			},
+			"response": []
+		},
+		{
+			"name": "get failed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs404\"]=responseCode.code==404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/123123",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "get fallido por id"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,292 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas Recurso PedidoCliente",
+		"_postman_id": "c728e0a2-9e85-e9a4-c69b-536efba6af24",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Agregar pedido cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"precio\": 10000.00 , \"estado\": \"Aceptado\", \"fechaEstimada\": \"02/06/2017\", \"direccion\": \"14th st\" ,  \"telefono\": 75665 }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar un PedidoCliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/33",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Consulta un PedidoCliente que existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar PedidoCliente que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/10000000",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Debe responder: \"El Pedido con el id 15 no existe\""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos los PedidoCliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pedidoClienteDetailDTO\",\n    \"precio\": 50000,\n    \"telefono\": 0\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar pedido error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/33",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direccion\": \"15th st\",\n    \"estado\": \"Cancelado\",\n    \"precio\": 3743784378,\n    \"telefono\": 75965\n}"
+				},
+				"description": "Esta prueba intenta cancelar el pedido cuando el estado es diferente de \"aceptado\" o \"por confirmar\""
+			},
+			"response": []
+		},
+		{
+			"name": "Cancelar pedido exitoso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/35",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pedidoClienteDetailDTO\",\n    \"direccion\": \"14th st\",\n    \"estado\": \"Cancelado\",\n    \"precio\": 10000,\n    \"telefono\": 75665\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar información de pedido exitosa",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/29",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"direccion\": \"15th st\",\n    \"estado\": \"Aceptado\",\n    \"precio\": 3000000,\n    \"telefono\": 75965\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Modificación información pedido error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/32",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"direccion\": \"27th st\",\n    \"telefono\": 37484\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar pedido error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"]=responseCode.code===412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/28",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar pedido exitoso",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidocliente/27",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
