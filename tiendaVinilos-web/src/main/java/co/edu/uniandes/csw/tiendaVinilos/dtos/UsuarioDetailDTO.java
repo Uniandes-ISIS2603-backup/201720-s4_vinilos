@@ -100,3 +100,4 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     }
 
 }
+
