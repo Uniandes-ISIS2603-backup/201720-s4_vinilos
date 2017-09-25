@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,8 +23,6 @@ public class ProveedorLogic {
     private static final Logger LOGGER = Logger.getLogger(ProveedorLogic.class.getName());
 
     @Inject ProveedorPersistence persistence;
-    
-    @Inject FeedBackLogic feedBackLogic;
     
     public List<FeedBackEntity> getFeedBacks(Long id)
     {
