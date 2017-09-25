@@ -39,8 +39,14 @@ public class ProveedorEntity extends BaseEntity implements Serializable {
         return pedidos;
     }
     
-    
-    
+    /**
+     * Set de los pedidos asociadios al proveedor
+     * @param pedidos los pedidos por asociar 
+     */
+    public void setPedidos(List<PedidoProveedorEntity> pedidos)
+    {
+        this.pedidos = pedidos;
+    }
     
     public List<FeedBackEntity> getFeedBacks()
     {

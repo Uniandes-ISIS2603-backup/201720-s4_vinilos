@@ -18,6 +18,30 @@ public class ProveedorDetailDTO extends ProveedorDTO{
     
     private List<FeedBackDTO> feedBack;
     
+    private List<PedidoProveedorDTO> pedidos;
+    
+    public void setFeedBacks(List<FeedBackDTO> feedBacks)
+    {
+        this.feedBack = feedBacks;
+    }
+    
+    public List<FeedBackDTO> getFeedBacks()
+    {
+        return feedBack;
+    }
+    
+    public void setPedidos(List<PedidoProveedorDTO> pedidos)
+    {
+        this.pedidos = pedidos;
+    }
+    
+    public List<PedidoProveedorDTO> getPedidos()
+    {
+        return pedidos;
+    }
+    
+    
+    
     public ProveedorDetailDTO(){
     }
     
