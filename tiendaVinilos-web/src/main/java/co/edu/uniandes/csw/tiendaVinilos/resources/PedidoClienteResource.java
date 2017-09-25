@@ -64,7 +64,7 @@ public class PedidoClienteResource {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         PedidoClienteEntity pedidoEntity = pedido.toEntity();
         // Invoca la lógica para crear la editorial nueva
-        PedidoClienteEntity nuevoPedido = pedidoLogic.createPedido(pedidoEntity);
+        PedidoClienteEntity nuevoPedido = pedidoLogic.createPedido(pedidoEntity, pedido.getUsuario().toEntity());
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new PedidoClienteDetailDTO(nuevoPedido);
     }
@@ -97,7 +97,7 @@ public class PedidoClienteResource {
     public PedidoClienteDetailDTO updatePedido(@PathParam("id") Long id, PedidoClienteDetailDTO pedido) throws BusinessLogicException {
         
         pedido.setId(id);
-        return new PedidoClienteDetailDTO(pedidoLogic.updatePedido(id, pedido.toEntity()));
+        return new PedidoClienteDetailDTO(pedidoLogic.updatePedido(id, pedido.toEntity(), pedido.getUsuario().toEntity()));
     }
   
     
