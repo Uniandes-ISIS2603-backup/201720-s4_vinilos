@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.FeedBackPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -50,6 +51,33 @@ public class FeedBackLogic {
    public void deleteFeedBack(Long id)
    {
        persistence.delete(id);
+   
    }
    
+   public void agregarFeedBack(UsuarioEntity usuario, FeedBackEntity fb, ProveedorEntity proveedor)
+   {
+       fb.setProveedor(proveedor);
+       fb.setUsuario(usuario);
+       createFeedBack(fb);
+   }
+   
+   public void deleteFB (FeedBackEntity fbEntity)
+   {
+       fbEntity.setProveedor(null);
+       fbEntity.setUsuario(null);
+       deleteFeedBack(fbEntity.getId());
+   }
+   
+   /**
+    * Modifica un feedback, junto con su proveedor y usuario
+    * @param usuario nuevo usuario asociado
+    * @param fb feedback por modificar
+    * @param proveedor nuevo proveedor asociado
+    */
+   public void modificarFeedBack (UsuarioEntity usuario, FeedBackEntity fb, ProveedorEntity proveedor)
+   {
+       fb.setProveedor(proveedor);
+       fb.setUsuario(usuario);
+       updateFeedBack(fb);
+   }
 }

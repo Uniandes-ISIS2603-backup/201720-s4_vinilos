@@ -26,6 +26,22 @@ public class ProveedorEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "proveedor")
     private List<FeedBackEntity> feedBacks = new ArrayList();
     
+    @PodamExclude
+    @OneToMany(mappedBy = "proveedor")
+    private List<PedidoProveedorEntity> pedidos = new ArrayList();
+    
+    /**
+     * Get de los pedidos del proveedor
+     * @return lista con los pedidos del proveedor
+     */
+    public List<PedidoProveedorEntity> getPedidos()
+    {
+        return pedidos;
+    }
+    
+    
+    
+    
     public List<FeedBackEntity> getFeedBacks()
     {
         return feedBacks;
