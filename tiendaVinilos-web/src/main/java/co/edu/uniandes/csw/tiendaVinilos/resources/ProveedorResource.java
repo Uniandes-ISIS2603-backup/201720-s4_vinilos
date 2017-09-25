@@ -31,10 +31,10 @@ import javax.ws.rs.WebApplicationException;
 @Path("proveedores")
 @Produces("application/json")
 @Consumes("application/json")
+ @RequestScoped
 public class ProveedorResource {
     
     @Inject ProveedorLogic logic;
-    @RequestScoped
     
    @GET
    public List<ProveedorDetailDTO> getProveedores()
@@ -56,28 +56,6 @@ public class ProveedorResource {
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
         return (new ProveedorDetailDTO(en));
     }
-    
-    @GET
-    @Path("{id:\\d+}/feedBacks")
-    public List<FeedBackEntity> getProveedorFeedBacks( @PathParam("id") Long id)
-    {
-        ProveedorEntity en = logic.getProveedor(id);
-        if (en == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
-        return logic.getFeedBacks(id);
-    }
-    
-    /*
-    @GET
-    @Path("{provId:\\d+}/feedBacks/{fbId:\\d+}")
-    public List<FeedBackEntity> getProveedorFeedBack( @PathParam("id") Long id)
-    {
-        ProveedorEntity en = logic.getProveedor(id);
-        if (en == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
-        return logic.getFeedBacks(id);
-    }*/
-    
     
     @POST
     public ProveedorDetailDTO createProveedor(ProveedorDetailDTO prov) throws BusinessLogicException
