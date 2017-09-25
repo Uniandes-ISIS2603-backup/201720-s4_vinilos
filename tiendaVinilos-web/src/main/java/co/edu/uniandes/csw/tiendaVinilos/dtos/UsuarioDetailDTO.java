@@ -22,7 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
+import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,6 +34,20 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
  */
 public class UsuarioDetailDTO extends UsuarioDTO {
 
+    private ArrayList<TarjetaDTO> tarjetas;
+    
+    private ArrayList<FeedBackDTO> feeds;
+
+    public ArrayList<TarjetaDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(ArrayList<TarjetaDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+    
+    
+    
     /**
      * Constructor por defecto
      */
@@ -43,6 +61,21 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     public UsuarioDetailDTO(UsuarioEntity entity) {
         super(entity);
+        ArrayList<TarjetaEntity> lista= entity.getTarjetas();
+        List<TarjetaDTO> list= new ArrayList<>();
+        for (TarjetaEntity tarjetaEntity : lista) {
+            TarjetaDTO dto= new TarjetaDTO(tarjetaEntity);
+            list.add(dto);
+        }
+        tarjetas= (ArrayList<TarjetaDTO>)list;
+        ArrayList<FeedBackEntity> lista2= entity.getFeedBacks();
+        List<FeedBackDTO> list2= new ArrayList<>();
+        for (FeedBackEntity feedback : lista2) {
+            FeedBackDTO dto= new FeedBackDTO(feedback);
+            list2.add(dto);
+        }
+        tarjetas= (ArrayList<TarjetaDTO>)list;
+        
     }
 
     /**
@@ -53,6 +86,16 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     @Override
     public UsuarioEntity toEntity() {
         UsuarioEntity UsuarioE = super.toEntity();
+        ArrayList<TarjetaEntity> cards=new ArrayList<>();
+        for (TarjetaDTO tarjeta: tarjetas) {
+            cards.add(tarjeta.toEntity());
+        }
+        ArrayList<FeedBackEntity> feedbacks=new ArrayList<>();
+        for (FeedBackDTO feed: feeds) {
+            feedbacks.add(feed.toEntity());
+        }
+  
+        UsuarioE.setTarjetas(cards);
         return UsuarioE;
     }
 

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,6 +26,8 @@ public class TarjetaEntity extends BaseEntity{
     @Temporal(TemporalType.DATE)
     private Date goodThru;
     
+    @ManyToOne
+    private UsuarioEntity usuario;
 
     public Integer getNumero() {
         return numero;

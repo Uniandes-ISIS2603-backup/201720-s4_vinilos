@@ -31,6 +31,18 @@ import java.util.ArrayList;
  * @author jd.arenas
  */
 public class TarjetaDetailDTO extends TarjetaDTO {
+    
+    private UsuarioDTO usuario;
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     public TarjetaDetailDTO()
     {
