@@ -43,7 +43,7 @@ public class PedidoClienteResource {
     
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/pedidocliente Ejemplo
-     * json: { "precio": 10000.00 } 
+     * json: { "precio": 10000.00} 
      *       { "estado": "Aceptado"} 
      *       { "fechaEstimada": 07/27/2017 }
      *       { "direccion": "14th st"}

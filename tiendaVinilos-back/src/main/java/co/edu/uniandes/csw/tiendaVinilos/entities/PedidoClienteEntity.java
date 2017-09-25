@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -46,7 +47,8 @@ public class PedidoClienteEntity implements Serializable{
      /*
     * Fecha estimada de entrega
     */
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
+    @DateTimeFormat(style = "dd/mm/yyyy")
     private Date fechaEstimada;
     
     /*
