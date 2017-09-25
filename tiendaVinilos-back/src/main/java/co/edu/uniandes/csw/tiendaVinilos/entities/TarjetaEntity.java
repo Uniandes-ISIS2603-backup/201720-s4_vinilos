@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -27,6 +28,7 @@ public class TarjetaEntity extends BaseEntity{
     private Date goodThru;
     
     @ManyToOne
+    @PodamExclude
     private UsuarioEntity usuario;
 
     public UsuarioEntity getUsuario() {
