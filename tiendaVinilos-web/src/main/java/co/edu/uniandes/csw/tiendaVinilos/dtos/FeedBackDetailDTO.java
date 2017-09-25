@@ -21,10 +21,10 @@ public class FeedBackDetailDTO extends FeedBackDTO{
     
     public FeedBackDetailDTO(FeedBackEntity ent){
         super(ent);
-        if (ent != null)
+        /*if (ent != null)
         {
             this.proveedor = new ProveedorDTO(ent.getProveedor());
-        }
+        }*/
     }
 }
 
