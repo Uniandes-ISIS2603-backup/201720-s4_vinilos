@@ -53,7 +53,7 @@ public class PedidoClienteLogic
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar editorial con id={0}", id);
         return pedido;
@@ -71,7 +71,7 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
         if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")) 
                 && ( !((entity.getDireccion()).equals(pedido.getDireccion())) || 
@@ -103,7 +103,7 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de borrar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
          if(!((pedido.getEstado()).equals("Rechazado")) && !((pedido.getEstado()).equals("Cancelado")) && !((pedido.getEstado()).equals("Entregado")))
         {
