@@ -78,11 +78,11 @@ public class UsuarioFeedBackResource {
     }
     @PUT
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO updateFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public FeedBackDetailDTO updateFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2,FeedBackDetailDTO nuevo)
     {
-        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
-        feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(0), feed,feed.getProveedor());
-        return new FeedBackDetailDTO();
+        nuevo.setId(id2);
+        feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(id), nuevo.toEntity(),nuevo.getProveedor().toEntity());
+        return nuevo;
     }
      @DELETE
     @Path("/{id2:\\d+}")
