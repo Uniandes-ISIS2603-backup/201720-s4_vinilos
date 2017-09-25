@@ -95,11 +95,5 @@ public class UsuarioLogic {
         UsuarioEntity usu=getUsuario(id);
         return usu.getFeedBacks();
     }
-    public FeedBackEntity agregarFeedBack(Long idUsuario,ProveedorEntity proveedor)
-    {
-        UsuarioEntity usu=getUsuario(idUsuario);
-        return null;
-    }
-
 
 }
