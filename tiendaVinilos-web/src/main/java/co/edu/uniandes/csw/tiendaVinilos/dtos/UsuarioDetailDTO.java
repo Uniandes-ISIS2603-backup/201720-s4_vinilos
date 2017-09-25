@@ -74,7 +74,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             FeedBackDTO dto= new FeedBackDTO(feedback);
             list2.add(dto);
         }
-        tarjetas= (ArrayList<TarjetaDTO>)list;
+        feeds= (ArrayList<FeedBackDTO>)list2;
         
     }
 
@@ -96,6 +96,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         }
   
         UsuarioE.setTarjetas(cards);
+        UsuarioE.setFeedBacks(feedbacks);
         return UsuarioE;
     }
 
