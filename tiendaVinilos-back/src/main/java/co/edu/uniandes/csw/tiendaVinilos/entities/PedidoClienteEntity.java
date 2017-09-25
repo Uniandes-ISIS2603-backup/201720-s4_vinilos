@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,10 +24,10 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class PedidoClienteEntity implements Serializable{
-    
+    @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
-    
+    @PodamExclude
     @OneToOne
     private PagoClienteEntity pago;
     /*

@@ -12,6 +12,6 @@ import javax.persistence.Entity;
  * @author cs.gomez
  */
 @Entity
-public class ArtistaEntity extends DefaultEntity{
+public class ArtistaEntity  extends BaseEntity{
     
 }

@@ -38,7 +38,7 @@ public class CancionPersistenceTest {
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * embebido. El jar contiene las clases de Cancion, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -54,7 +54,7 @@ public class CancionPersistenceTest {
     
     
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase CancionPersistence cuyos métodos
      * se van a probar.
      */
     @Inject

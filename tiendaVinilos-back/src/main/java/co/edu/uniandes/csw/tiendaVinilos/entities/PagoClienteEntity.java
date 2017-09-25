@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -17,7 +18,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class PagoClienteEntity extends BaseEntity implements Serializable{
-
+    @PodamExclude
     @OneToOne
     private PedidoClienteEntity pedido;
     

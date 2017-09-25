@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author cs.gomez
  */
 @Entity
-public class CarroComprasEntity implements Serializable{
+public class CarroComprasEntity extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

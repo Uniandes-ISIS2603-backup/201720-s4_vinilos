@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  * @author cs.gomez
  */
 @Entity
-public class CancionEntity extends DefaultEntity{
+public class CancionEntity extends BaseEntity{
     
     private Double duracion; 
     
