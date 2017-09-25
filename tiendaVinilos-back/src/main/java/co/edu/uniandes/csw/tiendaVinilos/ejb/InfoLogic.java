@@ -31,6 +31,9 @@ public class InfoLogic {
     public InfoEntity createInfo(InfoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación del Info");
         // Invoca la persistencia para crear el Info
+        if(persistence.find(entity.getId())!=null){
+             throw new BusinessLogicException("Ya existe un info con el id \"" + entity.getId() + "\"");
+        }
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Info");
         return entity;
