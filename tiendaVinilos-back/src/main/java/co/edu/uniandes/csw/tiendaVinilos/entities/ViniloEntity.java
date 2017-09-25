@@ -6,7 +6,14 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,6 +25,31 @@ public class ViniloEntity extends BaseEntity implements Serializable{
     private int anio;
     private double precio;
     private int cantUnidades;
+    
+    @OneToOne
+    @PodamExclude
+    private InfoEntity info;
+    
+    
+    @PodamExclude
+    @ManyToMany(mappedBy = "vinilo")
+    private List<ArtistaEntity> artista= new ArrayList<ArtistaEntity>();
+    
+    @OneToMany
+    @PodamExclude
+    private CancionEntity cancion;
+    
+    @ManyToOne
+    @PodamExclude
+    private List<CarroComprasEntity> carroCompras= new ArrayList<CarroComprasEntity>();
+    
+    @PodamExclude
+    @ManyToOne
+    private List<ProveedorEntity> proveedor= new ArrayList<ProveedorEntity>();
+    
+    @PodamExclude
+    @ManyToOne
+    private List<PedidoProveedorEntity> pedidoProveedor= new ArrayList<PedidoProveedorEntity>();
 
     /**
      * @return the año
@@ -59,6 +91,20 @@ public class ViniloEntity extends BaseEntity implements Serializable{
      */
     public void setCantUnidades(int cantUnidades) {
         this.cantUnidades = cantUnidades;
+    }
+
+    /**
+     * @return the info
+     */
+    public InfoEntity getInfo() {
+        return info;
+    }
+
+    /**
+     * @param info the info to set
+     */
+    public void setInfo(InfoEntity info) {
+        this.info = info;
     }
     
 }

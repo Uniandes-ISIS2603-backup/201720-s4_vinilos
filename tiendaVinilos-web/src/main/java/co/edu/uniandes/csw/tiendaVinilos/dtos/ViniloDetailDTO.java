@@ -12,6 +12,23 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
  * @author jp.monsalvo
  */
 public class ViniloDetailDTO extends ViniloDTO{
+
+    /**
+     * @return the info
+     */
+    public InfoDTO getInfo() {
+        return info;
+    }
+
+    /**
+     * @param info the info to set
+     */
+    public void setInfo(InfoDTO info) {
+        this.info = info;
+    }
+    
+    private InfoDTO info;
+    
     /**
      * Constructor por defecto
      */
@@ -25,6 +42,7 @@ public class ViniloDetailDTO extends ViniloDTO{
      */
     public ViniloDetailDTO(ViniloEntity entity) {
         super(entity);
+        info=new InfoDTO( entity.getInfo());
     }
     
     /**
@@ -35,6 +53,7 @@ public class ViniloDetailDTO extends ViniloDTO{
     @Override
     public ViniloEntity toEntity() {
         ViniloEntity viniloE = super.toEntity();
+        viniloE.setInfo(info.toEntity());
         return viniloE;
     }
 }

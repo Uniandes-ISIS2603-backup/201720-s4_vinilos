@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,6 +22,9 @@ public class InfoEntity extends BaseEntity implements Serializable{
     private String urlCancion;
     private String urlImagen;
 
+    @OneToOne
+    private ViniloEntity vinilo;
+    
     /**
      * @return the descripcion
      */
@@ -61,6 +65,20 @@ public class InfoEntity extends BaseEntity implements Serializable{
      */
     public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
+    }
+
+    /**
+     * @return the vinilo
+     */
+    public ViniloEntity getVinilo() {
+        return vinilo;
+    }
+
+    /**
+     * @param vinilo the vinilo to set
+     */
+    public void setVinilo(ViniloEntity vinilo) {
+        this.vinilo = vinilo;
     }
     
 }
