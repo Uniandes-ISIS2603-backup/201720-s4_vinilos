@@ -24,13 +24,13 @@ public class UsuarioEntity extends BaseEntity {
     private int cantCompras;
     @PodamExclude
     @OneToMany
-    private ArrayList<TarjetaEntity> tarjetas;
+    private List<TarjetaEntity> tarjetas;
     
     @PodamExclude
     @OneToMany(mappedBy="usuario")
-    private ArrayList<FeedBackEntity> feedBacks;
+    private List<FeedBackEntity> feedBacks;
 
-    public ArrayList<TarjetaEntity> getTarjetas() {
+    public List<TarjetaEntity> getTarjetas() {
         return tarjetas;
     }
 
@@ -38,7 +38,7 @@ public class UsuarioEntity extends BaseEntity {
         this.tarjetas = tarjetas;
     }
 
-    public ArrayList<FeedBackEntity> getFeedBacks() {
+    public List<FeedBackEntity> getFeedBacks() {
         return feedBacks;
     }
 

@@ -61,14 +61,14 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     public UsuarioDetailDTO(UsuarioEntity entity) {
         super(entity);
-        ArrayList<TarjetaEntity> lista= entity.getTarjetas();
+        List<TarjetaEntity> lista= entity.getTarjetas();
         List<TarjetaDTO> list= new ArrayList<>();
         for (TarjetaEntity tarjetaEntity : lista) {
             TarjetaDTO dto= new TarjetaDTO(tarjetaEntity);
             list.add(dto);
         }
         tarjetas= (ArrayList<TarjetaDTO>)list;
-        ArrayList<FeedBackEntity> lista2= entity.getFeedBacks();
+        List<FeedBackEntity> lista2= entity.getFeedBacks();
         List<FeedBackDTO> list2= new ArrayList<>();
         for (FeedBackEntity feedback : lista2) {
             FeedBackDTO dto= new FeedBackDTO(feedback);

@@ -29,6 +29,14 @@ public class TarjetaEntity extends BaseEntity{
     @ManyToOne
     private UsuarioEntity usuario;
 
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
     public Integer getNumero() {
         return numero;
     }

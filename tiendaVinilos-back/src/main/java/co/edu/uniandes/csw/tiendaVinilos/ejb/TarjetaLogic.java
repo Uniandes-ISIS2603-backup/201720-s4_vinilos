@@ -27,6 +27,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 import co.edu.uniandes.csw.tiendaVinilos.persistence.TarjetaPersistence;
@@ -88,6 +89,23 @@ public class TarjetaLogic {
     public void deleteTarjeta(long id)
     {
         persistence.delete(id);
+    }
+    public TarjetaEntity agregarTarjeta(UsuarioEntity usu,TarjetaEntity tarjeta) throws BusinessLogicException
+    {
+        tarjeta.setUsuario(usu);
+        createTarjeta(tarjeta);
+        return tarjeta;
+    }
+    public TarjetaEntity modificarTarjeta(UsuarioEntity usuario,TarjetaEntity tarjeta)
+    {
+        tarjeta.setUsuario(usuario);
+        updateTarjeta(tarjeta.getId(), tarjeta);
+        return tarjeta;
+    }
+    public void deleteT(TarjetaEntity tarjeta)
+    {
+        tarjeta.setUsuario(null);
+        deleteTarjeta(tarjeta.getId());
     }
 
 }
