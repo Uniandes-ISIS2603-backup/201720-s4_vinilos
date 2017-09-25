@@ -1,4 +1,6 @@
-delete from InfoEntity
+delete from InfoEntity;
+
+
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (51, 'Edyth', 'Gowlett', 'egowlett1e@histats.com');
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (52, 'Antonia', 'Loghan', 'aloghan1f@google.es');
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (53, 'Fernandina', 'Gasperi', 'fgasperi1g@chronoengine.com');
