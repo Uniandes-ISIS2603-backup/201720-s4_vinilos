@@ -25,22 +25,22 @@ public class ProveedorLogic {
 
     @Inject ProveedorPersistence persistence;
     
-    public List<PedidoProveedorEntity> getPedidos(Long id)
-    {
-        ProveedorEntity ent = persistence.find(id);
-        return ent.getPedidos();
-    }
-    
-    public PedidoProveedorEntity getPedido(Long idProv, Long idPed)
-    {
-        ProveedorEntity ent = persistence.find(idProv);
-        List <PedidoProveedorEntity> list = ent.getPedidos();
-        PedidoProveedorEntity pedido = new PedidoProveedorEntity();
-        pedido.setId(idPed);
-        int index = list.indexOf(pedido);
-        if (index >= 0) return list.get(index);
-        return null;
-    }
+//    public List<PedidoProveedorEntity> getPedidos(Long id)
+//    {
+//        ProveedorEntity ent = persistence.find(id);
+//        return ent.getPedidos();
+//    }
+//    
+//    public PedidoProveedorEntity getPedido(Long idProv, Long idPed)
+//    {
+//        ProveedorEntity ent = persistence.find(idProv);
+//        List <PedidoProveedorEntity> list = ent.getPedidos();
+//        PedidoProveedorEntity pedido = new PedidoProveedorEntity();
+//        pedido.setId(idPed);
+//        int index = list.indexOf(pedido);
+//        if (index >= 0) return list.get(index);
+//        return null;
+//    }
     
     public List<FeedBackEntity> getFeedBacks(Long id)
     {
