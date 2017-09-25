@@ -17,8 +17,10 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,6 +44,14 @@ public class UsuarioFeedBackResource {
         
         return listEntity2DetailDTO(usuarioLogic.getFeedBacks(id));
     }
+     @GET
+    @Path("/{id2:\\d+}")
+    public FeedBackDetailDTO getFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    {
+        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
+        feedBackLogic.getFeedBack(id2);
+        return new FeedBackDetailDTO(feed);
+    }
     /**
      *
      * lista de entidades a DTO.
@@ -62,7 +72,24 @@ public class UsuarioFeedBackResource {
         return list;
     }
     @POST
-    public FeedBackDetailDTO createUsuario(FeedBackDetailDTO feedBack,@PathParam("id") Long id) throws BusinessLogicException {
-        return null;
+    public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feedBack,@PathParam("id") Long id) throws BusinessLogicException {
+        feedBackLogic.agregarFeedBack(usuarioLogic.getUsuario(id), feedBack.toEntity(), feedBack.getProveedor().toEntity());
+        return feedBack;
     }
+    @PUT
+    @Path("/{id2:\\d+}")
+    public FeedBackDetailDTO updateFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    {
+        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
+        feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(0), feed,feed.getProveedor());
+        return new FeedBackDetailDTO();
+    }
+     @DELETE
+    @Path("/{id2:\\d+}")
+    public void deleteFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    {
+        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
+        feedBackLogic.deleteFB(feed);
+    }
+    
 }
