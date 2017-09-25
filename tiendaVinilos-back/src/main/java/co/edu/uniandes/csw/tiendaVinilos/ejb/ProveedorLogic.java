@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
@@ -23,6 +24,23 @@ public class ProveedorLogic {
     private static final Logger LOGGER = Logger.getLogger(ProveedorLogic.class.getName());
 
     @Inject ProveedorPersistence persistence;
+    
+    public List<PedidoProveedorEntity> getPedidos(Long id)
+    {
+        ProveedorEntity ent = persistence.find(id);
+        return ent.getPedidos();
+    }
+    
+    public PedidoProveedorEntity getPedido(Long idProv, Long idPed)
+    {
+        ProveedorEntity ent = persistence.find(idProv);
+        List <PedidoProveedorEntity> list = ent.getPedidos();
+        PedidoProveedorEntity pedido = new PedidoProveedorEntity();
+        pedido.setId(idPed);
+        int index = list.indexOf(pedido);
+        if (index >= 0) return list.get(index);
+        return null;
+    }
     
     public List<FeedBackEntity> getFeedBacks(Long id)
     {
