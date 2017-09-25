@@ -19,7 +19,7 @@ public class ProveedorDetailDTO extends ProveedorDTO{
     
     private List<FeedBackDTO> feedBack;
     
-    private List<PedidoProveedorDTO> pedidos;
+    //private List<PedidoProveedorDTO> pedidos;
     
     public void setFeedBacks(List<FeedBackDTO> feedBacks)
     {
@@ -30,7 +30,7 @@ public class ProveedorDetailDTO extends ProveedorDTO{
     {
         return feedBack;
     }
-    
+    /**
     public void setPedidos(List<PedidoProveedorDTO> pedidos)
     {
         this.pedidos = pedidos;
@@ -40,7 +40,7 @@ public class ProveedorDetailDTO extends ProveedorDTO{
     {
         return pedidos;
     }
-    
+    */
     
     
     public ProveedorDetailDTO(){
@@ -55,13 +55,13 @@ public class ProveedorDetailDTO extends ProveedorDTO{
                 feedBack.add(new FeedBackDTO(fb));
         }
         
-        if (entity != null)
+       /** if (entity != null)
         {
             pedidos = new ArrayList();
             for (PedidoProveedorEntity pedidoEnt : entity.getPedidos())
                 pedidos.add(new PedidoProveedorDTO(pedidoEnt));
         }
-        
+        */
     }
     
     @Override
@@ -74,12 +74,12 @@ public class ProveedorDetailDTO extends ProveedorDTO{
            for (FeedBackDTO fb : getFeedBacks())
                listFB.add(fb.toEntity());
        }
-       if (entity != null)
+      /* if (entity != null)
        {
            List<PedidoProveedorEntity> listPp = new ArrayList();
            for (PedidoProveedorDTO ppDTO : getPedidos())
                listPp.add(ppDTO.toEntity());
-       }
+       }*/
        return entity;
     }
     
