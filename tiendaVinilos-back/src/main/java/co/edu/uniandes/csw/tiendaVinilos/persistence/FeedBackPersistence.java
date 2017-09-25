@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.tiendaVinilos.persistence;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

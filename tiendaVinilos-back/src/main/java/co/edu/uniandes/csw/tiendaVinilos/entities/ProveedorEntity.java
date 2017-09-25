@@ -6,46 +6,39 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author jc.ruiz
  */
 @Entity
-public class ProveedorEntity implements Serializable {
+public class ProveedorEntity extends BaseEntity implements Serializable {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
+ 
     String email;
     
-    public Long getId()
+    @PodamExclude
+    @OneToMany(mappedBy = "proveedor")
+    private List<FeedBackEntity> feedBacks = new ArrayList();
+    
+    public List<FeedBackEntity> getFeedBacks()
     {
-        return id;
+        return feedBacks;
     }
     
-    public String getName()
+    public void setFeedBacks(List<FeedBackEntity> feedBacks)
     {
-        return name;
+        this.feedBacks = feedBacks;
     }
     
     public String getEmail()
     {
         return email;
-    }
-    
-    public void setId(Long id){
-        this.id = id;
-    }
-    
-    public void setName(String name)
-    {
-        this.name = name;
     }
     
     public void setEmail(String email)

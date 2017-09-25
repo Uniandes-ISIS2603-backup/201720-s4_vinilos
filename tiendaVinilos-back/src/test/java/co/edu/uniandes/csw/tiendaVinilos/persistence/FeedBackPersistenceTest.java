@@ -115,7 +115,7 @@ public class FeedBackPersistenceTest {
         Assert.assertNotNull(result);
         FeedBackEntity entity = em.find(FeedBackEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(entity.getId(), result.getId());
+        Assert.assertEquals(entity.getComentario(), result.getComentario());
     }
 
     /**

@@ -17,6 +17,10 @@ public class ProveedorDTO {
     String name; 
     String email;
     
+    
+    public ProveedorDTO() {
+    }
+    
     public Long getId()
     {
         return id;
@@ -58,7 +62,7 @@ public class ProveedorDTO {
         ProveedorEntity entity = new ProveedorEntity();
         entity.setEmail(this.email);
         entity.setName(this.name);
-        entity.setId(this.id);
+        entity.setId(getId());
         
         return entity;
     }

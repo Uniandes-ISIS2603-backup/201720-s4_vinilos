@@ -1,0 +1,272 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Collection ",
+		"_postman_id": "a4cd5fa9-c051-55aa-5e04-3915fcae85d5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Camila\"  ,\"id\":1, \"email\" : \"c.gmail\"}"
+				},
+				"description": "Crear un nuevo proveedor "
+			},
+			"response": []
+		},
+		{
+			"name": "Error en POST proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 412\"] = responseCode.code === 412"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 1 , \"email\" : \"c.gmail\"}"
+				},
+				"description": "Error al crear un nuevo proveedor, pues ya existe otro proveedor con ese email "
+			},
+			"response": []
+		},
+		{
+			"name": "Get all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get todos los proveedores "
+			},
+			"response": []
+		},
+		{
+			"name": "GET proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/50",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GET de un proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "Error GET proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 404\"] = responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/200",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 1 , \"email\" : \"ca.gmail\"}"
+				},
+				"description": "Error al hacer get de un proveedor, pues no existe un proveedor con ese id "
+			},
+			"response": []
+		},
+		{
+			"name": "PUT proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/50",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 50 , \"email\" : \"pab.gmail\"}"
+				},
+				"description": "Modificar la informacion de un proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "Error POST proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 404\"] = responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 3 , \"email\" : \"c.gmail\"}"
+				},
+				"description": "Error al modificar el proveedor por cambiarle el id"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"] = responseCode.code===204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/50",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Se borra un proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "Error DELETE proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 404\"] = responseCode.code===404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/202",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Error al borrar un proveedor, pues no existe el id "
+			},
+			"response": []
+		}
+	]
+}

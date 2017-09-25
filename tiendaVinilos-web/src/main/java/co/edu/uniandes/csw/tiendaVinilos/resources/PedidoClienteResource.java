@@ -10,6 +10,8 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoClientePersistence;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
@@ -41,9 +43,9 @@ public class PedidoClienteResource {
     
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/pedidocliente Ejemplo
-     * json: { "precio": 10000.00 } 
+     * json: { "precio": 10000.00} 
      *       { "estado": "Aceptado"} 
-     *       { "fechaEstimada": 27/07/2017 }
+     *       { "fechaEstimada": 07/27/2017 }
      *       { "direccion": "14th st"}
      *       { "telefono": 2685578 }
      * 
@@ -135,8 +137,47 @@ public class PedidoClienteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PedidoClienteDetailDTO getEditorial(@PathParam("id") Long id) throws BusinessLogicException {
+    public PedidoClienteDetailDTO getPedido(@PathParam("id") Long id) throws BusinessLogicException {
         
         return new PedidoClienteDetailDTO(pedidoLogic.getPedido(id));
+    }
+    
+    /**
+     * GET para un pedido
+     * http://localhost:8080/tiendaVinilos-web/api/pedidocliente/1
+     *
+     * @param id corresponde al id del pedido buscado.
+     * @return El pedido encontrado. Ejemplo: { "type":
+     * "pedidoClienteDetailDTO", "id": 1, "precio": 10000.00, "estado": "Aceptado", "fechaEstimada": 27/07/2017, 
+     *   ["usuario": {"email": "correo@correo.org, "cantCompras": 2, "nombre": "Juan Pérez", "id": 2 }] 
+     *   ["carroCompras": {"precioTotal": 10000.00, "id": 3}]
+     *   ["pedidoProveedor": {"precio": 10000.00, "fechaEstimada": 27/07/2017, "id":4}] }
+     * @throws BusinessLogicException
+     *
+     * En caso de no existir el id del pedido buscado se retorna un 404 con
+     * el mensaje.
+     */
+    @GET
+    public List<PedidoClienteDetailDTO> getPedidos() throws BusinessLogicException {
+        return listEntity2DetailDTO(pedidoLogic.getPedidos());
+    }
+    
+    /**
+     *
+     * lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos EditorialEntity a una lista de
+     * objetos EditorialDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de editoriales de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de editoriales en forma DTO (json)
+     */
+    private List<PedidoClienteDetailDTO> listEntity2DetailDTO(List<PedidoClienteEntity> entityList) {
+        List<PedidoClienteDetailDTO> list = new ArrayList<>();
+        for(PedidoClienteEntity entity : entityList) {
+            list.add(new PedidoClienteDetailDTO(entity));
+        }
+        return list;
     }
 }

@@ -5,9 +5,13 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,12 +21,34 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ProveedorLogic {
-    
+    private static final Logger LOGGER = Logger.getLogger(ProveedorLogic.class.getName());
+
     @Inject ProveedorPersistence persistence;
     
+    @Inject FeedBackLogic feedBackLogic;
     
-    public ProveedorEntity createProveedor(ProveedorEntity entity)
+    public List<FeedBackEntity> getFeedBacks(Long id)
     {
+        ProveedorEntity ent = persistence.find(id);
+        return ent.getFeedBacks();
+    }
+    
+    public FeedBackEntity getFeedBack(Long idProv, Long idFB)
+    {
+        ProveedorEntity ent = persistence.find(idProv);
+        List<FeedBackEntity> list = ent.getFeedBacks();
+        FeedBackEntity fbEntity = new FeedBackEntity();
+        fbEntity.setId(idFB);
+        int index = list.indexOf(fbEntity);
+        if (index>=0) return list.get(index);
+        return null;
+    }
+    
+    
+    public ProveedorEntity createProveedor(ProveedorEntity entity) throws BusinessLogicException
+    {
+        if (persistence.findByEmail(entity.getEmail()) != null)
+            throw new BusinessLogicException("Ya existe un proveedor con el email \"" + entity.getEmail() + "\"");
         persistence.create(entity);
         return entity;
     }
@@ -46,7 +72,6 @@ public class ProveedorLogic {
    {
        persistence.delete(id);
    }
-   
 }
 
 

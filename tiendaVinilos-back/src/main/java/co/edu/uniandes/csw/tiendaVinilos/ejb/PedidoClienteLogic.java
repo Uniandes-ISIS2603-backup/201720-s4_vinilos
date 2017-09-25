@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoClientePersistence;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -113,5 +114,18 @@ public class PedidoClienteLogic
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar pedido con id={0}", id);
     }
-    
+ 
+    /**
+     * 
+     * Obtener todos los pedidos existentes en la base de datos.
+     *
+     * @return una lista de pedidos.
+     */
+    public List<PedidoClienteEntity> getPedidos() {
+        LOGGER.info("Inicia proceso de consultar todos los pedidos");
+        // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
+        List<PedidoClienteEntity> pedidos = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los pedidos");
+        return pedidos;
+    }
 }
