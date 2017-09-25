@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
@@ -87,6 +88,16 @@ public class UsuarioLogic {
     public void deleteUsuario(long id)
     {
         persistence.delete(id);
+    }
+    public List<FeedBackEntity> getFeedBacks(Long id)
+    {
+        UsuarioEntity usu=getUsuario(id);
+        return usu.getFeedBacks();
+    }
+    public FeedBackEntity agregarFeedBack(Long idUsuario,Proveedorentity proveedor)
+    {
+        UsuarioEntity usu=getUsuario(idUsuario);
+        
     }
 
 
