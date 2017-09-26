@@ -5,9 +5,11 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
+import co.edu.uniandes.csw.tiendaVinilos.dtos.PagoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ import javax.ws.rs.Produces;
  * @author s.saenz11
  */
 
-@Path("/pedidoProveedor(idPedidoProveedor: \\d+)/pagoProveedor")
+@Path("pedidoProveedor/{idPedidoProveedor: \\d+}/pagoProveedor")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -37,33 +39,35 @@ public class PedidoProveedorPagoProveedorResource {
      @Inject PedidoProveedorLogic logic;
      @Inject PagoProveedorLogic logic1;
     
-   @GET
-   public List<PedidoProveedorDetailDTO> getProveedores(@PathParam("idPedidoProveedor")Long idPedidoProveedor)throws BusinessLogicException
+   @POST
+   public PagoProveedorDetailDTO creatPagoProveedores(@PathParam("idPedidoProveedor")Long idPedidoProveedor,PagoProveedorDetailDTO  provee)throws BusinessLogicException
    {
        PedidoProveedorEntity ent = logic.getProveedor(idPedidoProveedor);
        
        if(ent == null)throw new BusinessLogicException("No existe el proveedor con id "+ idPedidoProveedor);
-       List<PedidoProveedorDetailDTO> retList = new ArrayList<PedidoProveedorDetailDTO>();
-       List<PedidoProveedorEntity> lista = logic.getAll();
-       for(PedidoProveedorEntity en : lista)
-           retList.add(new PedidoProveedorDetailDTO(en));
        
-       return retList;
+       PagoProveedorEntity pago =logic1.createWithPedido(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
+      
+       return provee;
    }
    
+    
     @GET
-    @Path(("{id:\\d+}"))
-    public PedidoProveedorDetailDTO getProveedor( @PathParam("idPagoProveedor") Long idPagoProveedor, @PathParam("idPagoProvvedor") Long idPedidoProveedor ) throws BusinessLogicException
+     @Path("/{id2:\\d+}")
+    public PagoProveedorDetailDTO getPagoProveedor(@PathParam("idPedidoProveedor")Long idPedidoProveedor,@PathParam("id2")Long id2 )
+            
+
+            
     {
+       
         
+        PedidoProveedorEntity ent =logic.getProveedor(idPedidoProveedor);
+             PagoProveedorDetailDTO dto = new PagoProveedorDetailDTO(logic1.getProveedor(id2));
+       
+       
         
-//       PedidoProveedorEntity ent = logic.getProveedor(idPedidoProveedor);
-//       if(ent== null) throw new BusinessLogicException("No se encuentra");
-//       PedidoProveedorDetailDTO detail = null;
-//       for(PagoProveedorEnti)
-//       
-//        return (new  PedidoProveedorDetailDTO(ent));
-        return null;
+        return dto;
+        
     }
     
   
