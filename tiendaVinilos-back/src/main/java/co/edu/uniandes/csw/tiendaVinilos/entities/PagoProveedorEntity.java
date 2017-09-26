@@ -8,9 +8,11 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,6 +20,20 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class PagoProveedorEntity extends BaseEntity implements Serializable{
+    
+     @PodamExclude
+    @OneToOne
+    private PedidoProveedorEntity pagoPedido ;
+
+    public PedidoProveedorEntity getPagoPedido() {
+        return pagoPedido;
+    }
+
+    public void setPagoPedido(PedidoProveedorEntity pago) {
+        this.pagoPedido = pago;
+    }
+    
+    
     
      /*
     * Fecha estimada de entrega
