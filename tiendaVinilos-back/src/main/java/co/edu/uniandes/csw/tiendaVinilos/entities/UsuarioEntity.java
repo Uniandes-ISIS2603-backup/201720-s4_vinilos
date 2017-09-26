@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -58,6 +59,21 @@ public class UsuarioEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy="usuario")
     private List<PedidoClienteEntity> pedidos;
+    
+    @PodamExclude
+    @OneToMany(mappedBy="usuario")
+    private List<ViniloEntity> carroCompras;
+
+    public List<ViniloEntity> getCarroCompras() {
+        return carroCompras;
+    }
+
+    public void setCarroCompras(List<ViniloEntity> carroCompras) {
+        this.carroCompras = carroCompras;
+    }
+    
+    
+    
 
     public List<PedidoClienteEntity> getPedidos() {
         return pedidos;
@@ -99,4 +115,6 @@ public class UsuarioEntity implements Serializable {
     public void setCantCompras(int cantCompras) {
         this.cantCompras = cantCompras;
     }
+
+    
 }

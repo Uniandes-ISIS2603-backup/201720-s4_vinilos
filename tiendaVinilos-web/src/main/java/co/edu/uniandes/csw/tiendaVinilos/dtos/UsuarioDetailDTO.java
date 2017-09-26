@@ -26,6 +26,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,18 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     private ArrayList<FeedBackDTO> feeds;
     
     private ArrayList<PedidoClienteDTO> pedidos;
+    
+    private ArrayList<ViniloDTO> carrito;
+
+    public ArrayList<ViniloDTO> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(ArrayList<ViniloDTO> carrito) {
+        this.carrito = carrito;
+    }
+    
+    
 
     public ArrayList<FeedBackDTO> getFeeds() {
         return feeds;
@@ -103,6 +116,15 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         }
         pedidos= (ArrayList<PedidoClienteDTO>)list3;
         
+        List<ViniloEntity> lista4= entity.getCarroCompras();
+        List<ViniloDTO> list4= new ArrayList<>();
+        for (ViniloEntity vinilo : lista4) {
+            ViniloDTO dto= new ViniloDTO(vinilo);
+            list4.add(dto);
+        }
+        carrito= (ArrayList<ViniloDTO>)list4;
+        
+        
     }
 
     /**
@@ -126,10 +148,15 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         for (PedidoClienteDTO pedido: pedidos) {
             pedidos2.add(pedido.toEntity());
         }
+        ArrayList<ViniloEntity> vinilos=new ArrayList<>();
+        for (ViniloDTO vinilo: carrito) {
+            vinilos.add(vinilo.toEntity());
+        }
   
         UsuarioE.setPedidos(pedidos2);
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
+        UsuarioE.setCarroCompras(vinilos);
         return UsuarioE;
     }
 

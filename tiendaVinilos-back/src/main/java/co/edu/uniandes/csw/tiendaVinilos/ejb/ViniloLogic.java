@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
@@ -90,7 +91,19 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
         vinEnt.setProveedor(provEnt);
         return updateVinilo(id, vinEnt);
     }
-
-
-
+    public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
+    {
+        vinilo.setUsuario(usuario);
+        return createVinilo(vinilo);
+    }
+    public ViniloEntity modificarCarrito(UsuarioEntity usuario,ViniloEntity vinilo)
+    {
+        vinilo.setUsuario(usuario);
+        return updateVinilo(vinilo.getId(), vinilo);
+    }
+    public void sacraDelCarrito(ViniloEntity vinilo)
+    {
+        vinilo.setUsuario(null);
+        deleteVinilo(vinilo.getId());
+    }
 }

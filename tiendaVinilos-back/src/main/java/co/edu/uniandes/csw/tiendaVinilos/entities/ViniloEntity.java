@@ -54,6 +54,10 @@ public class ViniloEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private PedidoProveedorEntity pedidoProveedor;
+    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
 
     public ProveedorEntity getProveedor()
     {
@@ -106,5 +110,22 @@ public class ViniloEntity implements Serializable {
     public void setCantUnidades(int cantUnidades) {
         this.cantUnidades = cantUnidades;
     }
+
+    public PedidoProveedorEntity getPedidoProveedor() {
+        return pedidoProveedor;
+    }
+
+    public void setPedidoProveedor(PedidoProveedorEntity pedidoProveedor) {
+        this.pedidoProveedor = pedidoProveedor;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+    
     
 }
