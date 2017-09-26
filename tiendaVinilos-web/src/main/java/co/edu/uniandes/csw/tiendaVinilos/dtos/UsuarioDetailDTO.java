@@ -23,6 +23,7 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import java.util.ArrayList;
@@ -37,7 +38,26 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     private ArrayList<TarjetaDTO> tarjetas;
     
     private ArrayList<FeedBackDTO> feeds;
+    
+    private ArrayList<PedidoClienteDTO> pedidos;
 
+    public ArrayList<FeedBackDTO> getFeeds() {
+        return feeds;
+    }
+
+    public void setFeeds(ArrayList<FeedBackDTO> feeds) {
+        this.feeds = feeds;
+    }
+
+    public ArrayList<PedidoClienteDTO> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<PedidoClienteDTO> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    
     public ArrayList<TarjetaDTO> getTarjetas() {
         return tarjetas;
     }
@@ -75,6 +95,13 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list2.add(dto);
         }
         feeds= (ArrayList<FeedBackDTO>)list2;
+        List<PedidoClienteEntity> lista3= entity.getPedidos();
+        List<PedidoClienteDTO> list3= new ArrayList<>();
+        for (PedidoClienteEntity pedido : lista3) {
+            PedidoClienteDTO dto= new PedidoClienteDTO(pedido);
+            list3.add(dto);
+        }
+        pedidos= (ArrayList<PedidoClienteDTO>)list3;
         
     }
 
@@ -94,7 +121,13 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         for (FeedBackDTO feed: feeds) {
             feedbacks.add(feed.toEntity());
         }
+        
+        ArrayList<PedidoClienteEntity> pedidos2=new ArrayList<>();
+        for (PedidoClienteDTO pedido: pedidos) {
+            pedidos2.add(pedido.toEntity());
+        }
   
+        UsuarioE.setPedidos(pedidos2);
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
         return UsuarioE;

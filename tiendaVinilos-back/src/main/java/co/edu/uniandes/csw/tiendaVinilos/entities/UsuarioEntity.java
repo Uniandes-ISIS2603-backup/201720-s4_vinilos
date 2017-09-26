@@ -29,7 +29,19 @@ public class UsuarioEntity extends BaseEntity {
     @PodamExclude
     @OneToMany(mappedBy="usuario")
     private List<FeedBackEntity> feedBacks;
+    
+    @PodamExclude
+    @OneToMany(mappedBy="usuario")
+    private List<PedidoClienteEntity> pedidos;
 
+    public List<PedidoClienteEntity> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<PedidoClienteEntity> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
     public List<TarjetaEntity> getTarjetas() {
         return tarjetas;
     }
