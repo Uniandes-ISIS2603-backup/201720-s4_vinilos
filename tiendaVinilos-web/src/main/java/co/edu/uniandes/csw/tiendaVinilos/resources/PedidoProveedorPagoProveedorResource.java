@@ -46,7 +46,7 @@ public class PedidoProveedorPagoProveedorResource {
        
        if(ent == null)throw new BusinessLogicException("No existe el proveedor con id "+ idPedidoProveedor);
        
-       PagoProveedorEntity pago =logic1.createWithPedido(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
+       //PagoProveedorEntity pago =logic1.createWithPedido(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
       
        return provee;
    }
