@@ -23,6 +23,24 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 public class PedidoProveedorEntity extends BaseEntity implements Serializable {
+    @PodamExclude
+    @OneToOne(mappedBy= "pagoPedido")
+    private PagoProveedorEntity pagoProveedor ;
+
+    
+    public PagoProveedorEntity getPagoP(){
+        
+        return pagoProveedor;
+    }
+    
+    public void setPagoProveedor(PagoProveedorEntity pp){
+        this.pagoProveedor = pp;
+    }
+    
+    
+    @PodamExclude
+    @ManyToOne
+    private PedidoClienteEntity pedidoCliente;
     
      /*
     * Fecha estimada de entrega
