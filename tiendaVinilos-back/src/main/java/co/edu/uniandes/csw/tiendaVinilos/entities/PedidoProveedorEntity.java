@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PedidoProveedorEntity implements Serializable{
 
     @PodamExclude
-    @OneToOne(mappedBy= "pagoPedido")
+    @OneToOne
     private PagoProveedorEntity pagoProveedor ;
 
     @Id
@@ -74,6 +75,7 @@ public class PedidoProveedorEntity implements Serializable{
     }
     
     
+    
     @PodamExclude
     @ManyToOne
     private PedidoClienteEntity pedidoCliente;    
@@ -89,53 +91,44 @@ public class PedidoProveedorEntity implements Serializable{
     */
     private double precio;
     
-//    @PodamExclude
-//    @ManyToOne()
-//    private ProveedorEntity proveedor ;
+    @PodamExclude
+    @ManyToOne()
+    private ProveedorEntity proveedor ;
     
-    //@PodamExclude
-    //@OneToOne(mappedBy ="pagoProveedor")
-     //private PagoProveedorEntity pagoProveedorEntity;
-    
-    //@PodamExclude
-    //@OneToMany(mappedBy ="vinilo")
-    //private ViniloEntity viniloEntity;
-    
-//    @PodamExclude
-//    @ManyToOne()
-//    private PedidoClienteEntity pedidoCLiente;
+    @PodamExclude
+    @OneToMany(mappedBy ="pedidoProveedor")
+    private List<ViniloEntity> viniloEntity;
 
-//    public ProveedorEntity getProveedorEntity() {
-//        return proveedor;
-//    }
-//
-//    public void setProveedorEntity(ProveedorEntity proveedor) {
-//        this.proveedor = proveedor;
-//    }
 
-//    public PagoProveedorEntity getPagoProveedorEntity() {
-//        return pagoProveedorEntity;
-//    }
-//
-//    public void setPagoProveedorEntity(PagoProveedorEntity pagoProveedorEntity) {
-//        this.pagoProveedorEntity = pagoProveedorEntity;
-//    }
-/*
-    public ViniloEntity getViniloEntity() {
+    public ProveedorEntity getProveedorEntity() {
+        return proveedor;
+    }
+    public void setProveedorEntity(ProveedorEntity proveedor) {
+        this.proveedor = proveedor;
+    }
+
+
+
+    public ProveedorEntity getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(ProveedorEntity proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public List<ViniloEntity> getViniloEntity() {
         return viniloEntity;
     }
 
-    public void setViniloEntity(ViniloEntity viniloEntity) {
+    public void setViniloEntity(List<ViniloEntity> viniloEntity) {
         this.viniloEntity = viniloEntity;
     }
-*/
-//    public PedidoClienteEntity getPedidoCLiente() {
-//        return pedidoCLiente;
-//    }
-//
-//    public void setPedidoCLiente(PedidoClienteEntity pedidoCLiente) {
-//        this.pedidoCLiente = pedidoCLiente;
-//    }
+
+    public PagoProveedorEntity getPagoProveedor() {
+        return pagoProveedor;
+    }
+    
     
     
     

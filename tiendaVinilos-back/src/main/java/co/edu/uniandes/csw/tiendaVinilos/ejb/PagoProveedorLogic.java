@@ -61,7 +61,7 @@ public class PagoProveedorLogic {
    
    public void deleteWith (PagoProveedorEntity fbEntity)
    {
-       fbEntity.setPagoPedido(null);
+       fbEntity.setPedidoProveedor(null);
        deleteProveedor(fbEntity.getId());
    }
    

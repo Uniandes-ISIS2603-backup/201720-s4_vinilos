@@ -26,8 +26,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class PagoProveedorEntity implements Serializable{
     
     @PodamExclude
-    @OneToOne
-    private PedidoProveedorEntity pagoPedido ;
+    @OneToOne(mappedBy="pagoProveedor")
+    private PedidoProveedorEntity pedidoProveedor ;
 
     @PodamExclude
     @ManyToOne
@@ -57,14 +57,16 @@ public class PagoProveedorEntity implements Serializable{
     {
         this.proveedor = proveedor;
     }
-    
-    public PedidoProveedorEntity getPagoPedido() {
-        return pagoPedido;
+
+    public PedidoProveedorEntity getPedidoProveedor() {
+        return pedidoProveedor;
     }
 
-    public void setPagoPedido(PedidoProveedorEntity pago) {
-        this.pagoPedido = pago;
+    public void setPedidoProveedor(PedidoProveedorEntity pedidoProveedor) {
+        this.pedidoProveedor = pedidoProveedor;
     }
+    
+
      private String name;
 
     public String getName() {

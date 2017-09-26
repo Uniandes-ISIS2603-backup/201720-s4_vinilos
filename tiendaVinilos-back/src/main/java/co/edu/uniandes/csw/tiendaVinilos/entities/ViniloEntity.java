@@ -50,6 +50,10 @@ public class ViniloEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private ProveedorEntity proveedor;
+    
+    @PodamExclude
+    @ManyToOne
+    private PedidoProveedorEntity pedidoProveedor;
 
     public ProveedorEntity getProveedor()
     {

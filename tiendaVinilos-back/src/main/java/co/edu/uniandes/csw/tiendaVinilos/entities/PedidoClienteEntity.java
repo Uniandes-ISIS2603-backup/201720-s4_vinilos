@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,12 +36,20 @@ public class PedidoClienteEntity implements Serializable{
     * nombre
     */
     private String name;
+
+    public List<PedidoProveedorEntity> getPedidoProveedor() {
+        return pedidoProveedor;
+    }
+
+    public void setPedidoProveedor(List<PedidoProveedorEntity> pedidoProveedor) {
+        this.pedidoProveedor = pedidoProveedor;
+    }
     
     
     
     @PodamExclude
     @OneToMany(mappedBy ="pedidoCliente")
-    private PedidoProveedorEntity pedidoProveedor;
+    private List<PedidoProveedorEntity> pedidoProveedor;
     /*
     * Id de la compra
     */
