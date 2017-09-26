@@ -26,6 +26,13 @@ public class ProveedorEntity extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "proveedor")
     private List<FeedBackEntity> feedBacks = new ArrayList();
     
+    @PodamExclude
+    @OneToMany (mappedBy = "proveedor")
+    private List<PagoProveedorEntity> pagos = new ArrayList();
+    
+    @PodamExclude 
+    @OneToMany(mappedBy = "proveedor")
+    private List <ViniloEntity> vinilos = new ArrayList();
     
 //    @PodamExclude
 //    @OneToMany(mappedBy = "proveedor")
@@ -48,7 +55,28 @@ public class ProveedorEntity extends BaseEntity implements Serializable {
 //    {
 //        this.pedidos = pedidos;
 //    }
-//    
+    
+    
+    public List<ViniloEntity> getVinilos()
+    {
+        return vinilos;
+    }
+    
+    public void setVinilos(List<ViniloEntity> vinilos)
+    {
+        this.vinilos = vinilos;
+    }
+    
+    public List<PagoProveedorEntity> getPagos()
+    {
+        return pagos;
+    }
+    
+    public void setPagos (List<PagoProveedorEntity> pagos)
+    {
+        this.pagos = pagos;
+    }
+    
     public List<FeedBackEntity> getFeedBacks()
     {
         return feedBacks;
