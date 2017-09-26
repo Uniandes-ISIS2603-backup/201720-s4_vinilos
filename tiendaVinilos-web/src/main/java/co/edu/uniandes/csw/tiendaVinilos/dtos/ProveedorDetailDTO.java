@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import java.util.ArrayList;
@@ -19,7 +20,19 @@ public class ProveedorDetailDTO extends ProveedorDTO {
 
     private List<FeedBackDTO> feedBack;
 
+    private List<PagoProveedorDTO> pagos;
     //private List<PedidoProveedorDTO> pedidos;
+    
+    public void setPagos(List<PagoProveedorDTO> pagos)
+    {
+        this.pagos = pagos;
+    }
+    
+    public List<PagoProveedorDTO> getPagos()
+    {
+        return pagos;
+    }
+    
     public void setFeedBacks(List<FeedBackDTO> feedBacks) {
         this.feedBack = feedBacks;
     }
@@ -48,6 +61,14 @@ public class ProveedorDetailDTO extends ProveedorDTO {
                 feedBack.add(new FeedBackDTO(fb));
             }
         }
+        
+        if (entity != null) {
+            pagos = new ArrayList();
+            for (PagoProveedorEntity ent : entity.getPagos()) {
+                pagos.add(new PagoProveedorDTO(ent));
+            }
+        }
+        
 //         if (entity != null)
 //        {
 //            pedidos = new ArrayList();
@@ -68,6 +89,17 @@ public class ProveedorDetailDTO extends ProveedorDTO {
                 }
             } 
             entity.setFeedBacks(listFB);
+        }
+        
+        if (entity != null) {
+            List<PagoProveedorEntity> listPp = null;
+            if (getPagos() != null) {
+                listPp = new ArrayList();
+                for (PagoProveedorDTO ppDTO : getPagos()) {
+                    listPp.add(ppDTO.toEntity());
+                }
+            } 
+            entity.setPagos(listPp);
         }
 //        if (entity != null)
 //       {
