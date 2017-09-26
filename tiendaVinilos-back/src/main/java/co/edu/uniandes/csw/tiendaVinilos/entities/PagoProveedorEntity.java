@@ -20,7 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author s.saenz11
  */
 @Entity
-public class PagoProveedorEntity extends BaseEntity implements Serializable{
+public class PagoProveedorEntity extends BaseEntity {
     
     @PodamExclude
     @OneToOne

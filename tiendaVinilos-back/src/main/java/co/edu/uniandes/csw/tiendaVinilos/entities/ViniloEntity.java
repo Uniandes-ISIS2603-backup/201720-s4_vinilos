@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jp.monsalvo
  */
 @Entity
-public class ViniloEntity extends BaseEntity implements Serializable{
+public class ViniloEntity extends BaseEntity {
     
     private int anio;
     private double precio;

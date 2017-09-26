@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  * @author jp.monsalvo
  */
 @Entity
-public class InfoEntity extends BaseEntity implements Serializable{
+public class InfoEntity extends BaseEntity {
 
     
     private String descripcion;

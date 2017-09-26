@@ -15,7 +15,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.ruiz
  */
 @Entity
-public class FeedBackEntity extends BaseEntity implements Serializable{
+public class FeedBackEntity extends BaseEntity {
     
     
     @PodamExclude
