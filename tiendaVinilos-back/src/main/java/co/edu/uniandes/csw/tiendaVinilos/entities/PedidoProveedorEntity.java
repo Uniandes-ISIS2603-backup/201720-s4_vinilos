@@ -33,12 +33,27 @@ public class PedidoProveedorEntity implements Serializable{
     @OneToOne
     private PagoProveedorEntity pagoProveedor ;
 
+    @PodamExclude
+    @ManyToOne
+    private ProveedorEntity proveedor;
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
      private String name;
 
+     public ProveedorEntity getProveedor()
+     {
+         return proveedor;
+     }
+     
+     public void setProveedor (ProveedorEntity proveedor)
+     {
+         this.proveedor = proveedor;
+     }
+     
     public String getName() {
         return name;
     }
@@ -90,11 +105,7 @@ public class PedidoProveedorEntity implements Serializable{
     * Precio de la compra
     */
     private double precio;
-    
-    @PodamExclude
-    @ManyToOne()
-    private ProveedorEntity proveedor ;
-    
+  
     @PodamExclude
     @OneToMany(mappedBy ="pedidoProveedor")
     private List<ViniloEntity> viniloEntity;
@@ -106,17 +117,7 @@ public class PedidoProveedorEntity implements Serializable{
     public void setProveedorEntity(ProveedorEntity proveedor) {
         this.proveedor = proveedor;
     }
-
-
-
-    public ProveedorEntity getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(ProveedorEntity proveedor) {
-        this.proveedor = proveedor;
-    }
-
+    
     public List<ViniloEntity> getViniloEntity() {
         return viniloEntity;
     }

@@ -21,7 +21,8 @@ public class ProveedorDetailDTO extends ProveedorDTO {
     private List<FeedBackDTO> feedBack;
 
     private List<PagoProveedorDTO> pagos;
-    //private List<PedidoProveedorDTO> pedidos;
+    
+    private List<PedidoProveedorDTO> pedidos;
     
     public void setPagos(List<PagoProveedorDTO> pagos)
     {
@@ -41,15 +42,15 @@ public class ProveedorDetailDTO extends ProveedorDTO {
         return feedBack;
     }
 
-//    public void setPedidos(List<PedidoProveedorDTO> pedidos)
-//    {
-//        this.pedidos = pedidos;
-//    }
-//    
-//    public List<PedidoProveedorDTO> getPedidos()
-//    {
-//        return pedidos;
-//    }
+    public void setPedidos(List<PedidoProveedorDTO> pedidos)
+    {
+        this.pedidos = pedidos;
+    }
+    
+    public List<PedidoProveedorDTO> getPedidos()
+    {
+        return pedidos;
+    }
     public ProveedorDetailDTO() {
     }
 
@@ -69,12 +70,12 @@ public class ProveedorDetailDTO extends ProveedorDTO {
             }
         }
         
-//         if (entity != null)
-//        {
-//            pedidos = new ArrayList();
-//            for (PedidoProveedorEntity pedidoEnt : entity.getPedidos())
-//                pedidos.add(new PedidoProveedorDTO(pedidoEnt));
-//        }
+         if (entity != null)
+        {
+            pedidos = new ArrayList();
+            for (PedidoProveedorEntity pedidoEnt : entity.getPedidos())
+                pedidos.add(new PedidoProveedorDTO(pedidoEnt));
+        }
     }
 
     @Override
@@ -101,12 +102,17 @@ public class ProveedorDetailDTO extends ProveedorDTO {
             } 
             entity.setPagos(listPp);
         }
-//        if (entity != null)
-//       {
-//           List<PedidoProveedorEntity> listPp = new ArrayList();
-//           for (PedidoProveedorDTO ppDTO : getPedidos())
-//               listPp.add(ppDTO.toEntity());
-//       }
+        if (entity != null)
+       {
+           List<PedidoProveedorEntity> listPp = null;
+           if (getPedidos() != null) {
+               listPp = new ArrayList();
+           for (PedidoProveedorDTO ppDTO : getPedidos()){
+               listPp.add(ppDTO.toEntity());
+           }
+           }
+           entity.setPedidos(listPp);
+       }
         return entity;
     }
 
