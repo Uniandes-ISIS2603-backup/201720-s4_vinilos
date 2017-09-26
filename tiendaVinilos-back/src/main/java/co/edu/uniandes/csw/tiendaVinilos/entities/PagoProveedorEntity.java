@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,10 +22,24 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PagoProveedorEntity extends BaseEntity implements Serializable{
     
-     @PodamExclude
+    @PodamExclude
     @OneToOne
     private PedidoProveedorEntity pagoPedido ;
 
+    @PodamExclude
+    @ManyToOne
+    private ProveedorEntity proveedor;
+    
+     public ProveedorEntity getProveedor()
+    {
+        return proveedor;
+    }
+    
+    public void setProveedor(ProveedorEntity proveedor)
+    {
+        this.proveedor = proveedor;
+    }
+    
     public PedidoProveedorEntity getPagoPedido() {
         return pagoPedido;
     }
