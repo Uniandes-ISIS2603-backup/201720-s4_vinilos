@@ -37,6 +37,10 @@ public class ProveedorEntity implements Serializable{
     @OneToMany(mappedBy = "proveedor")
     private List <ViniloEntity> vinilos = new ArrayList();
     
+     @PodamExclude
+    @OneToMany(mappedBy = "proveedor")
+    private List<PedidoProveedorEntity> pedidos = new ArrayList();
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -67,33 +71,24 @@ public class ProveedorEntity implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-    
-    
-    
-    
-    
-//    @PodamExclude
-//    @OneToMany(mappedBy = "proveedor")
-//    private List<PedidoProveedorEntity> pedidos = new ArrayList();
-    
+    }    
     
      /* Get de los pedidos del proveedor
      * @return lista con los pedidos del proveedor
      */
-//    public List<PedidoProveedorEntity> getPedidos()
-//    {
-//        return pedidos;
-//    }
-//    
-//    
-//     /* Set de los pedidos asociadios al proveedor
-//     * @param pedidos los pedidos por asociar 
-//     */
-//    public void setPedidos(List<PedidoProveedorEntity> pedidos)
-//    {
-//        this.pedidos = pedidos;
-//    }
+    public List<PedidoProveedorEntity> getPedidos()
+    {
+        return pedidos;
+    }
+    
+    
+     /* Set de los pedidos asociadios al proveedor
+     * @param pedidos los pedidos por asociar 
+     */
+    public void setPedidos(List<PedidoProveedorEntity> pedidos)
+                {
+        this.pedidos = pedidos;
+    }
     
     
     public List<ViniloEntity> getVinilos()
