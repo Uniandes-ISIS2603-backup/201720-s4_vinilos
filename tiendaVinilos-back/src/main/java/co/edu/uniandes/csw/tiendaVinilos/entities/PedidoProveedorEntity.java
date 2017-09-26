@@ -22,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class PedidoProveedorEntity extends BaseEntity implements Serializable {
+public class PedidoProveedorEntity extends BaseEntity {
     
      /*
     * Fecha estimada de entrega

@@ -17,7 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.ruiz
  */
 @Entity
-public class ProveedorEntity extends BaseEntity implements Serializable {
+public class ProveedorEntity extends BaseEntity {
     
  
     String email;
