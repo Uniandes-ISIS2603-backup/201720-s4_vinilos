@@ -43,4 +43,6 @@ public class PedidoProveedorLogic {
    {
        persistence.delete(id);
    }
+   
+   
 }

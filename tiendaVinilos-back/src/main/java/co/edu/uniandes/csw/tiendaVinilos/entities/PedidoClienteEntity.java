@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +36,11 @@ public class PedidoClienteEntity implements Serializable{
     */
     private String name;
     
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy ="pedidoCliente")
+    private PedidoProveedorEntity pedidoProveedor;
     /*
     * Id de la compra
     */
