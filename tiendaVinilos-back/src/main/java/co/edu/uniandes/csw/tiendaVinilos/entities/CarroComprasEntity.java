@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author cs.gomez
  */
 @Entity
-public class CarroComprasEntity extends BaseEntity{
+public class CarroComprasEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +39,6 @@ public class CarroComprasEntity extends BaseEntity{
     public void setPrecioTotal(double precioTotal){
         this.precioTotal = precioTotal;
     }
+    
     
 }

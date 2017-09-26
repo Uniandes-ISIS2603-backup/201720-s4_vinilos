@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -23,12 +26,43 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 
-public class PedidoProveedorEntity extends BaseEntity {
+public class PedidoProveedorEntity implements Serializable{
 
     @PodamExclude
     @OneToOne(mappedBy= "pagoPedido")
     private PagoProveedorEntity pagoProveedor ;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PedidoClienteEntity getPedidoCliente() {
+        return pedidoCliente;
+    }
+
+    public void setPedidoCliente(PedidoClienteEntity pedidoCliente) {
+        this.pedidoCliente = pedidoCliente;
+    }
+    
+    
     
     public PagoProveedorEntity getPagoP(){
         

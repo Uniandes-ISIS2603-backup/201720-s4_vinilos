@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -15,7 +18,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jc.ruiz
  */
 @Entity
-public class FeedBackEntity extends BaseEntity {
+public class FeedBackEntity implements Serializable{
     
     
     @PodamExclude
@@ -25,6 +28,21 @@ public class FeedBackEntity extends BaseEntity {
     @PodamExclude
     @ManyToOne
     private UsuarioEntity usuario;
+    
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
     
     private String comentario;
     private double calificacion;
