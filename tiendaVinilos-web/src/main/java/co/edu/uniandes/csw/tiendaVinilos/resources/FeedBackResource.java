@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,6 +31,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class FeedBackResource {
   
       private static final Logger LOGGER = Logger.getLogger(FeedBackResource.class.getName());
@@ -53,7 +55,9 @@ public class FeedBackResource {
         FeedBackEntity en = logic.getFeedBack(id);
         if (en == null)
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
-        return (new FeedBackDetailDTO(en));
+        FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
+        System.out.println("HEEEEYYYYYYYYY llego el id " + id + " y sale el id dto " + fbDTO.getId() );
+        return (fbDTO);
     }
     
     @POST
