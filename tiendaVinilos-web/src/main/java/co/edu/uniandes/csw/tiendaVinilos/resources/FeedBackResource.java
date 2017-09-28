@@ -10,7 +10,6 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -32,8 +31,7 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class FeedBackResource {
-  
-      private static final Logger LOGGER = Logger.getLogger(FeedBackResource.class.getName());
+
     
     @Inject FeedBackLogic feedbackLogic;
    @GET

@@ -22,7 +22,6 @@ import javax.inject.Inject;
 public class ArtistaLogic {
     
     
-    private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName());
 
     @Inject
     private ArtistaPersistence persistence; 
@@ -34,14 +33,12 @@ public class ArtistaLogic {
      * @throws BusinessLogicException
      */
     public ArtistaEntity createArtista(ArtistaEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación del ArtistaEntity");
 
         if(persistence.find(entity.getId())!=null){
             throw new BusinessLogicException("Ya existe un Artista con el id\"" + entity.getId() + "\"");
         }
         // Invoca la persistencia para crear el Artista
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Artista");
         return entity;
     }
 
@@ -52,10 +49,8 @@ public class ArtistaLogic {
      * @return una lista de Artistas.
      */
     public List<ArtistaEntity> getArtistas() {
-        LOGGER.info("Inicia proceso de consultar todas los Artistas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<ArtistaEntity> artista = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas los Artistas");
         return artista;
     }
     public ArtistaEntity getArtista(long id)
