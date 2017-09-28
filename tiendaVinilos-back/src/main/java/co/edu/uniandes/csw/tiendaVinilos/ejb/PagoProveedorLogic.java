@@ -9,12 +9,14 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PagoProveedorPersistennce;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author s.saenz11
  */
+@Stateless
 public class PagoProveedorLogic {
     
      @Inject PagoProveedorPersistennce persistence;

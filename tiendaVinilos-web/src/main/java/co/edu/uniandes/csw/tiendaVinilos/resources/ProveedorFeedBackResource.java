@@ -26,15 +26,11 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/feedbacks")
-@Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Produces("application/json")
 public class ProveedorFeedBackResource {
     
     @Inject ProveedorLogic proveedorLogic;
-    
-    @Inject FeedBackLogic feedBackLogic;
     
     
     
@@ -45,7 +41,7 @@ public class ProveedorFeedBackResource {
      * @throws BusinessLogicException  En caso de que no exista, lanza una excepcion
      */
     @GET 
-    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("idProveedor") Long idProveedor) throws BusinessLogicException
+    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("proveedorId") Long idProveedor) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
@@ -64,7 +60,7 @@ public class ProveedorFeedBackResource {
      */
     @GET
     @Path(("/{idFB:\\d+}"))
-    public FeedBackDetailDTO getFeedBack ( @PathParam("idProveedor") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
+    public FeedBackDetailDTO getFeedBack ( @PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);

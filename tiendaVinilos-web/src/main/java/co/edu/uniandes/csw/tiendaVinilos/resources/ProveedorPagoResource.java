@@ -25,17 +25,15 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/pagos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
 public class ProveedorPagoResource {
     
     @Inject ProveedorLogic proveedorLogic;
     @Inject PagoProveedorLogic pagoLogic;
     
     @GET
-    public List<PagoProveedorDetailDTO> getPagos(@PathParam("idProveedor") Long id) throws BusinessLogicException
+    public List<PagoProveedorDetailDTO> getPagos(@PathParam("proveedorId") Long id) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(id);
         if (ent == null)  throw new BusinessLogicException("No existe el proveedor con id " + id);
@@ -47,7 +45,7 @@ public class ProveedorPagoResource {
     
     @GET
     @Path(("/{idPP:\\d+}"))
-    public PagoProveedorDetailDTO getPago(@PathParam("idProveedor") Long idProveedor, @PathParam("idPP") Long idPago) throws BusinessLogicException
+    public PagoProveedorDetailDTO getPago(@PathParam("proveedorId") Long idProveedor, @PathParam("idPP") Long idPago) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);

@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -30,7 +29,7 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/vinilos")
+ @Path("/proveedores/{idProveedor: \\d+}/vinilos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -76,6 +75,7 @@ public class ProveedorVinilosResource {
     {
         ViniloEntity vinEnt = vinilosLogic.getVinilo(idVin);
         return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin, vinEnt));
+        
     }
    
     @DELETE

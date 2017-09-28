@@ -10,12 +10,14 @@ import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.InfoPersistence;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author jp.monsalvo
  */
+@Stateless
 public class InfoLogic {
     private static final Logger LOGGER = Logger.getLogger(InfoLogic.class.getName());
 
