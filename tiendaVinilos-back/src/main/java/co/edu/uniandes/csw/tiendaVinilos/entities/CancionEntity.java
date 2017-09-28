@@ -22,7 +22,9 @@ public class CancionEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Double duracion; 
+    private Double duracion;
+    
+     private String name;
     
     public Double getDuracion(){
         return duracion;
@@ -40,7 +42,7 @@ public class CancionEntity implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-     private String name;
+    
 
     public String getName() {
         return name;
