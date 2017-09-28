@@ -64,6 +64,6 @@ public class CarroComprasLogic {
    {
        CarroComprasEntity ent = persistence.find(id);
        ent.getVinilos().add(vinEnt);
-       updateCarroCompras(id, ent);
+        persistence.update(ent);
    }
 }

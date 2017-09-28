@@ -8,12 +8,14 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -27,8 +29,9 @@ public class CarroComprasEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
     private double precioTotal;
+    
     @PodamExclude
-    @ManyToMany(mappedBy="carrosCompras")
+    @OneToMany (mappedBy="carrosCompras")
     private List<ViniloEntity> vinilos;
     @OneToMany(mappedBy="carrito")
     private PedidoClienteEntity pedido;
