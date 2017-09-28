@@ -19,7 +19,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class InfoLogic {
-    private static final Logger LOGGER = Logger.getLogger(InfoLogic.class.getName());
 
     @Inject
     private InfoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
@@ -31,13 +30,11 @@ public class InfoLogic {
      * @throws BusinessLogicException
      */
     public InfoEntity createInfo(InfoEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación del Info");
         // Invoca la persistencia para crear el Info
         if(persistence.find(entity.getId())!=null){
              throw new BusinessLogicException("Ya existe un info con el id \"" + entity.getId() + "\"");
         }
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Info");
         return entity;
     }
 
@@ -48,10 +45,8 @@ public class InfoLogic {
      * @return una lista de Infoes.
      */
     public List<InfoEntity> getInfos() {
-        LOGGER.info("Inicia proceso de consultar todas las Infoes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<InfoEntity> Info = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Infoes");
         return Info;
     }
     public InfoEntity getInfo(long id)

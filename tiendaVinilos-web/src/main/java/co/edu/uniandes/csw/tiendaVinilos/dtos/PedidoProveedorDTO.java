@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;

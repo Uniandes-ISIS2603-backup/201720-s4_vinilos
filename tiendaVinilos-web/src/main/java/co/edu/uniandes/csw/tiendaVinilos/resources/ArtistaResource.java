@@ -9,11 +9,8 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ArtistaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.ArtistaPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -38,9 +35,6 @@ public class ArtistaResource {
     
     @Inject
     ArtistaLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-    private static final Logger LOGGER = Logger.getLogger(ArtistaPersistence.class.getName());
-
     
     @POST
     public ArtistaDetailDTO createArtista(ArtistaDetailDTO artista) throws BusinessLogicException {
@@ -103,7 +97,6 @@ public class ArtistaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteArtista(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Vinilo con id {0}", id);
         ArtistaEntity entity = logic.getArtista(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /artista/" + id + " no existe.", 404);

@@ -136,21 +136,30 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     public UsuarioEntity toEntity() {
         UsuarioEntity UsuarioE = super.toEntity();
         ArrayList<TarjetaEntity> cards=new ArrayList<>();
+        if(tarjetas!=null)
+        {
         for (TarjetaDTO tarjeta: tarjetas) {
             cards.add(tarjeta.toEntity());
         }
+        }
         ArrayList<FeedBackEntity> feedbacks=new ArrayList<>();
+        if(feeds!=null){
         for (FeedBackDTO feed: feeds) {
             feedbacks.add(feed.toEntity());
         }
+        }
         
         ArrayList<PedidoClienteEntity> pedidos2=new ArrayList<>();
+        if(pedidos!=null){
         for (PedidoClienteDTO pedido: pedidos) {
             pedidos2.add(pedido.toEntity());
         }
+        }
         ArrayList<ViniloEntity> vinilos=new ArrayList<>();
+        if(carrito!=null){
         for (ViniloDTO vinilo: carrito) {
             vinilos.add(vinilo.toEntity());
+        }
         }
   
         UsuarioE.setPedidos(pedidos2);

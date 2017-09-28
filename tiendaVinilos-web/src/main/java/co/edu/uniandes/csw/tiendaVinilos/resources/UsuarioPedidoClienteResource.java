@@ -6,11 +6,9 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoClienteDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;

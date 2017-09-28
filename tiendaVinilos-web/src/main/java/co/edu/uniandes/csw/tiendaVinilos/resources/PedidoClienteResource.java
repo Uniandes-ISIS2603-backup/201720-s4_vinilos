@@ -9,11 +9,8 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoClienteDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoClientePersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -24,8 +21,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-
 /**
  *
  * @author mj.jaime10
@@ -39,7 +34,6 @@ public class PedidoClienteResource {
     @Inject
     PedidoClienteLogic pedidoLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
-    private static final Logger LOGGER = Logger.getLogger(PedidoClientePersistence.class.getName());
     
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/pedidocliente Ejemplo
@@ -116,7 +110,6 @@ public class PedidoClienteResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deletePedido(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un pedido con id {0}", id);
         pedidoLogic.deletePedido(id);
     }
     

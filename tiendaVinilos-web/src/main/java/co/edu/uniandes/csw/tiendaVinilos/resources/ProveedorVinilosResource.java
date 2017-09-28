@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;

@@ -7,14 +7,12 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

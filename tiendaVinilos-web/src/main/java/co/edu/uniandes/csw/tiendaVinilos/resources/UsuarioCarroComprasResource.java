@@ -5,13 +5,10 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.CarroComprasDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
