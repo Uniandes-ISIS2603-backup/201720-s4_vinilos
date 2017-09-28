@@ -37,7 +37,9 @@ public class PagoPedidoClienteResource {
     
      @Inject
     PagoClienteLogic pagoLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    PedidoClienteLogic pedidoLogic;
+    
+     @Inject
+     PedidoClienteLogic pedidoLogic;
     
     private static final Logger LOGGER = Logger.getLogger(PagoClientePersistence.class.getName());
     
