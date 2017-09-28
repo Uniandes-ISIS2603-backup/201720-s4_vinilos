@@ -28,7 +28,6 @@ import javax.ws.rs.Produces;
  *
  * @author jd.arenas
  */
-@Path("usuarios/{id: \\d+}/carroCompras")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
