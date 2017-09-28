@@ -61,7 +61,7 @@ public class CancionResource {
     
     
     @GET
-    @Path("(id: \\d+)")
+    @Path("{id: \\d+}")
     public CancionDetailDTO getCancion(@PathParam("id") Long id) throws BusinessLogicException{
         CancionEntity entity = cancionLogic.getCancion(id);
         if(entity == null){
@@ -71,12 +71,14 @@ public class CancionResource {
     }
     
     @PUT
-    @Path("(id: \\d+)")
+    @Path("{id: \\d+}")
     public CancionDetailDTO updateCancion(@PathParam("id") Long id, CancionDTO cancion) throws BusinessLogicException{
         cancion.setId(id);
-        CancionEntity entity = cancionLogic.getCancion(id);
-        if(entity == null)
+        CancionEntity entity = cancion.toEntity();
+        
+        if(entity == null){
              throw new WebApplicationException("El recurso /cancion/" + id + " no existe.", 404);
+        }
         return new CancionDetailDTO(cancionLogic.updateCancion(id, entity));
     }
     

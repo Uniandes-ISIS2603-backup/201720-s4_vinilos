@@ -11,12 +11,14 @@ import co.edu.uniandes.csw.tiendaVinilos.persistence.PagoClientePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author mj.jaime10
  */
+@Stateless
 public class PagoClienteLogic {
     
     private static final Logger LOGGER = Logger.getLogger(PagoClienteLogic.class.getName());

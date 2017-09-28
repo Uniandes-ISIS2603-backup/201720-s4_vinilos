@@ -10,12 +10,14 @@ import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.CancionPersistence;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author cs.gomez
  */
+@Stateless
 public class CancionLogic {
     
     @Inject
@@ -43,20 +45,20 @@ public class CancionLogic {
     }
     
     
-    public CancionEntity getCancion(long id)
+    public CancionEntity getCancion(Long id)
     {
-        return persistence.find(id);
+        CancionEntity ent = persistence.find(id);
+        return ent;
     }
     
     
-    public CancionEntity updateCancion(long id,CancionEntity us)
+    public CancionEntity updateCancion(Long id,CancionEntity entiy)
     {
-        persistence.update(us);
-        return us;
+        return persistence.update(entiy);
     }
     
     
-    public void deleteCancion(long id)
+    public void deleteCancion(Long id)
     {
         persistence.delete(id);
     }

@@ -6,14 +6,10 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -27,7 +23,6 @@ public class CarroComprasEntity implements Serializable{
     
     private Long id;
     private double precioTotal;
-  
     
     public Long getId(){
         return id;

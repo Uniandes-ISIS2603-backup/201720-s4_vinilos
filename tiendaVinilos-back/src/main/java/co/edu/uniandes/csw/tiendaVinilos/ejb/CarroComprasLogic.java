@@ -6,16 +6,16 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.CarroComprasPersistence;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author cs.gomez
  */
+@Stateless
 public class CarroComprasLogic {
     
      @Inject 

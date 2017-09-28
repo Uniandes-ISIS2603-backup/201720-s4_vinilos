@@ -33,7 +33,7 @@ public class ArtistaLogic {
     public ArtistaEntity createArtista(ArtistaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación del ArtistaEntity");
 
-        if(persistence.find(entity.getId())!=null){
+        if(persistence.find(entity.getId())!= null){
             throw new BusinessLogicException("Ya existe un Artista con el id\"" + entity.getId() + "\"");
         }
         // Invoca la persistencia para crear el Artista
@@ -55,17 +55,17 @@ public class ArtistaLogic {
         LOGGER.info("Termina proceso de consultar todas los Artistas");
         return artista;
     }
-    public ArtistaEntity getArtista(long id)
+    public ArtistaEntity getArtista(Long id)
     {
         ArtistaEntity ent=persistence.find(id);
         return ent;
     }
-    public ArtistaEntity updateArtista(long id,ArtistaEntity us)
+    public ArtistaEntity updateArtista(Long id,ArtistaEntity us)
     {
         persistence.update(us);
         return us;
     }
-    public void deleteArtista(long id)
+    public void deleteArtista(Long id)
     {
         persistence.delete(id);
     }
