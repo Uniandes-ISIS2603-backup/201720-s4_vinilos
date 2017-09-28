@@ -58,7 +58,7 @@ public class CarroComprasVinilosResource {
         if (vinEnt == null) {
             throw new WebApplicationException("El recurso /CarroCompra/" + vinId + " no existe.", 404);
         }
-        carLogic.addCarrito(carId,vinEnt);
+        vinLogic.addCarrito(carLogic.getCarroCompras(carId),vinEnt);
         return new ViniloDetailDTO(vinEnt);
     }
     

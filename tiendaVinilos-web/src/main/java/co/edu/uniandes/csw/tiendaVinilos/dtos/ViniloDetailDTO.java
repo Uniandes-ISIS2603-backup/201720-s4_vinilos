@@ -5,10 +5,7 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
-import java.util.ArrayList;
-import java.util.List;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
-import java.util.List;
 
 /**
  *
@@ -16,14 +13,14 @@ import java.util.List;
  */
 public class ViniloDetailDTO extends ViniloDTO{
     
-    private List<CarroComprasDTO> carros;
+    private CarroComprasDTO carros;
     
-    public List<CarroComprasDTO> getcarros()
+    public CarroComprasDTO getcarros()
     {
         return carros;
     }
     
-    public void setCarros(List<CarroComprasDTO> carros)
+    public void setCarros(CarroComprasDTO carros)
     {
         this.carros = carros;
     }
@@ -51,12 +48,11 @@ public class ViniloDetailDTO extends ViniloDTO{
      */
     public ViniloDetailDTO(ViniloEntity entity) {
         super(entity);
-        
-        if(entity != null){
-            carros = new ArrayList();
-            for (CarroComprasEntity carEnt : entity.getCarrosCompras())
-                carros.add(new CarroComprasDTO(carEnt));
+        if (entity.getCarrosCompras() != null)
+        {
+            carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
         }
+        else carros = null;
     }
     
     /**
@@ -68,16 +64,13 @@ public class ViniloDetailDTO extends ViniloDTO{
     public ViniloEntity toEntity() {
         ViniloEntity entity = super.toEntity();
         
-        if (entity != null){
-            List<CarroComprasEntity> listCar =null;
-            if (getcarros() != null){
-                listCar = new ArrayList<>();
-                for (CarroComprasDTO carDto : getcarros())
-                    listCar.add(carDto.toEntity());
+        if(entity != null){
+            CarroComprasEntity ent = null;
+            if (entity.getCarrosCompras() != null){
+                ent = entity.getCarrosCompras();
             }
-            entity.setCarrosCompras(listCar);
+            entity.setCarrosCompras(ent);
         }
-        
         return entity;
     }
 }

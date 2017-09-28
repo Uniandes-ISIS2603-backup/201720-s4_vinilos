@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
@@ -98,9 +99,9 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
         vinilo.setUsuario(usuario);
         return createVinilo(vinilo);
     }
-    public ViniloEntity modificarCarrito(UsuarioEntity usuario,ViniloEntity vinilo)
+    public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
     {
-        vinilo.setUsuario(usuario);
+        vinilo.setCarrosCompras(carrito);
         return updateVinilo(vinilo.getId(), vinilo);
     }
     public void sacraDelCarrito(ViniloEntity vinilo)
@@ -108,4 +109,6 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
         vinilo.setUsuario(null);
         deleteVinilo(vinilo.getId());
     }
+    
+    
 }
