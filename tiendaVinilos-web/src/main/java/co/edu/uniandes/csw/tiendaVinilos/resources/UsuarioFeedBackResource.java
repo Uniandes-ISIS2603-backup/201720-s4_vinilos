@@ -8,8 +8,10 @@ package co.edu.uniandes.csw.tiendaVinilos.resources;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -24,12 +26,13 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author jd.arenas
  */
-@Path("usuarios/{id: \\d+}/feedback")
+@Path("usuarios/{id: \\d+}/feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -38,6 +41,8 @@ public class UsuarioFeedBackResource {
     UsuarioLogic usuarioLogic;
     @Inject
     FeedBackLogic feedBackLogic;
+    @Inject
+    ProveedorLogic proveedorLogic;
     
      @GET
     public List<FeedBackDetailDTO> getFeedBacks(@PathParam("id") Long id) throws BusinessLogicException {
@@ -90,6 +95,19 @@ public class UsuarioFeedBackResource {
     {
         FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
         feedBackLogic.deleteFB(feed);
+    }
+    
+    @GET
+    @Path("/proveedores/{id:\\d+}")
+    public List<FeedBackDetailDTO> getFeedbacksProveedor(@PathParam("id") Long id)
+    {
+         ProveedorEntity ent = proveedorLogic.getProveedor(id);
+        if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+        List<FeedBackDetailDTO> fbDto = new ArrayList<>();
+        for (FeedBackEntity fbEnt : proveedorLogic.getFeedBacks(id))
+            fbDto.add(new FeedBackDetailDTO(fbEnt));
+        return fbDto;
     }
     
 }
