@@ -7,7 +7,11 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,8 +26,74 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class PedidoProveedorEntity extends BaseEntity implements Serializable {
+
+public class PedidoProveedorEntity implements Serializable{
+
+    @PodamExclude
+    @OneToOne
+    private PagoProveedorEntity pagoProveedor ;
+
+    @PodamExclude
+    @ManyToOne
+    private ProveedorEntity proveedor;
+
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+     private String name;
+
+     public ProveedorEntity getProveedor()
+     {
+         return proveedor;
+     }
+     
+     public void setProveedor (ProveedorEntity proveedor)
+     {
+         this.proveedor = proveedor;
+     }
+     
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PedidoClienteEntity getPedidoCliente() {
+        return pedidoCliente;
+    }
+
+    public void setPedidoCliente(PedidoClienteEntity pedidoCliente) {
+        this.pedidoCliente = pedidoCliente;
+    }
+    
+    
+    
+    public PagoProveedorEntity getPagoP(){
+        
+        return pagoProveedor;
+    }
+    
+    public void setPagoProveedor(PagoProveedorEntity pp){
+        this.pagoProveedor = pp;
+    }
+    
+    
+    
+    @PodamExclude
+    @ManyToOne
+    private PedidoClienteEntity pedidoCliente;    
      /*
     * Fecha estimada de entrega
     */
@@ -35,54 +105,31 @@ public class PedidoProveedorEntity extends BaseEntity implements Serializable {
     * Precio de la compra
     */
     private double precio;
-    
-//    @PodamExclude
-//    @ManyToOne()
-//    private ProveedorEntity proveedor ;
-    
-    //@PodamExclude
-    //@OneToOne(mappedBy ="pagoProveedor")
-     //private PagoProveedorEntity pagoProveedorEntity;
-    
-    //@PodamExclude
-    //@OneToMany(mappedBy ="vinilo")
-    //private ViniloEntity viniloEntity;
-    
-//    @PodamExclude
-//    @ManyToOne()
-//    private PedidoClienteEntity pedidoCLiente;
+  
+    @PodamExclude
+    @OneToMany(mappedBy ="pedidoProveedor")
+    private List<ViniloEntity> viniloEntity;
 
-//    public ProveedorEntity getProveedorEntity() {
-//        return proveedor;
-//    }
-//
-//    public void setProveedorEntity(ProveedorEntity proveedor) {
-//        this.proveedor = proveedor;
-//    }
 
-//    public PagoProveedorEntity getPagoProveedorEntity() {
-//        return pagoProveedorEntity;
-//    }
-//
-//    public void setPagoProveedorEntity(PagoProveedorEntity pagoProveedorEntity) {
-//        this.pagoProveedorEntity = pagoProveedorEntity;
-//    }
-/*
-    public ViniloEntity getViniloEntity() {
+    public ProveedorEntity getProveedorEntity() {
+        return proveedor;
+    }
+    public void setProveedorEntity(ProveedorEntity proveedor) {
+        this.proveedor = proveedor;
+    }
+    
+    public List<ViniloEntity> getViniloEntity() {
         return viniloEntity;
     }
 
-    public void setViniloEntity(ViniloEntity viniloEntity) {
+    public void setViniloEntity(List<ViniloEntity> viniloEntity) {
         this.viniloEntity = viniloEntity;
     }
-*/
-//    public PedidoClienteEntity getPedidoCLiente() {
-//        return pedidoCLiente;
-//    }
-//
-//    public void setPedidoCLiente(PedidoClienteEntity pedidoCLiente) {
-//        this.pedidoCLiente = pedidoCLiente;
-//    }
+
+    public PagoProveedorEntity getPagoProveedor() {
+        return pagoProveedor;
+    }
+    
     
     
     

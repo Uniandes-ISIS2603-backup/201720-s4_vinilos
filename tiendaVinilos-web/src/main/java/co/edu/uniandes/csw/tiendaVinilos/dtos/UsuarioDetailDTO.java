@@ -23,8 +23,10 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,38 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     private ArrayList<TarjetaDTO> tarjetas;
     
     private ArrayList<FeedBackDTO> feeds;
+    
+    private ArrayList<PedidoClienteDTO> pedidos;
+    
+    private ArrayList<ViniloDTO> carrito;
 
+    public ArrayList<ViniloDTO> getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(ArrayList<ViniloDTO> carrito) {
+        this.carrito = carrito;
+    }
+    
+    
+
+    public ArrayList<FeedBackDTO> getFeeds() {
+        return feeds;
+    }
+
+    public void setFeeds(ArrayList<FeedBackDTO> feeds) {
+        this.feeds = feeds;
+    }
+
+    public ArrayList<PedidoClienteDTO> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<PedidoClienteDTO> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    
     public ArrayList<TarjetaDTO> getTarjetas() {
         return tarjetas;
     }
@@ -75,6 +108,23 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list2.add(dto);
         }
         feeds= (ArrayList<FeedBackDTO>)list2;
+
+        List<PedidoClienteEntity> lista3= entity.getPedidos();
+        List<PedidoClienteDTO> list3= new ArrayList<>();
+        for (PedidoClienteEntity pedido : lista3) {
+            PedidoClienteDTO dto= new PedidoClienteDTO(pedido);
+            list3.add(dto);
+        }
+        pedidos= (ArrayList<PedidoClienteDTO>)list3;
+        
+        List<ViniloEntity> lista4= entity.getCarroCompras();
+        List<ViniloDTO> list4= new ArrayList<>();
+        for (ViniloEntity vinilo : lista4) {
+            ViniloDTO dto= new ViniloDTO(vinilo);
+            list4.add(dto);
+        }
+        carrito= (ArrayList<ViniloDTO>)list4;
+        
         
     }
 
@@ -87,16 +137,37 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     public UsuarioEntity toEntity() {
         UsuarioEntity UsuarioE = super.toEntity();
         ArrayList<TarjetaEntity> cards=new ArrayList<>();
+        if(tarjetas!=null)
+        {
         for (TarjetaDTO tarjeta: tarjetas) {
             cards.add(tarjeta.toEntity());
         }
+        }
         ArrayList<FeedBackEntity> feedbacks=new ArrayList<>();
+        if(feeds!=null){
         for (FeedBackDTO feed: feeds) {
             feedbacks.add(feed.toEntity());
         }
+        }
+        
+        ArrayList<PedidoClienteEntity> pedidos2=new ArrayList<>();
+        if(pedidos!=null){
+        for (PedidoClienteDTO pedido: pedidos) {
+            pedidos2.add(pedido.toEntity());
+        }
+        }
+        ArrayList<ViniloEntity> vinilos=new ArrayList<>();
+        if(carrito!=null){
+        for (ViniloDTO vinilo: carrito) {
+            vinilos.add(vinilo.toEntity());
+        }
+        }
   
+        UsuarioE.setPedidos(pedidos2);
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
+
+        UsuarioE.setCarroCompras(vinilos);
         return UsuarioE;
     }
 

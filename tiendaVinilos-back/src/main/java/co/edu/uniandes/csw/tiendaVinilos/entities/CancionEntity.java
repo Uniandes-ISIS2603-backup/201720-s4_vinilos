@@ -5,16 +5,26 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  *
  * @author cs.gomez
  */
 @Entity
-public class CancionEntity extends DefaultEntity{
+public class CancionEntity implements Serializable{
     
-    private Double duracion; 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private Double duracion;
+    
+     private String name;
     
     public Double getDuracion(){
         return duracion;
@@ -23,5 +33,22 @@ public class CancionEntity extends DefaultEntity{
     
     public void setDuracion(Double d){
         this.duracion = d;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

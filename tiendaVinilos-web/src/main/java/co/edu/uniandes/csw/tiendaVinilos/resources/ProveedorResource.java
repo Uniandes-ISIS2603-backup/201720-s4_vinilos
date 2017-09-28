@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -88,6 +87,31 @@ public class ProveedorResource {
         logic.deleteProveedor(id);
     }
   
-
+    @Path("{proveedorId: \\d+}/pedidos")
+    public Class<ProveedorPedidosResource> getProveedorPedidos(@PathParam("proveedorId") Long idProv)
+    {
+        ProveedorEntity ent = logic.getProveedor(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return ProveedorPedidosResource.class;
+    }
+    
+    @Path("{proveedorId: \\d+}/pagos")
+    public Class<ProveedorPagoResource> getProveedorsPedidos(@PathParam("proveedorId") Long idProv)
+    {
+        ProveedorEntity ent = logic.getProveedor(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return ProveedorPagoResource.class;
+    }
+    
+    @Path("{proveedorId: \\d+}/feedbacks")
+    public Class<ProveedorFeedBackResource> getProveedorsFeedBacks(@PathParam("proveedorId") Long idProv)
+    {
+        ProveedorEntity ent = logic.getProveedor(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return ProveedorFeedBackResource.class;
+    }
     
 }

@@ -6,14 +6,17 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PagoProveedorPersistennce;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author s.saenz11
  */
+@Stateless
 public class PagoProveedorLogic {
     
      @Inject PagoProveedorPersistennce persistence;
@@ -44,5 +47,25 @@ public class PagoProveedorLogic {
    {
        persistence.delete(id);
    }
+   public PagoProveedorEntity createWithPedido(PagoProveedorEntity entity, PedidoProveedorEntity entity1){
+       
+       
+       entity1.setPagoProveedor(entity);
+       persistence.create(entity);
+       return entity;
+   }
+   
+   public PagoProveedorEntity getWithPedido(PedidoProveedorEntity entity){
+       
+       return entity.getPagoP();
+   }
+   
+   
+   public void deleteWith (PagoProveedorEntity fbEntity)
+   {
+       fbEntity.setPedidoProveedor(null);
+       deleteProveedor(fbEntity.getId());
+   }
+   
     
 }

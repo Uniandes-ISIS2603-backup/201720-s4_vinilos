@@ -7,13 +7,18 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -21,12 +26,30 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 public class PedidoClienteEntity implements Serializable{
-    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+    @PodamExclude
+    @OneToOne
+    private PagoClienteEntity pago;
     /*
     * nombre
     */
     private String name;
+
+    public List<PedidoProveedorEntity> getPedidoProveedor() {
+        return pedidoProveedor;
+    }
+
+    public void setPedidoProveedor(List<PedidoProveedorEntity> pedidoProveedor) {
+        this.pedidoProveedor = pedidoProveedor;
+    }
     
+    
+    
+    @PodamExclude
+    @OneToMany(mappedBy ="pedidoCliente")
+    private List<PedidoProveedorEntity> pedidoProveedor;
     /*
     * Id de la compra
     */
@@ -181,5 +204,24 @@ public class PedidoClienteEntity implements Serializable{
         }
         return super.hashCode();
     }
-   
+ 
+    public void setUsuario( UsuarioEntity usuario )
+    {
+        this.usuario = usuario;
+    }
+    
+    public UsuarioEntity getUsuario( )
+    {
+        return usuario;
+    }
+    
+    public void setPago( PagoClienteEntity pago )
+    {
+        this.pago = pago;
+    }
+    
+    public PagoClienteEntity getPago( )
+    {
+        return pago;
+    }
 }

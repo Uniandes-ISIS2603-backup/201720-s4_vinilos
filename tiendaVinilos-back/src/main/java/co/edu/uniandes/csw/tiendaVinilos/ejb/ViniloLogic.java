@@ -6,17 +6,21 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author jp.monsalvo
  */
+@Stateless
 public class ViniloLogic {
 private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName());
 
@@ -70,7 +74,38 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     {
         persistence.delete(id);
     }
-
-
-
+    
+    public void agregarVinilo(ProveedorEntity provEnt, ViniloEntity vinEnt) throws BusinessLogicException
+    {
+        vinEnt.setProveedor(provEnt);
+        createVinilo(vinEnt);
+    }
+    
+    public void eliminarVinilo ( Long vinEnt)
+    {
+        ViniloEntity vin = persistence.find(vinEnt);
+        vin.setProveedor(null);
+        persistence.delete(vinEnt);
+    }
+    
+    public ViniloEntity modificarVinilo (ProveedorEntity provEnt, Long id, ViniloEntity vinEnt)
+    {
+        vinEnt.setProveedor(provEnt);
+        return updateVinilo(id, vinEnt);
+    }
+    public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
+    {
+        vinilo.setUsuario(usuario);
+        return createVinilo(vinilo);
+    }
+    public ViniloEntity modificarCarrito(UsuarioEntity usuario,ViniloEntity vinilo)
+    {
+        vinilo.setUsuario(usuario);
+        return updateVinilo(vinilo.getId(), vinilo);
+    }
+    public void sacraDelCarrito(ViniloEntity vinilo)
+    {
+        vinilo.setUsuario(null);
+        deleteVinilo(vinilo.getId());
+    }
 }

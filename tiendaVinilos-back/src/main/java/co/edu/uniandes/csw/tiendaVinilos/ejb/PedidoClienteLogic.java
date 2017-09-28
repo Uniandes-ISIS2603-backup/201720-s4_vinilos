@@ -6,17 +6,20 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoClientePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author mj.jaime10
  */
+@Stateless
 public class PedidoClienteLogic 
 {
     private static final Logger LOGGER = Logger.getLogger(PedidoClienteLogic.class.getName());
@@ -28,15 +31,17 @@ public class PedidoClienteLogic
     /**
      *
      * @param entity
+     * @param usuario
      * @return entity creada
      * @throws BusinessLogicException
      */
-    public PedidoClienteEntity createPedido(PedidoClienteEntity entity) throws BusinessLogicException {
+    public PedidoClienteEntity createPedido(PedidoClienteEntity entity, UsuarioEntity usuario) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de pedido");
         // Verifica la regla de negocio que dice (asociasiones)
         //FALTA: excepcion
         // Invoca la persistencia para crear la editorial
         persistence.create(entity);
+        entity.setUsuario(usuario);
         LOGGER.info("Termina proceso de creación de pedido");
         return entity;
     }
@@ -53,7 +58,7 @@ public class PedidoClienteLogic
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar editorial con id={0}", id);
         return pedido;
@@ -65,13 +70,15 @@ public class PedidoClienteLogic
      *
      * @param id: id del pedido para buscarlo en la base de datos.
      * @param entity: pedido con los cambios para ser actualizado, puede ser la direccion o el telefono de contacto.
+     * @throws BusinessLogicException
+     * @param usuario
      * @return el pedido con los cambios actualizados en la base de datos.
      */
-    public PedidoClienteEntity updatePedido(Long id, PedidoClienteEntity entity) throws BusinessLogicException {
+    public PedidoClienteEntity updatePedido(Long id, PedidoClienteEntity entity, UsuarioEntity usuario) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
         if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")) 
                 && ( !((entity.getDireccion()).equals(pedido.getDireccion())) || 
@@ -89,6 +96,7 @@ public class PedidoClienteLogic
         }
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
         PedidoClienteEntity newEntity = persistence.update(entity);
+        newEntity.setUsuario(usuario);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar pedido con id={0}", entity.getId());
         return newEntity;
     }
@@ -103,7 +111,7 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de borrar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id {0} no existe" + id);
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
          if(!((pedido.getEstado()).equals("Rechazado")) && !((pedido.getEstado()).equals("Cancelado")) && !((pedido.getEstado()).equals("Entregado")))
         {
@@ -111,6 +119,7 @@ public class PedidoClienteLogic
                     + "'Cancelado' o 'Entregado', de lo contrario es posible eliminar el pedido.");
         }
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
+        pedido.setUsuario(null);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar pedido con id={0}", id);
     }
@@ -128,4 +137,5 @@ public class PedidoClienteLogic
         LOGGER.info("Termina proceso de consultar todos los pedidos");
         return pedidos;
     }
+    
 }

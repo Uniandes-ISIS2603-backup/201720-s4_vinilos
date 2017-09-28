@@ -40,4 +40,5 @@ public class CarroComprasEntity implements Serializable{
         this.precioTotal = precioTotal;
     }
     
+    
 }

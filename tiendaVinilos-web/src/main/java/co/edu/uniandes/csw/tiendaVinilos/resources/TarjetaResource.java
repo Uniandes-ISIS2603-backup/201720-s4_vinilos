@@ -32,12 +32,8 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.TarjetaPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
@@ -70,7 +66,6 @@ public class TarjetaResource {
     @Inject
     TarjetaLogic tarjetaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-    private static final Logger LOGGER = Logger.getLogger(TarjetaPersistence.class.getName());
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/tarjetas Ejemplo
@@ -162,7 +157,6 @@ public class TarjetaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteTarjeta(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una tarjeta con id {0}", id);
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);

@@ -7,18 +7,68 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author jp.monsalvo
  */
 @Entity
-public class ViniloEntity extends BaseEntity implements Serializable{
+public class ViniloEntity implements Serializable {
+    
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     
     private int anio;
     private double precio;
     private int cantUnidades;
 
+    @PodamExclude
+    @ManyToOne
+    private ProveedorEntity proveedor;
+    
+    @PodamExclude
+    @ManyToOne
+    private PedidoProveedorEntity pedidoProveedor;
+    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+
+    public ProveedorEntity getProveedor()
+    {
+        return proveedor;
+    }
+    
+    public void setProveedor (ProveedorEntity proveedor)
+    {
+        this.proveedor = proveedor;
+    }
+    
     /**
      * @return the año
      */
@@ -60,5 +110,22 @@ public class ViniloEntity extends BaseEntity implements Serializable{
     public void setCantUnidades(int cantUnidades) {
         this.cantUnidades = cantUnidades;
     }
+
+    public PedidoProveedorEntity getPedidoProveedor() {
+        return pedidoProveedor;
+    }
+
+    public void setPedidoProveedor(PedidoProveedorEntity pedidoProveedor) {
+        this.pedidoProveedor = pedidoProveedor;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+    
     
 }

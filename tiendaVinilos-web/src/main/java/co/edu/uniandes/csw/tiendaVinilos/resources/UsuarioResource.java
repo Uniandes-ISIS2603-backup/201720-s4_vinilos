@@ -32,12 +32,8 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.UsuarioPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
@@ -70,7 +66,6 @@ public class UsuarioResource {
     @Inject
     UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-    private static final Logger LOGGER = Logger.getLogger(UsuarioPersistence.class.getName());
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo
@@ -162,7 +157,6 @@ public class UsuarioResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una usuario con id {0}", id);
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);

@@ -9,11 +9,8 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.InfoDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.InfoLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.InfoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -39,7 +36,6 @@ public class InfoResource {
         @Inject
     InfoLogic InfoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-    private static final Logger LOGGER = Logger.getLogger(InfoPersistence.class.getName());
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/infos Ejemplo
@@ -131,7 +127,6 @@ public class InfoResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteInfo(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Info con id {0}", id);
         InfoEntity entity = InfoLogic.getInfo(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Infos/" + id + " no existe.", 404);

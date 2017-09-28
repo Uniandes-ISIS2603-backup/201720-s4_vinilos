@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +7,6 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
@@ -24,14 +24,11 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/feedbacks")
-@Produces("application/json")
 @Consumes("application/json")
+@Produces("application/json")
 public class ProveedorFeedBackResource {
     
     @Inject ProveedorLogic proveedorLogic;
-    
-    @Inject FeedBackLogic feedBackLogic;
     
     
     
@@ -42,7 +39,7 @@ public class ProveedorFeedBackResource {
      * @throws BusinessLogicException  En caso de que no exista, lanza una excepcion
      */
     @GET 
-    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("idProveedor") Long idProveedor) throws BusinessLogicException
+    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("proveedorId") Long idProveedor) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
@@ -60,8 +57,8 @@ public class ProveedorFeedBackResource {
      * @throws BusinessLogicException lanza una excepcion cuando no existe el proveedor o el feedback 
      */
     @GET
-    @Path(("{idFB:\\d+}"))
-    public FeedBackDetailDTO getFeedBack ( @PathParam("idProveedor") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
+    @Path(("/{idFB:\\d+}"))
+    public FeedBackDetailDTO getFeedBack ( @PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);

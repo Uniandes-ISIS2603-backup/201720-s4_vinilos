@@ -6,16 +6,12 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.PagoProveedorDTO;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.PagoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoProveedorDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoProveedorLogic;
+
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;

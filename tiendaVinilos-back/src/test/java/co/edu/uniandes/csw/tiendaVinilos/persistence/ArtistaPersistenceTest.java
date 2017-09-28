@@ -37,7 +37,7 @@ public class ArtistaPersistenceTest {
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * embebido. El jar contiene las clases de Artista, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -52,7 +52,7 @@ public class ArtistaPersistenceTest {
     
     
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase ArtistaPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -88,7 +88,7 @@ public class ArtistaPersistenceTest {
     
     
     private void clearData() {
-        em.createQuery("delete from XYZEntity").executeUpdate();
+        em.createQuery("delete from ArtistaEntity").executeUpdate();
     }
 
 

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,7 +7,6 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.TarjetaDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;

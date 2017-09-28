@@ -8,15 +8,46 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author mj.jaime10
  */
 @Entity
-public class PagoClienteEntity extends BaseEntity implements Serializable{
+public class PagoClienteEntity implements Serializable{
+    @PodamExclude
+    @OneToOne
+    private PedidoClienteEntity pedido;
+    
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     /**
      * Valor total del pago
      */
@@ -59,4 +90,15 @@ public class PagoClienteEntity extends BaseEntity implements Serializable{
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    public void setPedido( PedidoClienteEntity pedido )
+    {
+        this.pedido = pedido;
+    }
+    
+    public PedidoClienteEntity getPedido( )
+    {
+        return pedido;
+    }
+    
 }

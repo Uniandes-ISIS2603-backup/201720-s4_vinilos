@@ -8,8 +8,8 @@
  * Created: 24/09/2017
  */
 
-delete from ProveedorEntity;
 delete from FeedBackEntity;
+delete from ProveedorEntity;
 
 insert into ProveedorEntity (id, name, email) values (46, 'Filmore', 'fsilverwood19@fotki.com');
 insert into ProveedorEntity (id, name, email) values (47, 'Guillermo', 'gkille1a@latimes.com');
@@ -67,7 +67,7 @@ insert into ProveedorEntity (id, name, email) values (98, 'Emmalyn', 'ecaplan2p@
 insert into ProveedorEntity (id, name, email) values (99, 'Ken', 'kbollard2q@thetimes.co.uk');
 insert into ProveedorEntity (id, name, email) values (100, 'Lizabeth', 'legger2r@soup.io');
 
-insert into FeedBackEntity (id, comentario, calificacion) values (44, 'lectus vestibulum quam sapien varius ut blandit non interdum in ante', 2.7);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (44, 'lectus vestibulum quam sapien varius ut blandit non interdum in ante', 2.7, 95);
 insert into FeedBackEntity (id, comentario, calificacion) values (45, 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue', 3.3);
 insert into FeedBackEntity (id, comentario, calificacion) values (46, 'massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo', 2.1);
 insert into FeedBackEntity (id, comentario, calificacion) values (47, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor', 2.0);
