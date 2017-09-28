@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -19,10 +22,22 @@ import javax.persistence.Id;
 public class CarroComprasEntity implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
     private double precioTotal;
+    @PodamExclude
+    @ManyToMany(mappedBy="carrosCompras")
+    private List<ViniloEntity> vinilos;
+    
+    public List<ViniloEntity> getVinilos()
+    {
+        return vinilos;
+    }
+    
+    public void setVinilos(List<ViniloEntity> vinilos)
+    {
+        this.vinilos = vinilos;
+    }
     
     public Long getId(){
         return id;

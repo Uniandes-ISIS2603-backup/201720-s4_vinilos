@@ -7,7 +7,9 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.CarroComprasPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -52,4 +54,16 @@ public class CarroComprasLogic {
    
    }
    
+   public List<ViniloEntity> getVinilos(Long id)
+   {
+      CarroComprasEntity ent = persistence.find(id);
+      return ent.getVinilos();
+   }
+   
+   public void addCarrito(Long id, ViniloEntity vinEnt)
+   {
+       CarroComprasEntity ent = persistence.find(id);
+       ent.getVinilos().add(vinEnt);
+       updateCarroCompras(id, ent);
+   }
 }
