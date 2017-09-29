@@ -61,7 +61,7 @@ public class PedidoClientePedidoProveedorResource {
     {
        pedidoProveedorLogic.agregarPedidoProveedor(pedidoClienteLogic.getPedido(id), pedidoProveedor.toEntity());
        return pedidoProveedor;
-        
+       // funciona 
     }
     
     @DELETE
