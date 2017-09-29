@@ -31,7 +31,7 @@ public class PedidoProveedorEntity implements Serializable{
 
     @PodamExclude
     @OneToOne
-    private PagoProveedorEntity pagoProveedor ;
+   private PagoProveedorEntity pagoProveedor;
 
     @PodamExclude
     @ManyToOne
@@ -80,7 +80,7 @@ public class PedidoProveedorEntity implements Serializable{
     
     
     
-    public PagoProveedorEntity getPagoP(){
+    public PagoProveedorEntity getPagoProveedor(){
         
         return pagoProveedor;
     }
@@ -126,9 +126,7 @@ public class PedidoProveedorEntity implements Serializable{
         this.viniloEntity = viniloEntity;
     }
 
-    public PagoProveedorEntity getPagoProveedor() {
-        return pagoProveedor;
-    }
+    
     
     
     
