@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasProveedorFeedbacks",
+		"_postman_id": "db5af1a4-206f-c9ce-d358-ebd729ddf334",
+		"description": "Se prueba el GET de todos los feedbacks pertenecientes a un proveeedor especifico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/95/feedbacks",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get de todos los feedbacks asociados con el proveedor\n"
+			},
+			"response": []
+		}
+	]
+}

@@ -6,14 +6,14 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.CarroComprasDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.CarroComprasPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author cs.gomez
  */
-@Path("CarroCompras")
+@Path("carroCompras")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -38,8 +38,6 @@ public class CarroComprasResource {
     
     @Inject
     CarroComprasLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
-    private static final Logger LOGGER = Logger.getLogger(CarroComprasPersistence.class.getName());
 
     
     @POST
@@ -86,15 +84,13 @@ public class CarroComprasResource {
     @Path("{id: \\d+}")
     public void deleteCarroCompras(@PathParam("id") Long id) throws BusinessLogicException {
         
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una CarroCompra con id {0}", id);
         CarroComprasEntity entity = logic.getCarroCompras(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /CarroCompra/" + id + " no existe.", 404);
         }
         logic.deleteCarroCompras(id);
     }
-
-    
+ 
     private List<CarroComprasDetailDTO> listEntity2DetailDTO(List<CarroComprasEntity> entityList) {
         List<CarroComprasDetailDTO> list = new ArrayList<>();
         for (CarroComprasEntity entity : entityList) {

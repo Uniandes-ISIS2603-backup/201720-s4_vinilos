@@ -42,15 +42,26 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     
     private ArrayList<PedidoClienteDTO> pedidos;
     
-    private ArrayList<ViniloDTO> carrito;
+//    private ArrayList<ViniloDTO> carrito;
+    
+    private CarroComprasDetailDTO carrito;
 
-    public ArrayList<ViniloDTO> getCarrito() {
+//    public ArrayList<ViniloDTO> getCarrito() {
+//        return carrito;
+//    }
+//
+//    public void setCarrito(ArrayList<ViniloDTO> carrito) {
+//        this.carrito = carrito;
+//    }
+
+    public CarroComprasDetailDTO getCarrito() {
         return carrito;
     }
 
-    public void setCarrito(ArrayList<ViniloDTO> carrito) {
+    public void setCarrito(CarroComprasDetailDTO carrito) {
         this.carrito = carrito;
     }
+    
     
     
 
@@ -118,12 +129,12 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         
         List<ViniloEntity> lista4= entity.getCarroCompras();
         List<ViniloDTO> list4= new ArrayList<>();
-        for (ViniloEntity vinilo : lista4) {
-            ViniloDTO dto= new ViniloDTO(vinilo);
-            list4.add(dto);
-        }
-        carrito= (ArrayList<ViniloDTO>)list4;
-        
+//        for (ViniloEntity vinilo : lista4) {
+//            ViniloDTO dto= new ViniloDTO(vinilo);
+//            list4.add(dto);
+//        }
+//        carrito= (ArrayList<ViniloDTO>)list4;
+        carrito= new CarroComprasDetailDTO(entity.getCarrito());
         
     }
 
@@ -136,27 +147,39 @@ public class UsuarioDetailDTO extends UsuarioDTO {
     public UsuarioEntity toEntity() {
         UsuarioEntity UsuarioE = super.toEntity();
         ArrayList<TarjetaEntity> cards=new ArrayList<>();
+        if(tarjetas!=null)
+        {
         for (TarjetaDTO tarjeta: tarjetas) {
             cards.add(tarjeta.toEntity());
         }
+        }
         ArrayList<FeedBackEntity> feedbacks=new ArrayList<>();
+        if(feeds!=null){
         for (FeedBackDTO feed: feeds) {
             feedbacks.add(feed.toEntity());
         }
+        }
         
         ArrayList<PedidoClienteEntity> pedidos2=new ArrayList<>();
+        if(pedidos!=null){
         for (PedidoClienteDTO pedido: pedidos) {
             pedidos2.add(pedido.toEntity());
         }
-        ArrayList<ViniloEntity> vinilos=new ArrayList<>();
-        for (ViniloDTO vinilo: carrito) {
-            vinilos.add(vinilo.toEntity());
         }
+//        ArrayList<ViniloEntity> vinilos=new ArrayList<>();
+//        if(carrito!=null){
+//        for (ViniloDTO vinilo: carrito) {
+//            vinilos.add(vinilo.toEntity());
+//        }
+//        }
   
         UsuarioE.setPedidos(pedidos2);
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
-        UsuarioE.setCarroCompras(vinilos);
+//        UsuarioE.setCarroCompras(vinilos);
+        if(carrito!=null){
+        UsuarioE.setCarrito(carrito.toEntity());
+        }
         return UsuarioE;
     }
 

@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Tue Sep 26 08:19:49 COT 2017:
- Iniciando instancia a816c00e-015e-be57-f7c3-00000ff5f580 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\jd.arenas\AppData\Local\Temp\gfembed6881341763520944784tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@18b4aac2
-Cargado desde file:/C:/Users/jd.arenas/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+Fri Sep 29 08:27:51 COT 2017:
+ Iniciando instancia a816c00e-015e-cdd2-652b-00000e47e270 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\s.saenz11\AppData\Local\Temp\gfembed7627122867588073115tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@6bc7c054
+Cargado desde file:/C:/Users/s.saenz11/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_144-b01
-user.dir=C:\Users\jd.arenas\Desktop\updatemaster\s4_vinilos\tiendaVinilos-back
+user.dir=C:\Users\s.saenz11\Documents\s4_vinilos\tiendaVinilos-back
 os.name=Windows 7
 os.arch=amd64
 os.version=6.1

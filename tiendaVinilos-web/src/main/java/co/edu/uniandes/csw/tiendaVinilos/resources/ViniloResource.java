@@ -9,11 +9,8 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -28,7 +25,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author jp.monsalvo
+ * @author jp.monsalvo 
  */
 @Path("vinilos")
 @Produces("application/json")
@@ -39,7 +36,6 @@ public class ViniloResource {
      @Inject
     ViniloLogic ViniloLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-    private static final Logger LOGGER = Logger.getLogger(ViniloPersistence.class.getName());
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/Vinilos Ejemplo
@@ -132,14 +128,13 @@ public class ViniloResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteVinilo(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar una Vinilo con id {0}", id);
         ViniloEntity entity = ViniloLogic.getVinilo(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
         }
         ViniloLogic.deleteVinilo(id);
     }
-
+    
     /**
      *
      * lista de entidades a DTO.

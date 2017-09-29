@@ -7,14 +7,12 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -26,15 +24,11 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/feedbacks")
-@Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
+@Produces("application/json")
 public class ProveedorFeedBackResource {
     
     @Inject ProveedorLogic proveedorLogic;
-    
-    @Inject FeedBackLogic feedBackLogic;
     
     
     
@@ -45,7 +39,7 @@ public class ProveedorFeedBackResource {
      * @throws BusinessLogicException  En caso de que no exista, lanza una excepcion
      */
     @GET 
-    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("idProveedor") Long idProveedor) throws BusinessLogicException
+    public List<FeedBackDetailDTO> getFeedBacks (@PathParam("proveedorId") Long idProveedor) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
@@ -64,7 +58,7 @@ public class ProveedorFeedBackResource {
      */
     @GET
     @Path(("/{idFB:\\d+}"))
-    public FeedBackDetailDTO getFeedBack ( @PathParam("idProveedor") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
+    public FeedBackDetailDTO getFeedBack ( @PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
@@ -73,16 +67,5 @@ public class ProveedorFeedBackResource {
             if (fb.getId().equals(idFeedBack)) fbDetail = (new FeedBackDetailDTO(fb));
         if (fbDetail == null) throw new BusinessLogicException("No existe el feedback con id " + idFeedBack + " del proveedor con id " + idProveedor);
         return fbDetail;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }

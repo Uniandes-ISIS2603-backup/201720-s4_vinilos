@@ -12,7 +12,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -21,16 +20,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
- *
+ *@Path("{proveedorId: \\d+}/pedidos")
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/pedidos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
 public class ProveedorPedidosResource {
  
-    @Inject ProveedorLogic proveedorLogic;
+    @Inject private ProveedorLogic proveedorLogic;
     
     
     
@@ -41,7 +38,7 @@ public class ProveedorPedidosResource {
      * @throws BusinessLogicException  En caso de que no exista, lanza una excepcion
      */
     @GET 
-    public List<PedidoProveedorDTO> getPedidos (@PathParam("idProveedor") Long idProveedor) throws BusinessLogicException
+    public List<PedidoProveedorDTO> getPedidos (@PathParam("proveedorId") Long idProveedor) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
@@ -60,7 +57,7 @@ public class ProveedorPedidosResource {
      */
     @GET
     @Path(("/{idFB:\\d+}"))
-    public PedidoProveedorDTO getPedido ( @PathParam("idProveedor") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
+    public PedidoProveedorDTO getPedido ( @PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
         if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);

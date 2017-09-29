@@ -113,8 +113,10 @@ public class ProveedorLogic {
        return persistence.find(id);
    }
    
-   public ProveedorEntity updateProveedor(ProveedorEntity entity)
+   public ProveedorEntity updateProveedor(ProveedorEntity entity) throws BusinessLogicException
    {
+       if (persistence.findByEmail(entity.getEmail()) != null)
+            throw new BusinessLogicException("Ya existe un proveedor con el email \"" + entity.getEmail() + "\"");
        return persistence.update(entity);
    }
    

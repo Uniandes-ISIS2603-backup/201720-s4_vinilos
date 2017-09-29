@@ -6,18 +6,21 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoClientePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author mj.jaime10
  */
+@Stateless
 public class PedidoClienteLogic 
 {
     private static final Logger LOGGER = Logger.getLogger(PedidoClienteLogic.class.getName());
@@ -134,6 +137,12 @@ public class PedidoClienteLogic
         List<PedidoClienteEntity> pedidos = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los pedidos");
         return pedidos;
+    }
+    
+    public List<PedidoProveedorEntity>getPedidoProveedor(Long id) throws BusinessLogicException
+    {
+        PedidoClienteEntity cli = getPedido(id);
+        return cli.getPedidoProveedor();
     }
     
 }

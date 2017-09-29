@@ -10,11 +10,8 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.tiendaVinilos.persistence.PagoClientePersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -37,9 +34,10 @@ public class PagoPedidoClienteResource {
     
      @Inject
     PagoClienteLogic pagoLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    PedidoClienteLogic pedidoLogic;
     
-    private static final Logger LOGGER = Logger.getLogger(PagoClientePersistence.class.getName());
+     @Inject
+     PedidoClienteLogic pedidoLogic;
+    
     
     /**
      * 
@@ -78,7 +76,6 @@ public class PagoPedidoClienteResource {
      */
     @DELETE
     public void deletePago(@PathParam("id") Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar un pago con id {0}", id);
         pagoLogic.deletePago(id);
     }
     

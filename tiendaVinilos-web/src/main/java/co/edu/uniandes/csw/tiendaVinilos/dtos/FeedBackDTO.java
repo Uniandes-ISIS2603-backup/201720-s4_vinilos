@@ -16,7 +16,7 @@ public class FeedBackDTO {
     
      private static final Logger LOGGER = Logger.getLogger(FeedBackDTO.class.getName());
      
-    private Long id;
+    private long id;
     private String comentario;
     private double calificacion;
     
@@ -65,7 +65,6 @@ public class FeedBackDTO {
         ent.setCalificacion(this.getCalificacion());
         ent.setComentario(this.getComentario());
         ent.setId(id);
-       if (id == null) LOGGER.info("EL ID ES NULO");
         return ent;
     }
 }

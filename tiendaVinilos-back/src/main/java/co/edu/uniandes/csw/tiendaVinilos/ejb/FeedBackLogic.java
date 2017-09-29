@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.FeedBackPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -80,4 +81,5 @@ public class FeedBackLogic {
        fb.setUsuario(usuario);
        updateFeedBack(fb);
    }
+   
 }

@@ -5,11 +5,9 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -30,7 +28,7 @@ import javax.ws.rs.Produces;
  *
  * @author jc.ruiz
  */
-@Path("/proveedores/{idProveedor: \\d+}/vinilos")
+ @Path("/proveedores/{idProveedor: \\d+}/vinilos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -55,7 +53,7 @@ public class ProveedorVinilosResource {
     public ViniloDetailDTO getVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProv);
-        if (ent != null) throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
+        if (ent == null) throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
         ViniloDetailDTO vinDTO = null;
         for (ViniloEntity vinEnt : ent.getVinilos())
             if (vinEnt.getId().equals(idVin)) vinDTO = new ViniloDetailDTO(vinEnt);
@@ -74,8 +72,9 @@ public class ProveedorVinilosResource {
     @Path(("/{idVin:\\d+}"))
     public ViniloDetailDTO updateVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin, ViniloDetailDTO vinDto)
     {
-        ViniloEntity vinEnt = vinilosLogic.getVinilo(idVin);
-        return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin, vinEnt));
+        vinDto.setId(idVin);
+        return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin, vinDto.toEntity()));
+        
     }
    
     @DELETE

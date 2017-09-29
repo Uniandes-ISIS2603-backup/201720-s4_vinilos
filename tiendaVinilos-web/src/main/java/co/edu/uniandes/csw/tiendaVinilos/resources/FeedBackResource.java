@@ -8,10 +8,9 @@ package co.edu.uniandes.csw.tiendaVinilos.resources;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,17 +29,16 @@ import javax.ws.rs.WebApplicationException;
 @Path("feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
+@RequestScoped
 public class FeedBackResource {
-  
-      private static final Logger LOGGER = Logger.getLogger(FeedBackResource.class.getName());
+
     
-    @Inject FeedBackLogic logic;
-   
+    @Inject FeedBackLogic feedbackLogic;
    @GET
    public List<FeedBackDetailDTO> getFeedBacks()
    {
        List<FeedBackDetailDTO> retList = new ArrayList<>();
-       List<FeedBackEntity> lista = logic.getAll();
+       List<FeedBackEntity> lista = feedbackLogic.getAll();
        for(FeedBackEntity en : lista)
            retList.add(new FeedBackDetailDTO(en));
        return retList;
@@ -50,16 +48,18 @@ public class FeedBackResource {
     @Path(("{id:\\d+}"))
     public FeedBackDetailDTO getFeedBack( @PathParam("id") Long id)
     {
-        FeedBackEntity en = logic.getFeedBack(id);
+        FeedBackEntity en = feedbackLogic.getFeedBack(id);
         if (en == null)
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
-        return (new FeedBackDetailDTO(en));
+        FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
+        System.out.println("HEEEEYYYYYYYYY llego el id " + id + " y sale el id dto " + fbDTO.getId() );
+        return (fbDTO);
     }
     
     @POST
     public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feed)
     {
-        FeedBackEntity ent = logic.createFeedBack(feed.toEntity());
+        FeedBackEntity ent = feedbackLogic.createFeedBack(feed.toEntity());
         return (new FeedBackDetailDTO(ent));
     }
     
@@ -70,10 +70,10 @@ public class FeedBackResource {
     {
         FeedBackEntity entity = feed.toEntity();
         entity.setId(id);
-        FeedBackEntity oldEnt = logic.getFeedBack(id);
+        FeedBackEntity oldEnt = feedbackLogic.getFeedBack(id);
         if(oldEnt == null)
             throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404); 
-        FeedBackEntity ent = logic.updateFeedBack(entity);
+        FeedBackEntity ent = feedbackLogic.updateFeedBack(entity);
         return (new FeedBackDetailDTO(ent));
     }
     
@@ -81,10 +81,9 @@ public class FeedBackResource {
     @Path("{id:\\d+}")
     public void deleteFeedBack(@PathParam("id")Long id)
     {
-        FeedBackEntity ent = logic.getFeedBack(id);
+        FeedBackEntity ent = feedbackLogic.getFeedBack(id);
         if (ent == null)
              throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404);
-        logic.deleteFeedBack(id);
+        feedbackLogic.deleteFeedBack(id);
     }
-
 }

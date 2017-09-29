@@ -1,9 +1,9 @@
 {
 	"variables": [],
 	"info": {
-		"name": "Collection ",
+		"name": "PruebasProveedor",
 		"_postman_id": "a4cd5fa9-c051-55aa-5e04-3915fcae85d5",
-		"description": "",
+		"description": "Pruebas de los proveedores",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -63,7 +63,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"Pablo\" , \"id\" : 1 , \"email\" : \"c.gmail\"}"
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 2 , \"email\" : \"c.gmail\"}"
 				},
 				"description": "Error al crear un nuevo proveedor, pues ya existe otro proveedor con ese email "
 			},
@@ -183,7 +183,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"status code is 404\"] = responseCode.code===404"
+							"tests[\"status code is 412\"] = responseCode.code===412"
 						]
 					}
 				}
@@ -200,7 +200,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\": \"Pablo\" , \"id\" : 3 , \"email\" : \"c.gmail\"}"
+					"raw": "{\"name\": \"Pablo\" , \"id\" : 1 , \"email\" : \"c.gmail\"}"
 				},
 				"description": "Error al modificar el proveedor por cambiarle el id"
 			},
@@ -251,7 +251,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/202",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/200",
 				"method": "DELETE",
 				"header": [
 					{

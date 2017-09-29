@@ -1,9 +1,9 @@
 {
 	"variables": [],
 	"info": {
-		"name": "CollectionProveedorVinilos",
+		"name": "PruebasProveedorVinilos",
 		"_postman_id": "4e551093-646e-5a20-224b-5f8484d4ddf1",
-		"description": "",
+		"description": "Pruebas de la relacion entre proveedor y vinilos, donde un proveedor posee varios vinilos.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Papa Roach\", \"cantUnidades\" : 1, \"precio\" : 8000, \"id\" : 19, \"anio\" : 2000}"
+					"raw": "{\"name\" : \"Papa Roach\", \"cantUnidades\" : 1, \"precio\" : 8000, \"id\" : 1, \"anio\" : 2000}"
 				},
 				"description": "POST de un vinilo, asociar un vinilo a un proveedor "
 			},
@@ -74,7 +74,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/vinilos/19",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/vinilos/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -85,9 +85,31 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"name\" : \"Papa Roach\" , \"precio\" : 80000, \"id\" : 19, \"cantUnidades\" : 1, \"anio\" : 2000}"
+					"raw": "{\"name\" : \"Papa Roach\" , \"precio\" : 80000, \"id\" : 1, \"cantUnidades\" : 1, \"anio\" : 2000}"
 				},
 				"description": "Se modifica un vinilo asociado al proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "GET el que se modifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/vinilos/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get de todos los vinilos asociados al proveedor"
 			},
 			"response": []
 		},
@@ -105,7 +127,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/vinilos/19",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/vinilos/1",
 				"method": "DELETE",
 				"header": [],
 				"body": {},

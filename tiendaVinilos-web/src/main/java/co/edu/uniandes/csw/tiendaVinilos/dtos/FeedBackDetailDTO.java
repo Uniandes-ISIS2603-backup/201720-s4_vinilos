@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 
 /**
  *
@@ -13,7 +14,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
  */
 public class FeedBackDetailDTO extends FeedBackDTO{
             
-    ProveedorDTO proveedor;
+    private ProveedorDTO proveedor;
     
     /**
      * Set del proveedor asociado al feedback
@@ -37,19 +38,35 @@ public class FeedBackDetailDTO extends FeedBackDTO{
      * Constructor por defecto
      */
     public FeedBackDetailDTO(){
-        super();
+    }
+    
+    
+    public FeedBackEntity toEntity()
+    {
+        FeedBackEntity entity = super.toEntity();
+        if (entity != null){
+            ProveedorEntity ent = null;
+            if (entity.getProveedor() != null)
+            {
+                ent = new ProveedorEntity();
+                ent = entity.getProveedor();
+            }
+            entity.setProveedor(ent);
+        }
+        return entity;
     }
     
     /**
      * Constructor del feedback a partir de un entity
      * @param ent 
      */
-    public FeedBackDetailDTO(FeedBackEntity ent){
-        super(ent);
-        /*if (ent != null)
+    public FeedBackDetailDTO(FeedBackEntity entity){
+        super(entity);
+        if (entity.getProveedor() != null)
         {
-            this.proveedor = new ProveedorDTO(ent.getProveedor());
-        }*/
+            proveedor = new ProveedorDTO(entity.getProveedor());
+        }
+        else proveedor = null;
     }
 }
 

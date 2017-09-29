@@ -24,23 +24,18 @@ public class CancionLogic {
     CancionPersistence persistence;
     
     
-    private static final Logger LOGGER = Logger.getLogger(TarjetaLogic.class.getName());
     
     
     public CancionEntity createCancion(CancionEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Tarjeta");
         // Invoca la persistencia para crear la Tarjeta
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Tarjeta");
         return entity;
     }
 
    
     public List<CancionEntity> getCanciones() {
-        LOGGER.info("Inicia proceso de consultar todas las Tarjetaes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<CancionEntity> Tarjeta = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las Tarjetaes");
         return Tarjeta;
     }
     

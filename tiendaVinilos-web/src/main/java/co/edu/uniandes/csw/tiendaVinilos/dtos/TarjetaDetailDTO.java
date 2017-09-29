@@ -23,8 +23,6 @@ SOFTWARE.
 */
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
-import java.util.ArrayList;
 
 /**
  *
