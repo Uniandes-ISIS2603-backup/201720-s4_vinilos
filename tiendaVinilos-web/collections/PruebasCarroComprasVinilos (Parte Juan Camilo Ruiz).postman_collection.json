@@ -1,0 +1,55 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasCarroComprasVinilos (Parte Juan Camilo Ruiz)",
+		"_postman_id": "a0e13ff3-9816-8e8e-8161-3fa09df18e47",
+		"description": "Pruebas del GET y POST de un vinilo en un carro compras, se ejecuta primero el post para que sea perceptible en el GET la agregacion del vinilo a la lista del carro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST carroCompras vinilo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/carroCompras/1/vinilos/51",
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"description": "Se prueba el POST de un vinilo en un carroCompra, lo que se hace es ingresar en la URL, al final, el id del vinilo existente que se quiere agregar a la lista del carro de compras (Hecho por Juan Camilo Ruiz)."
+			},
+			"response": []
+		},
+		{
+			"name": "GET all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/carroCompras",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Se prueba el GET de todos los carroCompras existentes en la base de datos"
+			},
+			"response": []
+		}
+	]
+}
