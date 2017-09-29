@@ -28,6 +28,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
@@ -163,8 +164,33 @@ public class UsuarioResource {
         }
         usuarioLogic.deleteUsuario(id);
     }
-
-    /**
+    @Path("{usarioId: \\d+}/pedidos")
+    public Class<UsuarioPedidoClienteResource> getUsusuarioFeedbacks(@PathParam("usuarioId") Long idProv)
+    {
+        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return UsuarioPedidoClienteResource.class;
+    }
+    
+    @Path("{usuarioId: \\d+}/feedbacks")
+    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv)
+    {
+        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return UsuarioFeedBackResource.class;
+    }
+    @Path("{usuarioId: \\d+}/tarjetas")
+    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv)
+    {
+        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return TarjetasUsuarioResource.class;
+    }
+    
+    /*
      *
      * lista de entidades a DTO.
      *
@@ -182,6 +208,5 @@ public class UsuarioResource {
         }
         return list;
     }
-
 }
 

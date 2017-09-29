@@ -30,7 +30,6 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jd.arenas
  */
-@Path("usuarios/{id: \\d+}/feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -43,13 +42,13 @@ public class UsuarioFeedBackResource {
     ProveedorLogic proveedorLogic;
     
      @GET
-    public List<FeedBackDetailDTO> getFeedBacks(@PathParam("id") Long id) throws BusinessLogicException {
+    public List<FeedBackDetailDTO> getFeedBacks(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         
         return listEntity2DetailDTO(usuarioLogic.getFeedBacks(id));
     }
      @GET
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO getFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public FeedBackDetailDTO getFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
     {
         FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
         feedBackLogic.getFeedBack(id2);
@@ -75,13 +74,13 @@ public class UsuarioFeedBackResource {
         return list;
     }
     @POST
-    public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feedBack,@PathParam("id") Long id) throws BusinessLogicException {
+    public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feedBack,@PathParam("usuarioId") Long id) throws BusinessLogicException {
         feedBackLogic.agregarFeedBack(usuarioLogic.getUsuario(id), feedBack.toEntity(), feedBack.getProveedor().toEntity());
         return feedBack;
     }
     @PUT
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO updateFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2,FeedBackDetailDTO nuevo)
+    public FeedBackDetailDTO updateFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2,FeedBackDetailDTO nuevo)
     {
         nuevo.setId(id2);
         feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(id), nuevo.toEntity(),nuevo.getProveedor().toEntity());
@@ -89,7 +88,7 @@ public class UsuarioFeedBackResource {
     }
      @DELETE
     @Path("/{id2:\\d+}")
-    public void deleteFeedBack(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public void deleteFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
     {
         FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
         feedBackLogic.deleteFB(feed);

@@ -25,7 +25,7 @@ import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author jp.monsalvo
+ * @author jp.monsalvo 
  */
 @Path("vinilos")
 @Produces("application/json")
@@ -134,7 +134,7 @@ public class ViniloResource {
         }
         ViniloLogic.deleteVinilo(id);
     }
-
+    
     /**
      *
      * lista de entidades a DTO.

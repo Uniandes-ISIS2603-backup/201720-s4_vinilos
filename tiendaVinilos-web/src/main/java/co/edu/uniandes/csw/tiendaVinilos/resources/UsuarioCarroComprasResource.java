@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
+import co.edu.uniandes.csw.tiendaVinilos.dtos.CarroComprasDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
@@ -28,27 +30,29 @@ import javax.ws.rs.Produces;
  *
  * @author jd.arenas
  */
-@Path("usuarios/{id: \\d+}/carroCompras")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
+@Path("usuarios/{usuarioId: \\d+}/carroCompras")
 public class UsuarioCarroComprasResource {
      @Inject
     UsuarioLogic usuarioLogic;
     @Inject
+    CarroComprasLogic carroComprasLogic;
+    @Inject
     ViniloLogic viniloLogic;
     
      @GET
-    public List<ViniloDTO> getCarroComprass(@PathParam("id") Long id) throws BusinessLogicException {
+    public CarroComprasDetailDTO getCarroCompras(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         
-        return listEntity2DetailDTO(usuarioLogic.getCarroCompras(id));
+        return new CarroComprasDetailDTO(usuarioLogic.getCarrito(id));
     }
      @GET
-    @Path("/{id2:\\d+}")
-    public ViniloDTO getCarroCompras(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    @Path("/{id2:\\d+}/vinilos/{id3:\\d+}")
+    public ViniloDTO getCarroCompras(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2,@PathParam("id3")Long id3)
     {
-        ViniloEntity feed= viniloLogic.getVinilo(id2);
-        return new ViniloDetailDTO(feed);
+        ViniloDTO vinilo=new ViniloDTO(carroComprasLogic.getViniloFromCarrito(carroComprasLogic.getCarroCompras(id2), id3));
+        return vinilo;
     }
     /**
      *
@@ -70,23 +74,26 @@ public class UsuarioCarroComprasResource {
         return list;
     }
     @POST
-    public ViniloDTO postViniloCarro(ViniloDetailDTO vinilo,@PathParam("id") Long id) throws BusinessLogicException {
-        return new ViniloDTO(viniloLogic.agregarViniloCarro(vinilo.getUsuario().toEntity(), vinilo.toEntity()));
+    @Path("{idVin:\\d+}")
+    public ViniloDTO postViniloCarro(@PathParam("usuarioId") Long id,@PathParam("idVin") Long id2) throws BusinessLogicException {
+        ViniloEntity ent= viniloLogic.getVinilo(id2);
+        viniloLogic.addCarrito(usuarioLogic.getCarrito(id), ent);
+        return new ViniloDTO(ent);
     }
-    @PUT
+
+//    @PUT
+//    @Path("/{id2:\\d+}")
+//    public ViniloDTO updateCarroCompras(@PathParam("id") Long id,@PathParam("id2")Long id2,ViniloDetailDTO nuevo)
+//    {
+//        nuevo.setId(id2);
+//        viniloLogic.modificarCarrito(nuevo.getUsuario().toEntity(), nuevo.toEntity());
+//        return nuevo;
+    
+    @DELETE
     @Path("/{id2:\\d+}")
-    public ViniloDTO updateCarroCompras(@PathParam("id") Long id,@PathParam("id2")Long id2,ViniloDetailDTO nuevo)
+    public void deleteCarroCompras(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
     {
-        nuevo.setId(id2);
-        viniloLogic.modificarCarrito(nuevo.getUsuario().toEntity(), nuevo.toEntity());
-        return nuevo;
-    }
-     @DELETE
-    @Path("/{id2:\\d+}")
-    public void deleteCarroCompras(@PathParam("id") Long id,@PathParam("id2")Long id2)
-    {
-       ViniloEntity viniloEntity=viniloLogic.getVinilo(id2);
-       viniloLogic.sacraDelCarrito(viniloEntity);
+       viniloLogic.sacraDelCarrito(viniloLogic.getVinilo(id2));
     }
     
 }

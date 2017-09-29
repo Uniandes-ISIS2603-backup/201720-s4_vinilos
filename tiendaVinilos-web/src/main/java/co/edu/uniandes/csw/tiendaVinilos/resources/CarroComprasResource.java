@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.CarroComprasDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -28,7 +30,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author cs.gomez
  */
-@Path("CarroCompras")
+@Path("carroCompras")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -88,8 +90,7 @@ public class CarroComprasResource {
         }
         logic.deleteCarroCompras(id);
     }
-
-    
+ 
     private List<CarroComprasDetailDTO> listEntity2DetailDTO(List<CarroComprasEntity> entityList) {
         List<CarroComprasDetailDTO> list = new ArrayList<>();
         for (CarroComprasEntity entity : entityList) {

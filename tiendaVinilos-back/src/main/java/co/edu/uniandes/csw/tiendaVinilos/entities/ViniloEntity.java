@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +26,20 @@ public class ViniloEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @PodamExclude
+    @ManyToOne
+     private CarroComprasEntity carrosCompras;
+    
+    public CarroComprasEntity getCarrosCompras()
+    {
+        return carrosCompras;
+    }
+    
+    public void setCarrosCompras(CarroComprasEntity carrosCompras)
+    {
+        this.carrosCompras = carrosCompras;
+    }
+            
     public Long getId() {
         return id;
     }

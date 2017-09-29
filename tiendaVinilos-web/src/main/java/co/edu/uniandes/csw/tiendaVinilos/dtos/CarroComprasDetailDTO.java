@@ -6,12 +6,27 @@
 package co.edu.uniandes.csw.tiendaVinilos.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author cs.gomez
  */
 public class CarroComprasDetailDTO extends CarroComprasDTO{
+    
+    private ArrayList<ViniloDTO> vinilos;
+    
+    public void setVinilos(ArrayList<ViniloDTO> vinilos)
+    {   
+        this.vinilos = vinilos;
+    }
+    
+    public ArrayList<ViniloDTO> getVinilos()
+    {
+        return vinilos;
+    }
     
     public CarroComprasDetailDTO(){
     }
@@ -23,6 +38,11 @@ public class CarroComprasDetailDTO extends CarroComprasDTO{
      */
     public CarroComprasDetailDTO(CarroComprasEntity entity) {
         super(entity);
+        if(entity != null){
+            vinilos = new ArrayList<>();
+            for (ViniloEntity vinEnt : entity.getVinilos())
+                vinilos.add(new ViniloDTO(vinEnt));
+        }
     }
     
     /**
@@ -32,8 +52,19 @@ public class CarroComprasDetailDTO extends CarroComprasDTO{
      */
     @Override
     public CarroComprasEntity toEntity() {
-        CarroComprasEntity infoE = super.toEntity();
-        return infoE;
+        CarroComprasEntity entity = super.toEntity();
+        
+       if (entity != null){
+           List<ViniloEntity> listVin = null;
+           if (getVinilos() != null){
+               listVin = new ArrayList<>();
+                for (ViniloDTO vindto : getVinilos()){
+                           listVin.add(vindto.toEntity());
+                }
+           }
+           entity.setVinilos(listVin);
+           }
+        return entity;
     }
     
 }

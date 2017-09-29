@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -62,6 +64,20 @@ public class UsuarioEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy="usuario")
     private List<ViniloEntity> carroCompras;
+    
+    @PodamExclude
+    @OneToOne(fetch=FetchType.LAZY,mappedBy="usuario")
+    private CarroComprasEntity carrito;
+
+    public CarroComprasEntity getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarroComprasEntity carrito) {
+        this.carrito = carrito;
+    }
+    
+    
 
     public List<ViniloEntity> getCarroCompras() {
         return carroCompras;

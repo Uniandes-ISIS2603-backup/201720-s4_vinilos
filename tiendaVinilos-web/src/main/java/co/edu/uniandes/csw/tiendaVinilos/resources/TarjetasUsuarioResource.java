@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -28,7 +29,6 @@ import javax.ws.rs.Produces;
  *
  * @author jd.arenas
  */
-@Path("usuarios/{id: \\d+}/tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -38,13 +38,13 @@ public class TarjetasUsuarioResource {
     @Inject
     TarjetaLogic tarjetaLogic;
       @GET
-    public List<TarjetaDetailDTO> getTarjetas(@PathParam("id") Long id) throws BusinessLogicException {
+    public List<TarjetaDetailDTO> getTarjetas(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         
         return listEntity2DetailDTO(usuarioLogic.getTarjetas(id));
     }
      @GET
     @Path("/{id2:\\d+}")
-    public TarjetaDetailDTO getTarjeta(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public TarjetaDetailDTO getTarjeta(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
     {
         TarjetaEntity tarjeta= tarjetaLogic.getTarjeta(id2);
         tarjetaLogic.getTarjeta(id2);
@@ -70,16 +70,16 @@ public class TarjetasUsuarioResource {
         return list;
     }
     @POST
-    public TarjetaDetailDTO createTarjeta(TarjetaDetailDTO tarjeta,@PathParam("id") Long id) throws BusinessLogicException {
+    public TarjetaDetailDTO createTarjeta(TarjetaDetailDTO tarjeta,@PathParam("usuarioId") Long id) throws BusinessLogicException {
         tarjetaLogic.agregarTarjeta(usuarioLogic.getUsuario(id), tarjeta.toEntity());
         return tarjeta;
     }
     @PUT
     @Path("/{id2:\\d+}")
-    public TarjetaDetailDTO updateTarjeta(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public TarjetaDetailDTO updateTarjeta(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
     {
         TarjetaEntity tarjeta= tarjetaLogic.getTarjeta(id2);
-        tarjetaLogic.modificarTarjeta(usuarioLogic.getUsuario(0),tarjeta);
+        tarjetaLogic.modificarTarjeta(usuarioLogic.getUsuario(id),tarjeta);
         return new TarjetaDetailDTO();
     }
      @DELETE
