@@ -59,8 +59,8 @@ public class PedidoClientePedidoProveedorResource {
     @POST 
     public PedidoProveedorDetailDTO createPedidoProveedor(PedidoProveedorDetailDTO pedidoProveedor , @PathParam("id") Long id) throws BusinessLogicException
     {
-      
-        return null;
+       pedidoProveedorLogic.agregarPedidoProveedor(pedidoClienteLogic.getPedido(id), pedidoProveedor.toEntity());
+       return pedidoProveedor;
     }
     
     @DELETE

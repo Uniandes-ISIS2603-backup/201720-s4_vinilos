@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoProveedorPersistence;
 import java.util.List;
@@ -46,5 +47,15 @@ public class PedidoProveedorLogic {
        persistence.delete(id);
    }
    
+   public void agregarPedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
+   {
+       pedidoProveedor.setPedidoCliente(pedidoCliente);
+       createProveedor(pedidoProveedor);
+   }
    
-}
+   public void deletePedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
+   {
+       pedidoProveedor.setPedidoCliente(null);
+       deleteProveedor(pedidoProveedor.getId());
+   }
+           }
