@@ -66,7 +66,7 @@ public class ProveedorResource {
     
     @PUT
     @Path("{id: \\d+}")
-    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov)
+    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov) throws BusinessLogicException
     {
         ProveedorEntity entity = prov.toEntity();
         entity.setId(id);
