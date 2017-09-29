@@ -108,6 +108,8 @@ public class PagoClienteResource {
         return listEntity2DetailDTO(pagoLogic.getPagos());
     }
     
+    
+    
     /**
      *
      * lista de entidades a DTO.

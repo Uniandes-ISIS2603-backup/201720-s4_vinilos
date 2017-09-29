@@ -59,8 +59,7 @@ public class PedidoClientePedidoProveedorResource {
     @POST 
     public PedidoProveedorDetailDTO createPedidoProveedor(PedidoProveedorDetailDTO pedidoProveedor , @PathParam("id") Long id) throws BusinessLogicException
     {
-//        pedidoProveedorLogic.agregarPedidoProveedor(pedidoClienteLogic.getPedido(id), pedidoProveedor.toEntity());
-//        return pedidoProveedor;
+      
         return null;
     }
     
@@ -68,8 +67,8 @@ public class PedidoClientePedidoProveedorResource {
     @Path("/{id2:\\d+}")
       public void deletePedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2) 
       {
-//          PedidoProveedorEntity entity = pedidoProveedorLogic.getProveedor(id2);
-//          pedidoProveedorLogic.deletePedidoProveedor(entity);
+         PedidoProveedorEntity entity = pedidoProveedorLogic.getProveedor(id2);
+          pedidoProveedorLogic.deleteProveedor(id2);
           
       }
      private List<PedidoProveedorDetailDTO> listEntity2DetailDTO(List<PedidoProveedorEntity> entityList) {
