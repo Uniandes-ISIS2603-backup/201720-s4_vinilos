@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -62,7 +63,7 @@ public class UsuarioEntity implements Serializable {
     private List<PedidoClienteEntity> pedidos;
     
     @PodamExclude
-    @OneToMany(mappedBy="usuario")
+    @OneToMany(mappedBy="usuario",cascade=CascadeType.ALL, orphanRemoval=true)
     private List<ViniloEntity> carroCompras;
     
     @PodamExclude

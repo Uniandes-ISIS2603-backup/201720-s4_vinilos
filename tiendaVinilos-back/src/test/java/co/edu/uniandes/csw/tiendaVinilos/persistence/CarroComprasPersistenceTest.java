@@ -158,7 +158,7 @@ public class CarroComprasPersistenceTest {
             newEntity.setId(entity.getId());
             persistence.update(newEntity);
             CarroComprasEntity resp = em.find(CarroComprasEntity.class, entity.getId());
-            assertEquals(newEntity.getId(), resp.getId());
+            assertEquals(newEntity.getName() , resp.getName());
         }
     }
 

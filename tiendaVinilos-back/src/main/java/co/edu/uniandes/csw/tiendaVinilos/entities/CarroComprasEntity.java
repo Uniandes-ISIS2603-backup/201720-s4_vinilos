@@ -30,12 +30,15 @@ public class CarroComprasEntity implements Serializable{
     private Long id;
     private double precioTotal;
     
+    private String name;
+    
     @PodamExclude
     @OneToMany (mappedBy="carrosCompras")
     private List<ViniloEntity> vinilos;
 //    @OneToMany(mappedBy="carrito")
 //    private PedidoClienteEntity pedido; 
     
+    @PodamExclude
     private UsuarioEntity usuario;
 
     public UsuarioEntity getUsuario() {
@@ -80,6 +83,14 @@ public class CarroComprasEntity implements Serializable{
     
     public void setPrecioTotal(double precioTotal){
         this.precioTotal = precioTotal;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     
     
