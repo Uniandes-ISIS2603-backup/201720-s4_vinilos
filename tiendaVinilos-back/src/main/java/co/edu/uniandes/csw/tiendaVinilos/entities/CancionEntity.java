@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -24,7 +27,19 @@ public class CancionEntity implements Serializable{
     
     private Double duracion;
     
-     private String name;
+    private String name;
+    
+    @PodamExclude
+    @ManyToMany
+    private List<ArtistaEntity> artistas;
+    
+    public List<ArtistaEntity> getArtistas(){
+        return artistas;
+    }
+    
+    public void setArtistas (List<ArtistaEntity> a){
+        this.artistas = a;
+    }
     
     public Double getDuracion(){
         return duracion;
