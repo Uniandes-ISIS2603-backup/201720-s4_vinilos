@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasProveedorPagos",
+		"_postman_id": "c23123df-cab5-4fbc-ceba-b18422b79491",
+		"description": "Pruebas de la relacion entre proveedor pagos, sin embargo el otro \"lado\" de la relacion no esta hecho y por tanto no hay pedidos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all pagos proveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/pagos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Prueba el GET de todos los pagos pertenecientes al proveedor"
+			},
+			"response": []
+		}
+	]
+}
