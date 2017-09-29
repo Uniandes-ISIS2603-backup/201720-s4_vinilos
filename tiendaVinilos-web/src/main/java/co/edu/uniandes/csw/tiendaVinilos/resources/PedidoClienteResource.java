@@ -21,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 /**
  *
  * @author mj.jaime10
@@ -153,6 +154,15 @@ public class PedidoClienteResource {
     @GET
     public List<PedidoClienteDetailDTO> getPedidos() throws BusinessLogicException {
         return listEntity2DetailDTO(pedidoLogic.getPedidos());
+    }
+    
+    @Path("{usuarioId: \\d+}/feedbacks")
+    public Class<PedidoClientePedidoProveedorResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) throws BusinessLogicException
+    {
+        PedidoClienteEntity ent = pedidoLogic.getPedido(idProv);
+         if (ent == null)
+             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+         return PedidoClientePedidoProveedorResource.class;
     }
     
     /**
