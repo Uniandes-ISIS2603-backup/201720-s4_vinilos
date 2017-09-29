@@ -31,7 +31,10 @@ SOFTWARE.
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
+import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,8 +55,8 @@ import javax.ws.rs.WebApplicationException;
  * Clase que implementa el recurso REST correspondiente a "usuarios".
  *
  * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
- * este recurso tiene la ruta "usuarios". Al ejecutar la aplicación, el
- * recurso será accesibe a través de la ruta "/api/usuarios"
+ * este recurso tiene la ruta "usuarios". Al ejecutar la aplicación, el recurso
+ * será accesibe a través de la ruta "/api/usuarios"
  *
  * @author ISIS2603
  *
@@ -66,11 +69,12 @@ public class UsuarioResource {
 
     @Inject
     UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    @Inject
+    CarroComprasLogic carroLogic;
 
     /**
-     * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo
-     * json: { "name":"Norma" }
+     * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo json: {
+     * "name":"Norma" }
      *
      * @param usuario correponde a la representación java del objeto json
      * enviado en el llamado.
@@ -84,14 +88,23 @@ public class UsuarioResource {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         UsuarioEntity usuarioEntity = usuario.toEntity();
         // Invoca la lógica para crear la usuario nueva
+        CarroComprasEntity carro = new CarroComprasEntity();
+        carro.setPrecioTotal(0);
+        carro.setVinilos(new ArrayList<ViniloEntity>());
+        usuarioEntity.setCarrito(carro);
+        
         UsuarioEntity nuevoUsuario = usuarioLogic.createUsuario(usuario.toEntity());
+        carro.setUsuario(nuevoUsuario);
+        carroLogic.createCarroCompras(carro);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new UsuarioDetailDTO(nuevoUsuario);
     }
 
     /**
      * GET para todas las usuarioes.
-     * http://localhost:8080/tiendaVinilos-web/api/usuarios     *
+     * http://localhost:8080/tiendaVinilos-web/api/usuarios
+     *
+     *
      * @return la lista de todas los usuarios en objetos json DTO.
      * @throws BusinessLogicException
      */
@@ -101,15 +114,16 @@ public class UsuarioResource {
     }
 
     /**
-     * GET para un usuario
-     * http://localhost:8080/tiendaVinilos-web/api/usuarios     *
+     * GET para un usuario http://localhost:8080/tiendaVinilos-web/api/usuarios
+     *
+     *
      * @param id corresponde al id de la usuario buscada.
      * @return La usuario encontrada. Ejemplo: { "type": "usuarioDetailDTO",
      * "id": 1, "name": "Norma" }
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id del usuario buscado se retorna un 404 con
-     * el mensaje.
+     * En caso de no existir el id del usuario buscado se retorna un 404 con el
+     * mensaje.
      */
     @GET
     @Path("{id: \\d+}")
@@ -122,8 +136,8 @@ public class UsuarioResource {
     }
 
     /**
-     * PUT http://localhost:8080/tiendaVinilos-web/api/usuarios/1 Ejemplo
-     * json { "id": 1, "name": "cambio de nombre" }
+     * PUT http://localhost:8080/tiendaVinilos-web/api/usuarios/1 Ejemplo json {
+     * "id": 1, "name": "cambio de nombre" }
      *
      * @param id corresponde a la usuario a actualizar.
      * @param usuario corresponde a al objeto con los cambios que se van a
@@ -131,8 +145,8 @@ public class UsuarioResource {
      * @return La usuario actualizada.
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id de la usuario a actualizar se retorna un
-     * 404 con el mensaje.
+     * En caso de no existir el id de la usuario a actualizar se retorna un 404
+     * con el mensaje.
      */
     @PUT
     @Path("{id: \\d+}")
@@ -151,8 +165,8 @@ public class UsuarioResource {
      * @param id corresponde a la usuario a borrar.
      * @throws BusinessLogicException
      *
-     * En caso de no existir el id de la usuario a actualizar se retorna un
-     * 404 con el mensaje.
+     * En caso de no existir el id de la usuario a actualizar se retorna un 404
+     * con el mensaje.
      *
      */
     @DELETE
@@ -164,32 +178,34 @@ public class UsuarioResource {
         }
         usuarioLogic.deleteUsuario(id);
     }
+
     @Path("{usarioId: \\d+}/pedidos")
-    public Class<UsuarioPedidoClienteResource> getUsusuarioFeedbacks(@PathParam("usuarioId") Long idProv)
-    {
+    public Class<UsuarioPedidoClienteResource> getUsusuarioFeedbacks(@PathParam("usuarioId") Long idProv) {
         UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return UsuarioPedidoClienteResource.class;
+        if (ent == null) {
+            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+        }
+        return UsuarioPedidoClienteResource.class;
     }
-    
+
     @Path("{usuarioId: \\d+}/feedbacks")
-    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv)
-    {
+    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
         UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return UsuarioFeedBackResource.class;
+        if (ent == null) {
+            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+        }
+        return UsuarioFeedBackResource.class;
     }
+
     @Path("{usuarioId: \\d+}/tarjetas")
-    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv)
-    {
+    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
         UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return TarjetasUsuarioResource.class;
+        if (ent == null) {
+            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+        }
+        return TarjetasUsuarioResource.class;
     }
-    
+
     /*
      *
      * lista de entidades a DTO.
@@ -209,4 +225,3 @@ public class UsuarioResource {
         return list;
     }
 }
-

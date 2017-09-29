@@ -177,7 +177,9 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
 //        UsuarioE.setCarroCompras(vinilos);
+        if(carrito!=null){
         UsuarioE.setCarrito(carrito.toEntity());
+        }
         return UsuarioE;
     }
 
