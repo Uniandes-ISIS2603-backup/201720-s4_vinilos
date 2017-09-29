@@ -33,9 +33,9 @@ public class CarroComprasEntity implements Serializable{
     @PodamExclude
     @OneToMany (mappedBy="carrosCompras")
     private List<ViniloEntity> vinilos;
-    @OneToMany(mappedBy="carrito")
-    private PedidoClienteEntity pedido;
-    @OneToOne
+//    @OneToMany(mappedBy="carrito")
+//    private PedidoClienteEntity pedido; 
+    
     private UsuarioEntity usuario;
 
     public UsuarioEntity getUsuario() {
@@ -46,13 +46,13 @@ public class CarroComprasEntity implements Serializable{
         this.usuario = usuario;
     }
 
-    public PedidoClienteEntity getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(PedidoClienteEntity pedido) {
-        this.pedido = pedido;
-    }
+//    public PedidoClienteEntity getPedido() {
+//        return pedido;
+//    }
+//
+//    public void setPedido(PedidoClienteEntity pedido) {
+//        this.pedido = pedido;
+//    }
     
     
     

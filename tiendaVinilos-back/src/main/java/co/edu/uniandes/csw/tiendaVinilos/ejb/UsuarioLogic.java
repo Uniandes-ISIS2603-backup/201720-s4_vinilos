@@ -115,6 +115,10 @@ public class UsuarioLogic {
     public CarroComprasEntity getCarrito(Long id)
     {
         UsuarioEntity usu=getUsuario(id);
+        if(usu!=null)
+        {
         return usu.getCarrito();
+        }
+        return null;
     }
 }

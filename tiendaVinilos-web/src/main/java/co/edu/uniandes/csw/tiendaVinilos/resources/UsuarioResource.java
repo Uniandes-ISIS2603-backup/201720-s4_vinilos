@@ -208,6 +208,5 @@ public class UsuarioResource {
         }
         return list;
     }
-
 }
 

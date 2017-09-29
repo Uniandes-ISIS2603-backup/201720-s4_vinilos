@@ -16,14 +16,14 @@ import java.util.List;
  */
 public class CarroComprasDetailDTO extends CarroComprasDTO{
     
-    private List<ViniloDTO> vinilos;
+    private ArrayList<ViniloDTO> vinilos;
     
-    public void setVinilos(List<ViniloDTO> vinilos)
+    public void setVinilos(ArrayList<ViniloDTO> vinilos)
     {   
         this.vinilos = vinilos;
     }
     
-    public List<ViniloDTO> getVinilos()
+    public ArrayList<ViniloDTO> getVinilos()
     {
         return vinilos;
     }

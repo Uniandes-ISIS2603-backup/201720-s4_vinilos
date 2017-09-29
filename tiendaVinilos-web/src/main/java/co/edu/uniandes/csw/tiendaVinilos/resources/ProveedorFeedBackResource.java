@@ -67,16 +67,5 @@ public class ProveedorFeedBackResource {
             if (fb.getId().equals(idFeedBack)) fbDetail = (new FeedBackDetailDTO(fb));
         if (fbDetail == null) throw new BusinessLogicException("No existe el feedback con id " + idFeedBack + " del proveedor con id " + idProveedor);
         return fbDetail;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
 }
