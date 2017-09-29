@@ -1,9 +1,9 @@
 {
 	"variables": [],
 	"info": {
-		"name": "Collection2",
+		"name": "PruebasFeedback",
 		"_postman_id": "0583ffc2-742f-6d14-5af4-1809d29fd211",
-		"description": "",
+		"description": "Pruebas de los feedbacks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -127,7 +127,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/feedbacks/50",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/feedbacks/1",
 				"method": "DELETE",
 				"header": [
 					{
@@ -158,7 +158,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/feedbacks/1",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/feedbacks/150",
 				"method": "DELETE",
 				"header": [
 					{

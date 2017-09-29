@@ -66,13 +66,13 @@ public class ProveedorResource {
     
     @PUT
     @Path("{id: \\d+}")
-    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov)
+    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov) throws BusinessLogicException
     {
         ProveedorEntity entity = prov.toEntity();
         entity.setId(id);
         ProveedorEntity oldEnt = logic.getProveedor(id);
         if(oldEnt == null)
-            throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404); 
+            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404); 
         ProveedorEntity ent = logic.updateProveedor(entity);
         return (new ProveedorDetailDTO(ent));
     }

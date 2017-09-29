@@ -53,7 +53,7 @@ public class ProveedorVinilosResource {
     public ViniloDetailDTO getVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProv);
-        if (ent != null) throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
+        if (ent == null) throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
         ViniloDetailDTO vinDTO = null;
         for (ViniloEntity vinEnt : ent.getVinilos())
             if (vinEnt.getId().equals(idVin)) vinDTO = new ViniloDetailDTO(vinEnt);
@@ -72,8 +72,8 @@ public class ProveedorVinilosResource {
     @Path(("/{idVin:\\d+}"))
     public ViniloDetailDTO updateVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin, ViniloDetailDTO vinDto)
     {
-        ViniloEntity vinEnt = vinilosLogic.getVinilo(idVin);
-        return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin, vinEnt));
+        vinDto.setId(idVin);
+        return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin, vinDto.toEntity()));
         
     }
    

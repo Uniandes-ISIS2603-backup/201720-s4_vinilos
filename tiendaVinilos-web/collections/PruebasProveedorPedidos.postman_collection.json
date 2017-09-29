@@ -1,9 +1,9 @@
 {
 	"variables": [],
 	"info": {
-		"name": "CollectionProveedorFeedbacks",
-		"_postman_id": "db5af1a4-206f-c9ce-d358-ebd729ddf334",
-		"description": "",
+		"name": "PruebasProveedorPedidos",
+		"_postman_id": "eb08a862-9387-9b27-1d47-b4d7bf4a0990",
+		"description": "Se prueba el GET de todos los pedidos pertenecientes a un proveedor especifico, sin embargo como las relaciones entre pedidos no fueron hechas, no hay pedidos.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -21,11 +21,11 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/46/feedbacks",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/pedidos",
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": "Get de todos los feedbacks asociados con el proveedor\n"
+				"description": "Get de todos los pedidos asociados al proveedor"
 			},
 			"response": []
 		}
