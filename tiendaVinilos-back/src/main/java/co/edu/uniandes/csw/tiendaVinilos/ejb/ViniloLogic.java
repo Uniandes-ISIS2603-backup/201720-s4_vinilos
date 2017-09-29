@@ -107,8 +107,10 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     public void sacraDelCarrito(ViniloEntity vinilo)
     {
         vinilo.setUsuario(null);
+        vinilo.setCarrosCompras(null);
         deleteVinilo(vinilo.getId());
     }
+    
     
     
 }

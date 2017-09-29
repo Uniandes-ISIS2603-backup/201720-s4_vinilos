@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
@@ -110,5 +111,14 @@ public class UsuarioLogic {
     {
         UsuarioEntity usu=getUsuario(id);
         return usu.getCarroCompras();
+    }
+    public CarroComprasEntity getCarrito(Long id)
+    {
+        UsuarioEntity usu=getUsuario(id);
+        if(usu!=null)
+        {
+        return usu.getCarrito();
+        }
+        return null;
     }
 }

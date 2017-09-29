@@ -36,8 +36,10 @@ public class CarroComprasDTO {
     }
     
     public CarroComprasDTO(CarroComprasEntity carro){
+        if(carro!=null){
         this.id = carro.getId();
         this.precioTotal = carro.getPrecioTotal();
+        }
     }
     
     public CarroComprasEntity toEntity(){

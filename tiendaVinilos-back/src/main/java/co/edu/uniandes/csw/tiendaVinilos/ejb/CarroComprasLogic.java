@@ -66,4 +66,16 @@ public class CarroComprasLogic {
        ent.getVinilos().add(vinEnt);
         persistence.update(ent);
    }
+   public ViniloEntity getViniloFromCarrito(CarroComprasEntity carro, Long idVinilo)
+   {
+       ViniloEntity viniloResp=null;
+       List<ViniloEntity> vinilos= carro.getVinilos();
+       for (ViniloEntity vinilo : vinilos) {
+           if(vinilo.getId()==idVinilo)
+           {
+               viniloResp=vinilo;
+           }
+       }
+       return viniloResp;
+   }
 }
