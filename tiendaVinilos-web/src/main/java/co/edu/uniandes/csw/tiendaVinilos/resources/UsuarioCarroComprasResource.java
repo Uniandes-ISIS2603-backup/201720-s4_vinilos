@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.tiendaVinilos.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
+import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -35,7 +37,7 @@ import javax.ws.rs.Produces;
 @RequestScoped
 @Path("usuarios/{usuarioId: \\d+}/carroCompras")
 public class UsuarioCarroComprasResource {
-     @Inject
+    @Inject
     UsuarioLogic usuarioLogic;
     @Inject
     CarroComprasLogic carroComprasLogic;
@@ -48,10 +50,12 @@ public class UsuarioCarroComprasResource {
         return new CarroComprasDetailDTO(usuarioLogic.getCarrito(id));
     }
      @GET
-    @Path("/{id2:\\d+}/vinilos/{id3:\\d+}")
-    public ViniloDTO getCarroCompras(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2,@PathParam("id3")Long id3)
+    @Path("/{id3:\\d+}")
+    public ViniloDTO getCarroCompras(@PathParam("usuarioId") Long id,@PathParam("id3")Long id3)
     {
-        ViniloDTO vinilo=new ViniloDTO(carroComprasLogic.getViniloFromCarrito(carroComprasLogic.getCarroCompras(id2), id3));
+        UsuarioEntity usu= usuarioLogic.getUsuario(id);
+        CarroComprasEntity carro= usu.getCarrito();
+        ViniloDTO vinilo=new ViniloDTO(carroComprasLogic.getViniloFromCarrito(carroComprasLogic.getCarroCompras(id), id3));
         return vinilo;
     }
     /**
