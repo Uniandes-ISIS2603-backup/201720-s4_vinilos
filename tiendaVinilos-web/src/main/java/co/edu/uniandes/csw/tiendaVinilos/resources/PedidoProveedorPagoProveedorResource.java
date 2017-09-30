@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.PagoProveedorDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
@@ -36,33 +37,19 @@ public class PedidoProveedorPagoProveedorResource {
    @POST
    public PagoProveedorDetailDTO creatPagoProveedores(@PathParam("idPedidoProveedor")Long idPedidoProveedor,PagoProveedorDetailDTO  provee)throws BusinessLogicException
    {
-       PedidoProveedorEntity ent = logic.getProveedor(idPedidoProveedor);
-       
-       if(ent == null)throw new BusinessLogicException("No existe el proveedor con id "+ idPedidoProveedor);
-       
-//       PagoProveedorEntity pago =logic1.createWithPedido(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
-       //PagoProveedorEntity pago =logic1.createWithPedido(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
-
-      
-       return provee;
+         logic1.agregarPagoProveedor(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
+        return provee;
    }
    
     
     @GET
-     @Path("/{id2:\\d+}")
-    public PagoProveedorDetailDTO getPagoProveedor(@PathParam("idPedidoProveedor")Long idPedidoProveedor,@PathParam("id2")Long id2 )
-            
-
-            
+   
+    public PagoProveedorDetailDTO getPagoProveedor(@PathParam("idPedidoProveedor")Long idPedidoProveedor )
+                   
     {
        
-        
-        PedidoProveedorEntity ent =logic.getProveedor(idPedidoProveedor);
-             PagoProveedorDetailDTO dto = new PagoProveedorDetailDTO(logic1.getProveedor(id2));
+        return new PagoProveedorDetailDTO( logic.getPagoProveedor(idPedidoProveedor));
        
-       
-        
-        return dto;
         
     }
     
