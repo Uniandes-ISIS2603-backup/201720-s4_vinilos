@@ -7,7 +7,11 @@
     <name>tiendaVinilos</name>
     <packaging>pom</packaging>
     <version>0.1.0</version>
-    <modules></modules>
+    <modules>
+        <module>tiendaVinilos-back</module>
+        <module>tiendaVinilos-web</module>
+
+    </modules>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

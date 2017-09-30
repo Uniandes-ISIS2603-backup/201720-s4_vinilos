@@ -170,8 +170,7 @@ este caso el "id"
 from UsuarioEntity where id=id;" - "SELECT * FROM table_codigo 
 WHERE condition;" en SQL.
          */
-        return em.find
-(UsuarioEntity.class, id);
+        return em.find(UsuarioEntity.class, id);
     }
 
     /**

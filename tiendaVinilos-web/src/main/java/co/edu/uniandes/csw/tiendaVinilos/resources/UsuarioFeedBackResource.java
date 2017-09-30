@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
@@ -30,6 +31,7 @@ import javax.ws.rs.WebApplicationException;
  *
  * @author jd.arenas
  */
+@Path("usuarios/{usuarioId: \\d+}/feedbacks")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -105,6 +107,17 @@ public class UsuarioFeedBackResource {
         for (FeedBackEntity fbEnt : proveedorLogic.getFeedBacks(id))
             fbDto.add(new FeedBackDetailDTO(fbEnt));
         return fbDto;
+    }
+    
+     @GET
+    @Path("{id: \\d+}/proveedores")
+    public ProveedorDTO getProveedorFB(@PathParam("id") Long id)
+    {
+        FeedBackEntity en = feedBackLogic.getFeedBack(id);
+        if (en == null)
+            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+        FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
+        return fbDTO.getProveedor();
     }
     
 }

@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ public class FeedBackResource {
         System.out.println("HEEEEYYYYYYYYY llego el id " + id + " y sale el id dto " + fbDTO.getId() );
         return (fbDTO);
     }
+
     
     @POST
     public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feed)

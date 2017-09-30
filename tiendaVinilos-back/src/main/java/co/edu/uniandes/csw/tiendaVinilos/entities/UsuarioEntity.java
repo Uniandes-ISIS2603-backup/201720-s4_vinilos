@@ -132,5 +132,13 @@ public class UsuarioEntity implements Serializable {
         this.cantCompras = cantCompras;
     }
 
+    public void setTarjetas(List<TarjetaEntity> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public void setFeedBacks(List<FeedBackEntity> feedBacks) {
+        this.feedBacks = feedBacks;
+    }
+
     
 }

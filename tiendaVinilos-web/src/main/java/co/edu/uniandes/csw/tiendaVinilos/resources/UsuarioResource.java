@@ -179,32 +179,32 @@ public class UsuarioResource {
         usuarioLogic.deleteUsuario(id);
     }
 
-    @Path("{usarioId: \\d+}/pedidos")
-    public Class<UsuarioPedidoClienteResource> getUsusuarioFeedbacks(@PathParam("usuarioId") Long idProv) {
-        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-        if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-        }
-        return UsuarioPedidoClienteResource.class;
-    }
+//    @Path("{usarioId: \\d+}/pedidos")
+//    public Class<UsuarioPedidoClienteResource> getUsuarioPedidos(@PathParam("usuarioId") Long idProv) {
+//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//        if (ent == null) {
+//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//        }
+//        return UsuarioPedidoClienteResource.class;
+//    }
 
-    @Path("{usuarioId: \\d+}/feedbacks")
-    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
-        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-        if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-        }
-        return UsuarioFeedBackResource.class;
-    }
+//    @Path("{usuarioId: \\d+}/feedbacks")
+//    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
+//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//        if (ent == null) {
+//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//        }
+//        return UsuarioFeedBackResource.class;
+//    }
 
-    @Path("{usuarioId: \\d+}/tarjetas")
-    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
-        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-        if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-        }
-        return TarjetasUsuarioResource.class;
-    }
+//    @Path("{usuarioId: \\d+}/tarjetas")
+//    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
+//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//        if (ent == null) {
+//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//        }
+//        return TarjetasUsuarioResource.class;
+//    }
 
     /*
      *

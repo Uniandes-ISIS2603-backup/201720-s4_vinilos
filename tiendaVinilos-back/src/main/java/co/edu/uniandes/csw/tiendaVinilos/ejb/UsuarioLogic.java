@@ -104,8 +104,12 @@ public class UsuarioLogic {
     }
     public List<PedidoClienteEntity> getPedidos(Long id)
     {
-        UsuarioEntity usu=getUsuario(id);
-        return usu.getPedidos();
+      UsuarioEntity usu= persistence.find(id);
+      if(usu!=null)
+      {
+          return usu.getPedidos();
+      }
+      return null;
     }
     public List<ViniloEntity> getCarroCompras(Long id)
     {

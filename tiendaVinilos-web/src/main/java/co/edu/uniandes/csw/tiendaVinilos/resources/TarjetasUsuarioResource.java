@@ -28,6 +28,7 @@ import javax.ws.rs.Produces;
  *
  * @author jd.arenas
  */
+@Path("usuarios/{usuarioId: \\d+}/tarjetas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -36,7 +37,8 @@ public class TarjetasUsuarioResource {
     UsuarioLogic usuarioLogic;
     @Inject
     TarjetaLogic tarjetaLogic;
-      @GET
+    
+    @GET
     public List<TarjetaDetailDTO> getTarjetas(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         
         return listEntity2DetailDTO(usuarioLogic.getTarjetas(id));
