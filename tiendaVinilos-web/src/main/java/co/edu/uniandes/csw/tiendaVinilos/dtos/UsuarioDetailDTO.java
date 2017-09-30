@@ -119,6 +119,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list2.add(dto);
         }
         feeds= (ArrayList<FeedBackDTO>)list2;
+
         List<PedidoClienteEntity> lista3= entity.getPedidos();
         List<PedidoClienteDTO> list3= new ArrayList<>();
         for (PedidoClienteEntity pedido : lista3) {
@@ -176,6 +177,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         UsuarioE.setPedidos(pedidos2);
         UsuarioE.setTarjetas(cards);
         UsuarioE.setFeedBacks(feedbacks);
+
 //        UsuarioE.setCarroCompras(vinilos);
         if(carrito!=null){
         UsuarioE.setCarrito(carrito.toEntity());
