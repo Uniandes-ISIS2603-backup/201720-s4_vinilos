@@ -20,8 +20,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ViniloEntity implements Serializable {
+
     
-    
+     private int anio;
+    private double precio;
+    private int cantUnidades;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,51 +32,34 @@ public class ViniloEntity implements Serializable {
     @PodamExclude
     @ManyToOne
      private CarroComprasEntity carrosCompras;
-    
-    public CarroComprasEntity getCarrosCompras()
-    {
-        return carrosCompras;
-    }
-    
-    public void setCarrosCompras(CarroComprasEntity carrosCompras)
-    {
-        this.carrosCompras = carrosCompras;
-    }
-            
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    
-    private int anio;
-    private double precio;
-    private int cantUnidades;
-
-    @PodamExclude
-    @ManyToOne
-    private ProveedorEntity proveedor;
-    
+   
+   
+  @PodamExclude
+   @ManyToOne
+   private ProveedorEntity proveedor;
+   
     @PodamExclude
     @ManyToOne
     private PedidoProveedorEntity pedidoProveedor;
-    
+     
     @PodamExclude
     @ManyToOne
-    private UsuarioEntity usuario;
+    private InfoEntity info;
+    
+   /**
+     * @return the info
+     */
+    public InfoEntity getInfo() {
+        return info;
+    }
 
+    /**
+     * @param info the info to set
+     */
+    public void setInfo(InfoEntity info) {
+        this.info = info;
+    }
+    
     public ProveedorEntity getProveedor()
     {
         return proveedor;
@@ -133,14 +119,31 @@ public class ViniloEntity implements Serializable {
     public void setPedidoProveedor(PedidoProveedorEntity pedidoProveedor) {
         this.pedidoProveedor = pedidoProveedor;
     }
-
-    public UsuarioEntity getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
+       
+    public CarroComprasEntity getCarrosCompras()
+    {
+        return carrosCompras;
     }
     
-    
+    public void setCarrosCompras(CarroComprasEntity carrosCompras)
+    {
+        this.carrosCompras = carrosCompras;
+    }
+            
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
