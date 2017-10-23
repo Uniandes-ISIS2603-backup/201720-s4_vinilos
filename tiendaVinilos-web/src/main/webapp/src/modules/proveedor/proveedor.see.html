@@ -4,14 +4,12 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Id</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>{{currentRecord.name}}</td>
                 <td>{{currentRecord.email}}</td>
-                <td>{{currentRecord.id}}</td>
             </tr>
         </tbody>
     </table>
@@ -45,5 +43,5 @@
         </tbody>
     </table>
     </table>
-         
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(curentRecord)"> Eliminar proveedor</button>
 </div>

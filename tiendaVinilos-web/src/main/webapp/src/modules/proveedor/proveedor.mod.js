@@ -25,7 +25,7 @@ var mod = ng.module("proveedorModules", []);
                         templateUrl: basePath + 'proveedor.see.html'
                     }
                 }
-            });
+            })
         }]);
 
 })(window.angular);
