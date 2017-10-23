@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentRecord.nombre}}</td>
+                <td>{{currentRecord.anio}}</td>
+                <td>{{currentRecord.precio}}</td>
+                <td>{{currentRecord.cantUnidades}}</td>
+                <td>{{currentRecord.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+     <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Vinilos</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="vinilos in currentRecord.vinilos">
+                <td id="{{$index}}-name">{{vinilos.nombre}}</td>
+        </tbody>
+    </table>
+    
+    <table class="table table-striped" class="col-md-4">
+         
+      <table class="table table-striped" class="col-md-4">    
+        
+    </table>
+    </table>
+         
+</div>
