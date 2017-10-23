@@ -21,24 +21,49 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-/*
- * RestConfig.java
- * Configura el servicio JAX-RS.
- */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
-
-import javax.ws.rs.core.Application;
-import javax.ws.rs.ApplicationPath;
+package co.edu.uniandes.csw.tiendaVinilos.dtos;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 
 /**
- * Clase que indica que este proyecto web ofrece servicios REST. Adicionalmente,
- * esta clase define el prefijo por defecto de las rutas a los recursos.
  *
- * (non-Javadoc)
- *
- * @see javax.ws.rs.core.Application
- * @author ISIS2603
+ * @author jd.arenas
  */
-@ApplicationPath("/api")
-public class RestConfig extends Application {
+public class TarjetaDetailDTO extends TarjetaDTO {
+    
+    private UsuarioDTO usuario;
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+
+    public TarjetaDetailDTO()
+    {
+        
+    }
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity
+     */
+    public TarjetaDetailDTO(TarjetaEntity entity) {
+        super(entity);
+    }
+
+    /**
+     * Transformar un DTO a un Entity
+     *
+     * @return 
+     */
+    @Override
+    public TarjetaEntity toEntity() {
+        TarjetaEntity TarjetaE = super.toEntity();
+        return TarjetaE;
+    }
+
 }
