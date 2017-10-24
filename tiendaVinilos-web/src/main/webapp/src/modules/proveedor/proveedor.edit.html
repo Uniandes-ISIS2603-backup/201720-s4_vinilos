@@ -1,0 +1,25 @@
+<div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
+
+    <form novalidate name="form" id="city-form" role="form" ng-submit="ctrl.editRecord(currentRecord.id)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+            <input  class="form-control" type="hidden" ng-model="currentRecord.id" />
+            <div class="form-group col-md-12" >
+                <label for="name" class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                </div>
+                <label for="email" class="col-md-2 control-label">Email</label>
+                 <div class="col-md-10">
+                <input id="email" email="email" class="form-control" type="text" ng-model="currentRecord.email" ng-init="currentRecord.email" required/>
+                </div>
+            </div>
+            <button type="button" ui-sref="({proveedorId: 'currentRecord.id'})">Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>

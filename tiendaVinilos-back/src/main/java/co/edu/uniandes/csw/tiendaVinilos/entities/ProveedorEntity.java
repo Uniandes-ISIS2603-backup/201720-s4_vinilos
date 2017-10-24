@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.tiendaVinilos.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,19 +27,19 @@ public class ProveedorEntity implements Serializable{
     String email;
     
     @PodamExclude
-    @OneToMany(mappedBy = "proveedor")
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FeedBackEntity> feedBacks = new ArrayList();
     
     @PodamExclude
-    @OneToMany (mappedBy = "proveedor")
+    @OneToMany (mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PagoProveedorEntity> pagos = new ArrayList();
     
     @PodamExclude 
-    @OneToMany(mappedBy = "proveedor")
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List <ViniloEntity> vinilos = new ArrayList();
     
      @PodamExclude
-    @OneToMany(mappedBy = "proveedor")
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PedidoProveedorEntity> pedidos = new ArrayList();
     
     @Id
