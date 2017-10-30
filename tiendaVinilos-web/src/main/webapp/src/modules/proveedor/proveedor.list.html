@@ -1,0 +1,20 @@
+
+<div class="container-fluid">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th style="color:white">Name</th>
+                <th style="color:white">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="proveedor in proveedores">
+                <td style ="font-weight: bold" {{$index}}-name">{{proveedor.name}}</td>
+                <td>
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="proveedorSee({proveedorId: proveedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+     <button id="create-btn" class="btn btn-default btn-lg" ui-sref="proveedorCreate"><span class="glyphicon glyphicon-plus"></span></button>
+</div>

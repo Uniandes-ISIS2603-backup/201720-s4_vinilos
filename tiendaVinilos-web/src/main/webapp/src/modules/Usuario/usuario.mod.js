@@ -39,19 +39,6 @@ var mod = ng.module("usuarioModules", []);
                     }
                 }
             })
-            .state('usuarioPost', {
-                url: '/usuarios/create',
-                param:{
-                    proveedorId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'usuarioCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'usuario.post.html'
-                    }
-                }
-            })
         }]);
 
 })(window.angular);
