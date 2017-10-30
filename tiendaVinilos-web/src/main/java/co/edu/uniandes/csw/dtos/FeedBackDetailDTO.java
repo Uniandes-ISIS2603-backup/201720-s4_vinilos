@@ -67,6 +67,7 @@ public class FeedBackDetailDTO extends FeedBackDTO{
             proveedor = new ProveedorDTO(entity.getProveedor());
         }
         else proveedor = null;
+        System.out.println("EL ID DEL DETAILDTO ES --------------------------- " + this.getId());
     }
 }
 

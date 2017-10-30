@@ -55,6 +55,7 @@ public class FeedBackDTO {
     
     public FeedBackDTO(FeedBackEntity entity){
         id = entity.getId();
+        System.out.println("EL ID DEL DTO ES ------------------------------- " + id);
         calificacion = entity.getCalificacion();
         comentario = entity.getComentario();
     }
@@ -64,7 +65,7 @@ public class FeedBackDTO {
         FeedBackEntity ent = new FeedBackEntity();
         ent.setCalificacion(this.getCalificacion());
         ent.setComentario(this.getComentario());
-        ent.setId(id);
+        ent.setId(this.getId());
         return ent;
     }
 }

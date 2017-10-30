@@ -41,7 +41,13 @@ public class FeedBackResource {
        List<FeedBackDetailDTO> retList = new ArrayList<>();
        List<FeedBackEntity> lista = feedbackLogic.getAll();
        for(FeedBackEntity en : lista)
+       {
+           System.out.println("EL ID DEL FEEDBACK QUE LLEGO ES --------------------------- " + en.getId());
            retList.add(new FeedBackDetailDTO(en));
+       }
+       for (FeedBackDetailDTO fbDetail : retList)
+           System.out.println("EL ID DEL DETAIl POR RETORNAR ES --------------------------- " + fbDetail.getId());
+           
        return retList;
    }
    

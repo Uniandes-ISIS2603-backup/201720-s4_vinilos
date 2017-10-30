@@ -320,15 +320,15 @@ insert into ProveedorEntity (id, name, email) values (99, 'Ken', 'kbollard2q@the
 insert into ProveedorEntity (id, name, email) values (100, 'Lizabeth', 'legger2r@soup.io');
 
 insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (44, 'lectus vestibulum quam sapien varius ut blandit non interdum in ante', 2.7, 95);
-insert into FeedBackEntity (id, comentario, calificacion) values (45, 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue', 3.3);
-insert into FeedBackEntity (id, comentario, calificacion) values (46, 'massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo', 2.1);
-insert into FeedBackEntity (id, comentario, calificacion) values (47, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor', 2.0);
-insert into FeedBackEntity (id, comentario, calificacion) values (48, 'non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in', 3.2);
-insert into FeedBackEntity (id, comentario, calificacion) values (49, 'duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget', 4.4);
-insert into FeedBackEntity (id, comentario, calificacion) values (50, 'vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue', 4.1);
-insert into FeedBackEntity (id, comentario, calificacion) values (51, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl', 2.8);
-insert into FeedBackEntity (id, comentario, calificacion) values (52, 'sapien non mi integer ac neque duis bibendum morbi non', 3.3);
-insert into FeedBackEntity (id, comentario, calificacion) values (53, 'convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum', 3.1);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (45, 'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue', 3.3,95);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (46, 'massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo', 2.1,46);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (47, 'sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor', 2.0,47);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (48, 'non velit donec diam neque vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in', 3.2,95);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (49, 'duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget', 4.4,48);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (50, 'vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue', 4.1,50);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (51, 'vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl', 2.8,46);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (52, 'sapien non mi integer ac neque duis bibendum morbi non', 3.3,51);
+insert into FeedBackEntity (id, comentario, calificacion, proveedor_id)  values (53, 'convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum', 3.1,46);
 insert into FeedBackEntity (id, comentario, calificacion) values (54, 'lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id', 1.1);
 insert into FeedBackEntity (id, comentario, calificacion) values (55, 'nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi', 1.4);
 insert into FeedBackEntity (id, comentario, calificacion) values (56, 'magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus', 4.7);

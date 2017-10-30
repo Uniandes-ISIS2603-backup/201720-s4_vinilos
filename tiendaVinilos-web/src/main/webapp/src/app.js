@@ -5,8 +5,8 @@
        
         // Internal modules dependencies       
         'proveedorModules',
-        'viniloModule'
-
+        'usuarioModules',
+        'tarjetaModules'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
