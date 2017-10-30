@@ -1,13 +1,13 @@
 (function (ng) {
-
     var mod = ng.module("pedidoClienteModule");
-
-    mod.controller("pedidoClienteCtrl", ['$scope', '$state', '$stateParams', '$http', 'citiesContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.constant("pedidoClienteContext", "api/pedidoCliente");
+    mod.controller("pedidoClienteCtrl", ['$scope', '$state', '$stateParams', '$http', 'pedidoClienteContext', 
+        function ($scope, $state, $stateParams, $http, pedidoClienteContext) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.records = {};
             // carga las ciudades
-            $http.get(context).then(function (response) {
+            $http.get(pedidoClienteContext).then(function (response) {
                 $scope.records = response.data;
             });
 
@@ -18,7 +18,7 @@
                 // toma el id del parámetro
                 id = $stateParams.pedidoId;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(pedidoClienteContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -41,10 +41,10 @@
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                if (id === null) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
+                    return $http.post(pedidoClienteContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
@@ -55,7 +55,7 @@
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(pedidoClienteContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -66,7 +66,7 @@
             };
 
             this.deleteRecord = function (id) {
-                $http.delete(context + "/" + id);
+                $http.delete(pedidoClienteContext + "/" + id);
                 $state.reload('pedidoClienteList');
 
             }
