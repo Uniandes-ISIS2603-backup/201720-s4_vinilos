@@ -83,6 +83,7 @@
                                  $state.go('proveedorList');
                             });
             }
+
             
             this.deleteFeedback = function(feedBackId) {
                 confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
