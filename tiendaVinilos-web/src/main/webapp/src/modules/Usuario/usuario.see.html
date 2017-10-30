@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Number of purchased items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentUsuario.name}}</td>
+                <td>{{currentUsuario.email}}</td>
+                <td>{{currentUsuario.numCompras}}</td>
+            </tr>
+        </tbody>
+    </table>
+     <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Carrito</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        <td>En el carrito</td>> 
+        <td><button id="{{$index}}-crro-btn" class="btn btn-default btn-sm" ui-sref="carritoSee({usuarioId:currentUsuario.id})"><span class="glyphicon glyphicon-shopping-cart"></span></button></td>
+        </tbody>
+    </table>
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteUsuario(currentUsuario)"> Eliminar usuario</button>
+          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="usuarioEdit({usuarioId :currentUsuario.id})"><span class="glyphicon glyphicon-edit"></span>Modificar usuario</button>
+</div>

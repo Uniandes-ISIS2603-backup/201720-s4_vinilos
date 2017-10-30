@@ -67,7 +67,7 @@ public class UsuarioEntity implements Serializable {
     private List<ViniloEntity> carroCompras;
     
     @PodamExclude
-    @OneToOne(fetch=FetchType.LAZY,mappedBy="usuario")
+    @OneToOne(fetch=FetchType.LAZY,mappedBy="usuario",cascade=CascadeType.ALL, orphanRemoval=true)
     private CarroComprasEntity carrito;
 
     public CarroComprasEntity getCarrito() {

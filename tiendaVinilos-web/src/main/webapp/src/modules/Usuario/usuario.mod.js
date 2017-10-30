@@ -12,8 +12,8 @@ var mod = ng.module("usuarioModules", []);
                         templateUrl: basePath + 'usuario.list.html'
                     }
                 }
-            });
-             /*       .state('usuariosSee', {
+            })
+                   .state('usuarioSee', {
                 url: '/usuarios/:usuarioId',
                 param:{
                     usuarioId: null
@@ -25,7 +25,20 @@ var mod = ng.module("usuarioModules", []);
                         templateUrl: basePath + 'usuario.see.html'
                     }
                 }
-            })*/
+            })
+            .state('usuarioEdit', {
+                url: '/usuarios/:usuarioId',
+                param:{
+                    proveedorId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'usuarioCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'usuario.edit.html'
+                    }
+                }
+            })
         }]);
 
 })(window.angular);
