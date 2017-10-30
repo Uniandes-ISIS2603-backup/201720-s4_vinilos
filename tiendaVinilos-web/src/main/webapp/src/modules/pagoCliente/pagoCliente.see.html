@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentRecord.name}}</td>
+                <td>{{currentRecord.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+     <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Vinilos</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="vinilos in currentRecord.vinilos">
+                <td id="{{$index}}-name">{{vinilos.nombre}}</td>
+        </tbody>
+    </table>
+    
+    <table class="table table-striped" class="col-md-4">
+         <th>PagoCliente</th>
+      <table class="table table-striped" class="col-md-4">    
+        <thead>
+            <tr>
+                <th>Comentario</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="pago in currentRecord.pedidos">
+                <td id="{{$index}}-name">{{pago.comentario}}</td>
+                <td id="{{$index}}-name">{{pago.calificacion}}</td>
+        </tbody>
+    </table>
+    </table>
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(curentRecord)"> Eliminar pedido</button>
+</div>
