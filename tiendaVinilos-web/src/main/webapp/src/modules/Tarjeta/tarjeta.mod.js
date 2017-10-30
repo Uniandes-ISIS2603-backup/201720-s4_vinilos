@@ -2,7 +2,7 @@
 var mod = ng.module("tarjetaModules", []);
     mod.constant("tarjetaContext", "api/tarjetas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/tarjeta/';
+            var basePath = 'src/modules/Tarjeta/';
             $stateProvider.state('tarjetatList', {
                 url: '/tarjetas',
                 views: {

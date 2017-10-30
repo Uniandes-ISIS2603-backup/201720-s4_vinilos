@@ -57,7 +57,15 @@
                                 }
                                  $state.go('usuarioList');
                             });
+            };
+            this.saveUsurio=function(){
+                currentUsuario=$scope.currentUsuario;
+                return $http.post(context,currentUsuario)
+                        .then(function(){
+                                 $state.go('usuarioList');
+                })
             }
+            
             
 //
 //// Código continua con las funciones de despliegue de errores

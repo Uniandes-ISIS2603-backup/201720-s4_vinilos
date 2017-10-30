@@ -1,0 +1,24 @@
+<div class="col-md-6 well">
+
+    <form novalidate name="form" id="usurio-form" role="form" ng-submit="form.$valid && ctrl.saveUsuario(currentUsuario)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+            <input id="name" class="form-control" type="hidden" ng-model="currentUsuario.name" />
+            <input id="email" class="form-control" type="hidden" ng-model="currentUsuario.email"/>
+            <!--<input id="numCompras" class="form-control" type="hidden" ng-model="currentUsuario.numCompras"/> -->  
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
+                <label for="name" class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">
+                    <input id="name" name="name" class="form-control" type="text" ng-model="currentUsuario.name" ng-init="currentUsuario.name" required />
+                    <input id="email" name="email" class="form-control" type="text" ng-model="currentUsuario.email"ng-init="currentUsuario.email" required/>
+                </div>
+            </div>
+            <button type="button" ui-sref='usuarioList'>Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>
