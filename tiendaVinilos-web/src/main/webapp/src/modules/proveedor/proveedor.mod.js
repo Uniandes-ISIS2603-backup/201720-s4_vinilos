@@ -37,6 +37,15 @@ var mod = ng.module("proveedorModules", []);
                         templateUrl: basePath + 'proveedor.edit.html'
                     }
                 }
+            }).state('proveedorCreate', {
+                 url: '/proveedores',
+                views: {
+                    'mainView': {
+                        controller: 'proveedorCreateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'proveedor.edit.html'
+                    }
+                }
             })
         }]);
 
