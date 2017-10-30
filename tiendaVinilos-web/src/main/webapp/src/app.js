@@ -4,7 +4,8 @@
         'ui.router',
        
         // Internal modules dependencies       
-        'proveedorModules'
+        'proveedorModules',
+        'viniloModule'
 
     ]);
     // Resuelve problemas de las promesas
