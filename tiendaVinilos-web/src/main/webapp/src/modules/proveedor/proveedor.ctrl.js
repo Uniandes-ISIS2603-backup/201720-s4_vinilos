@@ -5,10 +5,10 @@
     mod.controller("proveedorCtrl", ['$scope', '$state', '$stateParams', '$http', 'proveedorContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de ciudades está vacio
-            $scope.records = {};
+            $scope.proveedores = {};
             // carga las ciudades
             $http.get(context).then(function (response) {
-                $scope.records = response.data;
+                $scope.proveedores = response.data;
             });
 
             // el controlador recibió un cityId ??
@@ -22,17 +22,19 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            $scope.currentRecord = response.data;
+                            $scope.proveedorActual = response.data;
+                            $scope.proveedorName = response.data.name;
+                            $scope.proveedorEmail = response.data.email;
                         });
 
                 // el controlador no recibió un cityId
             } else {
                 // el registro actual debe estar vacio
-                $scope.currentRecord = {
+                $scope.proveedorActual = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
+                    email: ''
                 };
-
                 $scope.alerts = [];
             }
 
@@ -55,24 +57,28 @@
 //                } else {
 //
 // 
-            this.editRecord = function(id){
+            this.editProveedor = function(){
                 // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
-                            .then(function () {
+                confirmarDelete =  confirm("Esta seguro que lo quiere modificar?");
+                 if (confirmarDelete)return $http.put(context + "/" + $stateParams.proveedorId, {
+                        name: $scope.proveedorName,
+                        email: $scope.proveedorEmail
+                    }).then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
                                 $state.go('proveedorList');
                             });
                 };
-            
-            this.deleteRecord = function(record) {
-                 return $http.delete(context + "/" + $stateParams.proveedorId)
+             
+            this.deleteProveedor = function(record) {
+                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
+                 if (confirmarDelete) return $http.delete(context + "/" + $stateParams.proveedorId)
                             .then(function () {
                                 // $http.delete es una promesa
                                 // cuando termine bien, cambie de estado
-                                var index = $scope.records.indexOf(record);
+                                var index = $scope.proveedores.indexOf(record);
                                 if (index > -1) {
-                                    $scope.records.splice(index, 1);
+                                    $scope.proveedores.splice(index, 1);
                                 }
                                  $state.go('proveedorList');
                             });

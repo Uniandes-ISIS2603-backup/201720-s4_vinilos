@@ -3,7 +3,6 @@ var mod = ng.module("proveedorModules", []);
     mod.constant("proveedorContext", "api/proveedores");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/proveedor/';
-            $urlRouterProvider.otherwise("/proveedorList");
             $stateProvider.state('proveedorList', {
                 url: '/proveedores',
                 views: {
@@ -33,6 +32,15 @@ var mod = ng.module("proveedorModules", []);
                 views: {
                     'mainView': {
                         controller: 'proveedorCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'proveedor.edit.html'
+                    }
+                }
+            }).state('proveedorCreate', {
+                 url: '/proveedores',
+                views: {
+                    'mainView': {
+                        controller: 'proveedorCreateCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'proveedor.edit.html'
                     }
