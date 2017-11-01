@@ -22,7 +22,7 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            $scope.currentTrajeta = response.data;
+                            $scope.currentTarjeta = response.data;
                         });
 
                 // el controlador no recibió un cityId
@@ -45,7 +45,7 @@
                             });
                 };
             
-            this.deleteUsuario = function(tarjeta) {
+            this.deleteTarjeta = function(tarjeta) {
                  return $http.delete(context + "/" + $stateParams.tarjetaId)
                             .then(function () {
                                 // $http.delete es una promesa
