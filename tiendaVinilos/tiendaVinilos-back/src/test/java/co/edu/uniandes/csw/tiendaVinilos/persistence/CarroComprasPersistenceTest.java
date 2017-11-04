@@ -39,7 +39,7 @@ public class CarroComprasPersistenceTest {
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * embebido. El jar contiene las clases de CarroCompras, el descriptor de la
      * base de datos y el archivo beans.xml para resolver la inyección de
      * dependencias.
      */
@@ -54,7 +54,7 @@ public class CarroComprasPersistenceTest {
     
     
     /**
-     * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
+     * Inyección de la dependencia a la clase CarroComprasPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
@@ -111,7 +111,7 @@ public class CarroComprasPersistenceTest {
     }
     
     private void clearData() {
-        em.createQuery("delete from XYZEntity").executeUpdate();
+        em.createQuery("delete from CarroComprasEntity").executeUpdate();
     }
 
 
@@ -156,9 +156,9 @@ public class CarroComprasPersistenceTest {
             PodamFactory factory = new PodamFactoryImpl();
             CarroComprasEntity newEntity = factory.manufacturePojo(CarroComprasEntity.class);
             newEntity.setId(entity.getId());
-            persistence.uptade(newEntity);
+            persistence.update(newEntity);
             CarroComprasEntity resp = em.find(CarroComprasEntity.class, entity.getId());
-            assertEquals(newEntity.getId(), resp.getId());
+            assertEquals(newEntity.getName() , resp.getName());
         }
     }
 

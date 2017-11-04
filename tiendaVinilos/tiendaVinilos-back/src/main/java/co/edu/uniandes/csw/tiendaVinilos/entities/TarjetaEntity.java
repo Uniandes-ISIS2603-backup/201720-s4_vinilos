@@ -5,24 +5,66 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author Julian
  */
 @Entity
-public class TarjetaEntity extends DefaultEntity{
+public class TarjetaEntity implements Serializable{
+    
+    
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     
     private Integer numero;
     
     private String nombrePropietario;
     
     private Integer cvc;
-    
+    @Temporal(TemporalType.DATE)
     private Date goodThru;
-    
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
 
     public Integer getNumero() {
         return numero;
