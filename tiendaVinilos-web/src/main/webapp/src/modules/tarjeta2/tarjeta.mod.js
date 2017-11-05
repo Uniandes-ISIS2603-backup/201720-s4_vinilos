@@ -2,7 +2,7 @@
 var mod = ng.module("tarjetaModules", []);
     mod.constant("tarjetaContext", "api/tarjetas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/Tarjeta/';
+            var basePath = 'src/modules/tarjeta2/';
             $stateProvider.state('tarjetaList', {
                 url: '/tarjetas',
                 views: {
@@ -16,7 +16,7 @@ var mod = ng.module("tarjetaModules", []);
                    .state('tarjetaSee', {
                 url: '/tarjetas/:tarjetaId',
                 param:{
-                    usuarioId: null
+                    tarjetaId: null
                 },
                 views: {
                     'mainView': {
@@ -26,6 +26,32 @@ var mod = ng.module("tarjetaModules", []);
                     }
                 }
             })
+            .state('tarjetaEdit', {
+                url: '/tarjetas/:tarjetaId',
+                param:{
+                    tarjetaId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'tarjetaCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'tarjeta.edit.html'
+                    }
+                }
+            })
+                    .state('tarjetaPost',{
+                        url:'/tarjetas',
+                views: {
+                    'mainView': {
+                        controller: 'tarjetaCreateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'tarjeta.edit.html'
+                    }
+                }
+            }
+                    )
         }]);
 
 })(window.angular);
+
+

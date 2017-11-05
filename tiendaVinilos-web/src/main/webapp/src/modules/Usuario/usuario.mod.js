@@ -39,6 +39,17 @@ var mod = ng.module("usuarioModules", []);
                     }
                 }
             })
+                    .state('usuarioPost',{
+                        url:'/usuarios',
+                views: {
+                    'mainView': {
+                        controller: 'usuarioCreateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'usuario.edit.html'
+                    }
+                }
+            }
+                    )
         }]);
 
 })(window.angular);

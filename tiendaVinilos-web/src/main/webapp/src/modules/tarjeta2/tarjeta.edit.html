@@ -1,0 +1,30 @@
+<div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
+
+    <form novalidate name="form" id="tarjeta-form" role="form" ng-submit="ctrl.editTarjeta(currentTarjeta.id)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+             <style>
+            label {
+color: #000;
+}
+</style>
+            <input  class="form-control" type="hidden" ng-model="currentTarjeta.id" />
+            <div class="form-group col-md-12" >
+                <label for="number" class="col-md-2 control-label">Number</label>
+                <div class="col-md-10">
+                    <input id="number" name="number" class="form-control" type="text" ng-model="tarjetaNumber" ng-init="tarjetaNumber" required />
+                </div>
+                <label for="owner" class="col-md-2 control-label">Owner</label>
+                 <div class="col-md-10">
+                <input id="owner" owner="owner" class="form-control" type="text" ng-model="tarjetaOwner" ng-init="tarjetaOwner" required/>
+                </div>
+            </div>
+            <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaList">Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>

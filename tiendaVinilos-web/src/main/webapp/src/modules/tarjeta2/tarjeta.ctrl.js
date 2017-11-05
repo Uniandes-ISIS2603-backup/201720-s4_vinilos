@@ -10,7 +10,6 @@
             $http.get(context).then(function (response) {
                 $scope.tarjetas = response.data;
             });
-
             // el controlador recibió un cityId ??
             // revisa los parámetros (ver el :cityId en la definición de la ruta)
             if ($stateParams.tarjetaId !== null && $stateParams.tarjetaId !== undefined) {
@@ -35,9 +34,13 @@
 
                 $scope.alerts = [];
             }
-            this.editTarjeta = function(id){
+
+
+            this.editTarjeta = function(){
                 // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentTarjeta.id, currentTarjeta)
+                    return $http.put(context + "/" + $scope.currentTarjeta.id, {
+
+                    })
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
@@ -57,6 +60,7 @@
                                  $state.go('tarjetaList');
                             });
             }
+            
 //
 //// Código continua con las funciones de despliegue de errores
 //

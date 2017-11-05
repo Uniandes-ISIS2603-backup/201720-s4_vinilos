@@ -38,7 +38,10 @@
 
             this.editUsuario = function(){
                 // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + $scope.currentUsuario.id, $scope.currentUsuario)
+                    return $http.put(context + "/" + $scope.currentUsuario.id, {
+                        name: $scope.usuarioName,
+                        email: $scope.usuarioEmail
+                    })
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado

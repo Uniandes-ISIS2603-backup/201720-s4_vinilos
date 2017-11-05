@@ -4,8 +4,7 @@
             <tr>
                 <th>Number</th>
                 <th>CVC</th>
-                <th>Owner</th>
-                <th>Good Thru</th>
+                <th> Owner</th>
             </tr>
         </thead>
         <tbody>
@@ -13,10 +12,9 @@
                 <td>{{currentTarjeta.numero}}</td>
                 <td>{{currentTarjeta.cvc}}</td>
                 <td>{{currentTarjeta.nombrePropietario}}</td>
-                <td>{{currentTarjeta.goodThru}}</td>
             </tr>
         </tbody>
-    </table>
-    <button id="delete-tarjeta-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteTarjeta(currentTarjeta)"><span class="glyphicon-trash"></span>Eliminar Tarjeta</button>
+    </table>        
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteTarjeta(currentTarjeta)"> Eliminar tarjeta</button>
+          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaEdit({tarjetaId :currentTarjeta.id})"><span class="glyphicon glyphicon-edit"></span>Modificar tarjeta</button>
 </div>
-    
