@@ -58,18 +58,10 @@ public class ViniloDetailDTO extends ViniloDTO{
         super(entity);
         if (entity.getCarrosCompras() != null)
         {
-            carros = entity.getCarrosCompras();
+            carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
         }
         else carros = null;
-        if(entity.getInfo()!=null)
-        {
-            info= entity.getInfo();
-        }
-        else info=null;
-        if(entity.getProveedor()!=null){
-            pro
-        }
-       
+        if(entit)
     }
     
     /**
@@ -77,6 +69,7 @@ public class ViniloDetailDTO extends ViniloDTO{
      *
      * @return 
      */
+    @Override
     public ViniloEntity toEntity() {
         ViniloEntity entity = super.toEntity();
         

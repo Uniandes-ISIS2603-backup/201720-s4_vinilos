@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
@@ -77,12 +76,9 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
         persistence.delete(id);
     }
     
-    public void agregarVinilo(ProveedorEntity provEnt, ViniloEntity vinEnt, CarroComprasEntity carroEnt,
-            InfoEntity infoEnt) throws BusinessLogicException
+    public void agregarVinilo(ProveedorEntity provEnt, ViniloEntity vinEnt) throws BusinessLogicException
     {
         vinEnt.setProveedor(provEnt);
-        vinEnt.setCarrosCompras(carroEnt);
-        vinEnt.setInfo(infoEnt);
         createVinilo(vinEnt);
     }
     
@@ -90,17 +86,31 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     {
         ViniloEntity vin = persistence.find(vinEnt);
         vin.setProveedor(null);
-        vin.setCarrosCompras(null);
-        vin.setInfo(null);
         persistence.delete(vinEnt);
     }
     
-    public ViniloEntity modificarVinilo (ProveedorEntity provEnt,InfoEntity infoEnt, CarroComprasEntity carroEnt, Long id, ViniloEntity vinEnt)
+    public ViniloEntity modificarVinilo (ProveedorEntity provEnt, Long id, ViniloEntity vinEnt)
     {
         vinEnt.setProveedor(provEnt);
-        vinEnt.setCarrosCompras(carroEnt);
-        vinEnt.setInfo(infoEnt);
         return updateVinilo(id, vinEnt);
     }
+    public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
+    {
+        vinilo.setUsuario(usuario);
+        return createVinilo(vinilo);
+    }
+    public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
+    {
+        vinilo.setCarrosCompras(carrito);
+        return updateVinilo(vinilo.getId(), vinilo);
+    }
+    public void sacraDelCarrito(ViniloEntity vinilo)
+    {
+        vinilo.setUsuario(null);
+        vinilo.setCarrosCompras(null);
+        deleteVinilo(vinilo.getId());
+    }
+    
+    
     
 }
