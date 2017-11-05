@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.resources;
 
+import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
@@ -47,8 +48,8 @@ public class FeedBackResource {
        }
        for (FeedBackDetailDTO fbDetail : retList)
            System.out.println("EL ID DEL DETAIl POR RETORNAR ES --------------------------- " + fbDetail.getId());
-           
-       return retList;
+          
+           return retList;
    }
    
     @GET

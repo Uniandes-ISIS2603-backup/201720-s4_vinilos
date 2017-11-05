@@ -94,6 +94,16 @@
                                  $state.go('proveedorList');
                             });
             }
+            
+            this.deleteVinilo = function(viniloId) {
+                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
+                 if (confirmarDelete) return $http.delete("api/vinilos/"+ viniloId)
+                            .then(function () {
+                                // $http.delete es una promesa
+                                // cuando termine bien, cambie de estado
+                                 $state.go('proveedorList');
+                            });
+            }
 //
 //// Código continua con las funciones de despliegue de errores
 //
