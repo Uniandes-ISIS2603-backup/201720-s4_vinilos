@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
  * @author jp.monsalvo
  */
 public class ViniloDetailDTO extends ViniloDTO{
+
     
     private CarroComprasDTO carros;
     
@@ -25,15 +26,22 @@ public class ViniloDetailDTO extends ViniloDTO{
         this.carros = carros;
     }
     
-    private UsuarioDTO usuario;
-    
-    public UsuarioDTO getUsuario() {
-        return usuario;
+   private InfoDTO info;
+   
+    /**
+     * @return the info
+     */
+    public InfoDTO getInfo() {
+        return info;
     }
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
+    /**
+     * @param info the info to set
+     */
+    public void setInfo(InfoDTO info) {
+        this.info = info;
     }
+    
     
     /**
      * Constructor por defecto
@@ -53,6 +61,7 @@ public class ViniloDetailDTO extends ViniloDTO{
             carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
         }
         else carros = null;
+        if(entit)
     }
     
     /**
