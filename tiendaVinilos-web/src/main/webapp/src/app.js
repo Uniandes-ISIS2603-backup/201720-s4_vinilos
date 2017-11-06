@@ -8,7 +8,9 @@
         'usuarioModules',
         'tarjetaModules',
         'pedidoProveedorModules',
-        'pagoProveedorModules'
+        'pagoProveedorModules',
+        'viniloModules',
+        'infoModules'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
