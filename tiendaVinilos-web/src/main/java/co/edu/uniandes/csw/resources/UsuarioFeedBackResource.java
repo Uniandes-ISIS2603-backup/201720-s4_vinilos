@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDTO;
+import co.edu.uniandes.csw.dtos.FeedBackDetailDTO;
+import co.edu.uniandes.csw.dtos.ProveedorDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.FeedBackLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;

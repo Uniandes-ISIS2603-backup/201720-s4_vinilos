@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.CancionDTO;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.CancionDetailDTO;
+import co.edu.uniandes.csw.dtos.CancionDTO;
+import co.edu.uniandes.csw.dtos.CancionDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CancionLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;

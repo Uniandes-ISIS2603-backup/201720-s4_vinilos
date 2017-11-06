@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.TarjetaDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
+import co.edu.uniandes.csw.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
