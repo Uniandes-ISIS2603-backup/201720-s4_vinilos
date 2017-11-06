@@ -73,6 +73,8 @@ public class ProveedorResource {
         ProveedorEntity oldEnt = logic.getProveedor(id);
         if(oldEnt == null)
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404); 
+        entity.setFeedBacks(oldEnt.getFeedBacks());
+        entity.setVinilos(oldEnt.getVinilos());
         ProveedorEntity ent = logic.updateProveedor(entity);
         return (new ProveedorDetailDTO(ent));
     }
