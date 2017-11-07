@@ -3,18 +3,18 @@
         <thead>
             <tr>
                 <th style="color:black">ID</th>
-                <th style="color:black">fecha</th>
-                <th style="color:black"> precio</th>
+                <th style="color:black">Fecha</th>
+                <th style="color:black"> Precio</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                
-                <td style="color:black">{{currentpedidoProveedor.numero}}</td>
-                <td style="color:black">{{currentpedidoProveedor.fecha}}</td>
-                <td style="color:black">{{currentpedidoProveedor.precio}}</td>
+                <!-- el currentpedidoProveedor no está bien referenciado -->
+                <td style="color:black">{{pedidoProveedorActual.id}}</td>
+                <td style="color:black">{{pedidoProveedorActual.fecha}}</td>
+                <td style="color:black">{{pedidoProveedorActual.precio}}</td>
             </tr>
         </tbody>
     </table>        
-          
+    <button style= "color:black" id="delete-btn" class="btn btn-default btn-lg" ng-click="ctrl.deletePedidoProveedor(pedidoProveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
 </div>

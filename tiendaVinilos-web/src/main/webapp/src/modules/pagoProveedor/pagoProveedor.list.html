@@ -5,18 +5,21 @@
         <thead>
             <tr>
                 
-                <th style="color:black">Name</th>
-                <th style="color:black">Action</th>
+                <th style="color:black">ID</th>
+                <th style="color:black">Fecha</th>
+                <th style="color:black">valor</th>
                 
                 
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="pagoProvedor in pagoProveedores">
-                <td style ="font-weight: bold" {{$index}}-name">{{pagoProvedor.name}}</td>
+                <td style ="font-weight: bold" {{$index}}-id">{{pagoProvedor.id}}</td>
+                <td style ="font-weight: bold" {{$index}}-id">{{pagoProvedor.fecha}}</td>
+                <td style ="font-weight: bold" {{$index}}-id">{{pagoProvedor.valor}}</td>
                 <td>
                  
-                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pagoProveedorSee({pagoProveedorId: pagoProveedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pagoProveedorSee({pagoProveedoresId: pagoProvedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
                 
                 </td>
             </tr>

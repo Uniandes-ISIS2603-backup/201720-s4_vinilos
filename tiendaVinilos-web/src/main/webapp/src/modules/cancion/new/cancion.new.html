@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createCancion">Create new Cancion</label>
+                <label ng-if="edit" id="editCancion">Edit Cancion</label></div>
+            <div class="panel-body">
+                <form ng-submit="createCancion()" name="cancion">
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="cancionName" class="col-sm-2">Name:</label>
+                            <input id="cancionName" required ng-model="cancionName" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="cancionDuracion" class="col-sm-2">Duracion:</label>
+                            <input type="Number" id="cancionDuracion" required ng-model="cancionDuracion" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!cancion.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Alerta!</strong><p>Todos los campos son requeridos*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <input ng-show="cancion.$valid" type="submit" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="cancionList">Cancelar</a>
+                        </div>
+                    </div>
+                    
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

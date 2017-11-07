@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-9">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Duracion(minutos)</th>
+                <th>id</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>{{currentCancion.name}}</td>
+                <td>{{currentCancion.duracion}}</td>
+                <td>{{currentCancion.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+     <button id="delete-btn" class="btn btn-danger btn-sm" ui-sref="cancionDelete({cancionId: currentCancion.id})"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+     <a class="btn btn-default btn-sm" ui-sref="cancionUpdate({cancionId: currentCancion.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+
+</div>

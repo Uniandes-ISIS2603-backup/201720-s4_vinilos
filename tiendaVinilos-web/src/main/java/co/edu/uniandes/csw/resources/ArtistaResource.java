@@ -42,7 +42,7 @@ public class ArtistaResource {
         ArtistaEntity entity = artista.toEntity();
         
         // Invoca la lógica para crear la Vinilo nueva
-        ArtistaEntity nuevoArtista = logic.createArtista(artista.toEntity());
+        ArtistaEntity nuevoArtista = logic.createArtista(entity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ArtistaDetailDTO(nuevoArtista);
     }

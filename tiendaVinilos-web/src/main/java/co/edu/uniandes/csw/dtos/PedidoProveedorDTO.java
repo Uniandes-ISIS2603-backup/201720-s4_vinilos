@@ -25,7 +25,7 @@ public class PedidoProveedorDTO {
     
     private double precio;
 
-    public double getId() {
+    public Long getId() {
         return id;
     }
 
