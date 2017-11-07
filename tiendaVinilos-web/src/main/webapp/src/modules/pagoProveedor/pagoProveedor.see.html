@@ -3,18 +3,18 @@
         <thead>
             <tr>
                 <th style="color:black">ID</th>
-                <th style="color:black">Vinilos</th>
+                <th style="color:black">Fecha</th>
                 <th style="color:black"> Precio</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 
-                <td style="color:black">{{ctr.pagoProveedorActual.id}}</td>
-                <td style="color:black">{{ctr.pagoProveedorActual.fecha}}</td>
-                <td style="color:black">{{ctr.pagoProveedorActual.valor}}</td>
+                <td style="color:black">{{pagoProveedorActual.id}}</td>
+                <td style="color:black">{{pagoProveedorActual.fecha}}</td>
+                <td style="color:black">{{pagoProveedorActual.valor}}</td>
             </tr>
         </tbody>
     </table>        
-    <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteFeedback()(pagoProveedorActual)"> Eliminar pago</button>  
+    <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deletePagoProveedor(pagoProveedorActual)"> Eliminar pago</button>  
 </div>

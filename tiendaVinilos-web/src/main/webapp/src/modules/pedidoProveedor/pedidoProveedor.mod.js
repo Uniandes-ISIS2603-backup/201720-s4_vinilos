@@ -19,7 +19,7 @@
              .state('pedidoProveedorSee', {
                 url: '/pedidoProveedores/:pedidoProveedoresId',
                 param:{
-                    tarjetaId: null
+                    pedidoProveedoresId: null
                 },
                 views: {
                     'mainView': {

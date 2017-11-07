@@ -5,9 +5,8 @@
         <thead>
             <tr>
                 
-                <th style="color:black">Name</th>
-                <th style="color:black">Fecha</th>
-                <th style="color:black">Valor</th>
+                <th style="color:black">ID</th>
+                
                 
                 
             </tr>
@@ -15,11 +14,11 @@
         <tbody>
             <tr ng-repeat="pedidoProvedor in pedidoProveedores">
                 <td style ="font-weight: bold" {{$index}}-id">{{pedidoProvedor.id}}</td>
-                <td style ="font-weight: bold" {{$index}}-id">{{pedidoProvedor.fecha}}</td>
-                <td style ="font-weight: bold" {{$index}}-id">{{pedidoProvedor.precio}}</td>
+               
                 <td>
                  
-                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pedidoProveedorSee({pedidoProveedorId: pedidoProveedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                    
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pedidoProveedorSee({pedidoProveedoresId: pedidoProvedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
                 
                 </td>
             </tr>
