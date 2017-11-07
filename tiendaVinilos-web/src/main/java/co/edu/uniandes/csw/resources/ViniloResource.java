@@ -36,12 +36,12 @@ public class ViniloResource {
      @Inject
     ViniloLogic ViniloLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
-
+  
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/Vinilos Ejemplo
      * json: { "name":"Norma" }
      *
-     * @param Vinilo correponde a la representación java del objeto json
+     * @param vinilo correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. Ejemplo: { "type":
@@ -54,7 +54,7 @@ public class ViniloResource {
         ViniloEntity viniloEntity = vinilo.toEntity();
         
         // Invoca la lógica para crear la Vinilo nueva
-        ViniloEntity nuevoVinilo = ViniloLogic.createVinilo(vinilo.toEntity());
+        ViniloEntity nuevoVinilo = ViniloLogic.createVinilo(viniloEntity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ViniloDetailDTO(nuevoVinilo);
     }
