@@ -10,7 +10,6 @@
     <modules>
         <module>tiendaVinilos-back</module>
         <module>tiendaVinilos-web</module>
-
     </modules>
     
     <properties>
