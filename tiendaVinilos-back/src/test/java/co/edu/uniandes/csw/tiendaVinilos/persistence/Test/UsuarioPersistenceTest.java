@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.persistence;
+package co.edu.uniandes.csw.tiendaVinilos.persistence.Test;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.tiendaVinilos.persistence.UsuarioPersistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.persistence;
+package co.edu.uniandes.csw.tiendaVinilos.persistence.Test;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import co.edu.uniandes.csw.tiendaVinilos.persistence.InfoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
