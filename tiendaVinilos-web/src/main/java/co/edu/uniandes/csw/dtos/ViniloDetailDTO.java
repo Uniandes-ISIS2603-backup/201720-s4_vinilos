@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.dtos;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 
 /**
@@ -14,40 +12,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
  * @author jp.monsalvo
  */
 public class ViniloDetailDTO extends ViniloDTO{
-
-    private InfoDTO info;
-    
-    /**
-     * @return the info
-     */
-    public InfoDTO getInfo() {
-        return info;
-    }
-
-    /**
-     * @param info the info to set
-     */
-    public void setInfo(InfoDTO info) {
-        this.info = info;
-    }
-    
-    private ProveedorDTO proveedor;
-    
-    /**
-     * @return the proveedor
-     */
-    public ProveedorDTO getProveedor() {
-        return proveedor;
-    }
-
-    /**
-     * @param proveedor the proveedor to set
-     */
-    public void setProveedor(ProveedorDTO proveedor) {
-        this.proveedor = proveedor;
-    }
-    
-    
     
     private CarroComprasDTO carros;
     
@@ -61,7 +25,16 @@ public class ViniloDetailDTO extends ViniloDTO{
         this.carros = carros;
     }
     
-  
+    private UsuarioDTO usuario;
+    
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+    
     /**
      * Constructor por defecto
      */
@@ -80,14 +53,6 @@ public class ViniloDetailDTO extends ViniloDTO{
             carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
         }
         else carros = null;
-        if(entity.getProveedor()!=null){
-            proveedor= new ProveedorDetailDTO(entity.getProveedor());
-        }
-        else proveedor=null;
-        if(entity.getInfo()!=null){
-            info= new InfoDetailDTO(entity.getInfo());
-        }
-        else info= null;
     }
     
     /**
@@ -101,20 +66,10 @@ public class ViniloDetailDTO extends ViniloDTO{
         
         if(entity != null){
             CarroComprasEntity ent = null;
-            ProveedorEntity provEnt= null;
-            InfoEntity infoEnt= null;
             if (entity.getCarrosCompras() != null){
                 ent = entity.getCarrosCompras();
             }
-            if(entity.getCarrosCompras()!=null){
-                provEnt=entity.getProveedor();
-            }
-            if(entity.getInfo()!=null){
-                infoEnt= entity.getInfo();
-            }
-            entity.setInfo(infoEnt);
             entity.setCarrosCompras(ent);
-            entity.setProveedor(provEnt);
         }
         return entity;
     }

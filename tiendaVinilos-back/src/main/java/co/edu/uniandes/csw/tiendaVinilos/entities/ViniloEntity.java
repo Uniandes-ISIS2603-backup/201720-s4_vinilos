@@ -6,12 +6,12 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -26,24 +26,6 @@ public class ViniloEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @PodamExclude
-    @OneToOne
-   private InfoEntity info;
-    
-      /**
-     * @return the info
-     */
-    public InfoEntity getInfo() {
-        return info;
-    }
-
-    /**
-     * @param info the info to set
-     */
-    public void setInfo(InfoEntity info) {
-        this.info = info;
-    }
-    
     @PodamExclude
     @ManyToOne
      private CarroComprasEntity carrosCompras;
@@ -88,6 +70,9 @@ public class ViniloEntity implements Serializable {
     @ManyToOne
     private PedidoProveedorEntity pedidoProveedor;
     
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
 
     public ProveedorEntity getProveedor()
     {
@@ -149,6 +134,13 @@ public class ViniloEntity implements Serializable {
         this.pedidoProveedor = pedidoProveedor;
     }
 
-  
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+    
     
 }
