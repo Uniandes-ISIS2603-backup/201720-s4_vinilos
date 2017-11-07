@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <h1>Actualmente hay {{infos.length}} infos</h1>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="info in infos">
+                <td id="{{$index}}-id">{{info.id}}</td>
+                <td id="{{$index}}-descripcion">{{info.descripcion}}</td>
+                <td>
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="infoSee({infoId: info.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="infoPost"><span class="glyphicon glyphicon-plus"></span>Agregar Info</button>
+</div>
