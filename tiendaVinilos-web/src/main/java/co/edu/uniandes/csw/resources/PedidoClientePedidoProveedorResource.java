@@ -4,14 +4,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoProveedorDetailDTO;
+import co.edu.uniandes.csw.dtos.PedidoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-import static com.sun.tools.javac.code.Lint.LintCategory.PATH;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;

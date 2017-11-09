@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.dtos;
+package co.edu.uniandes.csw.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import java.util.Date;
@@ -25,7 +25,7 @@ public class PedidoProveedorDTO {
     
     private double precio;
 
-    public double getId() {
+    public Long getId() {
         return id;
     }
 

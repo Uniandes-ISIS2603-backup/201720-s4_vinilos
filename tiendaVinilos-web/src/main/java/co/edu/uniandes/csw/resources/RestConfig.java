@@ -25,7 +25,7 @@ SOFTWARE.
  * RestConfig.java
  * Configura el servicio JAX-RS.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
 import javax.ws.rs.core.Application;
 import javax.ws.rs.ApplicationPath;

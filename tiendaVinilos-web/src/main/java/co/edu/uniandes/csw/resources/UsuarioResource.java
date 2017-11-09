@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
 /*
 MIT License
@@ -28,9 +28,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-import co.edu.uniandes.csw.tiendaVinilos.dtos.FeedBackDetailDTO;
+
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.UsuarioDetailDTO;
+import co.edu.uniandes.csw.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;

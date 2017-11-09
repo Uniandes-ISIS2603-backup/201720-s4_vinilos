@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentArtista.name}}</td>
+                <td>{{currentArtista.id}}
+            </tr>
+        </tbody>
+    </table>
+    <button id="delete-btn" class="btn btn-danger btn-sm" ui-sref="artistaDelete({artistaId: currentArtista.id})"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+</div>

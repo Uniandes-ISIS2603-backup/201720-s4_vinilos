@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.PedidoProveedorDTO;
+import co.edu.uniandes.csw.dtos.PedidoProveedorDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;

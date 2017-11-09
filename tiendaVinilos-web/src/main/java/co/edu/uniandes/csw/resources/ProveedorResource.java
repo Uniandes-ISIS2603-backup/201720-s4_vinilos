@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.ProveedorDetailDTO;
+import co.edu.uniandes.csw.dtos.ProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -73,6 +73,8 @@ public class ProveedorResource {
         ProveedorEntity oldEnt = logic.getProveedor(id);
         if(oldEnt == null)
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404); 
+        entity.setFeedBacks(oldEnt.getFeedBacks());
+        entity.setVinilos(oldEnt.getVinilos());
         ProveedorEntity ent = logic.updateProveedor(entity);
         return (new ProveedorDetailDTO(ent));
     }

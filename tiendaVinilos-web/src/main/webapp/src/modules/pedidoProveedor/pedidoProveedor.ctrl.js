@@ -13,10 +13,10 @@
 
             // el controlador recibió un cityId ??
             // revisa los parámetros (ver el :cityId en la definición de la ruta)
-            if ($stateParams.pedidoProveedorId !== null && $stateParams.pedidoProveedorId !== undefined) {
+            if ($stateParams.pedidoProveedoresId !== null && $stateParams.pedidoProveedoresId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.pedidoProveedorId;
+                id = $stateParams.pedidoProveedoresId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
@@ -30,7 +30,7 @@
                 // el controlador no recibió un cityId
             } else {
                 // el registro actual debe estar vacio
-                $scope.proveedorActual = {
+                $scope.pedidoProveedorActual = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     fecha: '' /*Tipo String*/,
                     precio: ''
@@ -43,6 +43,20 @@
 //// Código continua con las funciones de despliegue de errores
 //
 //
+
+ this.deletePedidoProveedor = function(record) {
+                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
+                 if (confirmarDelete) return $http.delete(context + "/" + $stateParams.pedidoProveedoresId)
+                            .then(function () {
+                                // $http.delete es una promesa
+                                // cuando termine bien, cambie de estado
+                                var index = $scope.pedidoProveedores.indexOf(record);
+                                if (index > -1) {
+                                    $scope.pedidoProveedores.splice(index, 1);
+                                }
+                                 $state.go('proveedorList');
+                            });
+            }
         }]);
 })(window.angular);
 

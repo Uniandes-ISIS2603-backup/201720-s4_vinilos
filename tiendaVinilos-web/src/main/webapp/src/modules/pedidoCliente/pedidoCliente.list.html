@@ -1,0 +1,28 @@
+<div class="container-fluid"><div class="btn-group mr-2" role="group" aria-label="First group">
+<a class="btn btn-info" ui-sref="pedidoClienteCreate">
+<span class="glyphicon glyphicon-plus-sign"></span> Add new pedido</a>
+</div>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Precio</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Fecha Estimada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="pedido in pedidos">
+                <td id="{{$index}}-estado">{{pedido.estado}}</td>
+                <td id="{{$index}}-precio">{{pedido.precio}}</td>
+                <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
+                <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
+                <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
+                
+                <td id="{{$index}}-actions"> <a class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

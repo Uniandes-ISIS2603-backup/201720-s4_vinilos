@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
 /*
 MIT License
@@ -29,7 +29,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
-import co.edu.uniandes.csw.tiendaVinilos.dtos.TarjetaDetailDTO;
+import co.edu.uniandes.csw.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;

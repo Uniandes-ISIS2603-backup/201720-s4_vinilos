@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="cancionCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar nueva Canción</a>
+                    </div>
+    </div>
+    <br>
+    
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cancion in recordsCancion">
+                <td id="{{$index}}-name">{{cancion.name}}</td>
+                <td>
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="cancionDetail({cancionId: cancion.id})"><span class="glyphicon glyphicon-eye-open"></span> Ver más</button>
+                  <a class="btn btn-danger btn-sm" ui-sref="cancionDelete({cancionId: cancion.id})"><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+                  <a class="btn btn-default btn-sm" ui-sref="cancionUpdate({cancionId: cancion.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

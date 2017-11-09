@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.tiendaVinilos.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.tiendaVinilos.dtos.ArtistaDetailDTO;
+import co.edu.uniandes.csw.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ArtistaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -42,7 +42,7 @@ public class ArtistaResource {
         ArtistaEntity entity = artista.toEntity();
         
         // Invoca la lógica para crear la Vinilo nueva
-        ArtistaEntity nuevoArtista = logic.createArtista(artista.toEntity());
+        ArtistaEntity nuevoArtista = logic.createArtista(entity);
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ArtistaDetailDTO(nuevoArtista);
     }
