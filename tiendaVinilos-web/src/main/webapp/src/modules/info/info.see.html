@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Descripcion</th>
+                <th>Rutas</th>
+                <th>Url</th>
+                <th>Number of purchased items</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentInfo.id}}</td>
+                <td>{{currentInfo.descripcion}}</td>
+                <td>{{currentInfo.rutas}}</td>
+                <td>{{currentInfo.url}}</td>
+            </tr>
+        </tbody>
+    </table>
+     
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteInfo(currentInfo)"> Eliminar vinilo</button>
+          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="viniloEdit({viniloId :currentInfo.id})"><span class="glyphicon glyphicon-edit"></span>Modificar vinilo</button>
+</div>
