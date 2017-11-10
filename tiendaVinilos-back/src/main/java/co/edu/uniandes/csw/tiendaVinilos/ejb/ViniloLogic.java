@@ -96,7 +96,7 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
     {
-        vinilo.setUsuario(usuario);
+       
         return createVinilo(vinilo);
     }
     public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
@@ -106,7 +106,6 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     public void sacraDelCarrito(ViniloEntity vinilo)
     {
-        vinilo.setUsuario(null);
         vinilo.setCarrosCompras(null);
         deleteVinilo(vinilo.getId());
     }

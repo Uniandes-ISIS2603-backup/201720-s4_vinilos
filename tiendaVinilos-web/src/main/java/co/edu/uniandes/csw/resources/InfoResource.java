@@ -1,17 +1,36 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package co.edu.uniandes.csw.resources;
+MIT License
 
-import co.edu.uniandes.csw.dtos.InfoDetailDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.InfoLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
-import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+Copyright (c) 2017 Universidad de los Andes - ISIS2603
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+ */
+package co.edu.uniandes.csw.bookstore.resources;
+
+import co.edu.uniandes.csw.bookstore.dtos.InfoDTO;
+import co.edu.uniandes.csw.bookstore.ejb.InfoLogic;
+import co.edu.uniandes.csw.bookstore.entities.InfoEntity;
+import co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -24,131 +43,69 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
+ * Clase que implementa el recurso REST correspondiente a "infos".
  *
- * @author jp.monsalvo
+ * Note que la aplicación (definida en RestConfig.java) define la ruta "/api" y
+ * este recurso tiene la ruta "infos". Al ejecutar la aplicación, el recurse
+ * será accesible a través de la ruta "/api/books/idBook/infos"
+ *
+ *
+ * @author ISIS2603
+ *
  */
-@Path("infos")
 @Produces("application/json")
 @Consumes("application/json")
-@RequestScoped
-
 public class InfoResource {
-        @Inject
-    InfoLogic InfoLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    @Inject
+    InfoLogic infoLogic;
 
-    /**
-     * POST http://localhost:8080/tiendaVinilos-web/api/infos Ejemplo
-     * json: { "name":"Norma" }
-     *
-     * @param Info correponde a la representación java del objeto json
-     * enviado en el llamado.
-     * @return Devuelve el objeto json de entrada que contiene el id creado por
-     * la base de datos y el tipo del objeto java. Ejemplo: { "type":
-     * "InfoDetailDTO", "id": 1, "name": "Norma" }
-     * @throws BusinessLogicException
-     */
-    @POST
-    public InfoDetailDTO createInfo(InfoDetailDTO Info) throws BusinessLogicException {
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        InfoEntity InfoEntity = Info.toEntity();
-        // Invoca la lógica para crear la Info nueva
-        InfoEntity nuevoInfo = InfoLogic.createInfo(Info.toEntity());
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new InfoDetailDTO(nuevoInfo);
-    }
-
-    /**
-     * GET para todas las Infoes.
-     * http://localhost:8080/tiendaVinilos-web/api/Infos     *
-     * @return la lista de todas los Infos en objetos json DTO.
-     * @throws BusinessLogicException
-     */
     @GET
-    public List<InfoDetailDTO> getInfos() throws BusinessLogicException {
-        return listEntity2DetailDTO(InfoLogic.getInfos());
+    public List<InfoDTO> getInfos(@PathParam("idBook") Long idBook) throws BusinessLogicException {
+        return listEntity2DTO(infoLogic.getInfos(idBook));
     }
 
-    /**
-     * GET para un Info
-     * http://localhost:8080/tiendaVinilos-web/api/Infos     *
-     * @param id corresponde al id de la Info buscada.
-     * @return La Info encontrada. Ejemplo: { "type": "InfoDetailDTO",
-     * "id": 1, "name": "Norma" }
-     * @throws BusinessLogicException
-     *
-     * En caso de no existir el id del Info buscado se retorna un 404 con
-     * el mensaje.
-     */
     @GET
     @Path("{id: \\d+}")
-    public InfoDetailDTO getInfo(@PathParam("id") Long id) throws BusinessLogicException {
-        InfoEntity entity = InfoLogic.getInfo(id);
+    public InfoDTO getInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
+        InfoEntity entity = infoLogic.getInfo(idBook, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
         }
-        return new InfoDetailDTO(InfoLogic.getInfo(id));
+        return new InfoDTO(entity);
     }
 
-    /**
-     * PUT http://localhost:8080/tiendaVinilos-web/api/Infos/1 Ejemplo
-     * json { "id": 1, "name": "cambio de nombre" }
-     *
-     * @param id corresponde a la Info a actualizar.
-     * @param Info corresponde a al objeto con los cambios que se van a
-     * realizar.
-     * @return La Info actualizada.
-     * @throws BusinessLogicException
-     *
-     * En caso de no existir el id de la Info a actualizar se retorna un
-     * 404 con el mensaje.
-     */
+    @POST
+    public InfoDTO createInfo(@PathParam("idBook") Long idBook, InfoDTO info) throws BusinessLogicException {
+        return new InfoDTO(infoLogic.createInfo(idBook, info.toEntity()));
+    }
+
     @PUT
     @Path("{id: \\d+}")
-    public InfoDetailDTO updateInfo(@PathParam("id") Long id, InfoDetailDTO Info) throws BusinessLogicException {
-        Info.setId(id);
-        InfoEntity entity = InfoLogic.getInfo(id);
+    public InfoDTO updateInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id, InfoDTO info) throws BusinessLogicException {
+        info.setId(id);
+        InfoEntity entity = infoLogic.getInfo(idBook, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
         }
-        return new InfoDetailDTO(InfoLogic.updateInfo(id, Info.toEntity()));
+        return new InfoDTO(infoLogic.updateInfo(idBook, info.toEntity()));
+
     }
 
-    /**
-     * DELETE http://localhost:8080/tiendaVinilos-web/api/Infos/1
-     *
-     * @param id corresponde a la Info a borrar.
-     * @throws BusinessLogicException
-     *
-     * En caso de no existir el id de la Info a actualizar se retorna un
-     * 404 con el mensaje.
-     *
-     */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteInfo(@PathParam("id") Long id) throws BusinessLogicException {
-        InfoEntity entity = InfoLogic.getInfo(id);
+    public void deleteInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
+        InfoEntity entity = infoLogic.getInfo(idBook, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
         }
-        InfoLogic.deleteInfo(id);
+        infoLogic.deleteInfo(idBook, id);
     }
 
-    /**
-     *
-     * lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos InfoEntity a una lista de
-     * objetos InfoDetailDTO (json)
-     *
-     * @param entityList corresponde a la lista de Infoes de tipo Entity
-     * que vamos a convertir a DTO.
-     * @return la lista de Infoes en forma DTO (json)
-     */
-    private List<InfoDetailDTO> listEntity2DetailDTO(List<InfoEntity> entityList) {
-        List<InfoDetailDTO> list = new ArrayList<>();
+    private List<InfoDTO> listEntity2DTO(List<InfoEntity> entityList) {
+        List<InfoDTO> list = new ArrayList<>();
         for (InfoEntity entity : entityList) {
-            list.add(new InfoDetailDTO(entity));
+            list.add(new InfoDTO(entity));
         }
         return list;
     }

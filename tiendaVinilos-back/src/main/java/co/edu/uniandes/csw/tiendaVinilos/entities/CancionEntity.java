@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +21,14 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class CancionEntity implements Serializable{
-    
+
+        
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @ManyToMany(mappedBy = "canciones")
+    private List<ViniloEntity> vinilos = new ArrayList<ViniloEntity>();
     
     private Double duracion;
     
@@ -65,5 +70,19 @@ public class CancionEntity implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    /**
+     * @return the vinilos
+     */
+    public List<ViniloEntity> getVinilos() {
+        return vinilos;
+    }
+
+    /**
+     * @param vinilos the vinilos to set
+     */
+    public void setVinilos(List<ViniloEntity> vinilos) {
+        this.vinilos = vinilos;
     }
 }

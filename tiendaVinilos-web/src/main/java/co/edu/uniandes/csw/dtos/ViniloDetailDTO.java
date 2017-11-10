@@ -4,43 +4,36 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
-import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
+
+import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author jp.monsalvo
  */
-public class ViniloDetailDTO extends ViniloDTO{
-    
-    private CarroComprasDTO carros;
-    
-    public CarroComprasDTO getcarros()
-    {
-        return carros;
-    }
-    
-    public void setCarros(CarroComprasDTO carros)
-    {
-        this.carros = carros;
-    }
-    
-    private UsuarioDTO usuario;
-    
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
+public class ViniloDetailDTO extends ViniloDTO {
 
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-    
+    /*
+    * Relación a un proveedor
+     */
+    private ProveedorDTO proveedor;
+
+// relación  cero o muchos infos
+    private List<InfoDTO> infos;
+
+    // relación  cero o muchos canciones
+    private List<CancionDTO> canciones;
+
     /**
      * Constructor por defecto
      */
     public ViniloDetailDTO() {
     }
-    
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
@@ -48,29 +41,98 @@ public class ViniloDetailDTO extends ViniloDTO{
      */
     public ViniloDetailDTO(ViniloEntity entity) {
         super(entity);
-        if (entity.getCarrosCompras() != null)
-        {
-            carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
+        if (entity != null) {
+            canciones = new ArrayList<>();
+            for (CancionEntity entityCancion : entity.getCanciones()) {
+                canciones.add(new CancionDTO(entityCancion));
+            }
+            if (entity.getProveedor() != null) {
+                this.proveedor = new ProveedorDTO(entity.getProveedor());
+            } else {
+                entity.setProveedor(null);
+            }
+            if (entity.getInfos() != null) {
+                infos = new ArrayList<>();
+                for (InfoEntity entityInfo : entity.getInfos()) {
+                    infos.add(new InfoDTO(entityInfo));
+                }
+            }
+
         }
-        else carros = null;
     }
-    
+
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public ViniloEntity toEntity() {
         ViniloEntity entity = super.toEntity();
-        
-        if(entity != null){
-            CarroComprasEntity ent = null;
-            if (entity.getCarrosCompras() != null){
-                ent = entity.getCarrosCompras();
+        if (getCanciones() != null) {
+            List<CancionEntity> cancionesEntity = new ArrayList<>();
+            for (CancionDTO dtoCancion : getCanciones()) {
+                cancionesEntity.add(dtoCancion.toEntity());
             }
-            entity.setCarrosCompras(ent);
+            entity.setCanciones(cancionesEntity);
         }
+
+        if (this.getProveedor() != null) {
+            entity.setProveedor(this.getProveedor().toEntity());
+        }
+        if (getInfos() != null) {
+            List<InfoEntity> infosEntity = new ArrayList<>();
+            for (InfoDTO dtoInfo : getInfos()) {
+                infosEntity.add(dtoInfo.toEntity());
+            }
+            entity.setInfos(infosEntity);
+        }
+
         return entity;
     }
+
+    /**
+     * @return the proveedor
+     */
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    /**
+     * @param proveedor the proveedor to set
+     */
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    /**
+     * @return the infos
+     */
+    public List<InfoDTO> getInfos() {
+        return infos;
+    }
+
+    /**
+     * @param infos the infos to set
+     */
+    public void setInfos(List<InfoDTO> infos) {
+        this.infos = infos;
+    }
+
+    /**
+     * @return the canciones
+     */
+    public List<CancionDTO> getCanciones() {
+        return canciones;
+    }
+
+    /**
+     * @param canciones the canciones to set
+     */
+    public void setCanciones(List<CancionDTO> canciones) {
+        this.canciones = canciones;
+    }
+
+  
+
 }
