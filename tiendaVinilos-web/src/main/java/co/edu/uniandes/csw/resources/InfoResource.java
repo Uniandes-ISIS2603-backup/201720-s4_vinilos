@@ -21,13 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-package co.edu.uniandes.csw.bookstore.resources;
+package co.edu.uniandes.csw.resources;
 
-import co.edu.uniandes.csw.bookstore.dtos.InfoDTO;
-import co.edu.uniandes.csw.bookstore.ejb.InfoLogic;
-import co.edu.uniandes.csw.bookstore.entities.InfoEntity;
-import co.edu.uniandes.csw.bookstore.exceptions.BusinessLogicException;
-
+import co.edu.uniandes.csw.dtos.InfoDTO;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.InfoLogic;
+import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
+import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,45 +60,45 @@ public class InfoResource {
     InfoLogic infoLogic;
 
     @GET
-    public List<InfoDTO> getInfos(@PathParam("idBook") Long idBook) throws BusinessLogicException {
-        return listEntity2DTO(infoLogic.getInfos(idBook));
+    public List<InfoDTO> getInfos(@PathParam("idVinilo") Long idVinilo) throws BusinessLogicException {
+        return listEntity2DTO(infoLogic.getInfos(idVinilo));
     }
 
     @GET
     @Path("{id: \\d+}")
-    public InfoDTO getInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
-        InfoEntity entity = infoLogic.getInfo(idBook, id);
+    public InfoDTO getInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id) throws BusinessLogicException {
+        InfoEntity entity = infoLogic.getInfo(idVinilo, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
         }
         return new InfoDTO(entity);
     }
 
     @POST
-    public InfoDTO createInfo(@PathParam("idBook") Long idBook, InfoDTO info) throws BusinessLogicException {
-        return new InfoDTO(infoLogic.createInfo(idBook, info.toEntity()));
+    public InfoDTO createInfo(@PathParam("idVinilo") Long idVinilo, InfoDTO info) throws BusinessLogicException {
+        return new InfoDTO(infoLogic.createInfo(idVinilo, info.toEntity()));
     }
 
     @PUT
     @Path("{id: \\d+}")
-    public InfoDTO updateInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id, InfoDTO info) throws BusinessLogicException {
+    public InfoDTO updateInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id, InfoDTO info) throws BusinessLogicException {
         info.setId(id);
-        InfoEntity entity = infoLogic.getInfo(idBook, id);
+        InfoEntity entity = infoLogic.getInfo(idVinilo, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
         }
-        return new InfoDTO(infoLogic.updateInfo(idBook, info.toEntity()));
+        return new InfoDTO(infoLogic.updateInfo(idVinilo, info.toEntity()));
 
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteInfo(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
-        InfoEntity entity = infoLogic.getInfo(idBook, id);
+    public void deleteInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id) throws BusinessLogicException {
+        InfoEntity entity = infoLogic.getInfo(idVinilo, id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idBook + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /vinilos/" + idVinilo+ "/infos/" + id + " no existe.", 404);
         }
-        infoLogic.deleteInfo(idBook, id);
+        infoLogic.deleteInfo(idVinilo, id);
     }
 
     private List<InfoDTO> listEntity2DTO(List<InfoEntity> entityList) {
