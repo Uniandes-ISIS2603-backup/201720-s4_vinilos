@@ -6,6 +6,8 @@
 package co.edu.uniandes.csw.resources;
 
 import co.edu.uniandes.csw.dtos.PedidoProveedorDTO;
+import co.edu.uniandes.csw.dtos.PedidoProveedorDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
@@ -23,13 +25,16 @@ import javax.ws.rs.Produces;
  *@Path("{proveedorId: \\d+}/pedidos")
  * @author jc.ruiz
  */
+@Path("proveedores/{id: \\d+}/pedidos")
 @Produces("application/json")
 @Consumes("application/json")
 public class ProveedorPedidosResource {
  
-    @Inject private ProveedorLogic proveedorLogic;
+    @Inject 
+    private ProveedorLogic proveedorLogic;
     
-    
+     @Inject 
+    private PedidoProveedorLogic pedidoProveedorLogic;
     
     /**
      * GET para todos los pedidos pertenecientes a un proveedor especifico
@@ -38,14 +43,9 @@ public class ProveedorPedidosResource {
      * @throws BusinessLogicException  En caso de que no exista, lanza una excepcion
      */
     @GET 
-    public List<PedidoProveedorDTO> getPedidos (@PathParam("proveedorId") Long idProveedor) throws BusinessLogicException
+    public List<PedidoProveedorDetailDTO> getPedidos (@PathParam("id") Long idProveedor) throws BusinessLogicException
     {
-        ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
-        if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
-        List<PedidoProveedorDTO> list = new ArrayList();
-        for (PedidoProveedorEntity ppEntity : proveedorLogic.getPedidos(idProveedor))
-            list.add(new PedidoProveedorDTO(ppEntity));
-        return list;
+        return listEntity2DetailDTO(proveedorLogic.getPedidos(idProveedor));
     }
     
     /**
@@ -56,16 +56,20 @@ public class ProveedorPedidosResource {
      * @throws BusinessLogicException lanza una excepcion cuando no existe el proveedor o el feedback 
      */
     @GET
-    @Path(("/{idFB:\\d+}"))
-    public PedidoProveedorDTO getPedido ( @PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack) throws BusinessLogicException
+    @Path("/{id2:\\d+}")
+    public PedidoProveedorDTO getPedido ( @PathParam("proveedorId") Long idProveedor, @PathParam("id2") Long id2) throws BusinessLogicException
     {
-        ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
-        if (ent == null) throw new BusinessLogicException("No existe el proveedor con id " + idProveedor);
-        PedidoProveedorDTO fbDetail = null;
-        for (PedidoProveedorEntity pP : ent.getPedidos())
-            if (pP.getId().equals(idFeedBack)) fbDetail = (new PedidoProveedorDTO(pP));
-        if (fbDetail == null) throw new BusinessLogicException("No existe el feedback con id " + idFeedBack + " del proveedor con id " + idProveedor);
-        return fbDetail;
+         PedidoProveedorEntity pedido= pedidoProveedorLogic.getPedidoProveedor(id2);
+        return new PedidoProveedorDetailDTO(pedido);
+    }
+    
+    private List<PedidoProveedorDetailDTO> listEntity2DetailDTO(List<PedidoProveedorEntity> entityList) {
+        List<PedidoProveedorDetailDTO> list = new ArrayList<>();
+        for (PedidoProveedorEntity entity : entityList) {
+            PedidoProveedorDetailDTO dto= new PedidoProveedorDetailDTO(entity);
+            list.add(dto);
+        }
+        return list;
     }
 }
 

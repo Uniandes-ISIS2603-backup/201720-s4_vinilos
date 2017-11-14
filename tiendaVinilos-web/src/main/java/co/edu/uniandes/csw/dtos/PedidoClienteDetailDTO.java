@@ -15,6 +15,7 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     
     private PagoClienteDTO pago;
     private UsuarioDTO usuario;
+    private PedidoProveedorDTO pedidoP;
     
     /**
      * Constructor por defecto
@@ -34,8 +35,13 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
         
         if( entity != null )
         {
-            this.pago = new PagoClienteDTO(entity.getPago());
-            this.usuario = new UsuarioDTO(entity.getUsuario());
+            if(pago != null)
+            this.pago = new PagoClienteDetailDTO(entity.getPago());
+            if(usuario !=null)
+            this.usuario = new UsuarioDetailDTO(entity.getUsuario());
+            if(pedidoP != null){
+                this.pedidoP = new PedidoProveedorDetailDTO(entity.getPedidoP());
+            }
         }
     }
     
@@ -47,8 +53,23 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     @Override
     public PedidoClienteEntity toEntity() {
         PedidoClienteEntity pedidoE = super.toEntity();
-        pedidoE.setPago(pago.toEntity());
-        pedidoE.setUsuario(usuario.toEntity());
+        
+        if (pago != null){
+            
+            pedidoE.setPago(pago.toEntity());
+        }
+        
+        
+        if(usuario != null){
+            
+            pedidoE.setUsuario(usuario.toEntity());
+        }
+        
+        if(pedidoP != null){
+            pedidoE.setPedidoP(pedidoP.toEntity());
+        }
+        
+        
         return pedidoE;
     }
     
@@ -71,5 +92,14 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     {
         return pago;
     }
+
+    public PedidoProveedorDTO getPedidoC() {
+        return pedidoP;
+    }
+
+    public void setPedidoC(PedidoProveedorDTO pedidoC) {
+        this.pedidoP = pedidoC;
+    }
+    
     
 }

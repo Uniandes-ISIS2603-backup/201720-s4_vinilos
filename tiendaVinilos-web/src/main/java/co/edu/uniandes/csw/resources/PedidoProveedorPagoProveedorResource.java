@@ -35,7 +35,7 @@ public class PedidoProveedorPagoProveedorResource {
    @POST
    public PagoProveedorDetailDTO creatPagoProveedores(@PathParam("idPedidoProveedor")Long idPedidoProveedor,PagoProveedorDetailDTO  provee)throws BusinessLogicException
    {
-         logic1.agregarPagoProveedor(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
+         logic1.agregarPagoProveedor(provee.toEntity(),logic.getPedidoProveedor(idPedidoProveedor));
         return provee;
    }
    

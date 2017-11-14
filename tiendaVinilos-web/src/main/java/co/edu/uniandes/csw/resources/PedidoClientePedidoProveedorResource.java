@@ -28,7 +28,7 @@ import javax.ws.rs.Produces;
  * @author s.saenz11
  */
 
-@Path("pedidocliente/{id: \\d+}/pedidoProveedor")
+@Path("usuarios/{id0: \\d+}/pedidos/{id: \\d+}/pedidos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -50,8 +50,8 @@ public class PedidoClientePedidoProveedorResource {
     @Path("/{id2:\\d+}")
     public PedidoProveedorDetailDTO getIdPedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2)
     {
-        PedidoProveedorEntity entity = pedidoProveedorLogic.getProveedor(id2);
-        pedidoProveedorLogic.getProveedor(id);
+        PedidoProveedorEntity entity = pedidoProveedorLogic.getPedidoProveedor(id);
+        pedidoProveedorLogic.getPedidoProveedor(id);
         return new PedidoProveedorDetailDTO(entity);
     }
     
@@ -66,8 +66,8 @@ public class PedidoClientePedidoProveedorResource {
     @Path("/{id2:\\d+}")
       public void deletePedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2) 
       {
-         PedidoProveedorEntity entity = pedidoProveedorLogic.getProveedor(id2);
-          pedidoProveedorLogic.deleteProveedor(id2);
+         PedidoProveedorEntity entity = pedidoProveedorLogic.getPedidoProveedor(id2);
+          pedidoProveedorLogic.deletePedidoProveedor(id2);
           
       }
      private List<PedidoProveedorDetailDTO> listEntity2DetailDTO(List<PedidoProveedorEntity> entityList) {

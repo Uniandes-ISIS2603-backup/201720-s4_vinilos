@@ -13,8 +13,14 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
  */
 public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
     
+    private PagoProveedorDTO pago;
+    
+    private ProveedorDTO proveedor;
+    
+    private PedidoClienteDTO pedidoC;
     
      public PedidoProveedorDetailDTO(){
+         
          
      }
    
@@ -25,6 +31,17 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
      */
     public PedidoProveedorDetailDTO(PedidoProveedorEntity entity) {
         super(entity);
+        
+        if(pago != null){
+            this.pago = new PagoProveedorDetailDTO(entity.getPagoProveedor());
+        }
+        if(proveedor != null){
+            this.proveedor = new ProveedorDetailDTO(entity.getProveedor());
+        }
+        if(pedidoC != null){
+            this.pedidoC = new PedidoClienteDetailDTO(entity.getPedidoCliente());
+        }
+        
     }
 
     
@@ -35,8 +52,44 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
      * @return 
      */
     public PedidoProveedorEntity toEntity() {
-        PedidoProveedorEntity UsuarioE = super.toEntity();
-        return UsuarioE;
+        PedidoProveedorEntity pedidoP = super.toEntity();
+        
+        
+         if(pago != null){
+            pedidoP.setPagoProveedor(pago.toEntity());
+        }
+        if(proveedor != null){
+            pedidoP.setProveedor(proveedor.toEntity());
+        }
+        if(pedidoC != null){
+            pedidoP.setPedidoCliente(pedidoC.toEntity());
+        }
+        
+        return pedidoP;
+    }
+
+    public PagoProveedorDTO getPago() {
+        return pago;
+    }
+
+    public void setPago(PagoProveedorDTO pago) {
+        this.pago = pago;
+    }
+
+    public ProveedorDTO getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(ProveedorDTO proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public PedidoClienteDTO getPedidoC() {
+        return pedidoC;
+    }
+
+    public void setPedidoC(PedidoClienteDTO pedidoC) {
+        this.pedidoC = pedidoC;
     }
 
     

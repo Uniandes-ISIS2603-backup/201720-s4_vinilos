@@ -36,6 +36,20 @@ public class PedidoProveedorEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ProveedorEntity proveedor;
+    
+     @PodamExclude
+    @ManyToOne
+     private PedidoClienteEntity pedidoC;
+
+    public PedidoClienteEntity getPedidoC() {
+        return pedidoC;
+    }
+
+    public void setPedidoC(PedidoClienteEntity pedidoC) {
+        this.pedidoC = pedidoC;
+    }
+     
+     
 
     
     @Id

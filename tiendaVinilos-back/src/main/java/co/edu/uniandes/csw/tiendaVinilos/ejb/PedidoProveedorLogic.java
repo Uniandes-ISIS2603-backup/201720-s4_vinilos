@@ -33,17 +33,17 @@ public class PedidoProveedorLogic {
        return persistence.findAll();
    }
    
-   public PedidoProveedorEntity getProveedor(Long id)
+   public PedidoProveedorEntity getPedidoProveedor(Long id)
    {
        return persistence.find(id);
    }
    
-   public PedidoProveedorEntity updateProveedor(PedidoProveedorEntity entity)
+   public PedidoProveedorEntity updatePedidoProveedor(PedidoProveedorEntity entity)
    {
        return persistence.update(entity);
    }
    
-   public void deleteProveedor(Long id)
+   public void deletePedidoProveedor(Long id)
    {
        persistence.delete(id);
    }
@@ -57,12 +57,12 @@ public class PedidoProveedorLogic {
    public void deletePedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
    {
        pedidoProveedor.setPedidoCliente(null);
-       deleteProveedor(pedidoProveedor.getId());
+       deletePedidoProveedor(pedidoProveedor.getId());
    }
    
    public PagoProveedorEntity getPagoProveedor(Long id)
    {
-       PedidoProveedorEntity ent = getProveedor(id);
+       PedidoProveedorEntity ent = getPedidoProveedor(id);
        
        return ent.getPagoProveedor();
    }

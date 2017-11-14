@@ -49,7 +49,7 @@ public class PedidoProveedorResource {
     @Path(("{id:\\d+}"))
     public PedidoProveedorDetailDTO getProveedor( @PathParam("id") Long id)
     {
-       PedidoProveedorEntity ent = logic.getProveedor(id);
+       PedidoProveedorEntity ent = logic.getPedidoProveedor(id);
         return (new  PedidoProveedorDetailDTO(ent));
     }
     
@@ -65,7 +65,7 @@ public class PedidoProveedorResource {
     @Path("{id: \\d+}")
     public PedidoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PedidoProveedorDetailDTO prov)
     {
-        PedidoProveedorEntity ent = logic.updateProveedor(prov.toEntity());
+        PedidoProveedorEntity ent = logic.updatePedidoProveedor(prov.toEntity());
         return (new PedidoProveedorDetailDTO(ent));
     }
     
@@ -73,7 +73,7 @@ public class PedidoProveedorResource {
     @Path("{id:\\d+}")
     public void deleteProveedor(@PathParam("id")Long id)
     {
-        logic.deleteProveedor(id);
+        logic.deletePedidoProveedor(id);
     }
    
     
