@@ -87,50 +87,114 @@
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script>
 
     </head>
-    <body style="padding-top: 10px;">
-        <style>
-            body {background-color: #000000;
-            }
 
-            .jumbotron { 
-                background-color: #fff; /* Orange */
-                color: #000000;
+<body style="padding-top: 10px;">
+         <style>
 
-            }
+ body , .jumbotron, .navbar{
+   background-image: url("https://wallpaperscraft.com/image/louie_armstrong_jazz_pipe_bw_101832_1920x1080.jpg");
+     -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ 
+}  
+.jumbotron { 
+    
+    color: #fff;
+      padding-top: 18px;
+    padding-bottom: 18px;
+  
+}
+.navbar {
+    margin-bottom: 0;
+    background-color: #fff;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px;
+    line-height: 1.42857143 ;
+    letter-spacing: 8px;
+    border-radius: 0;
+     font-weight: 700;
+  
+      -webkit-margin-before: -2em;
+    -webkit-margin-after: -1.5em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    line-height: 1.42857143;
+     
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.titulo{
+    font-family: Open Sans Condensed;
+    font-style: Light;
+    letter-spacing: 8px;
+}
 
 
-            .navbar {
-                margin-bottom: 0;
-                background-color: #fff;
-                z-index: 9999;
-                border: 0;
-                font-size: 12px;
-                line-height: 1.42857143 ;
-                letter-spacing: 8px;
-                border-radius: 0;
-                font-weight: 700;
-            }
+#test p {
+    margin-top: 50px;
+    text-align: center;
+ 
+    -webkit-font-smoothing: antialiased; 
+    color: #fff;
+   
+   
+}
 
-            .navbar li a, .navbar .navbar-brand {
-                color: #000000 !important;
-            }
+#subtest{
+   padding-top: 10px;
+  
+    font-size: 40px;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 0.1;
+    color: inherit;
+    letter-spacing: .3px;
+    text-shadow: 3px 4px 8px rgba(0,0,0,.5);
+}
 
-            .navbar-nav li a:hover, .navbar-nav li.active a {
-                color: black !important;
-                background-color: #fff !important;
-            }
+#la{
+ padding-top: 1px;
+ padding-bottom: 15px;
+    font-size: 15px;
+     font-family: inherit;
+    font-weight: 600;
+    line-height: 1.1;
+    color: inherit;
+    letter-spacing: .3px;
+    text-shadow: 3px 4px 8px rgba(0,0,0,.5);
+}
 
-            .navbar-default .navbar-toggle {
-                border-color: transparent;
-                color: #000000 !important;
-            }
-            .titulo{
-                font-family: Open Sans Condensed;
-                font-style: Light;
-                letter-spacing: 8px;
-            }
-        </style>
+.btn{
+padding-right: 1000000px;
+    text-align: center;
+
+            font-family: BrandonText-Bold,Raleway,arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    letter-spacing: .3px;
+     background: rgba(0, 0, 0, 0.5);
+            background-repeat:no-repeat;
+            border: none;
+            cursor:pointer;
+            overflow: hidden;
+            padding: 15px 34px;
+            border: 1px solid #fff;          
+}
+
+
+
+
+</style>
         <div class="jumbotron text-center">
+            <div ui-view="mainView">
+            
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
                     <div class="collapse navbar-collapse" id="myNavbar">
@@ -171,5 +235,33 @@
 
             </div>
         </div>
+
+</nav>
+        </div>    
+          </div>   
+            <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+            
+                 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+           <br>
+           <br>
+            <br>
+           <br>
+       
+<div id="test" class = "text-center">    
+     <p id="subtest">BIENVENIDO A LA TIENDA DE VINILOS  </p>
+     <p id="subtest">ONLINE MÁS GRANDE DEL MUNDO</p>
+     <p id="la">MÁS DE 1 MILLÓN DE VINILOS A LA VENTA</p>
+     
+     <button id="boton" class="btn btn-default btn-sm"> ¡MÁS INFORMACIÓN!</button>
+</div>  
     </body>
 </html>
