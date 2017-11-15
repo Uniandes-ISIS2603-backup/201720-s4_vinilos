@@ -32,6 +32,25 @@ public class PedidoClienteEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private PagoClienteEntity pago;
+    
+    @PodamExclude
+    @OneToMany(mappedBy="pedidoC")
+    private List<PedidoProveedorEntity> pedidoP;
+
+    public List<PedidoProveedorEntity> getPedidoP() {
+        return pedidoP;
+    }
+
+    public void setPedidoP(List<PedidoProveedorEntity> pedidoP) {
+        this.pedidoP = pedidoP;
+    }
+
+   
+    
+    
+    
+    
+    
     /*
     * nombre
     */
@@ -189,21 +208,7 @@ public class PedidoClienteEntity implements Serializable{
         this.name = name;
     }
     
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getId() != null && ((PedidoClienteEntity) obj).getId() != null) {
-            return this.getId().equals(((PedidoClienteEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
-
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
+   
  
     public void setUsuario( UsuarioEntity usuario )
     {

@@ -36,6 +36,20 @@ public class PedidoProveedorEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ProveedorEntity proveedor;
+    
+     @PodamExclude
+    @ManyToOne
+     private PedidoClienteEntity pedidoC;
+
+    public PedidoClienteEntity getPedidoC() {
+        return pedidoC;
+    }
+
+    public void setPedidoC(PedidoClienteEntity pedidoC) {
+        this.pedidoC = pedidoC;
+    }
+     
+     
 
     
     @Id
@@ -43,6 +57,16 @@ public class PedidoProveedorEntity implements Serializable{
     private Long id;
     
      private String name;
+     
+     private String estado;
+     
+     public String getEstado(){
+         return estado;
+     }
+     
+     public void setEstado(String estado){
+         this.estado = estado;
+     }
 
      public ProveedorEntity getProveedor()
      {
