@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,7 +18,7 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     
     private PagoClienteDTO pago;
     private UsuarioDTO usuario;
-    private PedidoProveedorDTO pedidoP;
+    private ArrayList<PedidoProveedorDTO> pedidoP;
     private CarroComprasDetailDTO carrito;
     /**
      * Constructor por defecto
@@ -40,9 +43,17 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
             }
           
             this.usuario = new UsuarioDetailDTO(entity.getUsuario());
-            if(pedidoP != null){
-                this.pedidoP = new PedidoProveedorDetailDTO(entity.getPedidoP());
-            }
+            
+            
+            List<PedidoProveedorEntity> lista= entity.getPedidoP();
+        List<PedidoProveedorDTO> list= new ArrayList<>();
+        for (PedidoProveedorEntity pedidoProveedorEntity : lista) {
+            PedidoProveedorDTO dto= new PedidoProveedorDTO(pedidoProveedorEntity);
+            list.add(dto);
+        }
+        pedidoP = (ArrayList<PedidoProveedorDTO>)list;
+            
+            
             carrito= new CarroComprasDetailDTO(entity.getUsuario().getCarrito());
         }
     }
@@ -67,9 +78,14 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
             pedidoE.setUsuario(usuario.toEntity());
         }
         
-        if(pedidoP != null){
-            pedidoE.setPedidoP(pedidoP.toEntity());
+         ArrayList<PedidoProveedorEntity> pedidoPr=new ArrayList<>();
+        if(pedidoP!=null)
+        {
+        for (PedidoProveedorDTO ped: pedidoP) {
+            pedidoPr.add(ped.toEntity());
         }
+        }
+        
         if(carrito!=null){
         pedidoE.getUsuario().setCarrito(carrito.toEntity());
         }
@@ -97,21 +113,15 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
         return pago;
     }
 
-    public PedidoProveedorDTO getPedidoC() {
+    public ArrayList<PedidoProveedorDTO> getPedidoP() {
         return pedidoP;
     }
 
-    public void setPedidoC(PedidoProveedorDTO pedidoC) {
-        this.pedidoP = pedidoC;
-    }
-
-    public PedidoProveedorDTO getPedidoP() {
-        return pedidoP;
-    }
-
-    public void setPedidoP(PedidoProveedorDTO pedidoP) {
+    public void setPedidoP(ArrayList<PedidoProveedorDTO> pedidoP) {
         this.pedidoP = pedidoP;
     }
+
+   
 
     public CarroComprasDetailDTO getCarrito() {
         return carrito;

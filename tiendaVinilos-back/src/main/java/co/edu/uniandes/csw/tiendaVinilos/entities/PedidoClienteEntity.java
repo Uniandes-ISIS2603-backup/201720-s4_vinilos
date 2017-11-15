@@ -34,16 +34,18 @@ public class PedidoClienteEntity implements Serializable{
     private PagoClienteEntity pago;
     
     @PodamExclude
-    @OneToOne
-    private PedidoProveedorEntity pedidoP;
+    @OneToMany(mappedBy="pedidoC")
+    private List<PedidoProveedorEntity> pedidoP;
 
-    public PedidoProveedorEntity getPedidoP() {
+    public List<PedidoProveedorEntity> getPedidoP() {
         return pedidoP;
     }
 
-    public void setPedidoP(PedidoProveedorEntity pedidoP) {
+    public void setPedidoP(List<PedidoProveedorEntity> pedidoP) {
         this.pedidoP = pedidoP;
     }
+
+   
     
     
     

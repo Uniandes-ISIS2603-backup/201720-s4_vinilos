@@ -69,10 +69,16 @@ public class PedidoClientePedidoProveedorResource {
     }
     
     @POST 
-    public PedidoProveedorDetailDTO createPedidoProveedor(PedidoProveedorDetailDTO pedidoProveedor , @PathParam("id") Long id) throws BusinessLogicException
+    public void createPedidoProveedor(PedidoProveedorDetailDTO pedidoProveedor , @PathParam("id") Long id) throws BusinessLogicException
     {
-       pedidoProveedorLogic.agregarPedidoProveedor(pedidoClienteLogic.getPedido(id), pedidoProveedor.toEntity());
-       return pedidoProveedor;
+        
+        for (int i = 0; i < pedidoClienteLogic.getPedido(id).getUsuario().getCarrito().getVinilos().size(); i++){
+            
+             pedidoProveedorLogic.agregarPedidoProveedor(pedidoClienteLogic.getPedido(id), pedidoProveedor.toEntity(),pedidoClienteLogic.getPedido(id).getUsuario().getCarrito().getVinilos().get(i));
+            
+        }
+      
+       
     }
     
     @DELETE

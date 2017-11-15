@@ -8,7 +8,10 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoProveedorPersistence;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -48,10 +51,20 @@ public class PedidoProveedorLogic {
        persistence.delete(id);
    }
    
-   public void agregarPedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
+   public void agregarPedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor, ViniloEntity vinilo)
    {
        pedidoProveedor.setPedidoCliente(pedidoCliente);
+       pedidoProveedor.setProveedor(vinilo.getProveedor());
+       
+       List<ViniloEntity> lista = new LinkedList<>();
+   
+               lista.add(vinilo);
+
+       pedidoProveedor.setViniloEntity(lista);
        createProveedor(pedidoProveedor);
+        vinilo.getProveedor().getPedidos().add(pedidoProveedor);
+       vinilo.getProveedor().setPedidos( vinilo.getProveedor().getPedidos());
+        
    }
    
    public void deletePedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
