@@ -6,7 +6,9 @@
  */
 package co.edu.uniandes.csw.resources;
 
+import co.edu.uniandes.csw.dtos.CarroComprasDetailDTO;
 import co.edu.uniandes.csw.dtos.PedidoProveedorDetailDTO;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
@@ -28,7 +30,7 @@ import javax.ws.rs.Produces;
  * @author s.saenz11
  */
 
-@Path("usuarios/{id0: \\d+}/pedidos/{id: \\d+}/pedidos")
+@Path("usuarios/{id0: \\d+}/pedidos/{id: \\d+}/pedidoProveedor")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -39,6 +41,17 @@ public class PedidoClientePedidoProveedorResource {
     
     @Inject
     private PedidoProveedorLogic pedidoProveedorLogic;
+    
+     @Inject
+    CarroComprasLogic carroComprasLogic;
+     
+      @GET
+      @Path("/carroCompras")
+    public CarroComprasDetailDTO getCarroCompras(@PathParam("id0") Long id) throws BusinessLogicException {
+        
+        return new CarroComprasDetailDTO(pedidoClienteLogic.getUsuario(id).getCarrito());
+    }
+     
     
     @GET
     public List<PedidoProveedorDetailDTO> getPedidoProveedor(@PathParam("id")Long id )throws BusinessLogicException 

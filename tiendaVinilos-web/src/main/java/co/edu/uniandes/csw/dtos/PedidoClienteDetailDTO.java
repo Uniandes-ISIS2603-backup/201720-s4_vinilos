@@ -16,7 +16,7 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     private PagoClienteDTO pago;
     private UsuarioDTO usuario;
     private PedidoProveedorDTO pedidoP;
-    
+    private CarroComprasDetailDTO carrito;
     /**
      * Constructor por defecto
      */
@@ -35,13 +35,15 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
         
         if( entity != null )
         {
-            if(pago != null)
-            this.pago = new PagoClienteDetailDTO(entity.getPago());
-            if(usuario !=null)
+            if(pago != null){
+                 this.pago = new PagoClienteDetailDTO(entity.getPago());
+            }
+          
             this.usuario = new UsuarioDetailDTO(entity.getUsuario());
             if(pedidoP != null){
                 this.pedidoP = new PedidoProveedorDetailDTO(entity.getPedidoP());
             }
+            carrito= new CarroComprasDetailDTO(entity.getUsuario().getCarrito());
         }
     }
     
@@ -68,7 +70,9 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
         if(pedidoP != null){
             pedidoE.setPedidoP(pedidoP.toEntity());
         }
-        
+        if(carrito!=null){
+        pedidoE.getUsuario().setCarrito(carrito.toEntity());
+        }
         
         return pedidoE;
     }
@@ -99,6 +103,22 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
 
     public void setPedidoC(PedidoProveedorDTO pedidoC) {
         this.pedidoP = pedidoC;
+    }
+
+    public PedidoProveedorDTO getPedidoP() {
+        return pedidoP;
+    }
+
+    public void setPedidoP(PedidoProveedorDTO pedidoP) {
+        this.pedidoP = pedidoP;
+    }
+
+    public CarroComprasDetailDTO getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarroComprasDetailDTO carrito) {
+        this.carrito = carrito;
     }
     
     
