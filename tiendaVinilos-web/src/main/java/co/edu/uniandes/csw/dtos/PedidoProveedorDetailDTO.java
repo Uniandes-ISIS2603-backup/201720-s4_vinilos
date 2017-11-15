@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +21,8 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
     private ProveedorDTO proveedor;
     
     private PedidoClienteDTO pedidoC;
+    
+    private ArrayList<ViniloDTO> vinilo;
     
      public PedidoProveedorDetailDTO(){
          
@@ -42,6 +47,14 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
             this.pedidoC = new PedidoClienteDetailDTO(entity.getPedidoCliente());
         }
         
+         List<ViniloEntity> lista= entity.getViniloEntity();
+        List<ViniloDTO> list= new ArrayList<>();
+        for (ViniloEntity viniloEntity : lista) {
+            ViniloDTO dto= new ViniloDTO(viniloEntity);
+            list.add(dto);
+        }
+        vinilo = (ArrayList<ViniloDTO>)list;
+        
     }
 
     
@@ -54,6 +67,14 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
     public PedidoProveedorEntity toEntity() {
         PedidoProveedorEntity pedidoP = super.toEntity();
         
+        
+        ArrayList<ViniloEntity> cards=new ArrayList<>();
+        if(vinilo!=null)
+        {
+        for (ViniloDTO vinilos: vinilo) {
+            cards.add(vinilos.toEntity());
+        }
+        }
         
          if(pago != null){
             pedidoP.setPagoProveedor(pago.toEntity());
@@ -90,6 +111,14 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
 
     public void setPedidoC(PedidoClienteDTO pedidoC) {
         this.pedidoC = pedidoC;
+    }
+
+    public ArrayList<ViniloDTO> getVinilo() {
+        return vinilo;
+    }
+
+    public void setVinilo(ArrayList<ViniloDTO> vinilo) {
+        this.vinilo = vinilo;
     }
 
     

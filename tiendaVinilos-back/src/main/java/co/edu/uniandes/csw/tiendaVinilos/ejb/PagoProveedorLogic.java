@@ -49,7 +49,7 @@ public class PagoProveedorLogic {
    }
    public void agregarPagoProveedor(PagoProveedorEntity pago, PedidoProveedorEntity pedido){
        
-       
+       pedido.getViniloEntity().get(0).getProveedor().getPagos().add(pago);
        pago.setPedidoProveedor(pedido);
        createProveedor(pago);
    }

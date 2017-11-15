@@ -8,10 +8,12 @@ package co.edu.uniandes.csw.resources;
 
 import co.edu.uniandes.csw.dtos.CarroComprasDetailDTO;
 import co.edu.uniandes.csw.dtos.PedidoProveedorDetailDTO;
+import co.edu.uniandes.csw.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +69,17 @@ public class PedidoClientePedidoProveedorResource {
         pedidoProveedorLogic.getPedidoProveedor(id);
         return new PedidoProveedorDetailDTO(entity);
     }
+    @GET
+    @Path("/{id2:\\d+}/vinilos")
+    public List<ViniloDetailDTO>  getVinilosPedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2)
+            
+            
+    {
+        List<ViniloEntity> entity = pedidoProveedorLogic.getPedidoProveedor(id).getViniloEntity();
+        pedidoProveedorLogic.getPedidoProveedor(id);
+        return  listEntity2DetailDTO2(entity);
+    }
+    
     
     @POST 
     public void createPedidoProveedor(PedidoProveedorDetailDTO pedidoProveedor , @PathParam("id") Long id) throws BusinessLogicException
@@ -93,6 +106,15 @@ public class PedidoClientePedidoProveedorResource {
         List<PedidoProveedorDetailDTO> list = new ArrayList<>();
         for (PedidoProveedorEntity entity : entityList) {
             PedidoProveedorDetailDTO dto= new PedidoProveedorDetailDTO(entity);
+            list.add(dto);
+        }
+        return list;
+    }
+     
+     private List<ViniloDetailDTO> listEntity2DetailDTO2(List<ViniloEntity> entityList) {
+        List<ViniloDetailDTO> list = new ArrayList<>();
+        for (ViniloEntity entity : entityList) {
+            ViniloDetailDTO dto= new ViniloDetailDTO(entity);
             list.add(dto);
         }
         return list;

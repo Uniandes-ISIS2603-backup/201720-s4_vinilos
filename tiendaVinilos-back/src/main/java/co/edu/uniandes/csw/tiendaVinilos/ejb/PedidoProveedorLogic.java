@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoProveedorPersistence;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -56,7 +57,7 @@ public class PedidoProveedorLogic {
        pedidoProveedor.setPedidoCliente(pedidoCliente);
        pedidoProveedor.setProveedor(vinilo.getProveedor());
        
-       List<ViniloEntity> lista = new LinkedList<>();
+       ArrayList<ViniloEntity> lista = new ArrayList<ViniloEntity>();
    
                lista.add(vinilo);
 
