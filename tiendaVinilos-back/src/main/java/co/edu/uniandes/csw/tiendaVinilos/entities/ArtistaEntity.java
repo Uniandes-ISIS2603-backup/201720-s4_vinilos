@@ -15,7 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -23,24 +23,26 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author cs.gomez
  */
 @Entity
-public class ArtistaEntity  implements Serializable {
+public class ArtistaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @PodamExclude
-    @ManyToMany
+    @OneToMany (mappedBy = "artistas")
     private List<CancionEntity> canciones;
+    
     
     public List<CancionEntity> getCanciones(){
         return canciones;
     }
-    
-    public void setCanciones(List<CancionEntity> c){
-        this.canciones = c;
+    public void setCanciones(List<CancionEntity> canciones){
+        this.canciones = canciones;
     }
 
+    
+    
     public Long getId() {
         return id;
     }
