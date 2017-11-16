@@ -23,13 +23,12 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
-
-
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 import co.edu.uniandes.csw.tiendaVinilos.persistence.TarjetaPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -62,7 +61,7 @@ public class TarjetaLogic {
     }
 
     /**
-     * 
+     *
      * Obtener todas las Tarjetaes existentes en la base de datos.
      *
      * @return una lista de Tarjetaes.
@@ -74,36 +73,49 @@ public class TarjetaLogic {
         LOGGER.info("Termina proceso de consultar todas las Tarjetaes");
         return Tarjeta;
     }
-    public TarjetaEntity getTarjeta(long id)
-    {
-        TarjetaEntity ent=persistence.find(id);
+
+    public TarjetaEntity getTarjeta(long id) {
+        TarjetaEntity ent = persistence.find(id);
         return ent;
     }
-    public TarjetaEntity updateTarjeta(long id,TarjetaEntity us)
-    {
+
+    public TarjetaEntity updateTarjeta(long id, TarjetaEntity us) {
         persistence.update(us);
         return us;
     }
-    public void deleteTarjeta(long id)
-    {
+
+    public void deleteTarjeta(long id) {
         persistence.delete(id);
     }
-    public TarjetaEntity agregarTarjeta(UsuarioEntity usu,TarjetaEntity tarjeta) throws BusinessLogicException
-    {
+
+    public TarjetaEntity agregarTarjeta(UsuarioEntity usu, TarjetaEntity tarjeta) throws BusinessLogicException {
         tarjeta.setUsuario(usu);
         createTarjeta(tarjeta);
         return tarjeta;
     }
-    public TarjetaEntity modificarTarjeta(UsuarioEntity usuario,TarjetaEntity tarjeta)
-    {
+
+    public TarjetaEntity modificarTarjeta(UsuarioEntity usuario, TarjetaEntity tarjeta) {
         tarjeta.setUsuario(usuario);
         updateTarjeta(tarjeta.getId(), tarjeta);
         return tarjeta;
     }
-    public void deleteT(TarjetaEntity tarjeta)
-    {
+
+    public void deleteT(TarjetaEntity tarjeta) {
         tarjeta.setUsuario(null);
         deleteTarjeta(tarjeta.getId());
+    }
+
+    public List<TarjetaEntity> darTarjetasUsuario(Long id) {
+        List<TarjetaEntity> tarjetas = new ArrayList<>();
+        List<TarjetaEntity> tarj = getTarjetas();
+        for (TarjetaEntity tarjetaEntity : tarj) {
+            if (tarjetaEntity.getUsuario() != null) {
+                if (tarjetaEntity.getUsuario().getId().equals(id)) {
+                    tarjetas.add(tarjetaEntity);
+                }
+            }
+        }
+        return tarjetas;
     }
 
 }

@@ -16,7 +16,8 @@ var mod = ng.module("viniloModules", []);
                    .state('viniloSee', {
                 url: '/vinilos/:viniloId',
                 param:{
-                    viniloId: null
+                    viniloId: null,
+                    usuarioId:943
                 },
                 views: {
                     'mainView': {
