@@ -1,0 +1,203 @@
+{
+	"variables": [],
+	"info": {
+		"name": "postmanCiclo2",
+		"_postman_id": "5ca20476-b966-3a93-8e54-6cbdc349afd5",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"id\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"id\":1\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/4",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/5",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/7",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"type\": \"pedidoProveedorDetailDTO\",\n        \"fecha\": \"2013-08-30T00:00:00-05:00\",\n        \"id\": 7,\n        \"precio\": 990.7\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/7",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \n        \"fecha\": \"2013-08-30T00:00:00-05:00\",\n        \"id\": 25,\n        \"precio\": 990.7\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

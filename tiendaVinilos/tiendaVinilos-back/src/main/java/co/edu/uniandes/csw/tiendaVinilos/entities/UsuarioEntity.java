@@ -67,7 +67,7 @@ public class UsuarioEntity implements Serializable {
     private List<ViniloEntity> carroCompras;
     
     @PodamExclude
-    @OneToOne(fetch=FetchType.LAZY,mappedBy="usuario")
+    @OneToOne(fetch=FetchType.LAZY,mappedBy="usuario",cascade=CascadeType.ALL, orphanRemoval=true)
     private CarroComprasEntity carrito;
 
     public CarroComprasEntity getCarrito() {
@@ -130,6 +130,14 @@ public class UsuarioEntity implements Serializable {
 
     public void setCantCompras(int cantCompras) {
         this.cantCompras = cantCompras;
+    }
+
+    public void setTarjetas(List<TarjetaEntity> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public void setFeedBacks(List<FeedBackEntity> feedBacks) {
+        this.feedBacks = feedBacks;
     }
 
     

@@ -5,8 +5,14 @@
  */
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PedidoProveedorPersistence;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -31,20 +37,47 @@ public class PedidoProveedorLogic {
        return persistence.findAll();
    }
    
-   public PedidoProveedorEntity getProveedor(Long id)
+   public PedidoProveedorEntity getPedidoProveedor(Long id)
    {
        return persistence.find(id);
    }
    
-   public PedidoProveedorEntity updateProveedor(PedidoProveedorEntity entity)
+   public PedidoProveedorEntity updatePedidoProveedor(PedidoProveedorEntity entity)
    {
        return persistence.update(entity);
    }
    
-   public void deleteProveedor(Long id)
+   public void deletePedidoProveedor(Long id)
    {
        persistence.delete(id);
    }
    
+   public void agregarPedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor, ViniloEntity vinilo)
+   {
+       pedidoProveedor.setPedidoCliente(pedidoCliente);
+       pedidoProveedor.setProveedor(vinilo.getProveedor());
+       
+       ArrayList<ViniloEntity> lista = new ArrayList<ViniloEntity>();
    
-}
+               lista.add(vinilo);
+
+       pedidoProveedor.setViniloEntity(lista);
+       createProveedor(pedidoProveedor);
+        vinilo.getProveedor().getPedidos().add(pedidoProveedor);
+       vinilo.getProveedor().setPedidos( vinilo.getProveedor().getPedidos());
+        
+   }
+   
+   public void deletePedidoProveedor(PedidoClienteEntity pedidoCliente , PedidoProveedorEntity pedidoProveedor)
+   {
+       pedidoProveedor.setPedidoCliente(null);
+       deletePedidoProveedor(pedidoProveedor.getId());
+   }
+   
+   public PagoProveedorEntity getPagoProveedor(Long id)
+   {
+       PedidoProveedorEntity ent = getPedidoProveedor(id);
+       
+       return ent.getPagoProveedor();
+   }
+           }

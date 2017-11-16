@@ -31,11 +31,25 @@ public class PedidoProveedorEntity implements Serializable{
 
     @PodamExclude
     @OneToOne
-    private PagoProveedorEntity pagoProveedor ;
+   private PagoProveedorEntity pagoProveedor;
 
     @PodamExclude
     @ManyToOne
     private ProveedorEntity proveedor;
+    
+     @PodamExclude
+    @ManyToOne
+     private PedidoClienteEntity pedidoC;
+
+    public PedidoClienteEntity getPedidoC() {
+        return pedidoC;
+    }
+
+    public void setPedidoC(PedidoClienteEntity pedidoC) {
+        this.pedidoC = pedidoC;
+    }
+     
+     
 
     
     @Id
@@ -43,6 +57,16 @@ public class PedidoProveedorEntity implements Serializable{
     private Long id;
     
      private String name;
+     
+     private String estado;
+     
+     public String getEstado(){
+         return estado;
+     }
+     
+     public void setEstado(String estado){
+         this.estado = estado;
+     }
 
      public ProveedorEntity getProveedor()
      {
@@ -80,7 +104,7 @@ public class PedidoProveedorEntity implements Serializable{
     
     
     
-    public PagoProveedorEntity getPagoP(){
+    public PagoProveedorEntity getPagoProveedor(){
         
         return pagoProveedor;
     }
@@ -126,9 +150,7 @@ public class PedidoProveedorEntity implements Serializable{
         this.viniloEntity = viniloEntity;
     }
 
-    public PagoProveedorEntity getPagoProveedor() {
-        return pagoProveedor;
-    }
+    
     
     
     

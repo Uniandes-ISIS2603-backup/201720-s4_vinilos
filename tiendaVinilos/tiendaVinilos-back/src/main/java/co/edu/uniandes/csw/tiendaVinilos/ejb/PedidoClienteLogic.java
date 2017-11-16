@@ -145,4 +145,10 @@ public class PedidoClienteLogic
         return cli.getPedidoProveedor();
     }
     
+    public UsuarioEntity getUsuario(Long id) throws BusinessLogicException
+    {
+        PedidoClienteEntity cli = getPedido(id);
+        return cli.getUsuario();
+    }
+    
 }

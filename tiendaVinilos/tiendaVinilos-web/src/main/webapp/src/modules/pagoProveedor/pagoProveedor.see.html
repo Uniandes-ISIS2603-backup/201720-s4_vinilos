@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th style="color:black">ID</th>
+                <th style="color:black">Fecha</th>
+                <th style="color:black"> Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                
+                <td style="color:black">{{pagoProveedorActual.id}}</td>
+                <td style="color:black">{{pagoProveedorActual.fecha}}</td>
+                <td style="color:black">{{pagoProveedorActual.valor}}</td>
+            </tr>
+        </tbody>
+    </table>        
+    <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deletePagoProveedor(pagoProveedorActual)"> Eliminar pago</button>  
+</div>

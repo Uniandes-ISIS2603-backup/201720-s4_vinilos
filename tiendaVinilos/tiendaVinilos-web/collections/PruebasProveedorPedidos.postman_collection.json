@@ -1,0 +1,33 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasProveedorPedidos",
+		"_postman_id": "eb08a862-9387-9b27-1d47-b4d7bf4a0990",
+		"description": "Se prueba el GET de todos los pedidos pertenecientes a un proveedor especifico, sin embargo como las relaciones entre pedidos no fueron hechas, no hay pedidos.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/proveedores/47/pedidos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get de todos los pedidos asociados al proveedor"
+			},
+			"response": []
+		}
+	]
+}

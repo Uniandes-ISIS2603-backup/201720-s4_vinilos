@@ -36,51 +36,7 @@
                 $scope.alerts = [];
             }
 
-//
-//            this.saveRecord = function (id) {
-//                currentRecord = $scope.currentRecord;
-//
-//                // si el id es null, es un registro nuevo, entonces lo crea
-//                if (id == null) {
-//
-//                    // ejecuta POST en el recurso REST
-//                    return $http.post(context, currentRecord)
-//                            .then(function () {
-//                                // $http.post es una promesa
-//                                // cuando termine bien, cambie de estado
-//                                $state.go('citiesList');
-//                            });
-//
-//                    // si el id no es null, es un registro existente entonces lo actualiza
-//                } else {
-//
-//// 
-//            this.editRecord = function(id){
-//                // ejecuta PUT en el recurso REST
-//                    return $http.put(context + "/" + currentRecord.id, currentRecord)
-//                            .then(function () {
-//                                // $http.put es una promesa
-//                                // cuando termine bien, cambie de estado
-//                                $state.go('artistaList');
-//                            });
-//                };
-            
-//            this.deleteRecord = function(record) {
-//                 return $http.delete(context + "/" + $stateParams.artistaId)
-//                            .then(function () {
-//                                // $http.delete es una promesa
-//                                // cuando termine bien, cambie de estado
-//                                var index = $scope.recordsArtista.indexOf(record);
-//                                if (index > -1) {
-//                                    $scope.recordsArtista.splice(index, 1);
-//                                }
-//                                 $state.go('artistaList');
-//                            });
-//            }
-//
-//// Código continua con las funciones de despliegue de errores
-//
-//
+
         }]);
 })(window.angular);
 

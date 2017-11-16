@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>CVC</th>
+                <th> Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{currentTarjeta.numero}}</td>
+                <td>{{currentTarjeta.cvc}}</td>
+                <td>{{currentTarjeta.nombrePropietario}}</td>
+            </tr>
+        </tbody>
+    </table>        
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteTarjeta(currentTarjeta)"> Eliminar tarjeta</button>
+          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaEdit({tarjetaId :currentTarjeta.id})"><span class="glyphicon glyphicon-edit"></span>Modificar tarjeta</button>
+</div>

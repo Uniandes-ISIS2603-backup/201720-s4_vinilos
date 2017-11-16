@@ -1,0 +1,135 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasArtistaCancion",
+		"_postman_id": "d5c72a46-7413-668e-7af1-77a5d4719e94",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get todas las canciones de un artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/artista/501/cancion/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":800,\n\t\"name\":\"FUNCIONA EL PUT :)\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get cancion por id asociada a un artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/artista/501/cancion/28",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":800,\n\t\"name\":\"FUNCIONA EL PUT :)\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post una cancion a un artista",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/artista/501/cancion/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":800,\n\t\"name\":\"Moonlight Sonata\",\n\t\"duracion\":9\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete una cancion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"]=responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/artista/501/cancion/45",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -47,25 +47,21 @@ public class PagoProveedorLogic {
    {
        persistence.delete(id);
    }
-   public PagoProveedorEntity createWithPedido(PagoProveedorEntity entity, PedidoProveedorEntity entity1){
+   public void agregarPagoProveedor(PagoProveedorEntity pago, PedidoProveedorEntity pedido){
        
-       
-       entity1.setPagoProveedor(entity);
-       persistence.create(entity);
-       return entity;
+       pedido.getViniloEntity().get(0).getProveedor().getPagos().add(pago);
+       pago.setPedidoProveedor(pedido);
+       createProveedor(pago);
    }
    
-   public PagoProveedorEntity getWithPedido(PedidoProveedorEntity entity){
+   public void deletePago (PagoProveedorEntity entity){
        
-       return entity.getPagoP();
+       entity.setPedidoProveedor(null);
+       deleteProveedor(entity.getId());
    }
    
    
-   public void deleteWith (PagoProveedorEntity fbEntity)
-   {
-       fbEntity.setPedidoProveedor(null);
-       deleteProveedor(fbEntity.getId());
-   }
+   
    
     
 }

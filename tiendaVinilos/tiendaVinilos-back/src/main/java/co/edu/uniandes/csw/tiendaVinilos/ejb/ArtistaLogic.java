@@ -7,6 +7,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ArtistaPersistence;
 import java.util.List;
@@ -33,6 +34,10 @@ public class ArtistaLogic {
      * @throws BusinessLogicException
      */
     public ArtistaEntity createArtista(ArtistaEntity entity) throws BusinessLogicException {
+
+        if(persistence.find(entity.getId())!=null){
+            throw new BusinessLogicException("Ya existe un Artista con el id\"" + entity.getId() + "\"");
+        }
         // Invoca la persistencia para crear el Artista
         persistence.create(entity);
         return entity;
@@ -51,8 +56,7 @@ public class ArtistaLogic {
     }
     public ArtistaEntity getArtista(long id)
     {
-        ArtistaEntity ent=persistence.find(id);
-        return ent;
+        return persistence.find(id);
     }
     public ArtistaEntity updateArtista(long id,ArtistaEntity us)
     {
@@ -62,6 +66,35 @@ public class ArtistaLogic {
     public void deleteArtista(long id)
     {
         persistence.delete(id);
+    }
+    
+    //----------RECURSOS DE ARTISTA-CANCION-----------
+    
+    public List<CancionEntity> getCanciones(Long id)
+    {
+        ArtistaEntity ent = persistence.find(id);
+        return ent.getCanciones();
+    }
+    
+    
+    public void addArtista(Long id, CancionEntity canEnt)
+    {
+        ArtistaEntity ent = persistence.find(id);
+        ent.getCanciones().add(canEnt);
+        persistence.update(ent);
+    }
+    
+    
+    public CancionEntity getCancionFromArtista(ArtistaEntity artista, Long idCancion)  
+    {
+        CancionEntity cancionResult = null;
+        List<CancionEntity> canciones = artista.getCanciones();
+        for(CancionEntity can : canciones)
+        {
+            if(can.getId() == idCancion)
+                cancionResult = can;
+        }
+        return cancionResult;
     }
 
 }

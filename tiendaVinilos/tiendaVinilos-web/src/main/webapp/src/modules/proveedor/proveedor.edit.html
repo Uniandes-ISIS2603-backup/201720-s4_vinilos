@@ -1,25 +1,27 @@
+
 <div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
 
-    <form novalidate name="form" id="city-form" role="form" ng-submit="ctrl.editRecord(currentRecord.id)">
-
-        <div ng-messages="form.$error">
-            <div ng-message="required">Fill the required fields!</div>
-        </div>
+    <form novalidate name="form" id="editar" role="form" ng-submit="ctrl.editProveedor()">
 
         <fieldset>
-            <input  class="form-control" type="hidden" ng-model="currentRecord.id" />
-            <div class="form-group col-md-12" >
-                <label for="name" class="col-md-2 control-label">Name</label>
+            <style>
+            label {
+color: #000;
+}
+</style>
+            <input  class="form-control" type="hidden" ng-model="proveedorActual.id" />
+            <div   class="form-group col-md-12" >
+                <label for="proveedorName" class="col-md-2 control-label">Name</label>
                 <div class="col-md-10">
-                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                    <input id="proveedorName"  class="form-control" type="text" required ng-model="proveedorName" />
                 </div>
-                <label for="email" class="col-md-2 control-label">Email</label>
+                <label for="proveedorEmail" class="col-md-2 control-label">Email</label>
                  <div class="col-md-10">
-                <input id="email" email="email" class="form-control" type="text" ng-model="currentRecord.email" ng-init="currentRecord.email" required/>
+                <input id="proveedorEmail" class="form-control" type="text" required ng-model="proveedorEmail"/>
                 </div>
             </div>
-            <button type="button" ui-sref="({proveedorId: 'currentRecord.id'})">Cancel</button>
-            <button type="submit">Save</button>
+            <button style= "color:black" type="button" ui-sref="proveedorList">Cancel</button>
+            <button style= "color:black" type="submit">Save</button>
         </fieldset>
     </form>
 </div>

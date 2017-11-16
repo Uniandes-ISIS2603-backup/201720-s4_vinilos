@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -34,15 +33,14 @@ public class ProveedorLogic {
         return ent.getPedidos();
     }
     
-    public PedidoProveedorEntity getPedido(Long idProv, Long idPed)
+    public List<PedidoProveedorEntity> getPedido(Long id)
     {
-        ProveedorEntity ent = persistence.find(idProv);
-        List <PedidoProveedorEntity> list = ent.getPedidos();
-        PedidoProveedorEntity pedido = new PedidoProveedorEntity();
-        pedido.setId(idPed);
-        int index = list.indexOf(pedido);
-        if (index >= 0) return list.get(index);
-        return null;
+        ProveedorEntity prove= persistence.find(id);
+      if(prove!=null)
+      {
+          return prove.getPedidos();
+      }
+      return null;
     }
     
     public List<ViniloEntity> getVinilos(Long id)
@@ -114,9 +112,9 @@ public class ProveedorLogic {
        return persistence.find(id);
    }
    
-   public ProveedorEntity updateProveedor(ProveedorEntity entity)
+   public ProveedorEntity updateProveedor(ProveedorEntity entity) throws BusinessLogicException
    {
-       return persistence.update(entity);
+        return persistence.update(entity);
    }
    
    public void deleteProveedor(Long id)

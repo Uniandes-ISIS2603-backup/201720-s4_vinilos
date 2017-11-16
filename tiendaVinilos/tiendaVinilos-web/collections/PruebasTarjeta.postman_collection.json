@@ -1,0 +1,151 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PruebasTarjeta",
+		"_postman_id": "5b04cf1f-b384-bbe4-0c68-5a4281a33c39",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Ok tarjetas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/tarjetas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/tarjetas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n    {\n        \"type\": \"tarjetaDetailDTO\",\n        \"cvc\": 69,\n        \"goodThru\": \"2018-05-17T00:00:00-05:00\",\n        \"id\": 1000,\n        \"nombrePropietario\": \"asdasdsad\",\n        \"numero\": 1046546\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/tarjetas/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaDetailDTO\",\n    \"cvc\": 69,\n    \"goodThru\": \"2018-05-17T00:00:00-05:00\",\n    \"nombrePropietario\": \"asdasdsad\",\n    \"numero\": 1046546\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put Failed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs404\"]=responseCode.code==404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/tarjetas/10000000",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaDetailDTO\",\n    \"cvc\": 69,\n    \"goodThru\": \"2018-05-17T00:00:00-05:00\",\n    \"nombrePropietario\": \"asdasdsad\",\n    \"numero\": 1046546\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarTarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"]=responseCode.code==204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/tarjetas/51",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

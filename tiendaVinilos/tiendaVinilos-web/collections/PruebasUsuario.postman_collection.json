@@ -2,13 +2,75 @@
 	"variables": [],
 	"info": {
 		"name": "PruebasUsuario",
-		"_postman_id": "2997f0fd-381a-8682-717d-7d46973fc365",
-		"description": "",
+		"_postman_id": "f0c19cfe-f8b4-d703-3de2-a14da4d0a092",
+		"description": "Coleccion de pruebas recurso usuario",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "NormalGet",
+			"name": "Get Usuario OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"email\": \"jpfleger2z@taobao.com\",\n        \"name\": \"Raficco\",\n        \"numCompras\": 100,\n        \"carrito\": [],\n        \"feeds\": [],\n        \"pedidos\": [],\n        \"tarjetas\": []\n    }"
+				},
+				"description": "Devuelve todos los usuarios existosamente"
+			},
+			"response": []
+		},
+		{
+			"name": "GetById OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]=responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/943",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"nombrePropietario\":\"julian\",\"numero\":123123123,\"usuario\":[{\"id\":53}]}"
+				},
+				"description": "get correcto de id"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Ok",
 			"event": [
 				{
 					"listen": "test",
@@ -22,15 +84,24 @@
 			],
 			"request": {
 				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "Get all usuarios"
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"jdarenas@linkedin.com\",\n        \"name\": \"JulianBond\",\n        \"numCompras\": 73,\n        \"carrito\": [],\n        \"feeds\": [],\n        \"pedidos\": [],\n        \"tarjetas\": []\n\t\n}"
+				},
+				"description": "Correct post"
 			},
 			"response": []
 		},
 		{
-			"name": "Normal get with id",
+			"name": "PUT OK",
 			"event": [
 				{
 					"listen": "test",
@@ -43,29 +114,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/53",
-				"method": "GET",
-				"header": [],
-				"body": {},
-				"description": "Normal get user with id"
-			},
-			"response": []
-		},
-		{
-			"name": "Normal put",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"statusCodeIs200\"]=responseCode.code==200"
-						]
-					}
-				}
-			],
-			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/53",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/945",
 				"method": "PUT",
 				"header": [
 					{
@@ -76,14 +125,14 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"type\": \"usuarioDetailDTO\",\n        \"email\": \"hdenyukin1g@irs.gov\",\n        \"name\": \"Julian\",\n        \"numCompras\": 17\n }"
+					"raw": "{\n\t\"email\": \"newEmail@linkedin.com\",\n        \"name\": \"Nuevo Nombre\",\n        \"numCompras\": 73,\n        \"carrito\": [],\n        \"feeds\": [],\n        \"pedidos\": [],\n        \"tarjetas\": []\n\t\n}"
 				},
-				"description": "Normal put usuario"
+				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "Put fallido id inexistente",
+			"name": "GET NOT OK",
 			"event": [
 				{
 					"listen": "test",
@@ -96,25 +145,16 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/123123",
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n        \"type\": \"usuarioDetailDTO\",\n        \"email\": \"hdenyukin1g@irs.gov\",\n        \"name\": \"Julian\",\n        \"numCompras\": 17\n }"
-				},
-				"description": "id does not exist"
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/1000000",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "get failed",
+			"name": "PUT NOT OK",
 			"event": [
 				{
 					"listen": "test",
@@ -127,11 +167,158 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/123123",
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/1000000",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"newEmail@linkedin.com\",\n        \"name\": \"Nuevo Nombre\",\n        \"numCompras\": 73,\n        \"carrito\": [],\n        \"feeds\": [],\n        \"pedidos\": [],\n        \"tarjetas\": []\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs204\"]=responseCode.code==204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/1000",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE NOT OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs404\"]=responseCode.code==404"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/1000",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Post Vinyl to cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs200\"]  = responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/943/carroCompras/51",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE From carrito OK",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"statusCodeIs204\"]=responseCode.code==204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/943/carroCompras/51",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ConsultarPedidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"]= responseCode.code==200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/943/pedidos",
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": "get fallido por id"
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "BorrarVinilo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 204\"]=responseCode.code==204"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/usuarios/943/carroCompras/52",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
 			},
 			"response": []
 		}

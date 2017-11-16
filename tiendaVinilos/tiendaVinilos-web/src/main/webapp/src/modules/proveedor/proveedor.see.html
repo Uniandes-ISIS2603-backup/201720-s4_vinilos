@@ -1,48 +1,60 @@
 <div class="container-fluid">
-    <table class="table table-striped" class="col-md-4">
+    
+    <h2 style ="font-weight: bold" >Información</h2>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
+                <th style ="font-weight: bold; color:white" >Nombre  </th>
+                <th style ="font-weight: bold; color:white" >Email</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{currentRecord.name}}</td>
-                <td>{{currentRecord.email}}</td>
+                <td style ="font-weight: bold" >{{proveedorActual.name}}</td>
+                <td style ="font-weight: bold" >{{proveedorActual.email}}</td>
             </tr>
         </tbody>
     </table>
     
-     <table class="table table-striped" class="col-md-4">
+    <h2 style ="font-weight: bold" >Vinilos</h2>
+     <table class="table table-hover" class="col-md-4">
         <thead>
             <tr>
-                <th>Vinilos</th>
-                <th>Action</th>
+                <th style ="font-weight: bold; color:white" >Nombre</th>
+                <th style ="font-weight: bold;color:white" >Año</th>
+                <th style ="font-weight: bold; color:white" >Acción</th>
             </tr>
         </thead>
         <tbody>
-           <tr ng-repeat="vinilos in currentRecord.vinilos">
-                <td id="{{$index}}-name">{{vinilos.nombre}}</td>
+           <tr ng-repeat="vinilos in proveedorActual.vinilos">
+                <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.nombre}}</td>
+                 <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.anio}}</td>
+                 <td>
+                     <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
         </tbody>
     </table>
-    
-    <table class="table table-striped" class="col-md-4">
-         <th>Feedbacks</th>
-      <table class="table table-striped" class="col-md-4">    
+ 
+    <h2 style ="font-weight: bold" >Feedbacks</h2>
+      <table class="table table-hover" class="col-md-4">    
         <thead>
             <tr>
-                <th>Comentario</th>
-                <th>Calificacion</th>
+                <th style ="font-weight: bold; color:white" >Comentario</th>
+                <th style ="font-weight: bold; color:white" >Calificacion</th>
+                <th style ="font-weight: bold; color:white" >Acción</th>
+
             </tr>
         </thead>
         <tbody>
-           <tr ng-repeat="feedback in currentRecord.feedBacks">
-                <td id="{{$index}}-name">{{feedback.comentario}}</td>
-                <td id="{{$index}}-name">{{feedback.calificacion}}</td>
+           <tr ng-repeat="feedback in proveedorActual.feedBacks">
+                <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.comentario}}</td>
+                <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.calificacion}}</td>
+                <td>
+                     <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+
         </tbody>
     </table>
-    </table>
-          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(curentRecord)"> Eliminar proveedor</button>
-          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="proveedorEdit({proveedorId: currentRecord.id})"><span class="glyphicon glyphicon-edit"></span>Modificar proveedor</button>
+          <button style= "color:black" id="delete-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteProveedor(proveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
+          <button  style= "color:black" id="edit-btn" class="btn btn-default btn-lg" ui-sref="proveedorEdit({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-edit"></span></button>
 </div>

@@ -1,0 +1,76 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pagoProveedor",
+		"_postman_id": "7bade185-fc49-03d0-b5a6-af079f90995b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get pago",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \n    \"id\":2\n}"
+				},
+				"description": "se da el pago"
+			},
+			"response": []
+		},
+		{
+			"name": "get pagoParticular",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "da un pago particular"
+			},
+			"response": []
+		},
+		{
+			"name": "delete pago proveedor",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/3",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "borra pago proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "modificar pago proveedor",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/3",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"id\":22\n}\n"
+				},
+				"description": "modificar pago  Proveedor"
+			},
+			"response": []
+		}
+	]
+}

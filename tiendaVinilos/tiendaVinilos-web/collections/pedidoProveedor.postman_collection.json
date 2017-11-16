@@ -1,0 +1,76 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pedidoProveedor",
+		"_postman_id": "545b379f-1acd-2615-a54f-278b9afb749b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get pedido",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \n    \"id\":2\n}"
+				},
+				"description": "se da el pedido"
+			},
+			"response": []
+		},
+		{
+			"name": "get pedido Particular",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pagoProveedor/3",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "da un pedido particular"
+			},
+			"response": []
+		},
+		{
+			"name": "delete pedido proveedor",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/3",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "borra pedido proveedor"
+			},
+			"response": []
+		},
+		{
+			"name": "modificar pedido proveedor",
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/3",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n\"id\":22\n}\n"
+				},
+				"description": "modificar pedido Proveedor"
+			},
+			"response": []
+		}
+	]
+}
