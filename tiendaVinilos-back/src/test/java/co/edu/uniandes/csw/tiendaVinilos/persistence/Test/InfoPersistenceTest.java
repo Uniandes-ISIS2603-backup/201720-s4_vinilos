@@ -77,6 +77,7 @@ public class InfoPersistenceTest {
      *
      */
     private List<InfoEntity> data = new ArrayList<InfoEntity>();
+    private List<ViniloEntity> dataVinilos= new ArrayList<ViniloEntity>();
     
     public InfoPersistenceTest() {
     }
@@ -112,6 +113,15 @@ public class InfoPersistenceTest {
             data.add(entity);
         }
     }
+     private void insertDataVinilo() {
+        PodamFactory factory = new PodamFactoryImpl();
+        for (int i = 0; i < 3; i++) {
+            ViniloEntity entity = factory.manufacturePojo(ViniloEntity.class);
+
+            em.persist(entity);
+            dataVinilos.add(entity);
+        }
+    }
     
     @Test
      public void createInfoEntityTest() {
@@ -124,35 +134,16 @@ public class InfoPersistenceTest {
     Assert.assertNotNull(entity);
     Assert.assertEquals(newEntity.getName(), entity.getName());
 }
-     @Test
-public void getInfosTest() {
-    List<InfoEntity> list = persistence.findAll();
-    Assert.assertEquals(data.size(), list.size());
-    for (InfoEntity ent : list) {
-        boolean found = false;
-        for (InfoEntity entity : data) {
-            if (ent.getId().equals(entity.getId())) {
-                found = true;
-            }
-        }
-        Assert.assertTrue(found);
-    }
-}
-
+    
 @Test
 public void getInfoTest() {
     InfoEntity entity = data.get(0);
-    InfoEntity newEntity = persistence.find(entity.getId());
+    ViniloEntity viniloEntity= dataVinilos.get(0);
+    InfoEntity newEntity = persistence.find(viniloEntity.getId(),entity.getId());
     Assert.assertNotNull(newEntity);
     Assert.assertEquals(entity.getName(), newEntity.getName());
 }
-@Test
-public void getInfoByNameTest() {
-    InfoEntity entity = data.get(0);
-    InfoEntity newEntity = persistence.findByName(entity.getName());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getName(), newEntity.getName());
-}
+
 @Test
 public void updateInfoTest() {
     InfoEntity entity = data.get(0);

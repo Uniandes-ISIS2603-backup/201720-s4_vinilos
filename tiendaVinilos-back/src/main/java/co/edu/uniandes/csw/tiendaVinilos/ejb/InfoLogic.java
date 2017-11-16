@@ -54,16 +54,16 @@ public class InfoLogic {
      *
      * @param viniloid id del Vinilo el cual es padre de los Infos.
      * @return Colección de objetos de InfoEntity.
-     * @throws co.edu.uniandes.csw.vinilostore.exceptions.BusinessLogicException
+     * @throws co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException
      */
     public List<InfoEntity> getInfos(Long viniloid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los infos");
         ViniloEntity vinilo = viniloLogic.getVinilo(viniloid);
         if (vinilo.getInfos() == null) {
-            throw new BusinessLogicException("El libro que consulta aún no tiene infos");
+            throw new BusinessLogicException("El vinilo que consulta aún no tiene infos");
         }
         if (vinilo.getInfos().isEmpty()) {
-            throw new BusinessLogicException("El libro que consulta aún no tiene infos");
+            throw new BusinessLogicException("El vinilo que consulta aún no tiene infos");
         }
         return vinilo.getInfos();
     }

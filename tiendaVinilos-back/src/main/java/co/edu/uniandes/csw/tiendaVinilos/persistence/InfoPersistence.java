@@ -67,15 +67,15 @@ public class InfoPersistence {
         q.setParameter("viniloid", viniloid);
         q.setParameter("infoid", infoid);
         List<InfoEntity> results = q.getResultList();
-        InfoEntity review = null;
+        InfoEntity info = null;
         if (results == null) {
-            review = null;
+            info = null;
         } else if (results.isEmpty()) {
-            review = null;
+            info = null;
         } else if (results.size() >= 1) {
-            review = results.get(0);
+            info = results.get(0);
         }
 
-        return review;
+        return info;
     }
 }
