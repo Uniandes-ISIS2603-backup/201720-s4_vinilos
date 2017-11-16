@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -35,14 +35,14 @@ public class CancionEntity implements Serializable{
     private String name;
     
     @PodamExclude
-    @ManyToMany
-    private List<ArtistaEntity> artistas;
+    @ManyToOne
+    private ArtistaEntity artistas;
     
-    public List<ArtistaEntity> getArtistas(){
+    public ArtistaEntity getArtistas(){
         return artistas;
     }
     
-    public void setArtistas (List<ArtistaEntity> a){
+    public void setArtistas (ArtistaEntity a){
         this.artistas = a;
     }
     

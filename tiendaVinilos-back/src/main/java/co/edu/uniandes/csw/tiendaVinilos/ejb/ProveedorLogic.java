@@ -33,15 +33,14 @@ public class ProveedorLogic {
         return ent.getPedidos();
     }
     
-    public PedidoProveedorEntity getPedido(Long idProv, Long idPed)
+    public List<PedidoProveedorEntity> getPedido(Long id)
     {
-        ProveedorEntity ent = persistence.find(idProv);
-        List <PedidoProveedorEntity> list = ent.getPedidos();
-        PedidoProveedorEntity pedido = new PedidoProveedorEntity();
-        pedido.setId(idPed);
-        int index = list.indexOf(pedido);
-        if (index >= 0) return list.get(index);
-        return null;
+        ProveedorEntity prove= persistence.find(id);
+      if(prove!=null)
+      {
+          return prove.getPedidos();
+      }
+      return null;
     }
     
     public List<ViniloEntity> getVinilos(Long id)

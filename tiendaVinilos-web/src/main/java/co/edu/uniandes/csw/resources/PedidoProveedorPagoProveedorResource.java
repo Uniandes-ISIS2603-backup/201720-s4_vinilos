@@ -23,7 +23,7 @@ import javax.ws.rs.Produces;
  * @author s.saenz11
  */
 
-@Path("pedidoProveedor/{idPedidoProveedor: \\d+}/pagoProveedor")
+@Path("usuarios/{id0: \\d+}/pedidos/{id: \\d+}/pedidoProveedor/{id3: \\d+}/pagos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -33,16 +33,16 @@ public class PedidoProveedorPagoProveedorResource {
      @Inject PagoProveedorLogic logic1;
     
    @POST
-   public PagoProveedorDetailDTO creatPagoProveedores(@PathParam("idPedidoProveedor")Long idPedidoProveedor,PagoProveedorDetailDTO  provee)throws BusinessLogicException
+   public PagoProveedorDetailDTO creatPagoProveedores(@PathParam("id3")Long idPedidoProveedor,PagoProveedorDetailDTO  provee)throws BusinessLogicException
    {
-         logic1.agregarPagoProveedor(provee.toEntity(),logic.getProveedor(idPedidoProveedor));
+         logic1.agregarPagoProveedor(provee.toEntity(),logic.getPedidoProveedor(idPedidoProveedor));
         return provee;
    }
    
     
     @GET
    
-    public PagoProveedorDetailDTO getPagoProveedor(@PathParam("idPedidoProveedor")Long idPedidoProveedor )
+    public PagoProveedorDetailDTO getPagoProveedor(@PathParam("id3")Long idPedidoProveedor )
                    
     {
        

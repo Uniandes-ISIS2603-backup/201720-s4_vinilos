@@ -40,7 +40,7 @@ public class TarjetasUsuarioResource {
     @GET
     public List<TarjetaDetailDTO> getTarjetas(@PathParam("usuarioId") Long id) throws BusinessLogicException {
         
-        return listEntity2DetailDTO(usuarioLogic.getTarjetas(id));
+        return listEntity2DetailDTO(tarjetaLogic.darTarjetasUsuario(id));
     }
      @GET
     @Path("/{id2:\\d+}")

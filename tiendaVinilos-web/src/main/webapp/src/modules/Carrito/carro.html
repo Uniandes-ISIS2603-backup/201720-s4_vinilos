@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <h2>Tienes  {{carrito.vinilos.length}} vinilos en el carrito</h2>
+    <table class="table table-striped" class="col-md-4">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Año</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="vinilo in carrito.vinilos">
+                <td id="{{$index}}-nombre">{{vinilo.nombre}}</td>
+                <td id="{{$index}}-precio">{{vinilo.precio}}</td>
+                <td>
+                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="viniloSee({viniloId: vinilo.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

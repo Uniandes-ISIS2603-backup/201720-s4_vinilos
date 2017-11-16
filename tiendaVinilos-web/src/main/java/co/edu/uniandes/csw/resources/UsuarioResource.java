@@ -29,10 +29,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import co.edu.uniandes.csw.dtos.TarjetaDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
@@ -71,6 +74,7 @@ public class UsuarioResource {
     UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     @Inject
     CarroComprasLogic carroLogic;
+    @Inject TarjetaLogic tarjetaLogic;
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo json: {
@@ -132,7 +136,9 @@ public class UsuarioResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
         }
-        return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
+        UsuarioDetailDTO usu=new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
+        usu.setTarjetas((ArrayList<TarjetaDTO>)listEntity2DetailDTOTarjeta(tarjetaLogic.darTarjetasUsuario(id)));
+        return  usu;
     }
 
     /**
@@ -224,4 +230,13 @@ public class UsuarioResource {
         }
         return list;
     }
+    private List<TarjetaDTO> listEntity2DetailDTOTarjeta(List<TarjetaEntity> entityList) {
+        List<TarjetaDTO> list = new ArrayList<>();
+        for (TarjetaEntity entity : entityList) {
+            list.add(new TarjetaDTO(entity));
+        }
+        return list;
+    }
+    
+    
 }

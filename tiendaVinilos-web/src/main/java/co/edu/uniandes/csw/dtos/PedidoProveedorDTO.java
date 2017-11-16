@@ -24,6 +24,18 @@ public class PedidoProveedorDTO {
     private Date fecha;
     
     private double precio;
+    
+    private String estado;
+
+    public String getEsatdo() {
+        return estado;
+    }
+
+    public void setEsatdo(String esatdo) {
+        this.estado = esatdo;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -63,6 +75,7 @@ public class PedidoProveedorDTO {
         this.id = pedido.getId();
         this.fecha = pedido.getFechaEstimada();
         this.precio = pedido.getPrecio();
+        this.estado = pedido.getEstado();
         
     }
     
@@ -71,6 +84,7 @@ public class PedidoProveedorDTO {
         entity.setId(this.id);
         entity.setFechaEstimada(this.fecha);
         entity.setPrecio(this.precio);
+        entity.setEstado(this.estado);
         
         
         return entity;

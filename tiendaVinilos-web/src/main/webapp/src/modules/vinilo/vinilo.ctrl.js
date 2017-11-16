@@ -69,6 +69,13 @@
                                 }
                                  $state.go('viniloList');
                             });
+            };
+            this.addToCart = function() {
+                 return $http.post("api/usuarios/"+$stateParams.usuarioId +"/carroCompras/"+$stateParams.viniloId)
+                            .then(function () {
+                               
+                                 $state.go('viniloList');
+                            });
             }
             
 //
