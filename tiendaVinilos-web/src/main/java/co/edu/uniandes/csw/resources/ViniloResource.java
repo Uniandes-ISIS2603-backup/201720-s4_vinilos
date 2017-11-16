@@ -88,6 +88,7 @@ public class ViniloResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
         }
+       System.out.println("Llego peticion dek vinilo con id " + id);
         return new ViniloDetailDTO(ViniloLogic.getVinilo(id));
     }
 
