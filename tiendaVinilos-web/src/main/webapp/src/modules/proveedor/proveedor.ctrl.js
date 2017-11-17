@@ -104,6 +104,20 @@
                                  $state.go('proveedorList');
                             });
             }
+            
+            this.addVinilo =  function(){
+                // ejecuta POST en el recurso REST
+                return $http.post(context + "/" + $stateParams.proveedorId + "/vinilos" , {
+                         nombre: $scope.viniloName,
+                        precio: $scope.precioVinilo,
+                        anio: $scope.anioVinilo,
+                       cantUnidades: $scope.viniloCant,
+                    }).then(function () {
+                                // $http.post es una promesa
+                                // cuando termine bien, cambie de estado
+                                $state.go('proveedorList');
+                            });
+                };   
 //
 //// Código continua con las funciones de despliegue de errores
 //

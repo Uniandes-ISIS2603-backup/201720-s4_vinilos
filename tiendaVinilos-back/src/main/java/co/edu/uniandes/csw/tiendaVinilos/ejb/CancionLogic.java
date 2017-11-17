@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.CancionPersistence;
 import java.util.List;
@@ -74,4 +75,20 @@ public class CancionLogic {
         cancion.setArtistas(null);
         deleteCancion(cancion.getId());
     }
+    
+    
+    //----------RECURSOS VINILOS-CANCION--------
+    
+    public CancionEntity addVinilo(ViniloEntity vinilo, CancionEntity cancion){
+        cancion.setVinilos(vinilo);
+        return updateCancion(cancion.getId(), cancion);
+    }
+    
+    
+    
 }
+
+
+
+
+

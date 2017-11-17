@@ -47,6 +47,27 @@
                         templateUrl: basePath + 'proveedor.edit.html'
                     }
                 }
+            }).state('viniloCreate', {
+                url: '/proveedores/:proveedorId/vinilos',
+                views: {
+                    'mainView': {
+                        controller: 'proveedorCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'proveedor.agregarVinilo.html'
+                    }
+                }
+            }).state('modificarVinilo', {
+                url: '/proveedores/:proveedorId/vinilos/:viniloId',
+                 param: {
+                    viniloId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'proveedorCreateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'proveedor.agregarVinilo.html'
+                    }
+                }
             })
         }]);
 

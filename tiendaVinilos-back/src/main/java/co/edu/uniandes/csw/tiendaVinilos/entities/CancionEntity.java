@@ -13,7 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 
 /**
  *
@@ -37,6 +39,18 @@ public class CancionEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ArtistaEntity artistas;
+    
+    @PodamExclude
+    @ManyToOne
+    private ViniloEntity  vinilo;
+    
+    public ViniloEntity getVinilos(){
+        return vinilo;
+    }
+    
+    public void setVinilos(ViniloEntity vin){
+        this.vinilo = vin;
+    }
     
     public ArtistaEntity getArtistas(){
         return artistas;
