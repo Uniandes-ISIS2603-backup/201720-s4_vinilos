@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.dtos;
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
@@ -27,6 +28,9 @@ public class ViniloDetailDTO extends ViniloDTO {
 
     // relación  cero o muchos canciones
     private List<CancionDTO> canciones;
+    
+    // relación  cero o muchos canciones
+    private List<ArtistaDTO> artistas;
 
     /**
      * Constructor por defecto
@@ -56,6 +60,13 @@ public class ViniloDetailDTO extends ViniloDTO {
                 for (InfoEntity entityInfo : entity.getInfos()) {
                     infos.add(new InfoDTO(entityInfo));
                 }
+            }
+             if (entity.getArtistas()!= null) {
+                for (ArtistaEntity entityArtista : entity.getArtistas()) {
+                artistas.add(new ArtistaDTO(entityArtista));
+            }
+            } else {
+                entity.setArtistas(null);
             }
 
         }
@@ -133,6 +144,18 @@ public class ViniloDetailDTO extends ViniloDTO {
         this.canciones = canciones;
     }
 
-  
+       /**
+     * @return the artistas
+     */
+    public List<ArtistaDTO> getArtistas() {
+        return artistas;
+    }
 
+    /**
+     * @param artistas the artistas to set
+     */
+    public void setArtistas(List<ArtistaDTO> artistas) {
+        this.artistas = artistas;
+    }
+  
 }
