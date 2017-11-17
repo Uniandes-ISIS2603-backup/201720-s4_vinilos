@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -32,6 +33,9 @@ public class ArtistaEntity implements Serializable {
     @PodamExclude
     @OneToMany (mappedBy = "artistas")
     private List<CancionEntity> canciones;
+    
+    @ManyToOne
+    private ViniloEntity vinilo;
     
     
     public List<CancionEntity> getCanciones(){
@@ -59,6 +63,20 @@ public class ArtistaEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the vinilo
+     */
+    public ViniloEntity getVinilo() {
+        return vinilo;
+    }
+
+    /**
+     * @param vinilo the vinilo to set
+     */
+    public void setVinilo(ViniloEntity vinilo) {
+        this.vinilo = vinilo;
     }
 
     

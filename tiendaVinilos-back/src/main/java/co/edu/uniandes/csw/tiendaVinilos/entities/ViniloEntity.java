@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,38 +18,50 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class ViniloEntity implements Serializable {
-    
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int anio;
+    private double precio;
+    private int cantUnidades;
+    private String nombre;
+
     @PodamExclude
     @ManyToOne
-     private CarroComprasEntity carrosCompras;
-    
+    private UsuarioEntity usuario;
+
     @PodamExclude
-    @OneToMany(mappedBy = "vinilo")
-    private List<CancionEntity> canciones;
-    
-    public List<CancionEntity> getCanciones(){
-        return canciones;
-    }
-    
-    public void setCanciones(List<CancionEntity> can){
-        this.canciones = can;
-    }
-    
-    public CarroComprasEntity getCarrosCompras()
-    {
-        return carrosCompras;
-    }
-    
-    public void setCarrosCompras(CarroComprasEntity carrosCompras)
-    {
+    @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InfoEntity> infos = new ArrayList<InfoEntity>();
+
+    @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CancionEntity> canciones = new ArrayList<CancionEntity>();
+
+    @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ArtistaEntity> artistas = new ArrayList<ArtistaEntity>();
+
+    @PodamExclude
+    @ManyToOne
+    private CarroComprasEntity carrosCompras;
+
+    @PodamExclude
+    @ManyToOne
+    private ProveedorEntity proveedor;
+
+    @PodamExclude
+    @ManyToOne
+    private PedidoProveedorEntity pedidoProveedor;
+
+    public void setCarrosCompras(CarroComprasEntity carrosCompras) {
         this.carrosCompras = carrosCompras;
     }
-            
+
+    public CarroComprasEntity getCarrosCompras() {
+        return carrosCompras;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,43 +69,23 @@ public class ViniloEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-     private String name;
 
     public String getName() {
-        return name;
+        return nombre;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nombre = name;
     }
-    
-    
-    private int anio;
-    private double precio;
-    private int cantUnidades;
 
-    @PodamExclude
-    @ManyToOne
-    private ProveedorEntity proveedor;
-    
-    @PodamExclude
-    @ManyToOne
-    private PedidoProveedorEntity pedidoProveedor;
-    
-    @PodamExclude
-    @ManyToOne
-    private UsuarioEntity usuario;
-
-    public ProveedorEntity getProveedor()
-    {
+    public ProveedorEntity getProveedor() {
         return proveedor;
     }
-    
-    public void setProveedor (ProveedorEntity proveedor)
-    {
+
+    public void setProveedor(ProveedorEntity proveedor) {
         this.proveedor = proveedor;
     }
-    
+
     /**
      * @return the año
      */
@@ -147,13 +136,59 @@ public class ViniloEntity implements Serializable {
         this.pedidoProveedor = pedidoProveedor;
     }
 
+    /**
+     * @return the infos
+     */
+    public List<InfoEntity> getInfos() {
+        return infos;
+    }
+
+    /**
+     * @param infos the infos to set
+     */
+    public void setInfos(List<InfoEntity> infos) {
+        this.infos = infos;
+    }
+
+    /**
+     * @return the canciones
+     */
+    public List<CancionEntity> getCanciones() {
+        return canciones;
+    }
+
+    /**
+     * @param canciones the canciones to set
+     */
+    public void setCanciones(List<CancionEntity> canciones) {
+        this.canciones = canciones;
+    }
+
+    /**
+     * @return the artistas
+     */
+    public List<ArtistaEntity> getArtistas() {
+        return artistas;
+    }
+
+    /**
+     * @param artistas the artistas to set
+     */
+    public void setArtistas(List<ArtistaEntity> artistas) {
+        this.artistas = artistas;
+    }
+
+    /**
+     * @return the usuario
+     */
     public UsuarioEntity getUsuario() {
         return usuario;
     }
 
+    /**
+     * @param usuario the usuario to set
+     */
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
-    
-    
 }
