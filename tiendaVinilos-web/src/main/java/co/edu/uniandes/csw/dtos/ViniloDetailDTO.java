@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
+import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,6 +17,17 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 public class ViniloDetailDTO extends ViniloDTO{
     
     private CarroComprasDTO carros;
+    private ArrayList<CancionDTO> canciones;
+    
+    public ArrayList<CancionDTO> getCanciones()
+    {
+        return canciones;
+    }
+    
+    public void setCanciones(ArrayList<CancionDTO> canciones)
+    {
+        this.canciones = canciones;
+    }
     
     public CarroComprasDTO getcarros()
     {
@@ -53,6 +67,14 @@ public class ViniloDetailDTO extends ViniloDTO{
             carros = new CarroComprasDetailDTO(entity.getCarrosCompras());
         }
         else carros = null;
+        
+        if(entity != null)
+        {
+            canciones = new ArrayList<>();
+            for(CancionEntity canEnt : entity.getCanciones()){
+                canciones.add(new CancionDTO(canEnt));
+            }
+        }
     }
     
     /**
@@ -70,6 +92,17 @@ public class ViniloDetailDTO extends ViniloDTO{
                 ent = entity.getCarrosCompras();
             }
             entity.setCarrosCompras(ent);
+            
+            List<CancionEntity> listCan = null;
+            if(getCanciones() != null)
+            {
+                listCan = new ArrayList<>();
+                for(CancionDTO canDto : getCanciones())
+                {
+                    listCan.add(canDto.toEntity());
+                }
+            }
+            entity.setCanciones(listCan);
         }
         return entity;
     }

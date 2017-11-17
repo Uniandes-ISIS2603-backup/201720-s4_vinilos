@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
@@ -112,5 +113,17 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     
     
+    public List<CancionEntity> getCanciones(Long id)
+    {
+        ViniloEntity ent = persistence.find(id);
+        return ent.getCanciones();
+    }
+    
+    public void addVinilo(Long id, CancionEntity canEnt)
+    {
+        ViniloEntity ent = persistence.find(id);
+        ent.getCanciones().add(canEnt);
+        persistence.update(ent);
+    }
     
 }
