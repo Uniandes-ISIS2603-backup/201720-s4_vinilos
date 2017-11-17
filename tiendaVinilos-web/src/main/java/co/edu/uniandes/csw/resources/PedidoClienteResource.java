@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -182,5 +183,15 @@ public class PedidoClienteResource {
             list.add(new PedidoClienteDetailDTO(entity));
         }
         return list;
+    }
+    
+    @Path("{idPedido: \\d+}/pago")
+    public Class<PagoClienteResource> getPagoClienteResource(@PathParam("idPedido") Long pedidoId) throws WebApplicationException, BusinessLogicException
+    {
+          PedidoClienteEntity entity = pedidoLogic.getPedido(pedidoId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /pedidoCliente/" + pedidoId + "/pago no existe.", 404);
+        }
+        return PagoClienteResource.class;
     }
 }

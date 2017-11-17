@@ -20,12 +20,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
  * @author mj.jaime10
  */
-@Path("pagocliente")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -37,30 +37,26 @@ public class PagoClienteResource {
     
     /**
      * 
+     * @param idPedido 
      * @param pago correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. E
      * @throws BusinessLogicException
      */
-    @POST
-    public PagoClienteDetailDTO createPago(PagoClienteDetailDTO pago) throws BusinessLogicException {
-        // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        PagoClienteEntity pagoEntity = pago.toEntity();
-        // Invoca la lógica para crear la editorial nueva
-        PagoClienteEntity nuevoPedido = pagoLogic.createPedido(pagoEntity);
-        // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
-        return new PagoClienteDetailDTO(nuevoPedido);
+     @POST
+    public PagoClienteDetailDTO createPago(@PathParam("idPedido") Long idPedido, PagoClienteDetailDTO pago) throws BusinessLogicException {
+        return new PagoClienteDetailDTO(pagoLogic.createPago(idPedido, pago.toEntity()));
     }
-    
    
   
     
     /**
      * DELETE http://localhost:8080/tiendaVinilos-web/api/pagocliente/1
      *
-     * @param id corresponde al pedido a borrar.
-     * @throws BusinessLogicException
+     * @param idPedido corresponde al pedido a borrar.
+     * @param idPago
+     * @throws WebApplicationException
      *
      * En caso de no existir el id del pedido a actualizar se retorna un
      * 404 con el mensaje.
@@ -69,28 +65,40 @@ public class PagoClienteResource {
      *
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deletePago(@PathParam("id") Long id) throws BusinessLogicException {
-        pagoLogic.deletePago(id);
+    @Path("{idPago: \\d+}")
+    public void deletePago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) throws WebApplicationException 
+    {
+        PagoClienteEntity entity = pagoLogic.getPago(idPago);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.", 404);
+        }
+        pagoLogic.deletePago(idPedido, idPago);
     }
+   
     
     /**
      * GET para un pago
      * http://localhost:8080/tiendaVinilos-web/api/pagocliente/1
      *
-     * @param id corresponde al id del pedido buscado.
+     * @param idPago corresponde al id del pedido buscado.
+     * @param idPedido
      * @return El pago encontrado.
-     * @throws BusinessLogicException
+     * @throws WebApplicationException
      *
      * En caso de no existir el id del pedido buscado se retorna un 404 con
      * el mensaje.
      */
     @GET
-    @Path("{id: \\d+}")
-    public PagoClienteDetailDTO getPago(@PathParam("id") Long id) throws BusinessLogicException {
+    @Path("{idPago: \\d+}")
+    public PagoClienteDetailDTO getPago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) throws WebApplicationException {
         
-        return new PagoClienteDetailDTO(pagoLogic.getPago(id));
+        PagoClienteEntity entity = pagoLogic.getPago(idPago);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.", 404);
+        }
+        return new PagoClienteDetailDTO(entity);
     }
+   
     
     /**
      * GET para un pago

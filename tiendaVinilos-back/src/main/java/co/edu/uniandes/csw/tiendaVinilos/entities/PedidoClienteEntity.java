@@ -208,8 +208,7 @@ public class PedidoClienteEntity implements Serializable{
         this.name = name;
     }
     
-   
- 
+
     public void setUsuario( UsuarioEntity usuario )
     {
         this.usuario = usuario;
