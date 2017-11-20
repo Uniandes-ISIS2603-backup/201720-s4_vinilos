@@ -41,12 +41,8 @@ public class FeedBackResource {
        List<FeedBackEntity> lista = feedbackLogic.getAll();
        for(FeedBackEntity en : lista)
        {
-           System.out.println("EL ID DEL FEEDBACK QUE LLEGO ES --------------------------- " + en.getId());
            retList.add(new FeedBackDetailDTO(en));
-       }
-       for (FeedBackDetailDTO fbDetail : retList)
-           System.out.println("EL ID DEL DETAIl POR RETORNAR ES --------------------------- " + fbDetail.getId());
-          
+       } 
            return retList;
    }
    
@@ -58,8 +54,7 @@ public class FeedBackResource {
         if (en == null)
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
         FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
-        System.out.println("HEEEEYYYYYYYYY llego el id " + id + " y sale el id dto " + fbDTO.getId() );
-        return (fbDTO);
+        return fbDTO;
     }
 
     
@@ -67,7 +62,7 @@ public class FeedBackResource {
     public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feed)
     {
         FeedBackEntity ent = feedbackLogic.createFeedBack(feed.toEntity());
-        return (new FeedBackDetailDTO(ent));
+        return new FeedBackDetailDTO(ent);
     }
     
     
@@ -81,7 +76,7 @@ public class FeedBackResource {
         if(oldEnt == null)
             throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404); 
         FeedBackEntity ent = feedbackLogic.updateFeedBack(entity);
-        return (new FeedBackDetailDTO(ent));
+        return new FeedBackDetailDTO(ent);
     }
     
     @DELETE

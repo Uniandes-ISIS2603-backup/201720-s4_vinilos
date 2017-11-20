@@ -108,10 +108,10 @@
             this.addVinilo =  function(){
                 // ejecuta POST en el recurso REST
                 return $http.post(context + "/" + $stateParams.proveedorId + "/vinilos" , {
-                         nombre: $scope.viniloName,
-                        precio: $scope.precioVinilo,
-                        anio: $scope.anioVinilo,
-                       cantUnidades: $scope.viniloCant,
+                         nombre: $scope.viniloActual.nombre,
+                        precio: $scope.viniloActual.precio,
+                        anio: $scope.viniloActual.anio,
+                       cantUnidades: $scope.viniloActual.cantUnidades,
                     }).then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
