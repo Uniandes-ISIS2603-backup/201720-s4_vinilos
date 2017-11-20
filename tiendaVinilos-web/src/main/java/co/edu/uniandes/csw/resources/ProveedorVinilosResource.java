@@ -53,26 +53,26 @@ public class ProveedorVinilosResource {
     public ViniloDetailDTO getVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin) throws BusinessLogicException
     {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProv);
-        if (ent == null) throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
+        if (ent == null)
+            throw new BusinessLogicException("El proveedor con el id " +  idProv + " no existe");
         ViniloDetailDTO vinDTO = null;
         for (ViniloEntity vinEnt : ent.getVinilos())
-            if (vinEnt.getId().equals(idVin)) vinDTO = new ViniloDetailDTO(vinEnt);
-        if (vinDTO == null) throw new BusinessLogicException("No existe el vinilo con id " +  idVin + " perteneciente al proveedor con id " + idProv);
+            if (vinEnt.getId().equals(idVin)) 
+                vinDTO = new ViniloDetailDTO(vinEnt);
+        if (vinDTO == null) 
+            throw new BusinessLogicException("No existe el vinilo con id " +  idVin + " perteneciente al proveedor con id " + idProv);
         return vinDTO;
     }
         
     @POST
     public ViniloDetailDTO createVinilo(ViniloDetailDTO vinilo, @PathParam("idProveedor") Long idProv) throws BusinessLogicException
     {
-        if (idProv == null)  System.out.println("EL ID DEL PROVEDOR ES NULOOOOOOO");
-        if (vinilo == null)  System.out.println("EL VINILO ES NULOOOOOOO");
-        
         vinilosLogic.agregarVinilo(proveedorLogic.getProveedor(idProv), vinilo.toEntity());
         return vinilo;
     }
     
     @PUT
-    @Path(("/{idVin:\\d+}"))
+    @Path("/{idVin:\\d+}")
     public ViniloDetailDTO updateVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin, ViniloDetailDTO vinDto)
     {
         vinDto.setId(idVin);
@@ -81,8 +81,8 @@ public class ProveedorVinilosResource {
     }
    
     @DELETE
-    @Path(("/{idVin:\\d+}"))
-    public void deleteVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin)
+    @Path("/{idVin:\\d+}")
+    public void deleteVinilo(@PathParam("idVin") Long idVin)
     {
         vinilosLogic.eliminarVinilo(idVin);
     }

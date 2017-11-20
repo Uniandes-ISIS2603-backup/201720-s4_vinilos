@@ -13,19 +13,19 @@ color: #000;
             <div   class="form-group col-md-12" >
                 <label for="viniloName" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-10">
-                    <input id="proveedorName"  name="nombre" class="form-control" type="text"  ng-init="viniloActual.nombre" ng-model="viniloName" required/>
+                    <input id="proveedorName"  name="nombre" class="form-control" type="text" ng-model="viniloActual.nombre" required/>
                 </div>
                 <label for="viniloCant" class="col-md-2 control-label">Cantidad de unidades</label>
                  <div class="col-md-10">
-                <input id="cantUnidades" class="form-control" type="text" required ng-model="viniloCant" ng-init="viniloActual.cantUnidades"/>
+                <input id="cantUnidades" class="form-control" type="text" required ng-model="viniloActual.cantUnidades"/>
                 </div>
                 <label for="precioVinilo" class="col-md-2 control-label">Precio</label>
                  <div class="col-md-10">
-                <input id="precioVinilo" class="form-control" type="text" required ng-model="precioVinilo" ng-init="viniloActual.precio"/>
+                <input id="precioVinilo" class="form-control" type="text" required ng-model="viniloActual.precio"/>
                 </div>
                 <label for="anioVinilo" class="col-md-2 control-label">Anio</label>
                  <div class="col-md-10">
-                <input id="anioVinilo" class="form-control" type="text" required ng-model="anioVinilo" ng-init="viniloActual.anio"/>
+                <input id="anioVinilo" class="form-control" type="text" required ng-model="viniloActual.anio"/>
                 </div>
             </div>
             <button style= "color:black" type="button" ui-sref="proveedorList">Cancel</button>
