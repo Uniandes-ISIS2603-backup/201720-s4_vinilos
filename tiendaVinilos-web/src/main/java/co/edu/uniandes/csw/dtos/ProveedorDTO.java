@@ -17,8 +17,9 @@ public class ProveedorDTO {
     String name; 
     String email;
     
-    
+    //Constructor por defecto
     public ProveedorDTO() {
+        //Constructor por defecto
     }
     
     public Long getId()

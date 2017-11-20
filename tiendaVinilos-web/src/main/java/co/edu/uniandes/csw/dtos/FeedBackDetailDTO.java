@@ -48,7 +48,6 @@ public class FeedBackDetailDTO extends FeedBackDTO{
             ProveedorEntity ent = null;
             if (entity.getProveedor() != null)
             {
-                ent = new ProveedorEntity();
                 ent = entity.getProveedor();
             }
             entity.setProveedor(ent);

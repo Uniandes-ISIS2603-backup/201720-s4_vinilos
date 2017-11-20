@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  */
 public class FeedBackDTO {
     
-     private static final Logger LOGGER = Logger.getLogger(FeedBackDTO.class.getName());
      
      /*
      Fue necesario crear idFb como un String debido a que el json no muestra cuando es Long, por tanto es la unica manera de poder saber cual es el id del feedback,
@@ -26,7 +25,9 @@ public class FeedBackDTO {
     private String comentario;
     private double calificacion;
     
+    //Constructor por defecto
      public FeedBackDTO(){
+         //Constructor por defecto
     }   
      
     public String getIdFb(){
@@ -68,7 +69,6 @@ public class FeedBackDTO {
     
     public FeedBackDTO(FeedBackEntity entity){
         idVerdadero = entity.getId();
-        System.out.println("EL ID DEL DTO ES ------------------------------- " + idVerdadero);
         calificacion = entity.getCalificacion();
         comentario = entity.getComentario();
         idFb = entity.getId() + "";

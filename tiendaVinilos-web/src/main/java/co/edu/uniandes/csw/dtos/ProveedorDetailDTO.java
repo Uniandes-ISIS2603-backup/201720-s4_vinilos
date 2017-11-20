@@ -64,7 +64,10 @@ public class ProveedorDetailDTO extends ProveedorDTO {
     {
         return pedidos;
     }
+    
+    //Constructor por defecto
     public ProveedorDetailDTO() {
+        //Constructor por defecto
     }
 
     public ProveedorDetailDTO(ProveedorEntity entity) {
