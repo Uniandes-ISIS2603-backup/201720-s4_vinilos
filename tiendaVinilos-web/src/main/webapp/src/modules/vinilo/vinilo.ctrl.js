@@ -71,7 +71,7 @@
                             });
             };
             this.addToCart = function() {
-                 return $http.post("api/usuarios/"+$stateParams.usuarioId +"/carroCompras/"+$stateParams.viniloId)
+                 return $http.post("api/usuarios/943/carroCompras/"+$stateParams.viniloId)
                             .then(function () {
                                
                                  $state.go('viniloList');
