@@ -29,11 +29,7 @@ public class PagoClienteDetailDTO extends PagoClienteDTO{
     public PagoClienteDetailDTO(PagoClienteEntity entity) {
         super(entity);
         
-        if( entity != null )
-        {
-            this.pedido = new PedidoClienteDTO(entity.getPedido());
-        }
-    }
+      }
     
     /**
      * Transformar un DTO a un Entity
@@ -42,7 +38,6 @@ public class PagoClienteDetailDTO extends PagoClienteDTO{
      */
     public PagoClienteEntity toEntity() {
         PagoClienteEntity pago = super.toEntity();
-        pago.setPedido(pedido.toEntity());
         return pago;
     }
     

@@ -26,6 +26,7 @@
                             $scope.viniloAnio = response.data.anio;
                             $scope.viniloPrecio = response.data.precio;
                             $scope.viniloCantUnidades = response.data.cantUnidades;
+                            $scope.info=response.data.infos[0];
                         });
 
                 // el controlador no recibió un cityId

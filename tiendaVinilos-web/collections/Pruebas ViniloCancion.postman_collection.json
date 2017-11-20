@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas ViniloCancion",
+		"_postman_id": "7d96f6fa-1404-2cd4-25bb-a862e3f85663",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/tiendaVinilos-web/api/vinilos/53/cancion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"]=responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/vinilos/53/cancion",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"cancionDetailDTO\",\n        \"duracion\": 6,\n        \"id\": 34,\n        \"name\": \"Catalana\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar una cancion al un Vinilo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code===200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/tiendaVinilos-web/api/vinilos/54/cancion/53",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"cancionDetailDTO\",\n        \"duracion\": 3,\n        \"id\": 53,\n        \"name\": \"La vaca lola\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

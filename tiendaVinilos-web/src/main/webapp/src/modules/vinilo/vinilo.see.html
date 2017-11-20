@@ -7,6 +7,9 @@
                 <th>Precio</th>
                 <th>CantUnidades</th>
                 <th>Number of purchased items</th>
+                <th>Descripcion</th>
+                <th>URL Cancion</th>
+                <th>Imagen</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +18,10 @@
                 <td>{{currentVinilo.anio}}</td>
                 <td>{{currentVinilo.precio}}</td>
                 <td>{{currentVinilo.cantUnidades}}</td>
+                <td></td>
+                <td>{{info.descripcion}}</td>
+                <td><a href="{{info.urlCancion}}">{{info.urlCancion}}</a></td>
+                <td><img src="{{info.urlImagen}}"></td>
             </tr>
         </tbody>
     </table>

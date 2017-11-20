@@ -107,6 +107,7 @@
   
 }
 .navbar {
+     padding-top: 10px;
     margin-bottom: 0;
     background-color: #fff;
     z-index: 9999;
@@ -207,9 +208,10 @@ padding-right: 1000000px;
                             <li><a ui-serf="pedidoProveedorList" href="#!/pedidoProveedores">PEDIDO DEL PROVEEDOR</a></li>
                             <li><a ui-serf="pagoProveedorList" href="#!/pagoProveedores">PAGO DEL PROVEEDOR</a></li>
                             <li><a ui-serf="viniloList" href="#!/vinilos">VINILOS</a></li>
-                            <li><a ui-serf="infoList" href="#!/infos">INFOS</a></li>
                             <li><a ui-sref="artistaList">ARTISTAS</a></li>
                             <li><a ui-sref="cancionList">CANCIONES</a></li>
+                            <li><a ui-sref="pedidoClienteList">PEDIDOS DEL CLIENTE</a></li>
+                            <li><a ui-sref="pagoClienteList">PAGOS DEL CLIENTE</a></li>
                         </ul>
                     </div>
                 </div>
@@ -220,18 +222,7 @@ padding-right: 1000000px;
             <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
             <div ui-view="mainView">
 
-                <video id="myVideo" width="1500" height="700" controls autoplay style="padding-top: 10px;">
-                    <source src="resources/trust in vinyl video loop.mp4" type="video/mp4">
-                    <source src="mov_bbb.ogg" type="video/ogg">
-                    Your browser does not support HTML5 video.
-                </video>
-
-                <script>
-                    var vid = document.getElementById("myVideo");
-
-                    vid.loop = true;
-                    vid.load();
-                </script> 
+               
 
             </div>
         </div>

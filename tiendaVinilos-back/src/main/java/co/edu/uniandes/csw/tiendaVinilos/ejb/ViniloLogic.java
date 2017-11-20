@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
@@ -14,6 +11,7 @@ import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -96,7 +94,7 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
     {
-        vinilo.setUsuario(usuario);
+       
         return createVinilo(vinilo);
     }
     public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
@@ -106,11 +104,184 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     public void sacraDelCarrito(ViniloEntity vinilo)
     {
-        vinilo.setUsuario(null);
         vinilo.setCarrosCompras(null);
         deleteVinilo(vinilo.getId());
     }
     
     
+    public List<CancionEntity> getCanciones(Long id)
+    {
+        ViniloEntity ent = persistence.find(id);
+        return ent.getCanciones();
+    }
     
+    public void addVinilo(Long id, CancionEntity canEnt)
+    {
+        ViniloEntity ent = persistence.find(id);
+        ent.getCanciones().add(canEnt);
+        persistence.update(ent);
+    }
+    
+    /**
+     * Obtiene una colección de instancias de ArtistaEntity asociadas a una
+     * instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @return Colección de instancias de ArtistaEntity asociadas a la instancia
+     * de Vinilo
+     * 
+     */
+    public List<ArtistaEntity> listArtistas(Long viniloId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", viniloId);
+        return getVinilo(viniloId).getArtistas();
+    }
+
+    /**
+     * Obtiene una instancia de ArtistaEntity asociada a una instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param artistasId Identificador de la instancia de Artista
+     * 
+     */
+    public ArtistaEntity getArtista(Long viniloId, Long artistasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor del libro con id = {0}", viniloId);
+        List<ArtistaEntity> list = getVinilo(viniloId).getArtistas();
+        ArtistaEntity artistasEntity = new ArtistaEntity();
+        artistasEntity.setId(artistasId);
+        int index = list.indexOf(artistasEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    /**
+     * Asocia un Artista existente a un Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param artistasId Identificador de la instancia de Artista
+     * @return Instancia de ArtistaEntity que fue asociada a Vinilo
+     * 
+     */
+    public ArtistaEntity addArtista(Long viniloId, Long artistasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
+        ViniloEntity viniloEntity = getVinilo(viniloId);
+        ArtistaEntity artistasEntity = new ArtistaEntity();
+        artistasEntity.setId(artistasId);
+        viniloEntity.getArtistas().add(artistasEntity);
+        return getArtista(viniloId, artistasId);
+    }
+
+    /**
+     * Remplaza las instancias de Artista asociadas a una instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param list Colección de instancias de ArtistaEntity a asociar a instancia
+     * de Vinilo
+     * @return Nueva colección de ArtistaEntity asociada a la instancia de Vinilo
+     * 
+     */
+    public List<ArtistaEntity> replaceArtistas(Long viniloId, List<ArtistaEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un autor del libro con id = {0}", viniloId);
+        ViniloEntity viniloEntity = getVinilo(viniloId);
+        viniloEntity.setArtistas(list);
+        return viniloEntity.getArtistas();
+    }
+
+    /**
+     * Desasocia un Artista existente de un Vinilo existente
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param artistasId Identificador de la instancia de Artista
+     * 
+     */
+    public void removeArtista(Long viniloId, Long artistasId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor del libro con id = {0}", viniloId);
+        ViniloEntity entity = getVinilo(viniloId);
+        ArtistaEntity artistasEntity = new ArtistaEntity();
+        artistasEntity.setId(artistasId);
+        entity.getArtistas().remove(artistasEntity);
+    }
+
+    /**
+     * Obtiene una colección de instancias de CancionEntity asociadas a una
+     * instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @return Colección de instancias de CancionEntity asociadas a la instancia
+     * de Vinilo
+     * 
+     */
+    public List<CancionEntity> listCanciones(Long viniloId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", viniloId);
+        return getVinilo(viniloId).getCanciones();
+    }
+
+    /**
+     * Obtiene una instancia de CancionEntity asociada a una instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param cancionsId Identificador de la instancia de Cancion
+     * 
+     */
+    public CancionEntity getCancion(Long viniloId, Long cancionsId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor del libro con id = {0}", viniloId);
+        List<CancionEntity> list = getVinilo(viniloId).getCanciones();
+        CancionEntity cancionsEntity = new CancionEntity();
+        cancionsEntity.setId(cancionsId);
+        int index = list.indexOf(cancionsEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    /**
+     * Asocia un Cancion existente a un Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param cancionsId Identificador de la instancia de Cancion
+     * @return Instancia de CancionEntity que fue asociada a Vinilo
+     * 
+     */
+    public CancionEntity addCancion(Long viniloId, Long cancionsId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
+        ViniloEntity viniloEntity = getVinilo(viniloId);
+        CancionEntity cancionsEntity = new CancionEntity();
+        cancionsEntity.setId(cancionsId);
+        viniloEntity.getCanciones().add(cancionsEntity);
+        return getCancion(viniloId, cancionsId);
+    }
+
+    /**
+     * Remplaza las instancias de Cancion asociadas a una instancia de Vinilo
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param list Colección de instancias de CancionEntity a asociar a instancia
+     * de Vinilo
+     * @return Nueva colección de CancionEntity asociada a la instancia de Vinilo
+     * 
+     */
+    public List<CancionEntity> replaceCanciones(Long viniloId, List<CancionEntity> list) {
+        LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un autor del libro con id = {0}", viniloId);
+        ViniloEntity viniloEntity = getVinilo(viniloId);
+        viniloEntity.setCanciones(list);
+        return viniloEntity.getCanciones();
+    }
+
+    /**
+     * Desasocia un Cancion existente de un Vinilo existente
+     *
+     * @param viniloId Identificador de la instancia de Vinilo
+     * @param cancionsId Identificador de la instancia de Cancion
+     * 
+     */
+    public void removeCancion(Long viniloId, Long cancionsId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor del libro con id = {0}", viniloId);
+        ViniloEntity entity = getVinilo(viniloId);
+        CancionEntity cancionsEntity = new CancionEntity();
+        cancionsEntity.setId(cancionsId);
+        entity.getCanciones().remove(cancionsEntity);
+    }
+
 }

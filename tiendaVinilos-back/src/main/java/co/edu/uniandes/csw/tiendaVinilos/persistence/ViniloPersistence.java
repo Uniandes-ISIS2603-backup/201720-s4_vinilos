@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.tiendaVinilos.persistence;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
@@ -115,7 +110,7 @@ public class ViniloPersistence {
         LOGGER.log(Level.INFO, "Consultando Vinilo por nombre ", name);
 
         // Se crea un query para buscar Vinilos con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ViniloEntity e where e.name = :name", ViniloEntity.class);
+        TypedQuery query = em.createQuery("Select e From ViniloEntity e where e.nombre = :name", ViniloEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado

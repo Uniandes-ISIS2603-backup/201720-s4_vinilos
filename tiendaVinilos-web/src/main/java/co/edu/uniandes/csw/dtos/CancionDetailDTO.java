@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 
 /**
  *
@@ -14,11 +15,19 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
  */
 public class CancionDetailDTO extends CancionDTO{
     
-    
+    private ViniloDTO vinilo;
     private ArtistaDTO artista;
     
     public ArtistaDTO getArtista(){
         return artista;
+    }
+    
+    public ViniloDTO getVinilo(){
+        return vinilo;
+    }
+    
+    public void setVinilo(ViniloDTO vin){
+        this.vinilo = vin;
     }
     
     public void setArtista(ArtistaDTO artista){
@@ -36,6 +45,12 @@ public class CancionDetailDTO extends CancionDTO{
         }else{
             artista = null;
         }
+        
+        if(entity.getVinilos() != null){
+            vinilo = new ViniloDetailDTO(entity.getVinilos());
+        }else{
+            vinilo = null;
+        }
     }
     
     @Override
@@ -43,10 +58,15 @@ public class CancionDetailDTO extends CancionDTO{
         CancionEntity entity = super.toEntity();
         
         if(entity != null){
+            ViniloEntity vinEnt = null;
             ArtistaEntity ent = null;
             if(entity.getArtistas() != null){
                 ent = entity.getArtistas();
             }
+            if(entity.getVinilos() != null){
+                vinEnt = entity.getVinilos();
+            }
+            entity.setVinilos(vinEnt);
             entity.setArtistas(ent);
         }
         return entity;

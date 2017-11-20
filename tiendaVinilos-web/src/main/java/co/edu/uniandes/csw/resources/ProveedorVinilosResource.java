@@ -64,6 +64,9 @@ public class ProveedorVinilosResource {
     @POST
     public ViniloDetailDTO createVinilo(ViniloDetailDTO vinilo, @PathParam("idProveedor") Long idProv) throws BusinessLogicException
     {
+        if (idProv == null)  System.out.println("EL ID DEL PROVEDOR ES NULOOOOOOO");
+        if (vinilo == null)  System.out.println("EL VINILO ES NULOOOOOOO");
+        
         vinilosLogic.agregarVinilo(proveedorLogic.getProveedor(idProv), vinilo.toEntity());
         return vinilo;
     }
