@@ -14,8 +14,7 @@
         'pedidoClienteModules',
         'pagoClienteModules',
         'artistaModule',
-        'cancionModule',
-        'carritoModules'
+        'cancionModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
