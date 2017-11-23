@@ -34,13 +34,12 @@ public class FeedBackDetailDTO extends FeedBackDTO{
         return proveedor;
     }
     
-    /**
-     * Constructor por defecto
-     */
+    //Constructor por defecto
     public FeedBackDetailDTO(){
+        //Constructor por defecto
     }
     
-    
+    @Override
     public FeedBackEntity toEntity()
     {
         FeedBackEntity entity = super.toEntity();
@@ -57,7 +56,7 @@ public class FeedBackDetailDTO extends FeedBackDTO{
     
     /**
      * Constructor del feedback a partir de un entity
-     * @param ent 
+     * @param entity 
      */
     public FeedBackDetailDTO(FeedBackEntity entity){
         super(entity);

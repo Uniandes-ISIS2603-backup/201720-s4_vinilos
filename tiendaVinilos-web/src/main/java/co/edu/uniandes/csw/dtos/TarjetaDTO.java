@@ -47,8 +47,9 @@ public class TarjetaDTO {
     @Temporal(TemporalType.DATE)
     private Date goodThru;
 
+    //Constructor por defecto
     public TarjetaDTO() {
-
+        //Constructor por defecto
     }
 
     public TarjetaDTO(TarjetaEntity tarjeta) {

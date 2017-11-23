@@ -52,13 +52,15 @@ public class PagoProveedorDTO {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    
+    //Constructor por defecto
     public PagoProveedorDTO(){
-        
+        //Constructor por defecto
     }
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param usuario: Es la entidad que se va a convertir a DTO 
+     * @param pedido: Es la entidad que se va a convertir a DTO 
      */
     public PagoProveedorDTO(PagoProveedorEntity pedido) {
         this.id = pedido.getId();

@@ -22,11 +22,11 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
     
     private PedidoClienteDTO pedidoC;
     
-    private ArrayList<ViniloDTO> vinilo;
+    private List<ViniloDTO> vinilo;
     
+    //Constructor por defecto
      public PedidoProveedorDetailDTO(){
-         
-         
+         //Constructor por defecto
      }
    
     /**
@@ -64,6 +64,7 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
      *
      * @return 
      */
+    @Override
     public PedidoProveedorEntity toEntity() {
         PedidoProveedorEntity pedidoP = super.toEntity();
         
@@ -113,11 +114,11 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
         this.pedidoC = pedidoC;
     }
 
-    public ArrayList<ViniloDTO> getVinilo() {
+    public List<ViniloDTO> getVinilo() {
         return vinilo;
     }
 
-    public void setVinilo(ArrayList<ViniloDTO> vinilo) {
+    public void setVinilo(List<ViniloDTO> vinilo) {
         this.vinilo = vinilo;
     }
 

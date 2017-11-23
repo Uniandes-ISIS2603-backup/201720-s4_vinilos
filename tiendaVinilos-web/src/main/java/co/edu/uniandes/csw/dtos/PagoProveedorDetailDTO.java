@@ -13,9 +13,9 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
  */
 public class PagoProveedorDetailDTO extends PagoProveedorDTO {
     
-    
+    //Constructor por defecto
     public PagoProveedorDetailDTO(){
-        
+        //Constructor por defecto
     }
     
     /**
@@ -32,6 +32,7 @@ public class PagoProveedorDetailDTO extends PagoProveedorDTO {
      *
      * @return 
      */
+    @Override
     public PagoProveedorEntity toEntity() {
         PagoProveedorEntity UsuarioE = super.toEntity();
         return UsuarioE;

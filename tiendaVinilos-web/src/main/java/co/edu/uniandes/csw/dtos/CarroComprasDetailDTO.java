@@ -16,19 +16,21 @@ import java.util.List;
  */
 public class CarroComprasDetailDTO extends CarroComprasDTO{
     
-    private ArrayList<ViniloDTO> vinilos;
+    private List<ViniloDTO> vinilos;
     
-    public void setVinilos(ArrayList<ViniloDTO> vinilos)
+    public void setVinilos(List<ViniloDTO> vinilos)
     {   
         this.vinilos = vinilos;
     }
     
-    public ArrayList<ViniloDTO> getVinilos()
+    public List<ViniloDTO> getVinilos()
     {
         return vinilos;
     }
     
+    //Constructor por defecto
     public CarroComprasDetailDTO(){
+        //Constructor por defecto
     }
     
     /**

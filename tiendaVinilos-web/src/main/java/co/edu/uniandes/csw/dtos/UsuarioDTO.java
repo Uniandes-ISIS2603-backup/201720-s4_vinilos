@@ -54,16 +54,15 @@ public class UsuarioDTO {
         this.email = email;
     }
 
-    /**
-     * Constructor por defecto
-     */
+    //Constructor por defecto
     public UsuarioDTO() {
+        //Constructor por defecto
     }
 
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param Usuario: Es la entidad que se va a convertir a DTO 
+     * @param usuario: Es la entidad que se va a convertir a DTO 
      */
     public UsuarioDTO(UsuarioEntity usuario) {
         this.id = usuario.getId();

@@ -77,25 +77,19 @@ public class ProveedorDetailDTO extends ProveedorDTO {
             for (FeedBackEntity fb : entity.getFeedBacks()) {
                 feedBack.add(new FeedBackDTO(fb));
             }
-        }
-        
-        if (entity != null) {
             pagos = new ArrayList();
+            
             for (PagoProveedorEntity ent : entity.getPagos()) {
                 pagos.add(new PagoProveedorDTO(ent));
             }
-        }
-        
-         if (entity != null)
-        {
+            
             pedidos = new ArrayList();
+            
             for (PedidoProveedorEntity pedidoEnt : entity.getPedidos())
                 pedidos.add(new PedidoProveedorDTO(pedidoEnt));
-        }
-         
-         if (entity != null)
-        {
+            
             vinilos = new ArrayList();
+            
             for (ViniloEntity vinEnt : entity.getVinilos())
                 vinilos.add(new ViniloDTO(vinEnt));
         }
@@ -113,9 +107,7 @@ public class ProveedorDetailDTO extends ProveedorDTO {
                 }
             } 
             entity.setFeedBacks(listFB);
-        }
-        
-        if (entity != null) {
+       
             List<PagoProveedorEntity> listPp = null;
             if (getPagos() != null) {
                 listPp = new ArrayList();
@@ -124,21 +116,16 @@ public class ProveedorDetailDTO extends ProveedorDTO {
                 }
             } 
             entity.setPagos(listPp);
-        }
-        if (entity != null)
-       {
-           List<PedidoProveedorEntity> listPp = null;
+       
+           List<PedidoProveedorEntity> listPp2 = null;
            if (getPedidos() != null) {
-               listPp = new ArrayList();
+               listPp2 = new ArrayList();
            for (PedidoProveedorDTO ppDTO : getPedidos()){
-               listPp.add(ppDTO.toEntity());
+               listPp2.add(ppDTO.toEntity());
            }
            }
-           entity.setPedidos(listPp);
-       }
-        
-           if (entity != null)
-       {
+           entity.setPedidos(listPp2);
+      
            List<ViniloEntity> listVin = null;
            if (getVinilos() != null) {
                listVin = new ArrayList();

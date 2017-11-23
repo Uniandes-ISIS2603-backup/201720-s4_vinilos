@@ -45,10 +45,9 @@ public class UsuarioDetailDTO extends UsuarioDTO {
 
     private CarroComprasDetailDTO carrito;
 
-    /**
-     * Constructor por defecto
-     */
+    //Constructor por defecto
     public UsuarioDetailDTO() {
+        //Constructor por defecto
     }
      /**
      * Constructor para transformar un Entity a un DTO

@@ -16,19 +16,21 @@ import java.util.List;
  */
 public class ArtistaDetailDTO extends ArtistaDTO{
     
-    private ArrayList<CancionDTO> canciones;
+    private List<CancionDTO> canciones;
     
-    public ArrayList<CancionDTO> getCanciones()
+    public List<CancionDTO> getCanciones()
     {
         return canciones;
     }
     
-    public void setCanciones(ArrayList<CancionDTO> canciones)
+    public void setCanciones(List<CancionDTO> canciones)
     {
         this.canciones = canciones;
     }
     
+    //Constructor por defecto
     public ArtistaDetailDTO(){
+        //Constructor por defecto
     }
     
     /**

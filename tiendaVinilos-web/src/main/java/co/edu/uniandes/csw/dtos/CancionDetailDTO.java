@@ -34,8 +34,9 @@ public class CancionDetailDTO extends CancionDTO{
         this.artista = artista;
     }
     
+    //Constructor por defecto
     public CancionDetailDTO(){
-        
+        //Constructor por defecto
     }
     
     public CancionDetailDTO(CancionEntity entity){

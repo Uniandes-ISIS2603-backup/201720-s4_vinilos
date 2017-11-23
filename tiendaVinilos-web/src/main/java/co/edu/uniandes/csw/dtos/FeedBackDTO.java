@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.dtos;
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
-import java.util.logging.Logger;
 
 /**
  *

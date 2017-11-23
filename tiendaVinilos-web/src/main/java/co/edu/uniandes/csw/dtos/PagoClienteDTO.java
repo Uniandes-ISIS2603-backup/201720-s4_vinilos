@@ -52,7 +52,9 @@ public class PagoClienteDTO {
         this.id = id;
     }
     
+    //Constructor por defecto
     public PagoClienteDTO( ) {
+        //Constructor por defecto
     }
     
     

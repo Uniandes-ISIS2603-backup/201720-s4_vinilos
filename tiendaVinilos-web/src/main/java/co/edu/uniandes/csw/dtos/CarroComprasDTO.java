@@ -32,7 +32,9 @@ public class CarroComprasDTO {
         this.precioTotal = precioTotal;
     }
     
+    //Constructor por defecto
     public CarroComprasDTO(){
+        //Constructor por defecto
     }
     
     public CarroComprasDTO(CarroComprasEntity carro){

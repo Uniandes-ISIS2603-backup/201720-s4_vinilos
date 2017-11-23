@@ -61,15 +61,16 @@ public class PedidoProveedorDTO {
         this.precio = precio;
     }
     
-    
+    //Constructor por defecto
    public PedidoProveedorDTO(){
+       //Constructor por defecto
        
    }
 
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param : Es la entidad que se va a convertir a DTO 
+     * @param pedido
      */
     public PedidoProveedorDTO(PedidoProveedorEntity pedido) {
         this.id = pedido.getId();

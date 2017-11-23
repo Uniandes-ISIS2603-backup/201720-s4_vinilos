@@ -40,11 +40,10 @@ public class TarjetaDetailDTO extends TarjetaDTO {
         this.usuario = usuario;
     }
     
-    
-
+    //Constructor por defecto
     public TarjetaDetailDTO()
     {
-        
+     //Constructor por defecto   
     }
     /**
      * Constructor para transformar un Entity a un DTO

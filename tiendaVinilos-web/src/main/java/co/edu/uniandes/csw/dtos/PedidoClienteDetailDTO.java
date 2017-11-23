@@ -18,12 +18,12 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
     
     private PagoClienteDTO pago;
     private UsuarioDTO usuario;
-    private ArrayList<PedidoProveedorDTO> pedidoP;
+    private List<PedidoProveedorDTO> pedidoP;
     private CarroComprasDetailDTO carrito;
-    /**
-     * Constructor por defecto
-     */
+    
+    //Constructor por defecto
     public PedidoClienteDetailDTO() {
+        //Constructor por defecto
     }
     
     
@@ -113,11 +113,11 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO{
         return pago;
     }
 
-    public ArrayList<PedidoProveedorDTO> getPedidoP() {
+    public List<PedidoProveedorDTO> getPedidoP() {
         return pedidoP;
     }
 
-    public void setPedidoP(ArrayList<PedidoProveedorDTO> pedidoP) {
+    public void setPedidoP(List<PedidoProveedorDTO> pedidoP) {
         this.pedidoP = pedidoP;
     }
 

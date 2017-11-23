@@ -22,10 +22,9 @@ public class PedidoClienteDTO {
     private int telefono;
     private Date fechaEstimada;
     
-    /**
-     * Constructor por defecto
-     */
+    //Constructor por defecto
     public PedidoClienteDTO() {
+        //Constructor por defecto
     }
     
     /**

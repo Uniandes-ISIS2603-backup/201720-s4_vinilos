@@ -32,7 +32,9 @@ public class ArtistaDTO {
         this.name = name;
     }
     
+    //Constructor por defecto
     public ArtistaDTO(){
+        //Constructor por defecto
     }
     
     public ArtistaDTO(ArtistaEntity entity){

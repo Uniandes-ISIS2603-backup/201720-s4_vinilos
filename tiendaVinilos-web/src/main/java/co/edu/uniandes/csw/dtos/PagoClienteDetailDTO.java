@@ -15,10 +15,10 @@ public class PagoClienteDetailDTO extends PagoClienteDTO{
     
     
     private PedidoClienteDTO pedido;
-    /**
-     * Constructor por defecto
-     */
+    
+    //Constructor por defecto
     public PagoClienteDetailDTO() {
+        //Constructor por defecto
     }
     
     /**
@@ -36,6 +36,7 @@ public class PagoClienteDetailDTO extends PagoClienteDTO{
      *
      * @return 
      */
+    @Override
     public PagoClienteEntity toEntity() {
         PagoClienteEntity pago = super.toEntity();
         return pago;
