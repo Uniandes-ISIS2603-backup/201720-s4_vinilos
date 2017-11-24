@@ -7,7 +7,7 @@
                 <form ng-submit="createCancion()" name="cancion">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="cancionName" class="col-sm-2">Name:</label>
+                            <label for="cancionName" class="col-sm-2">Nombre:</label>
                             <input id="cancionName" required ng-model="cancionName" class="col-sm-6"/>
                         </div>
                     </div>
@@ -15,6 +15,13 @@
                         <div class="form-group col-md-6">
                             <label for="cancionDuracion" class="col-sm-2">Duracion:</label>
                             <input type="Number" id="cancionDuracion" required ng-model="cancionDuracion" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="cancionLink" class="col-sm-2">Link:</label>
+                            <input  id="cancionLink" required ng-model="cancionLink" class="col-sm-6"/>
                         </div>
                     </div>
                     

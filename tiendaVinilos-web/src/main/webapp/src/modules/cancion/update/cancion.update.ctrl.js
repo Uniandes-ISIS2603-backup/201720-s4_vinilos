@@ -16,6 +16,7 @@
                         var cancion = response.data;
                         $scope.cancionName = cancion.name;
                         $scope.cancionDuracion = cancion.duracion;
+                        $scope.cancionLink = cancion.link;
                     });
 
 
@@ -50,6 +51,7 @@
                         $http.put(cancionContext + "/" + idCancion, {
                             name: $scope.cancionName,
                             duracion: $scope.cancionDuracion,
+                            link: $scope.cancionLink,
                         }).then(function (response) {
                             $state.go('cancionList', {cancionId: response.data.id}, {reload: true});
                             if (idsBook.length >= 0) {
