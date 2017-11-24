@@ -78,9 +78,6 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         }
         pedidos = (ArrayList<PedidoClienteDTO>) list3;
 
-        List<ViniloEntity> lista4 = entity.getCarroCompras();
-        List<ViniloDTO> list4 = new ArrayList<>();
-
         carrito = new CarroComprasDetailDTO(entity.getCarrito());
 
     }
@@ -123,7 +120,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     @Override
     public UsuarioEntity toEntity() {
-        UsuarioEntity UsuarioE = super.toEntity();
+        UsuarioEntity usuarioE = super.toEntity();
         ArrayList<TarjetaEntity> cards = new ArrayList<>();
         if (tarjetas != null) {
             for (TarjetaDTO tarjeta : tarjetas) {
@@ -144,13 +141,13 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             }
         }
 
-        UsuarioE.setPedidos(pedidos2);
-        UsuarioE.setTarjetas(cards);
-        UsuarioE.setFeedBacks(feedbacks);
+        usuarioE.setPedidos(pedidos2);
+        usuarioE.setTarjetas(cards);
+        usuarioE.setFeedBacks(feedbacks);
         if (carrito != null) {
-            UsuarioE.setCarrito(carrito.toEntity());
+            usuarioE.setCarrito(carrito.toEntity());
         }
-        return UsuarioE;
+        return usuarioE;
     }
 
 }

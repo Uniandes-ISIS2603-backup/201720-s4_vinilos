@@ -8,8 +8,6 @@
                        name: $scope.usuarioName,
                         email: $scope.usuarioEmail
                     }).then(function () {
-                                alert($scope.usuarioName)
-                                alert($scope.usuarioEmail)
                                 $state.go('usuarioList');
                             });
                 };   

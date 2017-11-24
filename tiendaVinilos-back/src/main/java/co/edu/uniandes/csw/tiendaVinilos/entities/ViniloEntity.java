@@ -36,9 +36,11 @@ public class ViniloEntity implements Serializable {
     @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<InfoEntity> infos = new ArrayList<InfoEntity>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CancionEntity> canciones = new ArrayList<CancionEntity>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "vinilo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ArtistaEntity> artistas = new ArrayList<ArtistaEntity>();
 

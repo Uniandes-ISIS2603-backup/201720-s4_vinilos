@@ -8,8 +8,6 @@
                     numero:$scope.tarjetaNumber,
                     nombrePropietario:$scope.tarjetaOwner
                     }).then(function () {
-                                alert($scope.tarjetaNumber)
-                                alert($scope.tarjetaOwner)
                                 $state.go('tarjetaList');
                             });
                 };   

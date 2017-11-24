@@ -33,7 +33,7 @@ public class ArtistaEntity implements Serializable {
     @PodamExclude
     @OneToMany (mappedBy = "artistas")
     private List<CancionEntity> canciones;
-    
+    @PodamExclude
     @ManyToOne
     private ViniloEntity vinilo;
     

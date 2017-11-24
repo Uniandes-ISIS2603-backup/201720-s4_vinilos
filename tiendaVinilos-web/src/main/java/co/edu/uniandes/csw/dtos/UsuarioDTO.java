@@ -38,6 +38,24 @@ public class UsuarioDTO {
     private int cantCompras ;
     private String email;
 
+    
+    //Constructor por defecto
+    public UsuarioDTO() {
+        //Constructor por defecto
+    }
+    
+    /**
+     * Conviertir Entity a DTO
+     * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
+     * @param usuario: Es la entidad que se va a convertir a DTO 
+     */
+    public UsuarioDTO(UsuarioEntity usuario) {
+        this.id = usuario.getId();
+        this.name = usuario.getName();
+        this.email=usuario.geteMail();
+        this.cantCompras= usuario.getCantCompras();
+    }
+
     public int getNumCompras() {
         return cantCompras;
     }
@@ -54,22 +72,6 @@ public class UsuarioDTO {
         this.email = email;
     }
 
-    //Constructor por defecto
-    public UsuarioDTO() {
-        //Constructor por defecto
-    }
-
-    /**
-     * Conviertir Entity a DTO
-     * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param usuario: Es la entidad que se va a convertir a DTO 
-     */
-    public UsuarioDTO(UsuarioEntity usuario) {
-        this.id = usuario.getId();
-        this.name = usuario.getName();
-        this.email=usuario.geteMail();
-        this.cantCompras= usuario.getCantCompras();
-    }
 
     /**
      * @return the id

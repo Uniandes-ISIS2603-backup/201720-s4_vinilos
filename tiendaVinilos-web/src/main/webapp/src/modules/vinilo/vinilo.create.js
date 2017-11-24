@@ -9,9 +9,7 @@
                         precio: $scope.viniloPrecio,
                         anio: $scope.viniloAnio,
                        cantUnidades: $scope.viniloCantUnidades,
-                    }).then(function () {
-                                alert($scope.viniloNombre)
-                               
+                    }).then(function () {                               
                                 $state.go('viniloList');
                             });
                 };   

@@ -81,7 +81,6 @@ public class TarjetaResource {
     @POST
     public TarjetaDetailDTO createTarjeta(TarjetaDetailDTO tarjeta) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        TarjetaEntity tarjetaEntity = tarjeta.toEntity();
         // Invoca la lógica para crear la tarjeta nueva
         TarjetaEntity nuevoTarjeta = tarjetaLogic.createTarjeta(tarjeta.toEntity());
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo

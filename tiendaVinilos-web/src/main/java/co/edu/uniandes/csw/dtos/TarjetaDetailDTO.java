@@ -32,19 +32,13 @@ public class TarjetaDetailDTO extends TarjetaDTO {
     
     private UsuarioDTO usuario;
 
-    public UsuarioDTO getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
-    }
-    
-    //Constructor por defecto
+        //Constructor por defecto
     public TarjetaDetailDTO()
     {
      //Constructor por defecto   
     }
+     
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
@@ -53,6 +47,14 @@ public class TarjetaDetailDTO extends TarjetaDTO {
     public TarjetaDetailDTO(TarjetaEntity entity) {
         super(entity);
     }
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+   
 
     /**
      * Transformar un DTO a un Entity
@@ -61,8 +63,7 @@ public class TarjetaDetailDTO extends TarjetaDTO {
      */
     @Override
     public TarjetaEntity toEntity() {
-        TarjetaEntity TarjetaE = super.toEntity();
-        return TarjetaE;
+        return super.toEntity();
     }
 
 }
