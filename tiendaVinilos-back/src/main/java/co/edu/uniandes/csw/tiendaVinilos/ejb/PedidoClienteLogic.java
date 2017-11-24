@@ -28,7 +28,9 @@ public class PedidoClienteLogic
     @Inject
     private PedidoClientePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-     
+      private static final String NOEXISTE = " no existe."; 
+      private static final String ELPEDIDO = "El Pedido con el id "; 
+    
     /**
      *
      * @param entity
@@ -59,7 +61,7 @@ public class PedidoClienteLogic
         // Note que, por medio de la inyección de dependencias se llama al método "find(id)" que se encuentra en la persistencia.
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
+            throw new BusinessLogicException( ELPEDIDO + id + NOEXISTE);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar editorial con id={0}", id);
         return pedido;
@@ -79,9 +81,10 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
+            throw new BusinessLogicException( ELPEDIDO + id + NOEXISTE);
         }
-        if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")) 
+        
+        if(!(("Aceptado").equals(pedido.getEstado())) && !(("Por Confirmar").equals(pedido.getEstado())) 
                 && ( !((entity.getDireccion()).equals(pedido.getDireccion())) || 
                 entity.getTelefono()!= pedido.getTelefono() ) )
         {
@@ -89,8 +92,8 @@ public class PedidoClienteLogic
                     + "o 'Por Confirmar', de lo contrario es posible modificar el pedido.");
         }
         
-        if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")) 
-                && entity.getEstado().equals("Cancelado") )
+        if(!(("Aceptado").equals(pedido.getEstado())) && !(("Por Confirmar").equals(pedido.getEstado())) 
+                && ("Cancelado").equals(entity.getEstado()))
         {
             throw new BusinessLogicException("El pedido no puede ser cancelado. El estado del pedido deber ser 'Aceptado' "
                     + "o 'Por Confirmar', de lo contrario es posible cancelar el pedido.");
@@ -112,9 +115,9 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Inicia proceso de borrar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
         if (pedido == null) {
-            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
+            throw new BusinessLogicException( ELPEDIDO + id + NOEXISTE);
         }
-         if(!((pedido.getEstado()).equals("Rechazado")) && !((pedido.getEstado()).equals("Cancelado")) && !((pedido.getEstado()).equals("Entregado")))
+         if(!(("Rechazado").equals(pedido.getEstado())) && !(("Cancelado").equals(pedido.getEstado())) && !(("Entregado").equals(pedido.getEstado())))
         {
             throw new BusinessLogicException("El pedido no puede ser eliminado. El estado del pedido deber ser 'Rechazado' "
                     + "'Cancelado' o 'Entregado', de lo contrario es posible eliminar el pedido.");

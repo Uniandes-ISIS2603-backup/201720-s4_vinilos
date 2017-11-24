@@ -35,6 +35,8 @@ public class ProveedorResource {
     
     @Inject ProveedorLogic logic;
     
+    private static final String NOEXISTE = " no existe ";
+    
    @GET
    public List<ProveedorDetailDTO> getProveedores()
    {
@@ -52,7 +54,7 @@ public class ProveedorResource {
     {
         ProveedorEntity en = logic.getProveedor(id);
         if (en == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+            throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404);
         return (new ProveedorDetailDTO(en));
     }
     
@@ -72,7 +74,7 @@ public class ProveedorResource {
         entity.setId(id);
         ProveedorEntity oldEnt = logic.getProveedor(id);
         if(oldEnt == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404); 
+            throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404); 
         entity.setFeedBacks(oldEnt.getFeedBacks());
         entity.setVinilos(oldEnt.getVinilos());
         ProveedorEntity ent = logic.updateProveedor(entity);
@@ -85,7 +87,7 @@ public class ProveedorResource {
     {
         ProveedorEntity ent = logic.getProveedor(id);
         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+             throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404);
         logic.deleteProveedor(id);
     }
   
@@ -94,7 +96,7 @@ public class ProveedorResource {
     {
         ProveedorEntity ent = logic.getProveedor(idProv);
          if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+             throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
          return ProveedorPedidosResource.class;
     }
     
@@ -103,7 +105,7 @@ public class ProveedorResource {
     {
         ProveedorEntity ent = logic.getProveedor(idProv);
          if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+             throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
          return ProveedorPagoResource.class;
     }
     
@@ -112,7 +114,7 @@ public class ProveedorResource {
     {
         ProveedorEntity ent = logic.getProveedor(idProv);
          if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+             throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
          return ProveedorFeedBackResource.class;
     }
     

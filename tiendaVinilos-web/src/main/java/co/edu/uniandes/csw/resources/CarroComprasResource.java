@@ -36,11 +36,11 @@ public class CarroComprasResource {
     @Inject
     CarroComprasLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    private static final String NOEXISTE = " no existe.";
     
     @POST
     public CarroComprasDetailDTO createCarroCompras(CarroComprasDetailDTO carro) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
-        CarroComprasEntity entity = carro.toEntity();
        
         CarroComprasEntity nuevoCarro = logic.createCarroCompras(carro.toEntity());
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
@@ -59,7 +59,7 @@ public class CarroComprasResource {
     public CarroComprasDetailDTO getCarroCompras(@PathParam("id") Long id) throws BusinessLogicException {
         CarroComprasEntity entity = logic.getCarroCompras(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /CarroCompras/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /CarroCompras/" + id + NOEXISTE, 404);
         }
         return new CarroComprasDetailDTO(entity);
     }
@@ -71,7 +71,7 @@ public class CarroComprasResource {
         carro.setId(id);
         CarroComprasEntity entity = logic.getCarroCompras(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /CarroCompra/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /CarroCompra/" + id + NOEXISTE, 404);
         }
         return new CarroComprasDetailDTO(logic.updateCarroCompras(id, carro.toEntity()));
     }
@@ -83,7 +83,7 @@ public class CarroComprasResource {
         
         CarroComprasEntity entity = logic.getCarroCompras(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /CarroCompra/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /CarroCompra/" + id + NOEXISTE, 404);
         }
         logic.deleteCarroCompras(id);
     }

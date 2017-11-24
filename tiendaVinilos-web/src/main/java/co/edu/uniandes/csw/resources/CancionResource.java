@@ -37,6 +37,7 @@ public class CancionResource {
     @Inject
     CancionLogic cancionLogic;
   
+    private static final String NOEXISTE = " no existe.";
     
     @POST
     public CancionDetailDTO createCancion(CancionDTO cancion)throws BusinessLogicException{
@@ -65,7 +66,7 @@ public class CancionResource {
     public CancionDetailDTO getCancion(@PathParam("id") Long id) throws BusinessLogicException{
         CancionEntity entity = cancionLogic.getCancion(id);
         if(entity == null){
-            throw new WebApplicationException("El recurso /cancion/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /cancion/" + id + NOEXISTE, 404);
         }
         return new CancionDetailDTO(entity);
     }
@@ -77,7 +78,7 @@ public class CancionResource {
         CancionEntity entity = cancion.toEntity();
         
         if(entity == null){
-             throw new WebApplicationException("El recurso /cancion/" + id + " no existe.", 404);
+             throw new WebApplicationException("El recurso /cancion/" + id + NOEXISTE, 404);
         }
         return new CancionDetailDTO(cancionLogic.updateCancion(id, entity));
     }
@@ -88,7 +89,7 @@ public class CancionResource {
         
         CancionEntity entity = cancionLogic.getCancion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Cancion/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Cancion/" + id + NOEXISTE, 404);
         }
         cancionLogic.deleteCancion(id);
         

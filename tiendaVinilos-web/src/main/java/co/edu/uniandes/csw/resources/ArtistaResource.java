@@ -36,6 +36,8 @@ public class ArtistaResource {
     @Inject
     ArtistaLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     
+    private static final String NOEXISTE = " no existe.";
+    
     @POST
     public ArtistaDetailDTO createArtista(ArtistaDetailDTO artista) throws BusinessLogicException {
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
@@ -64,7 +66,7 @@ public class ArtistaResource {
     public ArtistaDetailDTO getArtista(@PathParam("id") Long id) throws BusinessLogicException {
         ArtistaEntity entity = logic.getArtista(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Artista/" + id + NOEXISTE, 404);
         }
         return new ArtistaDetailDTO(logic.getArtista(id));
     }
@@ -88,7 +90,7 @@ public class ArtistaResource {
         artista.setId(id);
         ArtistaEntity entity = logic.getArtista(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Artista/" + id + NOEXISTE, 404);
         }
         return new ArtistaDetailDTO(logic.updateArtista(id, artista.toEntity()));
     }
@@ -99,7 +101,7 @@ public class ArtistaResource {
     public void deleteArtista(@PathParam("id") Long id) throws BusinessLogicException {
         ArtistaEntity entity = logic.getArtista(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /artista/" + id + NOEXISTE, 404);
         }
         logic.deleteArtista(id);
     }

@@ -63,7 +63,7 @@ public class PedidoClientePedidoProveedorResource {
     
     @GET
     @Path("/{id2:\\d+}")
-    public PedidoProveedorDetailDTO getIdPedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public PedidoProveedorDetailDTO getIdPedidoProveedor(@PathParam("id") Long id)
     {
         PedidoProveedorEntity entity = pedidoProveedorLogic.getPedidoProveedor(id);
         pedidoProveedorLogic.getPedidoProveedor(id);
@@ -71,7 +71,7 @@ public class PedidoClientePedidoProveedorResource {
     }
     @GET
     @Path("/{id2:\\d+}/vinilos")
-    public List<ViniloDetailDTO>  getVinilosPedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2)
+    public List<ViniloDetailDTO>  getVinilosPedidoProveedor(@PathParam("id") Long id)
             
             
     {
@@ -98,7 +98,6 @@ public class PedidoClientePedidoProveedorResource {
     @Path("/{id2:\\d+}")
       public void deletePedidoProveedor(@PathParam("id") Long id,@PathParam("id2")Long id2) 
       {
-         PedidoProveedorEntity entity = pedidoProveedorLogic.getPedidoProveedor(id2);
           pedidoProveedorLogic.deletePedidoProveedor(id2);
           
       }

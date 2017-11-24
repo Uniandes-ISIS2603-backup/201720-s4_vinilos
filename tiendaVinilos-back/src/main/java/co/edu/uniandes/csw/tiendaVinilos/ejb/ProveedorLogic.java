@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -23,7 +22,6 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ProveedorLogic {
-    private static final Logger LOGGER = Logger.getLogger(ProveedorLogic.class.getName());
 
     @Inject ProveedorPersistence persistence;
     
@@ -33,13 +31,15 @@ public class ProveedorLogic {
         return ent.getPedidos();
     }
     
-    public List<PedidoProveedorEntity> getPedido(Long id)
+    public PedidoProveedorEntity getPedido(Long id, Long idPedido)
     {
         ProveedorEntity prove= persistence.find(id);
-      if(prove!=null)
-      {
-          return prove.getPedidos();
-      }
+      PedidoProveedorEntity pedidoEnt = new PedidoProveedorEntity();
+      pedidoEnt.setId(idPedido);
+      List<PedidoProveedorEntity> list = prove.getPedidos();
+      int index = list.indexOf(pedidoEnt);
+      if (index>=0) 
+          return list.get(index);
       return null;
     }
     
@@ -56,7 +56,8 @@ public class ProveedorLogic {
         vinEnt.setId(idVin);
         List<ViniloEntity> list = ent.getVinilos();
         int index = list.indexOf(vinEnt);
-        if(index >= 0) return list.get(index);
+        if(index >= 0)
+            return list.get(index);
          return null;
     }
     
@@ -73,7 +74,8 @@ public class ProveedorLogic {
         PagoProveedorEntity ppEntity = new PagoProveedorEntity();
         ppEntity.setId(idPP);
         int index = list.indexOf(ppEntity);
-        if (index >=0) return list.get(index);
+        if (index >=0)
+            return list.get(index);
         return null;
     }
     public List<FeedBackEntity> getFeedBacks(Long id)
@@ -89,7 +91,8 @@ public class ProveedorLogic {
         FeedBackEntity fbEntity = new FeedBackEntity();
         fbEntity.setId(idFB);
         int index = list.indexOf(fbEntity);
-        if (index>=0) return list.get(index);
+        if (index>=0) 
+            return list.get(index);
         return null;
     }
     

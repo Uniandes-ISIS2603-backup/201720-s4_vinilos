@@ -18,7 +18,9 @@ public class CancionDTO {
     private Double duracion;
     private String link;
     
+    //Constructor por defecto
     public CancionDTO(){
+        //Constructor por defecto
     }
     
     public CancionDTO(CancionEntity cancion){

@@ -27,7 +27,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +36,11 @@ import java.util.List;
  */
 public class UsuarioDetailDTO extends UsuarioDTO {
 
-    private ArrayList<TarjetaDTO> tarjetas;
+    private List<TarjetaDTO> tarjetas;
 
-    private ArrayList<FeedBackDTO> feeds;
+    private List<FeedBackDTO> feeds;
 
-    private ArrayList<PedidoClienteDTO> pedidos;
+    private List<PedidoClienteDTO> pedidos;
 
     private CarroComprasDetailDTO carrito;
 
@@ -90,27 +89,27 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         this.carrito = carrito;
     }
 
-    public ArrayList<FeedBackDTO> getFeeds() {
+    public List<FeedBackDTO> getFeeds() {
         return feeds;
     }
 
-    public void setFeeds(ArrayList<FeedBackDTO> feeds) {
+    public void setFeeds(List<FeedBackDTO> feeds) {
         this.feeds = feeds;
     }
 
-    public ArrayList<PedidoClienteDTO> getPedidos() {
+    public List<PedidoClienteDTO> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(ArrayList<PedidoClienteDTO> pedidos) {
+    public void setPedidos(List<PedidoClienteDTO> pedidos) {
         this.pedidos = pedidos;
     }
 
-    public ArrayList<TarjetaDTO> getTarjetas() {
+    public List<TarjetaDTO> getTarjetas() {
         return tarjetas;
     }
 
-    public void setTarjetas(ArrayList<TarjetaDTO> tarjetas) {
+    public void setTarjetas(List<TarjetaDTO> tarjetas) {
         this.tarjetas = tarjetas;
     }
     /**
