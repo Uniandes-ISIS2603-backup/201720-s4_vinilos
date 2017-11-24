@@ -25,10 +25,15 @@ SOFTWARE.
  * RestConfig.java
  * Configura el servicio JAX-RS.
  */
+
+
+
 package co.edu.uniandes.csw.resources;
 
-import javax.ws.rs.core.Application;
+//~--- JDK imports ------------------------------------------------------------
+
 import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
 /**
  * Clase que indica que este proyecto web ofrece servicios REST. Adicionalmente,
@@ -40,5 +45,7 @@ import javax.ws.rs.ApplicationPath;
  * @author ISIS2603
  */
 @ApplicationPath("/api")
-public class RestConfig extends Application {
-}
+public class RestConfig extends Application {}
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

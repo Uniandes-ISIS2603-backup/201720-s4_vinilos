@@ -1,9 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 
@@ -11,13 +14,13 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
  *
  * @author jp.monsalvo
  */
-public class InfoDetailDTO extends InfoDTO{
+public class InfoDetailDTO extends InfoDTO {
+
     /**
      * Constructor por defecto
      */
-    public InfoDetailDTO() {
-    }
-    
+    public InfoDetailDTO() {}
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
@@ -26,15 +29,19 @@ public class InfoDetailDTO extends InfoDTO{
     public InfoDetailDTO(InfoEntity entity) {
         super(entity);
     }
-    
+
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public InfoEntity toEntity() {
         InfoEntity infoE = super.toEntity();
+
         return infoE;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

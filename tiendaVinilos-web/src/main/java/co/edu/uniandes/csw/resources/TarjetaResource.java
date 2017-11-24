@@ -1,9 +1,14 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
+
+import co.edu.uniandes.csw.dtos.TarjetaDetailDTO;
 
 /*
 MIT License
@@ -29,14 +34,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
-import co.edu.uniandes.csw.dtos.TarjetaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -62,10 +71,8 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaResource {
-
     @Inject
-    TarjetaLogic tarjetaLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-
+    TarjetaLogic tarjetaLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/tarjetas Ejemplo
@@ -80,16 +87,18 @@ public class TarjetaResource {
      */
     @POST
     public TarjetaDetailDTO createTarjeta(TarjetaDetailDTO tarjeta) throws BusinessLogicException {
+
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         // Invoca la lógica para crear la tarjeta nueva
         TarjetaEntity nuevoTarjeta = tarjetaLogic.createTarjeta(tarjeta.toEntity());
+
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new TarjetaDetailDTO(nuevoTarjeta);
     }
 
     /**
      * GET para todas las tarjetaes.
-     * http://localhost:8080/tiendaVinilos-web/api/tarjetas     *
+     * http://localhost:8080/tiendaVinilos-web/api/tarjetas     
      * @return la lista de todas los tarjetas en objetos json DTO.
      * @throws BusinessLogicException
      */
@@ -100,7 +109,7 @@ public class TarjetaResource {
 
     /**
      * GET para un tarjeta
-     * http://localhost:8080/tiendaVinilos-web/api/tarjetas     *
+     * http://localhost:8080/tiendaVinilos-web/api/tarjetas     
      * @param id corresponde al id de la tarjeta buscada.
      * @return La tarjeta encontrada. Ejemplo: { "type": "tarjetaDetailDTO",
      * "id": 1, "name": "Norma" }
@@ -113,9 +122,11 @@ public class TarjetaResource {
     @Path("{id: \\d+}")
     public TarjetaDetailDTO getTarjeta(@PathParam("id") Long id) throws BusinessLogicException {
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
         }
+
         return new TarjetaDetailDTO(tarjetaLogic.getTarjeta(id));
     }
 
@@ -134,12 +145,16 @@ public class TarjetaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TarjetaDetailDTO updateTarjeta(@PathParam("id") Long id, TarjetaDetailDTO tarjeta) throws BusinessLogicException {
+    public TarjetaDetailDTO updateTarjeta(@PathParam("id") Long id, TarjetaDetailDTO tarjeta)
+            throws BusinessLogicException {
         tarjeta.setId(id);
+
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
         }
+
         return new TarjetaDetailDTO(tarjetaLogic.updateTarjeta(id, tarjeta.toEntity()));
     }
 
@@ -157,9 +172,11 @@ public class TarjetaResource {
     @Path("{id: \\d+}")
     public void deleteTarjeta(@PathParam("id") Long id) throws BusinessLogicException {
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
         }
+
         tarjetaLogic.deleteTarjeta(id);
     }
 
@@ -176,11 +193,14 @@ public class TarjetaResource {
      */
     private List<TarjetaDetailDTO> listEntity2DetailDTO(List<TarjetaEntity> entityList) {
         List<TarjetaDetailDTO> list = new ArrayList<>();
+
         for (TarjetaEntity entity : entityList) {
             list.add(new TarjetaDetailDTO(entity));
         }
+
         return list;
     }
-
 }
 
+
+//~ Formatted by Jindent --- http://www.jindent.com

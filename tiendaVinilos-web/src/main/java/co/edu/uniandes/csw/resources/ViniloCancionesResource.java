@@ -1,15 +1,25 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.dtos.CancionDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,17 +28,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.Consumes;
 
 /**
  * URI: vinilos/{viniloId: \\d+}/cancions
- * 
+ *
  * @cancion jp.monsalvo
  */
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ViniloCancionesResource {
-    
     @Inject
     private ViniloLogic viniloLogic;
 
@@ -37,13 +45,15 @@ public class ViniloCancionesResource {
      *
      * @param entityList Lista de CancionEntity a convertir.
      * @return Lista de CancionDetailDTO convertida.
-     * 
+     *
      */
     private List<CancionDetailDTO> cancionsListEntity2DTO(List<CancionEntity> entityList) {
         List<CancionDetailDTO> list = new ArrayList<>();
+
         for (CancionEntity entity : entityList) {
             list.add(new CancionDetailDTO(entity));
         }
+
         return list;
     }
 
@@ -52,13 +62,15 @@ public class ViniloCancionesResource {
      *
      * @param dtos Lista de CancionDetailDTO a convertir.
      * @return Lista de CancionEntity convertida.
-     * 
+     *
      */
     private List<CancionEntity> cancionsListDTO2Entity(List<CancionDetailDTO> dtos) {
         List<CancionEntity> list = new ArrayList<>();
+
         for (CancionDetailDTO dto : dtos) {
             list.add(dto.toEntity());
         }
+
         return list;
     }
 
@@ -69,7 +81,7 @@ public class ViniloCancionesResource {
      * @param vinilosId Identificador de la instancia de Vinilo
      * @return Colección de instancias de CancionDetailDTO asociadas a la
      * instancia de Vinilo
-     * 
+     *
      */
     @GET
     public List<CancionDetailDTO> listCanciones(@PathParam("vinilosId") Long vinilosId) {
@@ -81,12 +93,13 @@ public class ViniloCancionesResource {
      *
      * @param vinilosId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
-     * @return 
-     * 
+     * @return
+     *
      */
     @GET
     @Path("{cancionsId: \\d+}")
-    public CancionDetailDTO getCanciones(@PathParam("vinilosId") Long vinilosId, @PathParam("cancionsId") Long cancionsId) {
+    public CancionDetailDTO getCanciones(@PathParam("vinilosId") Long vinilosId,
+            @PathParam("cancionsId") Long cancionsId) {
         return new CancionDetailDTO(viniloLogic.getCancion(vinilosId, cancionsId));
     }
 
@@ -96,11 +109,12 @@ public class ViniloCancionesResource {
      * @param vinilosId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
      * @return Instancia de CancionDetailDTO que fue asociada a Vinilo
-     * 
+     *
      */
     @POST
     @Path("{cancionsId: \\d+}")
-    public CancionDetailDTO addCanciones(@PathParam("vinilosId") Long vinilosId, @PathParam("cancionsId") Long cancionsId) {
+    public CancionDetailDTO addCanciones(@PathParam("vinilosId") Long vinilosId,
+            @PathParam("cancionsId") Long cancionsId) {
         return new CancionDetailDTO(viniloLogic.addCancion(vinilosId, cancionsId));
     }
 
@@ -111,10 +125,11 @@ public class ViniloCancionesResource {
      * @param cancions Colección de instancias de CancionDTO a asociar a instancia
      * de Vinilo
      * @return Nueva colección de CancionDTO asociada a la instancia de Vinilo
-     * 
+     *
      */
     @PUT
-    public List<CancionDetailDTO> replaceCanciones(@PathParam("vinilosId") Long vinilosId, List<CancionDetailDTO> cancions) {
+    public List<CancionDetailDTO> replaceCanciones(@PathParam("vinilosId") Long vinilosId,
+            List<CancionDetailDTO> cancions) {
         return cancionsListEntity2DTO(viniloLogic.replaceCanciones(vinilosId, cancionsListDTO2Entity(cancions)));
     }
 
@@ -123,7 +138,7 @@ public class ViniloCancionesResource {
      *
      * @param vinilosId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
-     * 
+     *
      */
     @DELETE
     @Path("{cancionsId: \\d+}")
@@ -131,3 +146,6 @@ public class ViniloCancionesResource {
         viniloLogic.removeCancion(vinilosId, cancionsId);
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -1,9 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 
@@ -12,31 +15,30 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
  * @author jp.monsalvo
  */
 public class InfoDTO {
+    private String urlImagen;
+    private String urlCancion;
+    private String descripcion;
+    private long   id;
 
-    
+    /**
+     * Constructor por defecto
+     */
+    public InfoDTO() {}
+
+    public InfoDTO(InfoEntity entity) {
+        this.descripcion = entity.getDescripcion();
+        this.id          = entity.getId();
+        this.urlCancion  = entity.getUrlCancion();
+        this.urlImagen   = entity.getUrlImagen();
+    }
+
     /**
      * @param id the id to set
      */
     public void setId(long id) {
         this.id = id;
     }
-    private String urlImagen;
-    private String urlCancion;
-    private String descripcion;
-    private long id;
-    
-    /**
-     * Constructor por defecto
-     */
-    public InfoDTO(){
-    
-}
-    public InfoDTO(InfoEntity entity){
-        this.descripcion= entity.getDescripcion();
-        this.id= entity.getId();
-        this.urlCancion= entity.getUrlCancion();
-        this.urlImagen= entity.getUrlImagen();
-    }
+
     /**
      * @return the urlImagen
      */
@@ -85,17 +87,22 @@ public class InfoDTO {
     public long getId() {
         return id;
     }
-   
+
     /**
      * Convertir DTO a Entity
-     * @return Un Entity con los valores del DTO 
+     * @return Un Entity con los valores del DTO
      */
     public InfoEntity toEntity() {
         InfoEntity entity = new InfoEntity();
+
         entity.setId(this.id);
         entity.setDescripcion(descripcion);
         entity.setUrlImagen(urlImagen);
         entity.setUrlCancion(urlCancion);
+
         return entity;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

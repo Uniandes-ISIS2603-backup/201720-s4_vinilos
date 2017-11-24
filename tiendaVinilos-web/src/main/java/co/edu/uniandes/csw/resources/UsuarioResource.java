@@ -1,9 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 /*
 MIT License
@@ -28,22 +31,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 import co.edu.uniandes.csw.dtos.TarjetaDTO;
-import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.TarjetaLogic;
+import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -69,12 +76,12 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class UsuarioResource {
-
     @Inject
-    UsuarioLogic usuarioLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    UsuarioLogic      usuarioLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
     @Inject
     CarroComprasLogic carroLogic;
-    @Inject TarjetaLogic tarjetaLogic;
+    @Inject
+    TarjetaLogic      tarjetaLogic;
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo json: {
@@ -89,17 +96,22 @@ public class UsuarioResource {
      */
     @POST
     public UsuarioDetailDTO createUsuario(UsuarioDetailDTO usuario) throws BusinessLogicException {
+
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         UsuarioEntity usuarioEntity = usuario.toEntity();
+
         // Invoca la lógica para crear la usuario nueva
         CarroComprasEntity carro = new CarroComprasEntity();
+
         carro.setPrecioTotal(0);
         carro.setVinilos(new ArrayList<ViniloEntity>());
         usuarioEntity.setCarrito(carro);
-        
+
         UsuarioEntity nuevoUsuario = usuarioLogic.createUsuario(usuario.toEntity());
+
         carro.setUsuario(nuevoUsuario);
         carroLogic.createCarroCompras(carro);
+
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new UsuarioDetailDTO(nuevoUsuario);
     }
@@ -133,12 +145,16 @@ public class UsuarioResource {
     @Path("{id: \\d+}")
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
         }
-        UsuarioDetailDTO usu=new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
-        usu.setTarjetas((ArrayList<TarjetaDTO>)listEntity2DetailDTOTarjeta(tarjetaLogic.darTarjetasUsuario(id)));
-        return  usu;
+
+        UsuarioDetailDTO usu = new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
+
+        usu.setTarjetas((ArrayList<TarjetaDTO>) listEntity2DetailDTOTarjeta(tarjetaLogic.darTarjetasUsuario(id)));
+
+        return usu;
     }
 
     /**
@@ -156,12 +172,16 @@ public class UsuarioResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario) throws BusinessLogicException {
+    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO usuario)
+            throws BusinessLogicException {
         usuario.setId(id);
+
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
         }
+
         return new UsuarioDetailDTO(usuarioLogic.updateUsuario(id, usuario.toEntity()));
     }
 
@@ -179,38 +199,38 @@ public class UsuarioResource {
     @Path("{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
         }
+
         usuarioLogic.deleteUsuario(id);
     }
 
-//    @Path("{usarioId: \\d+}/pedidos")
-//    public Class<UsuarioPedidoClienteResource> getUsuarioPedidos(@PathParam("usuarioId") Long idProv) {
-//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//        if (ent == null) {
-//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//        }
-//        return UsuarioPedidoClienteResource.class;
-//    }
-
-//    @Path("{usuarioId: \\d+}/feedbacks")
-//    public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
-//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//        if (ent == null) {
-//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//        }
-//        return UsuarioFeedBackResource.class;
-//    }
-
-//    @Path("{usuarioId: \\d+}/tarjetas")
-//    public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
-//        UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//        if (ent == null) {
-//            throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//        }
-//        return TarjetasUsuarioResource.class;
-//    }
+//  @Path("{usarioId: \\d+}/pedidos")
+//  public Class<UsuarioPedidoClienteResource> getUsuarioPedidos(@PathParam("usuarioId") Long idProv) {
+//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//      if (ent == null) {
+//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//      }
+//      return UsuarioPedidoClienteResource.class;
+//  }
+//  @Path("{usuarioId: \\d+}/feedbacks")
+//  public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
+//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//      if (ent == null) {
+//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//      }
+//      return UsuarioFeedBackResource.class;
+//  }
+//  @Path("{usuarioId: \\d+}/tarjetas")
+//  public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
+//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
+//      if (ent == null) {
+//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
+//      }
+//      return TarjetasUsuarioResource.class;
+//  }
 
     /*
      *
@@ -225,18 +245,24 @@ public class UsuarioResource {
      */
     private List<UsuarioDetailDTO> listEntity2DetailDTO(List<UsuarioEntity> entityList) {
         List<UsuarioDetailDTO> list = new ArrayList<>();
+
         for (UsuarioEntity entity : entityList) {
             list.add(new UsuarioDetailDTO(entity));
         }
+
         return list;
     }
+
     private List<TarjetaDTO> listEntity2DetailDTOTarjeta(List<TarjetaEntity> entityList) {
         List<TarjetaDTO> list = new ArrayList<>();
+
         for (TarjetaEntity entity : entityList) {
             list.add(new TarjetaDTO(entity));
         }
+
         return list;
     }
-    
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

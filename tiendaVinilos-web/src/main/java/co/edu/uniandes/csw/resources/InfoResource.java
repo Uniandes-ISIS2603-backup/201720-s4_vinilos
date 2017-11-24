@@ -1,13 +1,19 @@
 package co.edu.uniandes.csw.resources;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.dtos.InfoDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.InfoLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,7 +38,6 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 public class InfoResource {
-
     @Inject
     InfoLogic infoLogic;
 
@@ -43,11 +48,14 @@ public class InfoResource {
 
     @GET
     @Path("{id: \\d+}")
-    public InfoDTO getInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id) throws BusinessLogicException {
+    public InfoDTO getInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id)
+            throws BusinessLogicException {
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
         }
+
         return new InfoDTO(entity);
     }
 
@@ -58,32 +66,42 @@ public class InfoResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public InfoDTO updateInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id, InfoDTO info) throws BusinessLogicException {
+    public InfoDTO updateInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id, InfoDTO info)
+            throws BusinessLogicException {
         info.setId(id);
+
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
+
         if (entity == null) {
             throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
         }
-        return new InfoDTO(infoLogic.updateInfo(idVinilo, info.toEntity()));
 
+        return new InfoDTO(infoLogic.updateInfo(idVinilo, info.toEntity()));
     }
 
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteInfo(@PathParam("idVinilo") Long idVinilo, @PathParam("id") Long id)
+            throws BusinessLogicException {
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + idVinilo+ "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
         }
+
         infoLogic.deleteInfo(idVinilo, id);
     }
 
     private List<InfoDTO> listEntity2DTO(List<InfoEntity> entityList) {
         List<InfoDTO> list = new ArrayList<>();
+
         for (InfoEntity entity : entityList) {
             list.add(new InfoDTO(entity));
         }
+
         return list;
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

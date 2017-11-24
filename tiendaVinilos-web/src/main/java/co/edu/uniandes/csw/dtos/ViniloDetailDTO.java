@@ -1,9 +1,14 @@
 package co.edu.uniandes.csw.dtos;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.InfoEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,24 +19,23 @@ import java.util.List;
 public class ViniloDetailDTO extends ViniloDTO {
 
     /*
-    * Relación a un proveedor
+     * Relación a un proveedor
      */
     private ProveedorDTO proveedor;
 
-// relación  cero o muchos infos
+//  relación  cero o muchos infos
     private List<InfoDTO> infos;
 
     // relación  cero o muchos canciones
     private List<CancionDTO> canciones;
-    
+
     // relación  cero o muchos canciones
     private List<ArtistaDTO> artistas;
 
     /**
      * Constructor por defecto
      */
-    public ViniloDetailDTO() {
-    }
+    public ViniloDetailDTO() {}
 
     /**
      * Constructor para transformar un Entity a un DTO
@@ -40,30 +44,35 @@ public class ViniloDetailDTO extends ViniloDTO {
      */
     public ViniloDetailDTO(ViniloEntity entity) {
         super(entity);
+
         if (entity != null) {
             canciones = new ArrayList<>();
+
             for (CancionEntity entityCancion : entity.getCanciones()) {
                 canciones.add(new CancionDTO(entityCancion));
             }
+
             if (entity.getProveedor() != null) {
                 this.proveedor = new ProveedorDTO(entity.getProveedor());
             } else {
                 entity.setProveedor(null);
             }
+
             if (entity.getInfos() != null) {
                 infos = new ArrayList<>();
+
                 for (InfoEntity entityInfo : entity.getInfos()) {
                     infos.add(new InfoDTO(entityInfo));
                 }
             }
-             if (entity.getArtistas() != null) {
+
+            if (entity.getArtistas() != null) {
                 artistas = new ArrayList<>();
+
                 for (ArtistaEntity entityArt : entity.getArtistas()) {
                     artistas.add(new ArtistaDTO(entityArt));
                 }
             }
-          
-
         }
     }
 
@@ -75,29 +84,38 @@ public class ViniloDetailDTO extends ViniloDTO {
     @Override
     public ViniloEntity toEntity() {
         ViniloEntity entity = super.toEntity();
+
         if (getCanciones() != null) {
             List<CancionEntity> cancionesEntity = new ArrayList<>();
+
             for (CancionDTO dtoCancion : getCanciones()) {
                 cancionesEntity.add(dtoCancion.toEntity());
             }
+
             entity.setCanciones(cancionesEntity);
         }
 
         if (this.getProveedor() != null) {
             entity.setProveedor(this.getProveedor().toEntity());
         }
+
         if (getInfos() != null) {
             List<InfoEntity> infosEntity = new ArrayList<>();
+
             for (InfoDTO dtoInfo : getInfos()) {
                 infosEntity.add(dtoInfo.toEntity());
             }
+
             entity.setInfos(infosEntity);
         }
+
         if (getArtistas() != null) {
             List<ArtistaEntity> artistasEntity = new ArrayList<>();
+
             for (ArtistaDTO dtoArt : getArtistas()) {
                 artistasEntity.add(dtoArt.toEntity());
             }
+
             entity.setArtistas(artistasEntity);
         }
 
@@ -146,7 +164,7 @@ public class ViniloDetailDTO extends ViniloDTO {
         this.canciones = canciones;
     }
 
-       /**
+    /**
      * @return the artistas
      */
     public List<ArtistaDTO> getArtistas() {
@@ -159,5 +177,7 @@ public class ViniloDetailDTO extends ViniloDTO {
     public void setArtistas(List<ArtistaDTO> artistas) {
         this.artistas = artistas;
     }
-  
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

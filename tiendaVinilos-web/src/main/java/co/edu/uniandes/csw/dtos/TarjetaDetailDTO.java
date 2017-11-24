@@ -21,7 +21,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
+
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 
 /**
@@ -29,15 +35,13 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
  * @author jd.arenas
  */
 public class TarjetaDetailDTO extends TarjetaDTO {
-    
     private UsuarioDTO usuario;
 
-        //Constructor por defecto
-    public TarjetaDetailDTO()
-    {
-     //Constructor por defecto   
+    // Constructor por defecto
+    public TarjetaDetailDTO() {
+
+        // Constructor por defecto
     }
-     
 
     /**
      * Constructor para transformar un Entity a un DTO
@@ -47,6 +51,7 @@ public class TarjetaDetailDTO extends TarjetaDTO {
     public TarjetaDetailDTO(TarjetaEntity entity) {
         super(entity);
     }
+
     public UsuarioDTO getUsuario() {
         return usuario;
     }
@@ -54,16 +59,17 @@ public class TarjetaDetailDTO extends TarjetaDTO {
     public void setUsuario(UsuarioDTO usuario) {
         this.usuario = usuario;
     }
-   
 
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public TarjetaEntity toEntity() {
         return super.toEntity();
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -1,61 +1,68 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
 
-import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
-import java.util.Date;
+//~--- non-JDK imports --------------------------------------------------------
 
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.Date;
 
 /**
  *
  * @author mj.jaime10
  */
 public class PedidoClienteDTO {
-    
-    private Long id;
+    private Long   id;
     private String estado;
     private double precio;
     private String direccion;
-    private int telefono;
-    private Date fechaEstimada;
-    
-    //Constructor por defecto
+    private int    telefono;
+    private Date   fechaEstimada;
+
+    // Constructor por defecto
     public PedidoClienteDTO() {
-        //Constructor por defecto
+
+        // Constructor por defecto
     }
-    
+
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param pedido: Es la entidad que se va a convertir a DTO 
+     * @param pedido: Es la entidad que se va a convertir a DTO
      */
     public PedidoClienteDTO(PedidoClienteEntity pedido) {
-        this.id = pedido.getId();
-        this.estado = pedido.getEstado();
-        this.precio = pedido.getPrecio();
+        this.id            = pedido.getId();
+        this.estado        = pedido.getEstado();
+        this.precio        = pedido.getPrecio();
         this.fechaEstimada = pedido.getFechaEstimada();
-        this.direccion = pedido.getDireccion();
-        this.telefono = pedido.getTelefono();
+        this.direccion     = pedido.getDireccion();
+        this.telefono      = pedido.getTelefono();
     }
-    
+
     /**
      * Convertir DTO a Entity
-     * @return Un Entity con los valores del DTO 
+     * @return Un Entity con los valores del DTO
      */
     public PedidoClienteEntity toEntity() {
         PedidoClienteEntity entity = new PedidoClienteEntity();
+
         entity.setId(this.id);
         entity.setEstado(this.estado);
         entity.setPrecio(this.precio);
         entity.setFechaEstimada(this.fechaEstimada);
         entity.setTelefono(this.telefono);
         entity.setDireccion(this.direccion);
+
         return entity;
     }
-    
+
     /**
      * @return the id
      */
@@ -83,7 +90,7 @@ public class PedidoClienteDTO {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
     /**
      * @return the precio
      */
@@ -111,7 +118,7 @@ public class PedidoClienteDTO {
     public void setFechaEstimada(Date fechaEstimada) {
         this.fechaEstimada = fechaEstimada;
     }
-    
+
     /**
      * @return the direccion
      */
@@ -125,7 +132,7 @@ public class PedidoClienteDTO {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
     /**
      * @return the telefono
      */
@@ -140,3 +147,6 @@ public class PedidoClienteDTO {
         this.telefono = telefono;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
