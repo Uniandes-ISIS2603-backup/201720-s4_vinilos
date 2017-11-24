@@ -84,20 +84,20 @@ public class TarjetaDTO {
         this.name = name;
     }
 
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+    
     public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public String getNombrePropietario() {
-        return nombrePropietario;
-    }
-
     public void setNombrePropietario(String nombrePropietario) {
         this.nombrePropietario = nombrePropietario;
+    }
+    
+    public String getNombrePropietario() {
+        return nombrePropietario;
     }
 
     public Integer getCvc() {
@@ -108,12 +108,12 @@ public class TarjetaDTO {
         this.cvc = cvc;
     }
 
-    public Date getGoodThru() {
-        return goodThru;
-    }
-
     public void setGoodThru(Date goodThru) {
         this.goodThru = goodThru;
+    }
+      
+    public Date getGoodThru() {
+        return goodThru;
     }
 
     /**

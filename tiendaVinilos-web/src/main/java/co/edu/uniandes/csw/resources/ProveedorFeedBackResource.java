@@ -69,7 +69,7 @@ public class ProveedorFeedBackResource {
      * @throws BusinessLogicException lanza una excepcion cuando no existe el proveedor o el feedback
      */
     @GET
-    @Path(("/{idFB:\\d+}"))
+    @Path("/{idFB:\\d+}")
     public FeedBackDetailDTO getFeedBack(@PathParam("proveedorId") Long idProveedor, @PathParam("idFB") Long idFeedBack)
             throws BusinessLogicException {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);
@@ -82,7 +82,7 @@ public class ProveedorFeedBackResource {
 
         for (FeedBackEntity fb : ent.getFeedBacks()) {
             if (fb.getId().equals(idFeedBack)) {
-                fbDetail = (new FeedBackDetailDTO(fb));
+                fbDetail = new FeedBackDetailDTO(fb);
             }
         }
 

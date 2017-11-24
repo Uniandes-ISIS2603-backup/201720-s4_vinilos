@@ -55,18 +55,18 @@ public class PagoProveedorResource {
     }
 
     @GET
-    @Path(("{id:\\d+}"))
+    @Path("{id:\\d+}")
     public PagoProveedorDetailDTO getProveedor(@PathParam("id") Long id) {
         PagoProveedorEntity ent = logic.getProveedor(id);
 
-        return (new PagoProveedorDetailDTO(ent));
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @POST
     public PagoProveedorDetailDTO createProveedor(PagoProveedorDetailDTO prov) {
         PagoProveedorEntity ent = logic.createProveedor(prov.toEntity());
 
-        return (new PagoProveedorDetailDTO(ent));
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @PUT
@@ -74,7 +74,7 @@ public class PagoProveedorResource {
     public PagoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PagoProveedorDetailDTO prov) {
         PagoProveedorEntity ent = logic.updateProveedor(prov.toEntity());
 
-        return (new PagoProveedorDetailDTO(ent));
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @DELETE

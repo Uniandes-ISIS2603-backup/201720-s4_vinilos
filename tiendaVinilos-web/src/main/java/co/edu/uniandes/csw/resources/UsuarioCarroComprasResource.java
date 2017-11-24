@@ -13,15 +13,11 @@ import co.edu.uniandes.csw.dtos.ViniloDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
-import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 //~--- JDK imports ------------------------------------------------------------
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 
@@ -31,7 +27,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -60,35 +55,7 @@ public class UsuarioCarroComprasResource {
     @GET
     @Path("/{id3:\\d+}")
     public ViniloDTO getCarroCompras(@PathParam("usuarioId") Long id, @PathParam("id3") Long id3) {
-        UsuarioEntity      usu    = usuarioLogic.getUsuario(id);
-        CarroComprasEntity carro  = usu.getCarrito();
-        ViniloDTO          vinilo =
-            new ViniloDTO(carroComprasLogic.getViniloFromCarrito(carroComprasLogic.getCarroCompras(id), id3));
-
-        return vinilo;
-    }
-
-    /**
-     *
-     * lista de entidades a DTO.
-     *
-     * Este método convierte una lista de objetos UsuarioEntity a una lista de
-     * objetos UsuarioDetailDTO (json)
-     *
-     * @param entityList corresponde a la lista de usuarioes de tipo Entity
-     * que vamos a convertir a DTO.
-     * @return la lista de usuarioes en forma DTO (json)
-     */
-    private List<ViniloDTO> listEntity2DetailDTO(List<ViniloEntity> entityList) {
-        List<ViniloDTO> list = new ArrayList<>();
-
-        for (ViniloEntity entity : entityList) {
-            ViniloDTO dto = new ViniloDTO(entity);
-
-            list.add(dto);
-        }
-
-        return list;
+        return new ViniloDTO(carroComprasLogic.getViniloFromCarrito(carroComprasLogic.getCarroCompras(id), id3));
     }
 
     @POST
@@ -102,16 +69,9 @@ public class UsuarioCarroComprasResource {
         return new ViniloDTO(ent);
     }
 
-//  @PUT
-//  @Path("/{id2:\\d+}")
-//  public ViniloDTO updateCarroCompras(@PathParam("id") Long id,@PathParam("id2")Long id2,ViniloDetailDTO nuevo)
-//  {
-//      nuevo.setId(id2);
-//      viniloLogic.modificarCarrito(nuevo.getUsuario().toEntity(), nuevo.toEntity());
-//      return nuevo;
     @DELETE
     @Path("/{id2:\\d+}")
-    public void deleteCarroCompras(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2) {
+    public void deleteCarroCompras(@PathParam("id2") Long id2) {
         viniloLogic.sacraDelCarrito(viniloLogic.getVinilo(id2));
     }
 }

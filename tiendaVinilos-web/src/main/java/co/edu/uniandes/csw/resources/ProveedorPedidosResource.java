@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.dtos.PedidoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PedidoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 //~--- JDK imports ------------------------------------------------------------
@@ -55,14 +54,13 @@ public class ProveedorPedidosResource {
 
     /**
      * GET un pedido especifico de un proveedor especifico
-     * @param idProveedor id del proveedor del que se desea conocer el pedido
-     * @param idFeedBack id del pedido que se desea conocer
+     * @param id2
      * @return el pedido detail
      * @throws BusinessLogicException lanza una excepcion cuando no existe el proveedor o el feedback
      */
     @GET
     @Path("/{id2:\\d+}")
-    public PedidoProveedorDTO getPedido(@PathParam("proveedorId") Long idProveedor, @PathParam("id2") Long id2)
+    public PedidoProveedorDTO getPedido( @PathParam("id2") Long id2)
             throws BusinessLogicException {
         PedidoProveedorEntity pedido = pedidoProveedorLogic.getPedidoProveedor(id2);
 

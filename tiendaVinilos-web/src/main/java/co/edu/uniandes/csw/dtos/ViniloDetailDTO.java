@@ -35,7 +35,9 @@ public class ViniloDetailDTO extends ViniloDTO {
     /**
      * Constructor por defecto
      */
-    public ViniloDetailDTO() {}
+    public ViniloDetailDTO() {
+    //Constructor por defecto
+    }
 
     /**
      * Constructor para transformar un Entity a un DTO

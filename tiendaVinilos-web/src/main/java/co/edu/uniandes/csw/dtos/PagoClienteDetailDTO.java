@@ -39,9 +39,7 @@ public class PagoClienteDetailDTO extends PagoClienteDTO {
      */
     @Override
     public PagoClienteEntity toEntity() {
-        PagoClienteEntity pago = super.toEntity();
-
-        return pago;
+        return super.toEntity();
     }
 
     public void setPedido(PedidoClienteDTO pedido) {

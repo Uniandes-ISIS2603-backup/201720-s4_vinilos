@@ -38,6 +38,7 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 public class CarroComprasVinilosResource {
     private static final String NOEXISTE = " no existe.";
+    private static final String RECCARROCOMPRA = "El recurso /CarroCompra/";
     @Inject
     CarroComprasLogic           carLogic;
     @Inject
@@ -48,7 +49,7 @@ public class CarroComprasVinilosResource {
         CarroComprasEntity ent = carLogic.getCarroCompras(carId);
 
         if (ent == null) {
-            throw new WebApplicationException("El recurso /CarroCompra/" + carId + NOEXISTE, 404);
+            throw new WebApplicationException(RECCARROCOMPRA + carId + NOEXISTE, 404);
         }
 
         List<ViniloDetailDTO> vinDto = new ArrayList<>();
@@ -61,18 +62,18 @@ public class CarroComprasVinilosResource {
     }
 
     @POST
-    @Path(("/{idVin:\\d+}"))
+    @Path("/{idVin:\\d+}")
     public ViniloDetailDTO addVinilo(@PathParam("carroComprasId") Long carId, @PathParam("idVin") Long vinId) {
         CarroComprasEntity ent = carLogic.getCarroCompras(carId);
 
         if (ent == null) {
-            throw new WebApplicationException("El recurso /CarroCompra/" + carId + NOEXISTE, 404);
+            throw new WebApplicationException(RECCARROCOMPRA + carId + NOEXISTE, 404);
         }
 
         ViniloEntity vinEnt = vinLogic.getVinilo(vinId);
 
         if (vinEnt == null) {
-            throw new WebApplicationException("El recurso /CarroCompra/" + vinId + NOEXISTE, 404);
+            throw new WebApplicationException(RECCARROCOMPRA + vinId + NOEXISTE, 404);
         }
 
         vinLogic.addCarrito(carLogic.getCarroCompras(carId), vinEnt);

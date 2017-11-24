@@ -23,7 +23,9 @@ public class InfoDTO {
     /**
      * Constructor por defecto
      */
-    public InfoDTO() {}
+    public InfoDTO() {
+        //Constructor por defecto
+    }
 
     public InfoDTO(InfoEntity entity) {
         this.descripcion = entity.getDescripcion();

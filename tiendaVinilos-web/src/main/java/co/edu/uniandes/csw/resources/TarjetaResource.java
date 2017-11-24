@@ -74,6 +74,9 @@ public class TarjetaResource {
     @Inject
     TarjetaLogic tarjetaLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    private static final String NOEXISTE = " no existe ";
+    private static final String RESTARJETA =  "El recurso /tarjetas/";
+    
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/tarjetas Ejemplo
      * json: { "name":"Norma" }
@@ -124,7 +127,7 @@ public class TarjetaResource {
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESTARJETA + id + NOEXISTE, 404);
         }
 
         return new TarjetaDetailDTO(tarjetaLogic.getTarjeta(id));
@@ -152,7 +155,7 @@ public class TarjetaResource {
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESTARJETA + id + NOEXISTE, 404);
         }
 
         return new TarjetaDetailDTO(tarjetaLogic.updateTarjeta(id, tarjeta.toEntity()));
@@ -174,7 +177,7 @@ public class TarjetaResource {
         TarjetaEntity entity = tarjetaLogic.getTarjeta(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /tarjetas/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESTARJETA + id + NOEXISTE, 404);
         }
 
         tarjetaLogic.deleteTarjeta(id);

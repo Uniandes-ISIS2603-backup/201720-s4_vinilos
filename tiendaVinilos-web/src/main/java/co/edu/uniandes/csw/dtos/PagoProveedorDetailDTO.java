@@ -38,9 +38,7 @@ public class PagoProveedorDetailDTO extends PagoProveedorDTO {
      */
     @Override
     public PagoProveedorEntity toEntity() {
-        PagoProveedorEntity UsuarioE = super.toEntity();
-
-        return UsuarioE;
+        return super.toEntity();
     }
 }
 

@@ -61,7 +61,7 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO {
             list.add(dto);
         }
 
-        vinilo = (ArrayList<ViniloDTO>) list;
+        vinilo = list;
     }
 
     /**

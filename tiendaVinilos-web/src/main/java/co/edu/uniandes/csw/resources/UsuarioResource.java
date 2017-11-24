@@ -83,6 +83,9 @@ public class UsuarioResource {
     @Inject
     TarjetaLogic      tarjetaLogic;
 
+    private static final String NOEXISTE = " no existe ";
+    private static final String RESUSUARIO = "El recurso /usuarios/";
+    
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/usuarios Ejemplo json: {
      * "name":"Norma" }
@@ -147,7 +150,7 @@ public class UsuarioResource {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESUSUARIO + id + NOEXISTE, 404);
         }
 
         UsuarioDetailDTO usu = new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
@@ -179,7 +182,7 @@ public class UsuarioResource {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESUSUARIO + id + NOEXISTE, 404);
         }
 
         return new UsuarioDetailDTO(usuarioLogic.updateUsuario(id, usuario.toEntity()));
@@ -201,36 +204,11 @@ public class UsuarioResource {
         UsuarioEntity entity = usuarioLogic.getUsuario(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /usuarios/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESUSUARIO + id + NOEXISTE, 404);
         }
 
         usuarioLogic.deleteUsuario(id);
     }
-
-//  @Path("{usarioId: \\d+}/pedidos")
-//  public Class<UsuarioPedidoClienteResource> getUsuarioPedidos(@PathParam("usuarioId") Long idProv) {
-//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//      if (ent == null) {
-//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//      }
-//      return UsuarioPedidoClienteResource.class;
-//  }
-//  @Path("{usuarioId: \\d+}/feedbacks")
-//  public Class<UsuarioFeedBackResource> getUsuarioFeedBacks(@PathParam("usuarioId") Long idProv) {
-//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//      if (ent == null) {
-//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//      }
-//      return UsuarioFeedBackResource.class;
-//  }
-//  @Path("{usuarioId: \\d+}/tarjetas")
-//  public Class<TarjetasUsuarioResource> getProveedorsPedidos(@PathParam("usuarioId") Long idProv) {
-//      UsuarioEntity ent = usuarioLogic.getUsuario(idProv);
-//      if (ent == null) {
-//          throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-//      }
-//      return TarjetasUsuarioResource.class;
-//  }
 
     /*
      *

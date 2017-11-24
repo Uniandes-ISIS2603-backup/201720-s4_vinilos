@@ -93,7 +93,7 @@ public class PedidoClientePedidoProveedorResource {
 
     @DELETE
     @Path("/{id2:\\d+}")
-    public void deletePedidoProveedor(@PathParam("id") Long id, @PathParam("id2") Long id2) {
+    public void deletePedidoProveedor(@PathParam("id2") Long id2) {
         pedidoProveedorLogic.deletePedidoProveedor(id2);
     }
 

@@ -42,6 +42,7 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ProveedorResource {
     private static final String NOEXISTE = " no existe ";
+    private static final String RESPROVEEDOR =  "El proveedor con el id " ;
     @Inject
     ProveedorLogic              logic;
 
@@ -58,22 +59,22 @@ public class ProveedorResource {
     }
 
     @GET
-    @Path(("{id:\\d+}"))
+    @Path("{id:\\d+}")
     public ProveedorDetailDTO getProveedor(@PathParam("id") Long id) {
         ProveedorEntity en = logic.getProveedor(id);
 
         if (en == null) {
-            throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
         }
 
-        return (new ProveedorDetailDTO(en));
+        return new ProveedorDetailDTO(en);
     }
 
     @POST
     public ProveedorDetailDTO createProveedor(ProveedorDetailDTO prov) throws BusinessLogicException {
         ProveedorEntity ent = logic.createProveedor(prov.toEntity());
 
-        return (new ProveedorDetailDTO(ent));
+        return new ProveedorDetailDTO(ent);
     }
 
     @PUT
@@ -87,7 +88,7 @@ public class ProveedorResource {
         ProveedorEntity oldEnt = logic.getProveedor(id);
 
         if (oldEnt == null) {
-            throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
         }
 
         entity.setFeedBacks(oldEnt.getFeedBacks());
@@ -95,7 +96,7 @@ public class ProveedorResource {
 
         ProveedorEntity ent = logic.updateProveedor(entity);
 
-        return (new ProveedorDetailDTO(ent));
+        return new ProveedorDetailDTO(ent);
     }
 
     @DELETE
@@ -104,7 +105,7 @@ public class ProveedorResource {
         ProveedorEntity ent = logic.getProveedor(id);
 
         if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + id + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
         }
 
         logic.deleteProveedor(id);
@@ -115,7 +116,7 @@ public class ProveedorResource {
         ProveedorEntity ent = logic.getProveedor(idProv);
 
         if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
         }
 
         return ProveedorPedidosResource.class;
@@ -126,7 +127,7 @@ public class ProveedorResource {
         ProveedorEntity ent = logic.getProveedor(idProv);
 
         if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
         }
 
         return ProveedorPagoResource.class;
@@ -137,7 +138,7 @@ public class ProveedorResource {
         ProveedorEntity ent = logic.getProveedor(idProv);
 
         if (ent == null) {
-            throw new WebApplicationException("El proveedor con el id " + idProv + NOEXISTE, 404);
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
         }
 
         return ProveedorFeedBackResource.class;

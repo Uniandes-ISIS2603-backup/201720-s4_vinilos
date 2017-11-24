@@ -1,4 +1,4 @@
-
+    
 /*
 * To change this license header, choose License Headers in Project Properties.
 * To change this template file, choose Tools | Templates
@@ -53,7 +53,7 @@ public class UsuarioPedidoClienteResource {
 
     @GET
     @Path("/{id2:\\d+}")
-    public PedidoClienteDetailDTO getPedidoCliente(@PathParam("id") Long id, @PathParam("id2") Long id2)
+    public PedidoClienteDetailDTO getPedidoCliente( @PathParam("id2") Long id2)
             throws BusinessLogicException {
         PedidoClienteEntity pedido = pedidoClienteLogic.getPedido(id2);
 
@@ -93,7 +93,7 @@ public class UsuarioPedidoClienteResource {
 
     @PUT
     @Path("/{id2:\\d+}")
-    public PedidoClienteDetailDTO updatePedidoCliente(@PathParam("id") Long id, @PathParam("id2") Long id2,
+    public PedidoClienteDetailDTO updatePedidoCliente(@PathParam("id2") Long id2,
             PedidoClienteDetailDTO nuevo)
             throws BusinessLogicException {
         nuevo.setId(id2);
@@ -104,7 +104,7 @@ public class UsuarioPedidoClienteResource {
 
     @DELETE
     @Path("/{id2:\\d+}")
-    public void deletePedidoCliente(@PathParam("id") Long id, @PathParam("id2") Long id2)
+    public void deletePedidoCliente(@PathParam("id2") Long id2)
             throws BusinessLogicException {
         pedidoClienteLogic.deletePedido(id2);
     }

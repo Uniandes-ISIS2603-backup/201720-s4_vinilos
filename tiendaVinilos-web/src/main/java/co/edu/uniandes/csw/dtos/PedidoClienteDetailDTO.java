@@ -56,7 +56,7 @@ public class PedidoClienteDetailDTO extends PedidoClienteDTO {
                 list.add(dto);
             }
 
-            pedidoP = (ArrayList<PedidoProveedorDTO>) list;
+            pedidoP = list;
             carrito = new CarroComprasDetailDTO(entity.getUsuario().getCarrito());
         }
     }

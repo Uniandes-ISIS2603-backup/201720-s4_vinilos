@@ -44,7 +44,7 @@ public class PedidoProveedorResource {
 
     @GET
     public List<PedidoProveedorDetailDTO> getProveedores() {
-        List<PedidoProveedorDetailDTO> retList = new ArrayList<PedidoProveedorDetailDTO>();
+        List<PedidoProveedorDetailDTO> retList = new ArrayList<>();
         List<PedidoProveedorEntity>    lista   = logic.getAll();
 
         for (PedidoProveedorEntity en : lista) {
@@ -55,18 +55,18 @@ public class PedidoProveedorResource {
     }
 
     @GET
-    @Path(("{id:\\d+}"))
+    @Path("{id:\\d+}")
     public PedidoProveedorDetailDTO getProveedor(@PathParam("id") Long id) {
         PedidoProveedorEntity ent = logic.getPedidoProveedor(id);
 
-        return (new PedidoProveedorDetailDTO(ent));
+        return new PedidoProveedorDetailDTO(ent);
     }
 
     @POST
     public PedidoProveedorDetailDTO createProveedor(PedidoProveedorDetailDTO prov) {
         PedidoProveedorEntity ent = logic.createProveedor(prov.toEntity());
 
-        return (new PedidoProveedorDetailDTO(ent));
+        return new PedidoProveedorDetailDTO(ent);
     }
 
     @PUT
@@ -74,7 +74,7 @@ public class PedidoProveedorResource {
     public PedidoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PedidoProveedorDetailDTO prov) {
         PedidoProveedorEntity ent = logic.updatePedidoProveedor(prov.toEntity());
 
-        return (new PedidoProveedorDetailDTO(ent));
+        return new PedidoProveedorDetailDTO(ent);
     }
 
     @DELETE

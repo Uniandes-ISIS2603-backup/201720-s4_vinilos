@@ -38,6 +38,9 @@ public class ViniloResource {
     @Inject
     ViniloLogic viniloLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    private static final String NOEXISTE = " no existe ";
+    private static final String RESVINILO = "El recurso /Vinilos/";
+    
     /**
      * GET para todas las Viniloes.
      * http://localhost:8080/tiendaVinilos-web/api/Vinilos
@@ -68,7 +71,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
 
         return new ViniloDetailDTO(entity);
@@ -120,7 +123,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
 
         return new ViniloDetailDTO(viniloLogic.updateVinilo(id, vinilo.toEntity()));
@@ -142,7 +145,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
 
         viniloLogic.deleteVinilo(id);
@@ -153,7 +156,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(viniloId);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + viniloId + "/infos no existe.", 404);
+            throw new WebApplicationException(RESVINILO + viniloId + NOEXISTE, 404);
         }
 
         return InfoResource.class;
@@ -164,7 +167,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(vinilosId);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + vinilosId + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + vinilosId + NOEXISTE, 404);
         }
 
         return ViniloArtistasResource.class;
@@ -175,7 +178,7 @@ public class ViniloResource {
         ViniloEntity entity = viniloLogic.getVinilo(vinilosId);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + vinilosId + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + vinilosId + NOEXISTE, 404);
         }
 
         return ViniloCancionesResource.class;

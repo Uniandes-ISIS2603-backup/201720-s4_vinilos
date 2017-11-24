@@ -24,7 +24,9 @@ public class ViniloDTO {
     /**
      * Constructor por defecto
      */
-    public ViniloDTO() {}
+    public ViniloDTO() {
+    //Constructor por defecto
+    }
 
     public ViniloDTO(ViniloEntity entity) {
         this.anio         = entity.getAnio();

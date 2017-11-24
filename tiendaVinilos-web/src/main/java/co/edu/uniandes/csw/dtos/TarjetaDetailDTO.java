@@ -59,16 +59,6 @@ public class TarjetaDetailDTO extends TarjetaDTO {
     public void setUsuario(UsuarioDTO usuario) {
         this.usuario = usuario;
     }
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return
-     */
-    @Override
-    public TarjetaEntity toEntity() {
-        return super.toEntity();
-    }
 }
 
 

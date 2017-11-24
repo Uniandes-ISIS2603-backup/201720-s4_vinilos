@@ -72,8 +72,7 @@ public class PagoClienteResource {
      */
     @DELETE
     @Path("{idPago: \\d+}")
-    public void deletePago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago)
-            throws WebApplicationException {
+    public void deletePago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) {
         PagoClienteEntity entity = pagoLogic.getPago(idPago);
 
         if (entity == null) {
@@ -98,8 +97,7 @@ public class PagoClienteResource {
      */
     @GET
     @Path("{idPago: \\d+}")
-    public PagoClienteDetailDTO getPago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago)
-            throws WebApplicationException {
+    public PagoClienteDetailDTO getPago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago){
         PagoClienteEntity entity = pagoLogic.getPago(idPago);
 
         if (entity == null) {

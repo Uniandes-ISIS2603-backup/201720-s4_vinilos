@@ -62,18 +62,8 @@ public class ArtistaCancionResource {
     @POST
     @Path(("/{idCan:\\d+}"))
     public CancionDetailDTO addCancion(@PathParam("artistaId") Long artId, @PathParam("idCan") Long canId) {
-
-//      ArtistaEntity ent = artLogic.getArtista(artId);
-//      if (ent == null) {
-//          throw new WebApplicationException("El recurso /Artista/" + artId + " no existe.", 404);
-//      }
         CancionEntity canEnt = canLogic.getCancion(canId);
-
-//      if (canEnt == null) {
-//          throw new WebApplicationException("El recurso /Artista/" + canId + " no existe.", 404);
-//      }
         canLogic.addArtista(artLogic.getArtista(artId), canEnt);
-
         return new CancionDetailDTO(canEnt);
     }
 }

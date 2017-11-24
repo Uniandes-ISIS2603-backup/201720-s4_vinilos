@@ -60,7 +60,7 @@ public class ProveedorVinilosResource {
     }
 
     @GET
-    @Path(("/{idVin:\\d+}"))
+    @Path("/{idVin:\\d+}")
     public ViniloDetailDTO getVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin)
             throws BusinessLogicException {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProv);

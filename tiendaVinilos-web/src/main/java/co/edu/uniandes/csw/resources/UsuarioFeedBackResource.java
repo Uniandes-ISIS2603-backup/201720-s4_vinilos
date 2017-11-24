@@ -59,7 +59,7 @@ public class UsuarioFeedBackResource {
 
     @GET
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO getFeedBack(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2) {
+    public FeedBackDetailDTO getFeedBack(@PathParam("id2") Long id2) {
         FeedBackEntity feed = feedBackLogic.getFeedBack(id2);
 
         feedBackLogic.getFeedBack(id2);
@@ -111,7 +111,7 @@ public class UsuarioFeedBackResource {
 
     @DELETE
     @Path("/{id2:\\d+}")
-    public void deleteFeedBack(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2) {
+    public void deleteFeedBack(@PathParam("id2") Long id2) {
         FeedBackEntity feed = feedBackLogic.getFeedBack(id2);
 
         feedBackLogic.deleteFB(feed);

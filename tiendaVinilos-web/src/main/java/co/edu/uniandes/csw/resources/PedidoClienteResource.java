@@ -17,7 +17,6 @@ import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.enterprise.context.RequestScoped;
 
@@ -203,7 +202,7 @@ public class PedidoClienteResource {
 
     @Path("{idPedido: \\d+}/pago")
     public Class<PagoClienteResource> getPagoClienteResource(@PathParam("idPedido") Long pedidoId)
-            throws WebApplicationException, BusinessLogicException {
+            throws  BusinessLogicException {
         PedidoClienteEntity entity = pedidoLogic.getPedido(pedidoId);
 
         if (entity == null) {

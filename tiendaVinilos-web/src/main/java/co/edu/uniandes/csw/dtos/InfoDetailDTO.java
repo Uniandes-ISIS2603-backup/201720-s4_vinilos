@@ -19,7 +19,9 @@ public class InfoDetailDTO extends InfoDTO {
     /**
      * Constructor por defecto
      */
-    public InfoDetailDTO() {}
+    public InfoDetailDTO() {
+        //Constructor por defecto
+    }
 
     /**
      * Constructor para transformar un Entity a un DTO
@@ -37,9 +39,7 @@ public class InfoDetailDTO extends InfoDTO {
      */
     @Override
     public InfoEntity toEntity() {
-        InfoEntity infoE = super.toEntity();
-
-        return infoE;
+        return super.toEntity();
     }
 }
 

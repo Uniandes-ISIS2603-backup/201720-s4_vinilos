@@ -53,7 +53,7 @@ public class TarjetasUsuarioResource {
 
     @GET
     @Path("/{id2:\\d+}")
-    public TarjetaDetailDTO getTarjeta(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2) {
+    public TarjetaDetailDTO getTarjeta( @PathParam("id2") Long id2) {
         TarjetaEntity tarjeta = tarjetaLogic.getTarjeta(id2);
 
         tarjetaLogic.getTarjeta(id2);

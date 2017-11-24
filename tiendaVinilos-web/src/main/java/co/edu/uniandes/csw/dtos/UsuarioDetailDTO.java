@@ -71,7 +71,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list.add(dto);
         }
 
-        tarjetas = (ArrayList<TarjetaDTO>) list;
+        tarjetas = list;
 
         List<FeedBackEntity> lista2 = entity.getFeedBacks();
         List<FeedBackDTO>    list2  = new ArrayList<>();
@@ -82,7 +82,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list2.add(dto);
         }
 
-        feeds = (ArrayList<FeedBackDTO>) list2;
+        feeds = list2;
 
         List<PedidoClienteEntity> lista3 = entity.getPedidos();
         List<PedidoClienteDTO>    list3  = new ArrayList<>();
@@ -93,7 +93,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
             list3.add(dto);
         }
 
-        pedidos = (ArrayList<PedidoClienteDTO>) list3;
+        pedidos = list3;
         carrito = new CarroComprasDetailDTO(entity.getCarrito());
     }
 

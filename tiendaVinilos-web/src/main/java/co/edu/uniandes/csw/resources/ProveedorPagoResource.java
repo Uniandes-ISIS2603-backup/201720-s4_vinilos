@@ -58,7 +58,7 @@ public class ProveedorPagoResource {
     }
 
     @GET
-    @Path(("/{idPP:\\d+}"))
+    @Path("/{idPP:\\d+}")
     public PagoProveedorDetailDTO getPago(@PathParam("proveedorId") Long idProveedor, @PathParam("idPP") Long idPago)
             throws BusinessLogicException {
         ProveedorEntity ent = proveedorLogic.getProveedor(idProveedor);

@@ -40,7 +40,11 @@ import javax.ws.rs.WebApplicationException;
 public class InfoResource {
     @Inject
     InfoLogic infoLogic;
-
+    
+    private static final String NOEXISTE = " no existe.";
+    private static final String REVINILOS = "El recurso /vinilos/";
+    private static final String INFOS = "/infos/";
+    
     @GET
     public List<InfoDTO> getInfos(@PathParam("idVinilo") Long idVinilo) throws BusinessLogicException {
         return listEntity2DTO(infoLogic.getInfos(idVinilo));
@@ -53,7 +57,7 @@ public class InfoResource {
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException(REVINILOS + idVinilo + INFOS + id + NOEXISTE, 404);
         }
 
         return new InfoDTO(entity);
@@ -73,7 +77,7 @@ public class InfoResource {
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException(REVINILOS + idVinilo + INFOS + id + NOEXISTE, 404);
         }
 
         return new InfoDTO(infoLogic.updateInfo(idVinilo, info.toEntity()));
@@ -86,7 +90,7 @@ public class InfoResource {
         InfoEntity entity = infoLogic.getInfo(idVinilo, id);
 
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + idVinilo + "/infos/" + id + " no existe.", 404);
+            throw new WebApplicationException(REVINILOS + idVinilo + INFOS + id + NOEXISTE, 404);
         }
 
         infoLogic.deleteInfo(idVinilo, id);

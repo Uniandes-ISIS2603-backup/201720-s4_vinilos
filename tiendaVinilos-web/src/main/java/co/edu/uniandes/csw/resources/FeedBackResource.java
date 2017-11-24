@@ -42,7 +42,9 @@ import javax.ws.rs.WebApplicationException;
 public class FeedBackResource {
     @Inject
     FeedBackLogic feedbackLogic;
-
+    
+    private static final String NOEXISTE = " no existe ";
+    
     @GET
     public List<FeedBackDetailDTO> getFeedBacks() {
         List<FeedBackDetailDTO> retList = new ArrayList<>();
@@ -56,17 +58,15 @@ public class FeedBackResource {
     }
 
     @GET
-    @Path(("{id:\\d+}"))
+    @Path("{id:\\d+}")
     public FeedBackDetailDTO getFeedBack(@PathParam("id") Long id) {
         FeedBackEntity en = feedbackLogic.getFeedBack(id);
 
         if (en == null) {
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+            throw new WebApplicationException("El proveedor con el id " + id +NOEXISTE, 404);
         }
 
-        FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
-
-        return fbDTO;
+        return new FeedBackDetailDTO(en);
     }
 
     @POST
@@ -86,7 +86,7 @@ public class FeedBackResource {
         FeedBackEntity oldEnt = feedbackLogic.getFeedBack(id);
 
         if (oldEnt == null) {
-            throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404);
+            throw new WebApplicationException("El feed back con el id " + id + NOEXISTE, 404);
         }
 
         FeedBackEntity ent = feedbackLogic.updateFeedBack(entity);
@@ -100,7 +100,7 @@ public class FeedBackResource {
         FeedBackEntity ent = feedbackLogic.getFeedBack(id);
 
         if (ent == null) {
-            throw new WebApplicationException("El feed back con el id " + id + " no existe ", 404);
+            throw new WebApplicationException("El feed back con el id " + id +NOEXISTE, 404);
         }
 
         feedbackLogic.deleteFeedBack(id);
