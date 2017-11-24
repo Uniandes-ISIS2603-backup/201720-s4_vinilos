@@ -31,6 +31,8 @@ public class CancionEntity implements Serializable{
     
     private String name;
     
+    private String link;
+    
     @PodamExclude
     @ManyToOne
     private ArtistaEntity artistas;
@@ -79,5 +81,13 @@ public class CancionEntity implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getLink(){
+        return link;
+    }
+    
+    public void setLink(String link){
+        this.link = link;
     }
 }

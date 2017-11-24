@@ -335,13 +335,25 @@ width: 280px;
                             <li><a ui-serf="pedidoProveedorList" href="#!/pedidoProveedores">PEDIDO DEL PROVEEDOR</a></li>
                             <li><a ui-serf="pagoProveedorList" href="#!/pagoProveedores">PAGO DEL PROVEEDOR</a></li>
                             <li><a ui-serf="viniloList" href="#!/vinilos">VINILOS</a></li>
+                            <li><a ui-sref="cancionList">CANCIONES</a></li>
                             <li><a ui-serf="infoList" href="#!/infos">INFOS</a></li>
                             
-                            <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto;">Login</button>
+                            <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto;">Login Usuario</button>
 
                             <div id="id01" class="modal">
 
-                                <form class="modal-content animate" action="/tiendaVinilos-web/#!/cancionList">
+                                
+            
+                                
+                                <form class="modal-content animate"  >
+                                    
+                                                        <script>function clickyClick() {
+                                                            var x= document.getElementById("userInput").value ;
+    url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/'+ x;
+    window.open(url);
+}
+</script>
+                                    
                                     <div class="imgcontainer">
                                         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
                                         <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
@@ -349,19 +361,62 @@ width: 280px;
 
                                     <div class="container">
                                         <label><b>Username</b></label>
-                                        <input type="text" placeholder="Enter Username" name="uname" required>
+                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput">
 
                                         <label><b>Password</b></label>
                                         <input type="password" placeholder="Enter Password" >
-
-                                        <button type="submit">Login</button>
-                                        <input type="checkbox" checked="checked"> Remember me
+                                        
+                                        <button type="submit"  onclick="clickyClick()" >Login</button>
+                                        
+                                        <input type="checkbox" checked="checked" style ="color: black"> Remember me
                                     </div>
 
                                     <div class="container" style="background-color:#f1f1f1">
                                         <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
                                         <span class="psw"> <a href="#">Forgot password?</a></span>
                                     </div>
+                                        
+                                </form>
+                            </div>
+                            
+                            <button onclick="document.getElementById('id02').style.display = 'block'" style="width:auto;">Login Proveedor</button>
+
+                            <div id="id02" class="modal">
+
+                                
+            
+                                
+                                <form class="modal-content animate"  >
+                                    
+                                                        <script>function clickyClick1() {
+                                                            var x= document.getElementById("userInput1").value ;
+    url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/'+ x;
+    window.open(url);
+}
+</script>
+                                    
+                                    <div class="imgcontainer">
+                                        <span onclick="document.getElementById('id02').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+                                        <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
+                                    </div>
+
+                                    <div class="container">
+                                        <label><b>Username</b></label>
+                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput1">
+
+                                        <label><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" >
+                                        
+                                        <button type="submit"  onclick="clickyClick1()" >Login</button>
+                                        
+                                        <input type="checkbox" checked="checked" style ="color: black"> Remember me
+                                    </div>
+
+                                    <div class="container" style="background-color:#f1f1f1">
+                                        <button type="button" onclick="document.getElementById('id02').style.display = 'none'" class="cancelbtn">Cancel</button>
+                                        <span class="psw"> <a href="#">Forgot password?</a></span>
+                                    </div>
+                                        
                                 </form>
                             </div>
 

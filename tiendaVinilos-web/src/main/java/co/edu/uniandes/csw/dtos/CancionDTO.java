@@ -16,16 +16,16 @@ public class CancionDTO {
     private Long id;
     private String name;
     private Double duracion;
+    private String link;
     
-    //Constructor por defecto
     public CancionDTO(){
-        //Constructor por defecto
     }
     
     public CancionDTO(CancionEntity cancion){
         this.id = cancion.getId();
         this.name = cancion.getName();
         this.duracion = cancion.getDuracion();
+        this.link = cancion.getLink();
     }
     
     public Long getId() {
@@ -52,12 +52,21 @@ public class CancionDTO {
         this.duracion = d;
     }
     
+    public String getLink(){
+        return link;
+    }
+    
+    public void setLink(String link){
+        this.link = link;
+    }
+    
     
     public CancionEntity toEntity(){
         CancionEntity entity = new CancionEntity();
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setDuracion(this.duracion);
+        entity.setLink(this.link);
         
         return entity;
     }

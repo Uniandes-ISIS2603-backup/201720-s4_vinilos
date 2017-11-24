@@ -1,5 +1,16 @@
 <div class="container-fluid">
-    <table class="table table-striped" class="col-md-4">
+     
+    <script > 
+        function myFunction() {
+            var iframe = document.getElementById("frame1");
+            var ruta = document.getElementById("rute").src;
+            iframe.src = ruta;
+           
+        }
+    </script>
+    <img id="rute" src="{{currentCancion.link}}">
+    
+    <table class="table table-striped" col-md-4>
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -10,16 +21,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr >
-                <td>{{currentCancion.name}}</td>
+            <tr>
+                <td>{{currentCancion.name}} <br> <a href="https://www.google.com.co"></a></td>
                 <td>{{currentCancion.duracion}}</td>
-                <td>{{currentCancion.id}}</td>
-                <td><audio controls="controls">
-                    <source src="resources/song_1.mp3" type="audio/mp3">
-                    </audio></td>
+                <td>{{currentCancion.id}} </td>
+                <td>
+                    <button onclick="myFunction()">Escucha</button>
+                    <iframe id="frame1" src="" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                </td>
             </tr>
         </tbody>
     </table>
+    
      <button id="delete-btn" class="btn btn-danger btn-sm" ui-sref="cancionDelete({cancionId: currentCancion.id})"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
      <a class="btn btn-default btn-sm" ui-sref="cancionUpdate({cancionId: currentCancion.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
 
