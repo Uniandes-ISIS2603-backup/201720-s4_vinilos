@@ -1,33 +1,46 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.tiendaVinilos.persistence.Test;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.PagoProveedorPersistennce;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
+
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
+import static org.junit.Assert.*;
+
+//~--- JDK imports ------------------------------------------------------------
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -35,23 +48,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PagoProveedorPersistennceTest {
-    
-     /**
+
+    /**
      *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de XYZ, el descriptor de la
-     * base de datos y el archivo beans.xml para resolver la inyección de
-     * dependencias.
      */
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PagoProveedorEntity.class.getPackage())
-                .addPackage(PagoProveedorPersistennce.class.getPackage())
-                .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
-                .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
-    
+    private List<PagoProveedorEntity> data = new ArrayList<PagoProveedorEntity>();
+
     /**
      * Inyección de la dependencia a la clase XYZPersistence cuyos métodos
      * se van a probar.
@@ -73,31 +75,35 @@ public class PagoProveedorPersistennceTest {
     @Inject
     UserTransaction utx;
 
-     /**
+    public PagoProveedorPersistennceTest() {}
+
+    /**
      *
+     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
+     * embebido. El jar contiene las clases de XYZ, el descriptor de la
+     * base de datos y el archivo beans.xml para resolver la inyección de
+     * dependencias.
      */
-    private List<PagoProveedorEntity> data = new ArrayList<PagoProveedorEntity>();
-    
-    public PagoProveedorPersistennceTest() {
+    @Deployment
+    public static JavaArchive createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class).addPackage(PagoProveedorEntity.class.getPackage()).addPackage(
+            PagoProveedorPersistennce.class.getPackage()).addAsManifestResource(
+            "META-INF/persistence.xml", "persistence.xml").addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @BeforeClass
-    public static void setUpClass() {
-        
-        
-    }
-    
+    public static void setUpClass() {}
+
     @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    public static void tearDownClass() {}
+
     private void clearData() {
         em.createQuery("delete from PagoProveedorEntity").executeUpdate();
     }
 
-
- private void insertData() {
+    private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+
         for (int i = 0; i < 3; i++) {
             PagoProveedorEntity entity = factory.manufacturePojo(PagoProveedorEntity.class);
 
@@ -105,11 +111,10 @@ public class PagoProveedorPersistennceTest {
             data.add(entity);
         }
     }
-    
+
     @Before
     public void setUp() {
-        
-         try {
+        try {
             utx.begin();
             em.joinTransaction();
             clearData();
@@ -117,6 +122,7 @@ public class PagoProveedorPersistennceTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+
             try {
                 utx.rollback();
             } catch (Exception e1) {
@@ -124,20 +130,20 @@ public class PagoProveedorPersistennceTest {
             }
         }
     }
-    
+
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
 
     /**
      * Test of find method, of class PedidoProveedorPersistence.
      */
     @Test
     public void testFind() throws Exception {
-         PagoProveedorEntity entity = data.get(0);
-    PagoProveedorEntity newEntity = persistence.find(entity.getId());
-    Assert.assertNotNull(newEntity);
-    Assert.assertEquals(entity.getName(), newEntity.getName());
+        PagoProveedorEntity entity    = data.get(0);
+        PagoProveedorEntity newEntity = persistence.find(entity.getId());
+
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
     }
 
     /**
@@ -145,17 +151,21 @@ public class PagoProveedorPersistennceTest {
      */
     @Test
     public void testFindAll() throws Exception {
-       List<PagoProveedorEntity> list = persistence.findAll();
-    Assert.assertEquals(data.size(), list.size());
-    for (PagoProveedorEntity ent : list) {
-        boolean found = false;
-        for (PagoProveedorEntity entity : data) {
-            if (ent.getId().equals(entity.getId())) {
-                found = true;
+        List<PagoProveedorEntity> list = persistence.findAll();
+
+        Assert.assertEquals(data.size(), list.size());
+
+        for (PagoProveedorEntity ent : list) {
+            boolean found = false;
+
+            for (PagoProveedorEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
             }
+
+            Assert.assertTrue(found);
         }
-        Assert.assertTrue(found);
-    }
     }
 
     /**
@@ -163,14 +173,16 @@ public class PagoProveedorPersistennceTest {
      */
     @Test
     public void testCreate() throws Exception {
-        PodamFactory factory = new PodamFactoryImpl();
-    PagoProveedorEntity newEntity = factory.manufacturePojo(PagoProveedorEntity.class);
-    PagoProveedorEntity result = persistence.create(newEntity);
+        PodamFactory        factory   = new PodamFactoryImpl();
+        PagoProveedorEntity newEntity = factory.manufacturePojo(PagoProveedorEntity.class);
+        PagoProveedorEntity result    = persistence.create(newEntity);
 
-    Assert.assertNotNull(result);
-    PagoProveedorEntity entity = em.find(PagoProveedorEntity.class, result.getId());
-    Assert.assertNotNull(entity);
-    Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertNotNull(result);
+
+        PagoProveedorEntity entity = em.find(PagoProveedorEntity.class, result.getId());
+
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
     /**
@@ -178,17 +190,16 @@ public class PagoProveedorPersistennceTest {
      */
     @Test
     public void testUpdate() throws Exception {
-         PagoProveedorEntity entity = data.get(0);
-    PodamFactory factory = new PodamFactoryImpl();
-    PagoProveedorEntity newEntity = factory.manufacturePojo(PagoProveedorEntity.class);
+        PagoProveedorEntity entity    = data.get(0);
+        PodamFactory        factory   = new PodamFactoryImpl();
+        PagoProveedorEntity newEntity = factory.manufacturePojo(PagoProveedorEntity.class);
 
-    newEntity.setId(entity.getId());
+        newEntity.setId(entity.getId());
+        persistence.update(newEntity);
 
-    persistence.update(newEntity);
+        PagoProveedorEntity resp = em.find(PagoProveedorEntity.class, entity.getId());
 
-    PagoProveedorEntity resp = em.find(PagoProveedorEntity.class, entity.getId());
-
-    Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getName(), resp.getName());
     }
 
     /**
@@ -196,10 +207,15 @@ public class PagoProveedorPersistennceTest {
      */
     @Test
     public void testDelete() throws Exception {
-         PagoProveedorEntity entity = data.get(0);
-    persistence.delete(entity.getId());
-    PagoProveedorEntity deleted = em.find(PagoProveedorEntity.class, entity.getId());
-    Assert.assertNull(deleted);
+        PagoProveedorEntity entity = data.get(0);
+
+        persistence.delete(entity.getId());
+
+        PagoProveedorEntity deleted = em.find(PagoProveedorEntity.class, entity.getId());
+
+        Assert.assertNull(deleted);
     }
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

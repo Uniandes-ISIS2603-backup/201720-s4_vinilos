@@ -1,5 +1,6 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
@@ -9,10 +10,15 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
+
 import javax.inject.Inject;
 
 /**
@@ -21,10 +27,9 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ViniloLogic {
-private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName());
-
+    private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName());
     @Inject
-    private ViniloPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private ViniloPersistence   persistence;    // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      *
@@ -34,94 +39,101 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      */
     public ViniloEntity createVinilo(ViniloEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación del Vinilo");
+
         if (persistence.findByName(entity.getName()) != null) {
             throw new BusinessLogicException("Ya existe un vinilo con el nombre \"" + entity.getName() + "\"");
         }
-        if(persistence.find(entity.getId())!=null){
+
+        if (persistence.find(entity.getId()) != null) {
             throw new BusinessLogicException("Ya existe un vinilo con el id\"" + entity.getId() + "\"");
         }
+
         // Invoca la persistencia para crear el vinilo
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Vinilo");
+
         return entity;
     }
 
     /**
-     * 
+     *
      * Obtener todas las Viniloes existentes en la base de datos.
      *
      * @return una lista de Viniloes.
      */
     public List<ViniloEntity> getVinilos() {
         LOGGER.info("Inicia proceso de consultar todas las Viniloes");
+
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<ViniloEntity> Vinilo = persistence.findAll();
+
         LOGGER.info("Termina proceso de consultar todas las Viniloes");
+
         return Vinilo;
     }
-    public ViniloEntity getVinilo(long id)
-    {
-        ViniloEntity ent=persistence.find(id);
+
+    public ViniloEntity getVinilo(long id) {
+        ViniloEntity ent = persistence.find(id);
+
         return ent;
     }
-    public ViniloEntity updateVinilo(long id,ViniloEntity us)
-    {
+
+    public ViniloEntity updateVinilo(long id, ViniloEntity us) {
         persistence.update(us);
+
         return us;
     }
-    public void deleteVinilo(long id)
-    {
+
+    public void deleteVinilo(long id) {
         persistence.delete(id);
     }
-    
-    public void agregarVinilo(ProveedorEntity provEnt, ViniloEntity vinEnt) throws BusinessLogicException
-    {
+
+    public void agregarVinilo(ProveedorEntity provEnt, ViniloEntity vinEnt) throws BusinessLogicException {
         vinEnt.setProveedor(provEnt);
         createVinilo(vinEnt);
     }
-    
-    public void eliminarVinilo ( Long vinEnt)
-    {
+
+    public void eliminarVinilo(Long vinEnt) {
         ViniloEntity vin = persistence.find(vinEnt);
+
         vin.setProveedor(null);
         persistence.delete(vinEnt);
     }
-    
-    public ViniloEntity modificarVinilo (ProveedorEntity provEnt, Long id, ViniloEntity vinEnt)
-    {
+
+    public ViniloEntity modificarVinilo(ProveedorEntity provEnt, Long id, ViniloEntity vinEnt) {
         vinEnt.setProveedor(provEnt);
+
         return updateVinilo(id, vinEnt);
     }
-    public ViniloEntity agregarViniloCarro(UsuarioEntity usuario,ViniloEntity vinilo) throws BusinessLogicException
-    {
-       
+
+    public ViniloEntity agregarViniloCarro(UsuarioEntity usuario, ViniloEntity vinilo) throws BusinessLogicException {
         return createVinilo(vinilo);
     }
-    public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
-    {
+
+    public ViniloEntity addCarrito(CarroComprasEntity carrito, ViniloEntity vinilo) {
         vinilo.setCarrosCompras(carrito);
+
         return updateVinilo(vinilo.getId(), vinilo);
     }
-    public void sacraDelCarrito(ViniloEntity vinilo)
-    {
+
+    public void sacraDelCarrito(ViniloEntity vinilo) {
         vinilo.setCarrosCompras(null);
         deleteVinilo(vinilo.getId());
     }
-    
-    
-    public List<CancionEntity> getCanciones(Long id)
-    {
+
+    public List<CancionEntity> getCanciones(Long id) {
         ViniloEntity ent = persistence.find(id);
+
         return ent.getCanciones();
     }
-    
-    public void addVinilo(Long id, CancionEntity canEnt)
-    {
+
+    public void addVinilo(Long id, CancionEntity canEnt) {
         ViniloEntity ent = persistence.find(id);
+
         ent.getCanciones().add(canEnt);
         persistence.update(ent);
     }
-    
+
     /**
      * Obtiene una colección de instancias de ArtistaEntity asociadas a una
      * instancia de Vinilo
@@ -129,10 +141,11 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param viniloId Identificador de la instancia de Vinilo
      * @return Colección de instancias de ArtistaEntity asociadas a la instancia
      * de Vinilo
-     * 
+     *
      */
     public List<ArtistaEntity> listArtistas(Long viniloId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", viniloId);
+
         return getVinilo(viniloId).getArtistas();
     }
 
@@ -141,17 +154,22 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      *
      * @param viniloId Identificador de la instancia de Vinilo
      * @param artistasId Identificador de la instancia de Artista
-     * 
+     *
      */
     public ArtistaEntity getArtista(Long viniloId, Long artistasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor del libro con id = {0}", viniloId);
-        List<ArtistaEntity> list = getVinilo(viniloId).getArtistas();
-        ArtistaEntity artistasEntity = new ArtistaEntity();
+
+        List<ArtistaEntity> list           = getVinilo(viniloId).getArtistas();
+        ArtistaEntity       artistasEntity = new ArtistaEntity();
+
         artistasEntity.setId(artistasId);
+
         int index = list.indexOf(artistasEntity);
+
         if (index >= 0) {
             return list.get(index);
         }
+
         return null;
     }
 
@@ -161,14 +179,17 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param viniloId Identificador de la instancia de Vinilo
      * @param artistasId Identificador de la instancia de Artista
      * @return Instancia de ArtistaEntity que fue asociada a Vinilo
-     * 
+     *
      */
     public ArtistaEntity addArtista(Long viniloId, Long artistasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
-        ViniloEntity viniloEntity = getVinilo(viniloId);
+
+        ViniloEntity  viniloEntity   = getVinilo(viniloId);
         ArtistaEntity artistasEntity = new ArtistaEntity();
+
         artistasEntity.setId(artistasId);
         viniloEntity.getArtistas().add(artistasEntity);
+
         return getArtista(viniloId, artistasId);
     }
 
@@ -179,12 +200,15 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param list Colección de instancias de ArtistaEntity a asociar a instancia
      * de Vinilo
      * @return Nueva colección de ArtistaEntity asociada a la instancia de Vinilo
-     * 
+     *
      */
     public List<ArtistaEntity> replaceArtistas(Long viniloId, List<ArtistaEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un autor del libro con id = {0}", viniloId);
+
         ViniloEntity viniloEntity = getVinilo(viniloId);
+
         viniloEntity.setArtistas(list);
+
         return viniloEntity.getArtistas();
     }
 
@@ -193,12 +217,14 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      *
      * @param viniloId Identificador de la instancia de Vinilo
      * @param artistasId Identificador de la instancia de Artista
-     * 
+     *
      */
     public void removeArtista(Long viniloId, Long artistasId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor del libro con id = {0}", viniloId);
-        ViniloEntity entity = getVinilo(viniloId);
+
+        ViniloEntity  entity         = getVinilo(viniloId);
         ArtistaEntity artistasEntity = new ArtistaEntity();
+
         artistasEntity.setId(artistasId);
         entity.getArtistas().remove(artistasEntity);
     }
@@ -210,10 +236,11 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param viniloId Identificador de la instancia de Vinilo
      * @return Colección de instancias de CancionEntity asociadas a la instancia
      * de Vinilo
-     * 
+     *
      */
     public List<CancionEntity> listCanciones(Long viniloId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los autores del libro con id = {0}", viniloId);
+
         return getVinilo(viniloId).getCanciones();
     }
 
@@ -222,17 +249,22 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      *
      * @param viniloId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
-     * 
+     *
      */
     public CancionEntity getCancion(Long viniloId, Long cancionsId) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor del libro con id = {0}", viniloId);
-        List<CancionEntity> list = getVinilo(viniloId).getCanciones();
-        CancionEntity cancionsEntity = new CancionEntity();
+
+        List<CancionEntity> list           = getVinilo(viniloId).getCanciones();
+        CancionEntity       cancionsEntity = new CancionEntity();
+
         cancionsEntity.setId(cancionsId);
+
         int index = list.indexOf(cancionsEntity);
+
         if (index >= 0) {
             return list.get(index);
         }
+
         return null;
     }
 
@@ -242,14 +274,17 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param viniloId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
      * @return Instancia de CancionEntity que fue asociada a Vinilo
-     * 
+     *
      */
     public CancionEntity addCancion(Long viniloId, Long cancionsId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
-        ViniloEntity viniloEntity = getVinilo(viniloId);
+
+        ViniloEntity  viniloEntity   = getVinilo(viniloId);
         CancionEntity cancionsEntity = new CancionEntity();
+
         cancionsEntity.setId(cancionsId);
         viniloEntity.getCanciones().add(cancionsEntity);
+
         return getCancion(viniloId, cancionsId);
     }
 
@@ -260,12 +295,15 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @param list Colección de instancias de CancionEntity a asociar a instancia
      * de Vinilo
      * @return Nueva colección de CancionEntity asociada a la instancia de Vinilo
-     * 
+     *
      */
     public List<CancionEntity> replaceCanciones(Long viniloId, List<CancionEntity> list) {
         LOGGER.log(Level.INFO, "Inicia proceso de reemplazar un autor del libro con id = {0}", viniloId);
+
         ViniloEntity viniloEntity = getVinilo(viniloId);
+
         viniloEntity.setCanciones(list);
+
         return viniloEntity.getCanciones();
     }
 
@@ -274,14 +312,18 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      *
      * @param viniloId Identificador de la instancia de Vinilo
      * @param cancionsId Identificador de la instancia de Cancion
-     * 
+     *
      */
     public void removeCancion(Long viniloId, Long cancionsId) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un autor del libro con id = {0}", viniloId);
-        ViniloEntity entity = getVinilo(viniloId);
+
+        ViniloEntity  entity         = getVinilo(viniloId);
         CancionEntity cancionsEntity = new CancionEntity();
+
         cancionsEntity.setId(cancionsId);
         entity.getCanciones().remove(cancionsEntity);
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

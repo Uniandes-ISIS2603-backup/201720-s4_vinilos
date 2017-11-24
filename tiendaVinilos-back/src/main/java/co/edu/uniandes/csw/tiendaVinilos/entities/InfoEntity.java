@@ -1,6 +1,9 @@
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+//~--- JDK imports ------------------------------------------------------------
+
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,18 +16,15 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class InfoEntity implements Serializable {
-
-    private String descripcion;
-    private String urlCancion;
-    private String urlImagen;
-
+    private String       descripcion;
+    private String       urlCancion;
+    private String       urlImagen;
     @ManyToOne
     private ViniloEntity vinilo;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private String name;
-    private Long id;
+    private String       name;
+    private Long         id;
 
     public Long getId() {
         return id;
@@ -84,7 +84,7 @@ public class InfoEntity implements Serializable {
         this.urlImagen = urlImagen;
     }
 
-      /**
+    /**
      * @return the vinilo
      */
     public ViniloEntity getVinilo() {
@@ -98,3 +98,6 @@ public class InfoEntity implements Serializable {
         this.vinilo = vinilo;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

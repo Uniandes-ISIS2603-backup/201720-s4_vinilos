@@ -1,12 +1,21 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+//~--- non-JDK imports --------------------------------------------------------
+
+import uk.co.jemos.podam.common.PodamExclude;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.io.Serializable;
+
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,22 +23,26 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author Julian
  */
 @Entity
-public class TarjetaEntity implements Serializable{
-    
-    
-   
+public class TarjetaEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    
+    private Long          id;
+    private String        name;
+    private Integer       numero;
+    private String        nombrePropietario;
+    private Integer       cvc;
+    @Temporal(TemporalType.DATE)
+    private Date          goodThru;
+    @PodamExclude
+    @ManyToOne
+    private UsuarioEntity usuario;
+
     public Long getId() {
         return id;
     }
@@ -45,17 +58,6 @@ public class TarjetaEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
-    private Integer numero;
-    
-    private String nombrePropietario;
-    
-    private Integer cvc;
-    @Temporal(TemporalType.DATE)
-    private Date goodThru;
-    @PodamExclude
-    @ManyToOne
-    private UsuarioEntity usuario;
 
     public UsuarioEntity getUsuario() {
         return usuario;
@@ -96,6 +98,7 @@ public class TarjetaEntity implements Serializable{
     public void setGoodThru(Date goodThru) {
         this.goodThru = goodThru;
     }
-    
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
