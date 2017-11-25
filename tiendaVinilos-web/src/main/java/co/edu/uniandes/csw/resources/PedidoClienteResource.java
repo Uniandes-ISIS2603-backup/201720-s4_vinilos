@@ -200,17 +200,7 @@ public class PedidoClienteResource {
         return list;
     }
 
-    @Path("{idPedido: \\d+}/pago")
-    public Class<PagoClienteResource> getPagoClienteResource(@PathParam("idPedido") Long pedidoId)
-            throws  BusinessLogicException {
-        PedidoClienteEntity entity = pedidoLogic.getPedido(pedidoId);
-
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /pedidoCliente/" + pedidoId + "/pago no existe.", 404);
-        }
-
-        return PagoClienteResource.class;
-    }
+   
 }
 
 
