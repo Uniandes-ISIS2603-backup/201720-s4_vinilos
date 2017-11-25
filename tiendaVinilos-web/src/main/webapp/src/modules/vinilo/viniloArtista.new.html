@@ -1,0 +1,35 @@
+<h1>Agregar un Artista</h1>
+<p>Poner id en 0 si no existe el artista, de lo contrario el id correspondiente</p>
+<div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
+    <form novalidate name="form" id="vinilo-form" role="form" ng-submit="createArtista()">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+            <style>
+                label {
+                    color: #000;
+                }
+            </style>
+            <input  class="form-control" type="hidden" ng-model="currentVinilo.id" />
+            <div class="form-group col-md-12" >
+                
+                 <label for="artistaId" class="col-md-2 control-label">Id</label>
+                <div class="col-md-10">
+                    <input id="artistaId" anio="anio" class="form-control" type="text" ng-model="artistaId" ng-init="artistaId" required/>
+                </div>
+                 
+                <label for="artistaName" class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-10">
+                    <input id="artistaName" nombre="artistaName" class="form-control" type="text" ng-model="artistaName" ng-init="artistaName" required />
+                </div>
+               
+                
+            </div>
+            <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="viniloList">Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>

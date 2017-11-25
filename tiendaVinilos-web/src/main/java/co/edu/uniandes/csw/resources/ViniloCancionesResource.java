@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+import co.edu.uniandes.csw.dtos.CancionDTO;
 import co.edu.uniandes.csw.dtos.CancionDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CancionEntity;
@@ -99,9 +100,8 @@ public class ViniloCancionesResource {
      * 
      */
     @POST
-    @Path("{cancionsId: \\d+}")
-    public CancionDetailDTO addCanciones(@PathParam("vinilosId") Long vinilosId, @PathParam("cancionsId") Long cancionsId) {
-        return new CancionDetailDTO(viniloLogic.addCancion(vinilosId, cancionsId));
+    public CancionDetailDTO addCanciones(@PathParam("vinilosId") Long vinilosId, CancionDTO cancion) {
+        return new CancionDetailDTO(viniloLogic.addCancion(vinilosId, cancion.toEntity(),cancion.getId()));
     }
 
     /**

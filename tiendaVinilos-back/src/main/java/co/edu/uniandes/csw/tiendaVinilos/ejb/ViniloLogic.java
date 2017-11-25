@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ViniloPersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -26,6 +27,11 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     @Inject
     private ViniloPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
+    @Inject
+    private CancionLogic logica;
+    
+    @Inject
+    private ArtistaLogic logicaartista;
     /**
      *
      * @param entity
@@ -163,13 +169,40 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @return Instancia de ArtistaEntity que fue asociada a Vinilo
      * 
      */
-    public ArtistaEntity addArtista(Long viniloId, Long artistasId) {
+    public ArtistaEntity addArtista(Long viniloId, ArtistaEntity artista, Long idArtistaExistente) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
-        ViniloEntity viniloEntity = getVinilo(viniloId);
-        ArtistaEntity artistasEntity = new ArtistaEntity();
-        artistasEntity.setId(artistasId);
-        viniloEntity.getArtistas().add(artistasEntity);
-        return getArtista(viniloId, artistasId);
+//        ViniloEntity viniloEntity = getVinilo(viniloId);
+//        ArtistaEntity artistasEntity = new ArtistaEntity();
+//        artistasEntity.setId(artistasId);
+//        viniloEntity.getArtistas().add(artistasEntity);
+//        return getArtista(viniloId, artistasId);
+        ViniloEntity vinilo = getVinilo(viniloId);
+        List artistas = vinilo.getArtistas();
+        artistas.add(artista);
+        vinilo.setArtistas(artistas);
+        updateVinilo(viniloId, vinilo);
+        
+        
+        if(idArtistaExistente!=0)
+        {
+            artista =logicaartista.updateArtista(idArtistaExistente, artista);
+        }
+        else
+        {
+            try {    
+                artista=logicaartista.createArtista(artista);
+            } catch (BusinessLogicException ex) {
+                Logger.getLogger(ViniloLogic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        artista.setVinilo(vinilo);
+        logicaartista.updateArtista(artista.getId(), artista);
+            
+        
+        
+    
+        return artista;
     }
 
     /**
@@ -244,13 +277,37 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
      * @return Instancia de CancionEntity que fue asociada a Vinilo
      * 
      */
-    public CancionEntity addCancion(Long viniloId, Long cancionsId) {
+    public CancionEntity addCancion(Long viniloId, CancionEntity cancion,Long idCancionExistente) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar un autor al libro con id = {0}", viniloId);
-        ViniloEntity viniloEntity = getVinilo(viniloId);
-        CancionEntity cancionsEntity = new CancionEntity();
-        cancionsEntity.setId(cancionsId);
-        viniloEntity.getCanciones().add(cancionsEntity);
-        return getCancion(viniloId, cancionsId);
+//        ViniloEntity viniloEntity = getVinilo(viniloId);
+//        CancionEntity cancionsEntity = new CancionEntity();
+//        cancionsEntity.setId(cancionsId);
+//        viniloEntity.getCanciones().add(cancionsEntity);
+//        return getCancion(viniloId, cancionsId);
+    ViniloEntity vinilo=getVinilo(viniloId);
+    List canciones=vinilo.getCanciones();
+    canciones.add(cancion);
+        vinilo.setCanciones(canciones);
+        updateVinilo(viniloId, vinilo);
+        
+        
+        cancion.setVinilos(vinilo);
+        
+        if(idCancionExistente!=0)
+        {
+            cancion =logica.updateCancion(idCancionExistente, cancion);
+        }
+        else
+        {
+            try {    
+                logica.createCancion(cancion);
+            } catch (BusinessLogicException ex) {
+                Logger.getLogger(ViniloLogic.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        logica.addVinilo(vinilo, cancion);
+        return cancion;
+    
     }
 
     /**

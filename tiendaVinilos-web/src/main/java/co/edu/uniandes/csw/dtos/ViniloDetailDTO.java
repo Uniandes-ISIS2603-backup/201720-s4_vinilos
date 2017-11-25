@@ -56,12 +56,12 @@ public class ViniloDetailDTO extends ViniloDTO {
                     infos.add(new InfoDTO(entityInfo));
                 }
             }
-             if (entity.getArtistas() != null) {
+             
                 artistas = new ArrayList<>();
                 for (ArtistaEntity entityArt : entity.getArtistas()) {
                     artistas.add(new ArtistaDTO(entityArt));
                 }
-            }
+            
           
 
         }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+import co.edu.uniandes.csw.dtos.ArtistaDTO;
 import co.edu.uniandes.csw.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
@@ -99,9 +100,10 @@ public class ViniloArtistasResource {
      * 
      */
     @POST
-    @Path("{artistasId: \\d+}")
-    public ArtistaDetailDTO addArtistas(@PathParam("vinilosId") Long vinilosId, @PathParam("artistasId") Long artistasId) {
-        return new ArtistaDetailDTO(viniloLogic.addArtista(vinilosId, artistasId));
+    
+    public ArtistaDetailDTO addArtistas(@PathParam("vinilosId") Long vinilosId, ArtistaDTO artista) {
+        return new ArtistaDetailDTO(viniloLogic.addArtista(vinilosId, artista.toEntity(),artista.getId()));
+        
     }
 
     /**
