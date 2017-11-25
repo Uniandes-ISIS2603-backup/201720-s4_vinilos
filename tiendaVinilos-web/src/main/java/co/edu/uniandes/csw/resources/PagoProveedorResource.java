@@ -1,17 +1,26 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.dtos.PagoProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,14 +39,14 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PagoProveedorResource {
-
     @Inject
     PagoProveedorLogic logic;
 
     @GET
     public List<PagoProveedorDetailDTO> getProveedores() {
         List<PagoProveedorDetailDTO> retList = new ArrayList<PagoProveedorDetailDTO>();
-        List<PagoProveedorEntity> lista = logic.getAll();
+        List<PagoProveedorEntity>    lista   = logic.getAll();
+
         for (PagoProveedorEntity en : lista) {
             retList.add(new PagoProveedorDetailDTO(en));
         }
@@ -46,23 +55,26 @@ public class PagoProveedorResource {
     }
 
     @GET
-    @Path(("{id:\\d+}"))
+    @Path("{id:\\d+}")
     public PagoProveedorDetailDTO getProveedor(@PathParam("id") Long id) {
         PagoProveedorEntity ent = logic.getProveedor(id);
-        return (new PagoProveedorDetailDTO(ent));
+
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @POST
     public PagoProveedorDetailDTO createProveedor(PagoProveedorDetailDTO prov) {
         PagoProveedorEntity ent = logic.createProveedor(prov.toEntity());
-        return (new PagoProveedorDetailDTO(ent));
+
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @PUT
     @Path("{id: \\d+}")
     public PagoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PagoProveedorDetailDTO prov) {
         PagoProveedorEntity ent = logic.updateProveedor(prov.toEntity());
-        return (new PagoProveedorDetailDTO(ent));
+
+        return new PagoProveedorDetailDTO(ent);
     }
 
     @DELETE
@@ -70,5 +82,7 @@ public class PagoProveedorResource {
     public void deleteProveedor(@PathParam("id") Long id) {
         logic.deleteProveedor(id);
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

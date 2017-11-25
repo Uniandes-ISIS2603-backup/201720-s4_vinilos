@@ -1,13 +1,21 @@
 package co.edu.uniandes.csw.resources;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.dtos.ViniloDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -26,12 +34,13 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-
 public class ViniloResource {
-
     @Inject
-    ViniloLogic viniloLogic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+    ViniloLogic viniloLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
 
+    private static final String NOEXISTE = " no existe ";
+    private static final String RESVINILO = "El recurso /Vinilos/";
+    
     /**
      * GET para todas las Viniloes.
      * http://localhost:8080/tiendaVinilos-web/api/Vinilos
@@ -47,7 +56,7 @@ public class ViniloResource {
 
     /**
      * GET para un Vinilo
-     * http://localhost:8080/tiendaVinilos-web/api/Vinilos     *
+     * http://localhost:8080/tiendaVinilos-web/api/Vinilos     
      * @param id corresponde al id de la Vinilo buscada.
      * @return La Vinilo encontrada. Ejemplo: { "type": "ViniloDetailDTO",
      * "id": 1, "name": "Norma" }
@@ -60,12 +69,14 @@ public class ViniloResource {
     @Path("{id: \\d+}")
     public ViniloDetailDTO getVinilo(@PathParam("id") Long id) throws BusinessLogicException {
         ViniloEntity entity = viniloLogic.getVinilo(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
+
         return new ViniloDetailDTO(entity);
     }
-    
+
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/Vinilos Ejemplo json: {
      * "name":"Norma" }
@@ -79,10 +90,13 @@ public class ViniloResource {
      */
     @POST
     public ViniloDetailDTO createVinilo(ViniloDetailDTO vinilo) throws BusinessLogicException {
+
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ViniloEntity viniloEntity = vinilo.toEntity();
+
         // Invoca la lógica para crear la Vinilo nueva
         ViniloEntity nuevoVinilo = viniloLogic.createVinilo(viniloEntity);
+
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ViniloDetailDTO(nuevoVinilo);
     }
@@ -102,12 +116,16 @@ public class ViniloResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ViniloDetailDTO updateVinilo(@PathParam("id") Long id, ViniloDetailDTO vinilo) throws BusinessLogicException {
+    public ViniloDetailDTO updateVinilo(@PathParam("id") Long id, ViniloDetailDTO vinilo)
+            throws BusinessLogicException {
         vinilo.setId(id);
+
         ViniloEntity entity = viniloLogic.getVinilo(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
+
         return new ViniloDetailDTO(viniloLogic.updateVinilo(id, vinilo.toEntity()));
     }
 
@@ -125,40 +143,47 @@ public class ViniloResource {
     @Path("{id: \\d+}")
     public void deleteVinilo(@PathParam("id") Long id) throws BusinessLogicException {
         ViniloEntity entity = viniloLogic.getVinilo(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Vinilos/" + id + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + id + NOEXISTE, 404);
         }
+
         viniloLogic.deleteVinilo(id);
     }
 
-     @Path("{idVinilo: \\d+}/infos")
+    @Path("{idVinilo: \\d+}/infos")
     public Class<InfoResource> getInfoResource(@PathParam("idVinilo") Long viniloId) {
         ViniloEntity entity = viniloLogic.getVinilo(viniloId);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + viniloId + "/infos no existe.", 404);
+            throw new WebApplicationException(RESVINILO + viniloId + NOEXISTE, 404);
         }
+
         return InfoResource.class;
     }
-    
-     @Path("{vinilosId: \\d+}/artistas")
+
+    @Path("{vinilosId: \\d+}/artistas")
     public Class<ViniloArtistasResource> getViniloArtistasResource(@PathParam("vinilosId") Long vinilosId) {
         ViniloEntity entity = viniloLogic.getVinilo(vinilosId);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + vinilosId + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + vinilosId + NOEXISTE, 404);
         }
+
         return ViniloArtistasResource.class;
     }
-    
-      @Path("{vinilosId: \\d+}/canciones")
+
+    @Path("{vinilosId: \\d+}/canciones")
     public Class<ViniloCancionesResource> getViniloCancionesResource(@PathParam("vinilosId") Long vinilosId) {
         ViniloEntity entity = viniloLogic.getVinilo(vinilosId);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /vinilos/" + vinilosId + " no existe.", 404);
+            throw new WebApplicationException(RESVINILO + vinilosId + NOEXISTE, 404);
         }
+
         return ViniloCancionesResource.class;
     }
 
-    
     /**
      *
      * lista de entidades a DTO.
@@ -172,9 +197,14 @@ public class ViniloResource {
      */
     private List<ViniloDetailDTO> listEntity2DetailDTO(List<ViniloEntity> entityList) {
         List<ViniloDetailDTO> list = new ArrayList<>();
+
         for (ViniloEntity entity : entityList) {
             list.add(new ViniloDetailDTO(entity));
         }
+
         return list;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

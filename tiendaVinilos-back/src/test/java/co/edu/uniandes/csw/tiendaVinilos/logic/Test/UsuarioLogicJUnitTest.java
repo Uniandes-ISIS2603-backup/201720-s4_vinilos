@@ -1,10 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.tiendaVinilos.logic.Test;
 
+//~--- non-JDK imports --------------------------------------------------------
 import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
@@ -29,18 +31,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-import javax.ejb.Stateless;
-import javax.inject.Inject;
+
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-import java.util.*;
+
+import javax.transaction.UserTransaction;
+
+//~--- JDK imports ------------------------------------------------------------
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.transaction.UserTransaction;
+
+import javax.inject.Inject;
 
 /**
  *
@@ -119,11 +124,6 @@ public class UsuarioLogicJUnitTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            try {
-                utx.rollback();
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
         }
     }
 
@@ -138,6 +138,7 @@ public class UsuarioLogicJUnitTest {
             logic.createUsuario(entity);
         } catch (BusinessLogicException ex) {
             fail();
+
         }
 
         assertEquals(logic.getUsuario(entity.getId()).getId(), entity.getId());
@@ -148,6 +149,7 @@ public class UsuarioLogicJUnitTest {
         for (int i = 0; i < 10; i++) {
             try {
                 UsuarioEntity usuario = new UsuarioEntity();
+
                 logic.createUsuario(usuario);
                 assertNotNull(logic.getUsuario(usuario.getId()));
                 assertEquals(usuario.getId(), logic.getUsuario(usuario.getId()).getId());
@@ -169,7 +171,6 @@ public class UsuarioLogicJUnitTest {
         } catch (BusinessLogicException ex) {
             fail();
         }
-
     }
 
     @Test
@@ -186,12 +187,12 @@ public class UsuarioLogicJUnitTest {
     @Test
     public void testGetTarjetas() {
         entity = new UsuarioEntity();
-
         try {
             List<TarjetaEntity> tarjetas = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 TarjetaEntity tarjeta = new TarjetaEntity();
                 tarjeta.setName("tarjeta" + i);
+                tarjetas.add(tarjeta);
             }
             entity.setTarjetas(tarjetas);
             logic.createUsuario(entity);
@@ -199,7 +200,6 @@ public class UsuarioLogicJUnitTest {
         } catch (BusinessLogicException ex) {
             fail();
         }
-
     }
 
     @Test
@@ -210,10 +210,11 @@ public class UsuarioLogicJUnitTest {
             for (int i = 0; i < 10; i++) {
                 PedidoClienteEntity pedido = new PedidoClienteEntity();
                 pedido.setName("pedido" + i);
+                pedidos.add(pedido);
+                entity.setPedidos(pedidos);
+                logic.createUsuario(entity);
+                assertEquals(pedidos, logic.getUsuario(entity.getId()).getPedidos());
             }
-            entity.setPedidos(pedidos);
-            logic.createUsuario(entity);
-            assertEquals(pedidos, logic.getUsuario(entity.getId()).getPedidos());
         } catch (BusinessLogicException ex) {
             fail();
         }
@@ -221,8 +222,8 @@ public class UsuarioLogicJUnitTest {
 
     @Test
     public void testGetCarrito() {
-        entity = new UsuarioEntity();
 
+        entity = new UsuarioEntity();
         try {
             CarroComprasEntity carro = new CarroComprasEntity();
             carro.setUsuario(entity);
@@ -238,13 +239,13 @@ public class UsuarioLogicJUnitTest {
     @Test
     public void testGetFeedBacks() {
         entity = new UsuarioEntity();
-
         try {
             List<FeedBackEntity> feeds = new ArrayList<>();
             for (int i = 0; i < 10; i++) {
                 FeedBackEntity feed = new FeedBackEntity();
                 feed.setComentario("feed" + i);
             }
+
             entity.setFeedBacks(feeds);
             logic.createUsuario(entity);
             assertEquals(feeds, logic.getUsuario(entity.getId()).getFeedBacks());
@@ -260,12 +261,14 @@ public class UsuarioLogicJUnitTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 10; i++) {
-            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+            UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class
+            );
 
             em.persist(entity);
             data.add(entity);
         }
-
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

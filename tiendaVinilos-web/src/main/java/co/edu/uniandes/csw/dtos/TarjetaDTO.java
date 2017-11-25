@@ -21,10 +21,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
+
+
 package co.edu.uniandes.csw.dtos;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.Date;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -36,29 +45,27 @@ import javax.persistence.TemporalType;
  * @author jd.arenas
  */
 public class TarjetaDTO {
-
     private Integer numero;
-
-    private String nombrePropietario;
-
-    private Long id;
-    private String name;
+    private String  nombrePropietario;
+    private Long    id;
+    private String  name;
     private Integer cvc;
     @Temporal(TemporalType.DATE)
-    private Date goodThru;
+    private Date    goodThru;
 
-    //Constructor por defecto
+    // Constructor por defecto
     public TarjetaDTO() {
-        //Constructor por defecto
+
+        // Constructor por defecto
     }
 
     public TarjetaDTO(TarjetaEntity tarjeta) {
-        this.numero = tarjeta.getNumero();
+        this.numero            = tarjeta.getNumero();
         this.nombrePropietario = tarjeta.getNombrePropietario();
-        this.id = tarjeta.getId();
-        this.goodThru = tarjeta.getGoodThru();
-        this.cvc = tarjeta.getCvc();
-        this.name = tarjeta.getName();
+        this.id                = tarjeta.getId();
+        this.goodThru          = tarjeta.getGoodThru();
+        this.cvc               = tarjeta.getCvc();
+        this.name              = tarjeta.getName();
     }
 
     public Long getId() {
@@ -77,20 +84,20 @@ public class TarjetaDTO {
         this.name = name;
     }
 
+    public void setNumero(Integer numero) {
+        this.numero = numero;
+    }
+    
     public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
-
-    public String getNombrePropietario() {
-        return nombrePropietario;
-    }
-
     public void setNombrePropietario(String nombrePropietario) {
         this.nombrePropietario = nombrePropietario;
+    }
+    
+    public String getNombrePropietario() {
+        return nombrePropietario;
     }
 
     public Integer getCvc() {
@@ -101,12 +108,12 @@ public class TarjetaDTO {
         this.cvc = cvc;
     }
 
-    public Date getGoodThru() {
-        return goodThru;
-    }
-
     public void setGoodThru(Date goodThru) {
         this.goodThru = goodThru;
+    }
+      
+    public Date getGoodThru() {
+        return goodThru;
     }
 
     /**
@@ -116,12 +123,17 @@ public class TarjetaDTO {
      */
     public TarjetaEntity toEntity() {
         TarjetaEntity entity = new TarjetaEntity();
+
         entity.setCvc(this.cvc);
         entity.setGoodThru(this.goodThru);
         entity.setNombrePropietario(nombrePropietario);
         entity.setNumero(this.numero);
         entity.setId(this.id);
         entity.setName(this.name);
+
         return entity;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -1,18 +1,27 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.dtos.PagoClienteDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.PagoClienteLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PagoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,27 +39,24 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class PagoClienteResource {
-    
-     @Inject
-    PagoClienteLogic pagoLogic;// Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    
-    
+    @Inject
+    PagoClienteLogic pagoLogic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
     /**
-     * 
-     * @param idPedido 
+     *
+     * @param idPedido
      * @param pago correponde a la representación java del objeto json
      * enviado en el llamado.
      * @return Devuelve el objeto json de entrada que contiene el id creado por
      * la base de datos y el tipo del objeto java. E
      * @throws BusinessLogicException
      */
-     @POST
-    public PagoClienteDetailDTO createPago(@PathParam("idPedido") Long idPedido, PagoClienteDetailDTO pago) throws BusinessLogicException {
+    @POST
+    public PagoClienteDetailDTO createPago(@PathParam("idPedido") Long idPedido, PagoClienteDetailDTO pago)
+            throws BusinessLogicException {
         return new PagoClienteDetailDTO(pagoLogic.createPago(idPedido, pago.toEntity()));
     }
-   
-  
-    
+
     /**
      * DELETE http://localhost:8080/tiendaVinilos-web/api/pagocliente/1
      *
@@ -66,16 +72,17 @@ public class PagoClienteResource {
      */
     @DELETE
     @Path("{idPago: \\d+}")
-    public void deletePago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) throws WebApplicationException 
-    {
+    public void deletePago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) {
         PagoClienteEntity entity = pagoLogic.getPago(idPago);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.", 404);
+            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.",
+                                              404);
         }
+
         pagoLogic.deletePago(idPedido, idPago);
     }
-   
-    
+
     /**
      * GET para un pago
      * http://localhost:8080/tiendaVinilos-web/api/pagocliente/1
@@ -90,22 +97,23 @@ public class PagoClienteResource {
      */
     @GET
     @Path("{idPago: \\d+}")
-    public PagoClienteDetailDTO getPago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago) throws WebApplicationException {
-        
+    public PagoClienteDetailDTO getPago(@PathParam("idPedido") Long idPedido, @PathParam("idPago") Long idPago){
         PagoClienteEntity entity = pagoLogic.getPago(idPago);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.", 404);
+            throw new WebApplicationException("El recurso /pedido/" + idPedido + "/pago/" + idPago + " no existe.",
+                                              404);
         }
+
         return new PagoClienteDetailDTO(entity);
     }
-   
-    
+
     /**
      * GET para un pago
      * http://localhost:8080/tiendaVinilos-web/api/pagocliente/1
      *
      *
-     * @return Los pedidos 
+     * @return Los pedidos
      * @throws BusinessLogicException
      *
      * En caso de no existir el id del pedido buscado se retorna un 404 con
@@ -115,9 +123,7 @@ public class PagoClienteResource {
     public List<PagoClienteDetailDTO> getPagos() throws BusinessLogicException {
         return listEntity2DetailDTO(pagoLogic.getPagos());
     }
-    
-    
-    
+
     /**
      *
      * lista de entidades a DTO.
@@ -131,10 +137,14 @@ public class PagoClienteResource {
      */
     private List<PagoClienteDetailDTO> listEntity2DetailDTO(List<PagoClienteEntity> entityList) {
         List<PagoClienteDetailDTO> list = new ArrayList<>();
-        for(PagoClienteEntity entity : entityList) {
+
+        for (PagoClienteEntity entity : entityList) {
             list.add(new PagoClienteDetailDTO(entity));
         }
+
         return list;
     }
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

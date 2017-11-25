@@ -1,18 +1,27 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.dtos.ProveedorDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,90 +39,111 @@ import javax.ws.rs.WebApplicationException;
 @Path("proveedores")
 @Produces("application/json")
 @Consumes("application/json")
- @RequestScoped
+@RequestScoped
 public class ProveedorResource {
-    
-    @Inject ProveedorLogic logic;
-    
-   @GET
-   public List<ProveedorDetailDTO> getProveedores()
-   {
-       List<ProveedorDetailDTO> retList = new ArrayList<>();
-       List<ProveedorEntity> lista = logic.getAll();
-       for(ProveedorEntity en : lista)
-           retList.add(new ProveedorDetailDTO(en));
-       
-       return retList;
-   }
-   
+    private static final String NOEXISTE = " no existe ";
+    private static final String RESPROVEEDOR =  "El proveedor con el id " ;
+    @Inject
+    ProveedorLogic              logic;
+
     @GET
-    @Path(("{id:\\d+}"))
-    public ProveedorDetailDTO getProveedor( @PathParam("id") Long id)
-    {
+    public List<ProveedorDetailDTO> getProveedores() {
+        List<ProveedorDetailDTO> retList = new ArrayList<>();
+        List<ProveedorEntity>    lista   = logic.getAll();
+
+        for (ProveedorEntity en : lista) {
+            retList.add(new ProveedorDetailDTO(en));
+        }
+
+        return retList;
+    }
+
+    @GET
+    @Path("{id:\\d+}")
+    public ProveedorDetailDTO getProveedor(@PathParam("id") Long id) {
         ProveedorEntity en = logic.getProveedor(id);
-        if (en == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
-        return (new ProveedorDetailDTO(en));
+
+        if (en == null) {
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
+        }
+
+        return new ProveedorDetailDTO(en);
     }
-    
+
     @POST
-    public ProveedorDetailDTO createProveedor(ProveedorDetailDTO prov) throws BusinessLogicException
-    {
+    public ProveedorDetailDTO createProveedor(ProveedorDetailDTO prov) throws BusinessLogicException {
         ProveedorEntity ent = logic.createProveedor(prov.toEntity());
-        return (new ProveedorDetailDTO(ent));
+
+        return new ProveedorDetailDTO(ent);
     }
-    
-    
+
     @PUT
     @Path("{id: \\d+}")
-    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov) throws BusinessLogicException
-    {
+    public ProveedorDetailDTO updateProveedor(@PathParam("id") Long id, ProveedorDetailDTO prov)
+            throws BusinessLogicException {
         ProveedorEntity entity = prov.toEntity();
+
         entity.setId(id);
+
         ProveedorEntity oldEnt = logic.getProveedor(id);
-        if(oldEnt == null)
-            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404); 
+
+        if (oldEnt == null) {
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
+        }
+
         entity.setFeedBacks(oldEnt.getFeedBacks());
         entity.setVinilos(oldEnt.getVinilos());
+
         ProveedorEntity ent = logic.updateProveedor(entity);
-        return (new ProveedorDetailDTO(ent));
+
+        return new ProveedorDetailDTO(ent);
     }
-    
+
     @DELETE
     @Path("{id:\\d+}")
-    public void deleteProveedor(@PathParam("id")Long id)
-    {
+    public void deleteProveedor(@PathParam("id") Long id) {
         ProveedorEntity ent = logic.getProveedor(id);
-        if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+
+        if (ent == null) {
+            throw new WebApplicationException(RESPROVEEDOR + id + NOEXISTE, 404);
+        }
+
         logic.deleteProveedor(id);
     }
-  
+
     @Path("{proveedorId: \\d+}/pedidos")
-    public Class<ProveedorPedidosResource> getProveedorPedidos(@PathParam("proveedorId") Long idProv)
-    {
+    public Class<ProveedorPedidosResource> getProveedorPedidos(@PathParam("proveedorId") Long idProv) {
         ProveedorEntity ent = logic.getProveedor(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return ProveedorPedidosResource.class;
+
+        if (ent == null) {
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
+        }
+
+        return ProveedorPedidosResource.class;
     }
-    
+
     @Path("{proveedorId: \\d+}/pagos")
-    public Class<ProveedorPagoResource> getProveedorsPedidos(@PathParam("proveedorId") Long idProv)
-    {
+    public Class<ProveedorPagoResource> getProveedorsPedidos(@PathParam("proveedorId") Long idProv) {
         ProveedorEntity ent = logic.getProveedor(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return ProveedorPagoResource.class;
+
+        if (ent == null) {
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
+        }
+
+        return ProveedorPagoResource.class;
     }
-    
+
     @Path("{proveedorId: \\d+}/feedbacks")
-    public Class<ProveedorFeedBackResource> getProveedorsFeedBacks(@PathParam("proveedorId") Long idProv)
-    {
+    public Class<ProveedorFeedBackResource> getProveedorsFeedBacks(@PathParam("proveedorId") Long idProv) {
         ProveedorEntity ent = logic.getProveedor(idProv);
-         if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + idProv + " no existe ", 404);
-         return ProveedorFeedBackResource.class;
+
+        if (ent == null) {
+            throw new WebApplicationException(RESPROVEEDOR + idProv + NOEXISTE, 404);
+        }
+
+        return ProveedorFeedBackResource.class;
     }
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
