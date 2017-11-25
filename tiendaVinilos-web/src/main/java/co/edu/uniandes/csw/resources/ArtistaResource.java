@@ -1,18 +1,27 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ArtistaLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,24 +41,26 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class ArtistaResource {
-    
+    private static final String NOEXISTE = " no existe.";
     @Inject
-    ArtistaLogic logic; // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
-    
+    ArtistaLogic                logic;    // Variable para acceder a la lógica de la aplicación. Es una inyección de dependencias.
+
     @POST
     public ArtistaDetailDTO createArtista(ArtistaDetailDTO artista) throws BusinessLogicException {
+
         // Convierte el DTO (json) en un objeto Entity para ser manejado por la lógica.
         ArtistaEntity entity = artista.toEntity();
-        
+
         // Invoca la lógica para crear la Vinilo nueva
         ArtistaEntity nuevoArtista = logic.createArtista(entity);
+
         // Como debe retornar un DTO (json) se invoca el constructor del DTO con argumento el entity nuevo
         return new ArtistaDetailDTO(nuevoArtista);
     }
 
     /**
      * GET para todas las Artistas.
-     * http://localhost:8080/tiendaVinilos-web/api/artista     *
+     * http://localhost:8080/tiendaVinilos-web/api/artista     
      * @return la lista de todos los Artistas en objetos json DTO.
      * @throws BusinessLogicException
      */
@@ -58,14 +69,15 @@ public class ArtistaResource {
         return listEntity2DetailDTO(logic.getArtistas());
     }
 
-    
     @GET
     @Path("{id: \\d+}")
     public ArtistaDetailDTO getArtista(@PathParam("id") Long id) throws BusinessLogicException {
         ArtistaEntity entity = logic.getArtista(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Artista/" + id + NOEXISTE, 404);
         }
+
         return new ArtistaDetailDTO(logic.getArtista(id));
     }
 
@@ -84,23 +96,28 @@ public class ArtistaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ArtistaDetailDTO updateArtista(@PathParam("id") Long id, ArtistaDetailDTO artista) throws BusinessLogicException {
+    public ArtistaDetailDTO updateArtista(@PathParam("id") Long id, ArtistaDetailDTO artista)
+            throws BusinessLogicException {
         artista.setId(id);
+
         ArtistaEntity entity = logic.getArtista(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /Artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /Artista/" + id + NOEXISTE, 404);
         }
+
         return new ArtistaDetailDTO(logic.updateArtista(id, artista.toEntity()));
     }
 
-    
     @DELETE
     @Path("{id: \\d+}")
     public void deleteArtista(@PathParam("id") Long id) throws BusinessLogicException {
         ArtistaEntity entity = logic.getArtista(id);
+
         if (entity == null) {
-            throw new WebApplicationException("El recurso /artista/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /artista/" + id + NOEXISTE, 404);
         }
+
         logic.deleteArtista(id);
     }
 
@@ -117,9 +134,14 @@ public class ArtistaResource {
      */
     private List<ArtistaDetailDTO> listEntity2DetailDTO(List<ArtistaEntity> entityList) {
         List<ArtistaDetailDTO> list = new ArrayList<>();
+
         for (ArtistaEntity entity : entityList) {
             list.add(new ArtistaDetailDTO(entity));
         }
+
         return list;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

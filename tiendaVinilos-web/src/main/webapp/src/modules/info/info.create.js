@@ -10,8 +10,6 @@
                         url: $scope.infoUrl,
                        rutas: $scope.infoRutas,
                     }).then(function () {
-                                alert($scope.infoIdNombre)
-                               
                                 $state.go('infoList');
                             });
                 };   

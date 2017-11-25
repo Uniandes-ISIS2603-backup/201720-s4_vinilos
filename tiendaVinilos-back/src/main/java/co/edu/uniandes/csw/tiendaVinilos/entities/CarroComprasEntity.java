@@ -1,45 +1,43 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.tiendaVinilos.entities;
 
+//~--- non-JDK imports --------------------------------------------------------
+
+import uk.co.jemos.podam.common.PodamExclude;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.io.Serializable;
+
 import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OneToMany;
-import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author cs.gomez
  */
 @Entity
-public class CarroComprasEntity implements Serializable{
-    
+public class CarroComprasEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    private Long id;
-    private double precioTotal;
-    
-    private String name;
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long               id;
+    private double             precioTotal;
+    private String             name;
     @PodamExclude
-    @OneToMany (mappedBy="carrosCompras")
+    @OneToMany(mappedBy = "carrosCompras")
     private List<ViniloEntity> vinilos;
-//    @OneToMany(mappedBy="carrito")
-//    private PedidoClienteEntity pedido; 
-    
     @PodamExclude
-    private UsuarioEntity usuario;
+    private UsuarioEntity      usuario;
 
     public UsuarioEntity getUsuario() {
         return usuario;
@@ -49,39 +47,27 @@ public class CarroComprasEntity implements Serializable{
         this.usuario = usuario;
     }
 
-//    public PedidoClienteEntity getPedido() {
-//        return pedido;
-//    }
-//
-//    public void setPedido(PedidoClienteEntity pedido) {
-//        this.pedido = pedido;
-//    }
-    
-    
-    
-    public List<ViniloEntity> getVinilos()
-    {
+    public List<ViniloEntity> getVinilos() {
         return vinilos;
     }
-    
-    public void setVinilos(List<ViniloEntity> vinilos)
-    {
+
+    public void setVinilos(List<ViniloEntity> vinilos) {
         this.vinilos = vinilos;
     }
-    
-    public Long getId(){
+
+    public Long getId() {
         return id;
     }
-    
-    public void setId(Long id){
+
+    public void setId(Long id) {
         this.id = id;
     }
-    
-    public double getPrecioTotal(){
+
+    public double getPrecioTotal() {
         return precioTotal;
     }
-    
-    public void setPrecioTotal(double precioTotal){
+
+    public void setPrecioTotal(double precioTotal) {
         this.precioTotal = precioTotal;
     }
 
@@ -92,6 +78,7 @@ public class CarroComprasEntity implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

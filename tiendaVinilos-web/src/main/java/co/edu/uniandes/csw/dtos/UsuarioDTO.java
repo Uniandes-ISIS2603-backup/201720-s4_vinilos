@@ -21,7 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
+
+
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 
@@ -32,28 +37,27 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
  * @author ISIS2603
  */
 public class UsuarioDTO {
-
-    private Long id;
+    private Long   id;
     private String name;
-    private int cantCompras ;
+    private int    cantCompras;
     private String email;
 
-    
-    //Constructor por defecto
+    // Constructor por defecto
     public UsuarioDTO() {
-        //Constructor por defecto
+
+        // Constructor por defecto
     }
-    
+
     /**
      * Conviertir Entity a DTO
      * (Crea un nuevo DTO con los valores que recibe en la entidad que viene de argumento.
-     * @param usuario: Es la entidad que se va a convertir a DTO 
+     * @param usuario: Es la entidad que se va a convertir a DTO
      */
     public UsuarioDTO(UsuarioEntity usuario) {
-        this.id = usuario.getId();
-        this.name = usuario.getName();
-        this.email=usuario.geteMail();
-        this.cantCompras= usuario.getCantCompras();
+        this.id          = usuario.getId();
+        this.name        = usuario.getName();
+        this.email       = usuario.geteMail();
+        this.cantCompras = usuario.getCantCompras();
     }
 
     public int getNumCompras() {
@@ -71,7 +75,6 @@ public class UsuarioDTO {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     /**
      * @return the id
@@ -103,14 +106,19 @@ public class UsuarioDTO {
 
     /**
      * Convertir DTO a Entity
-     * @return Un Entity con los valores del DTO 
+     * @return Un Entity con los valores del DTO
      */
     public UsuarioEntity toEntity() {
         UsuarioEntity entity = new UsuarioEntity();
+
         entity.setId(this.id);
         entity.setName(this.name);
         entity.setCantCompras(this.cantCompras);
         entity.seteMail(this.email);
+
         return entity;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
