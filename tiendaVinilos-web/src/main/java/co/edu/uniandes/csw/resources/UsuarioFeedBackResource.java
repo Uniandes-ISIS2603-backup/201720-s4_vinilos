@@ -1,9 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.resources;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.dtos.FeedBackDetailDTO;
 import co.edu.uniandes.csw.dtos.ProveedorDTO;
@@ -13,10 +16,16 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.UsuarioLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,25 +46,27 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class UsuarioFeedBackResource {
     @Inject
-    UsuarioLogic usuarioLogic;
+    UsuarioLogic   usuarioLogic;
     @Inject
-    FeedBackLogic feedBackLogic;
+    FeedBackLogic  feedBackLogic;
     @Inject
     ProveedorLogic proveedorLogic;
-    
-     @GET
+
+    @GET
     public List<FeedBackDetailDTO> getFeedBacks(@PathParam("usuarioId") Long id) throws BusinessLogicException {
-        
         return listEntity2DetailDTO(usuarioLogic.getFeedBacks(id));
     }
-     @GET
+
+    @GET
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO getFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
-    {
-        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
+    public FeedBackDetailDTO getFeedBack(@PathParam("id2") Long id2) {
+        FeedBackEntity feed = feedBackLogic.getFeedBack(id2);
+
         feedBackLogic.getFeedBack(id2);
+
         return new FeedBackDetailDTO(feed);
     }
+
     /**
      *
      * lista de entidades a DTO.
@@ -69,55 +80,75 @@ public class UsuarioFeedBackResource {
      */
     private List<FeedBackDetailDTO> listEntity2DetailDTO(List<FeedBackEntity> entityList) {
         List<FeedBackDetailDTO> list = new ArrayList<>();
+
         for (FeedBackEntity entity : entityList) {
-            FeedBackDetailDTO dto= new FeedBackDetailDTO(entity);
+            FeedBackDetailDTO dto = new FeedBackDetailDTO(entity);
+
             list.add(dto);
         }
+
         return list;
     }
+
     @POST
-    public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feedBack,@PathParam("usuarioId") Long id) throws BusinessLogicException {
-        feedBackLogic.agregarFeedBack(usuarioLogic.getUsuario(id), feedBack.toEntity(), feedBack.getProveedor().toEntity());
+    public FeedBackDetailDTO createFeedBack(FeedBackDetailDTO feedBack, @PathParam("usuarioId") Long id)
+            throws BusinessLogicException {
+        feedBackLogic.agregarFeedBack(usuarioLogic.getUsuario(id), feedBack.toEntity(),
+                                      feedBack.getProveedor().toEntity());
+
         return feedBack;
     }
+
     @PUT
     @Path("/{id2:\\d+}")
-    public FeedBackDetailDTO updateFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2,FeedBackDetailDTO nuevo)
-    {
+    public FeedBackDetailDTO updateFeedBack(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2,
+            FeedBackDetailDTO nuevo) {
         nuevo.setId(id2);
-        feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(id), nuevo.toEntity(),nuevo.getProveedor().toEntity());
+        feedBackLogic.modificarFeedBack(usuarioLogic.getUsuario(id), nuevo.toEntity(), nuevo.getProveedor().toEntity());
+
         return nuevo;
     }
-     @DELETE
+
+    @DELETE
     @Path("/{id2:\\d+}")
-    public void deleteFeedBack(@PathParam("usuarioId") Long id,@PathParam("id2")Long id2)
-    {
-        FeedBackEntity feed= feedBackLogic.getFeedBack(id2);
+    public void deleteFeedBack(@PathParam("id2") Long id2) {
+        FeedBackEntity feed = feedBackLogic.getFeedBack(id2);
+
         feedBackLogic.deleteFB(feed);
     }
-    
+
     @GET
     @Path("/proveedores/{id:\\d+}")
-    public List<FeedBackDetailDTO> getFeedbacksProveedor(@PathParam("id") Long id)
-    {
-         ProveedorEntity ent = proveedorLogic.getProveedor(id);
-        if (ent == null)
-             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+    public List<FeedBackDetailDTO> getFeedbacksProveedor(@PathParam("id") Long id) {
+        ProveedorEntity ent = proveedorLogic.getProveedor(id);
+
+        if (ent == null) {
+            throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+        }
+
         List<FeedBackDetailDTO> fbDto = new ArrayList<>();
-        for (FeedBackEntity fbEnt : proveedorLogic.getFeedBacks(id))
+
+        for (FeedBackEntity fbEnt : proveedorLogic.getFeedBacks(id)) {
             fbDto.add(new FeedBackDetailDTO(fbEnt));
+        }
+
         return fbDto;
     }
-    
-     @GET
+
+    @GET
     @Path("{id: \\d+}/proveedores")
-    public ProveedorDTO getProveedorFB(@PathParam("id") Long id)
-    {
+    public ProveedorDTO getProveedorFB(@PathParam("id") Long id) {
         FeedBackEntity en = feedBackLogic.getFeedBack(id);
-        if (en == null)
+
+        if (en == null) {
             throw new WebApplicationException("El proveedor con el id " + id + " no existe ", 404);
+        }
+
         FeedBackDetailDTO fbDTO = new FeedBackDetailDTO(en);
+
         return fbDTO.getProveedor();
     }
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

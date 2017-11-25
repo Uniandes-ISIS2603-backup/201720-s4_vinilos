@@ -21,17 +21,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
+
+
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
-
 import co.edu.uniandes.csw.tiendaVinilos.persistence.TarjetaPersistence;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
+
 import javax.inject.Inject;
 
 /**
@@ -40,11 +49,9 @@ import javax.inject.Inject;
  */
 @Stateless
 public class TarjetaLogic {
-
     private static final Logger LOGGER = Logger.getLogger(TarjetaLogic.class.getName());
-
     @Inject
-    private TarjetaPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private TarjetaPersistence  persistence;    // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
     /**
      *
@@ -54,9 +61,11 @@ public class TarjetaLogic {
      */
     public TarjetaEntity createTarjeta(TarjetaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Tarjeta");
+
         // Invoca la persistencia para crear la Tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Tarjeta");
+
         return entity;
     }
 
@@ -68,19 +77,24 @@ public class TarjetaLogic {
      */
     public List<TarjetaEntity> getTarjetas() {
         LOGGER.info("Inicia proceso de consultar todas las Tarjetaes");
+
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
         List<TarjetaEntity> Tarjeta = persistence.findAll();
+
         LOGGER.info("Termina proceso de consultar todas las Tarjetaes");
+
         return Tarjeta;
     }
 
     public TarjetaEntity getTarjeta(long id) {
         TarjetaEntity ent = persistence.find(id);
+
         return ent;
     }
 
     public TarjetaEntity updateTarjeta(long id, TarjetaEntity us) {
         persistence.update(us);
+
         return us;
     }
 
@@ -91,12 +105,14 @@ public class TarjetaLogic {
     public TarjetaEntity agregarTarjeta(UsuarioEntity usu, TarjetaEntity tarjeta) throws BusinessLogicException {
         tarjeta.setUsuario(usu);
         createTarjeta(tarjeta);
+
         return tarjeta;
     }
 
     public TarjetaEntity modificarTarjeta(UsuarioEntity usuario, TarjetaEntity tarjeta) {
         tarjeta.setUsuario(usuario);
         updateTarjeta(tarjeta.getId(), tarjeta);
+
         return tarjeta;
     }
 
@@ -107,7 +123,8 @@ public class TarjetaLogic {
 
     public List<TarjetaEntity> darTarjetasUsuario(Long id) {
         List<TarjetaEntity> tarjetas = new ArrayList<>();
-        List<TarjetaEntity> tarj = getTarjetas();
+        List<TarjetaEntity> tarj     = getTarjetas();
+
         for (TarjetaEntity tarjetaEntity : tarj) {
             if (tarjetaEntity.getUsuario() != null) {
                 if (tarjetaEntity.getUsuario().getId().equals(id)) {
@@ -115,7 +132,10 @@ public class TarjetaLogic {
                 }
             }
         }
+
         return tarjetas;
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

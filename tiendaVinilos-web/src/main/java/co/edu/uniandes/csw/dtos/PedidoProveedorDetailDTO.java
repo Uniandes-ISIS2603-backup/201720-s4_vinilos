@@ -1,12 +1,18 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
 
+//~--- non-JDK imports --------------------------------------------------------
+
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,79 +20,78 @@ import java.util.List;
  *
  * @author s.saenz11
  */
-public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
-    
+public class PedidoProveedorDetailDTO extends PedidoProveedorDTO {
     private PagoProveedorDTO pago;
-    
-    private ProveedorDTO proveedor;
-    
+    private ProveedorDTO     proveedor;
     private PedidoClienteDTO pedidoC;
-    
-    private List<ViniloDTO> vinilo;
-    
-    //Constructor por defecto
-     public PedidoProveedorDetailDTO(){
-         //Constructor por defecto
-     }
-   
+    private List<ViniloDTO>  vinilo;
+
+    // Constructor por defecto
+    public PedidoProveedorDetailDTO() {
+
+        // Constructor por defecto
+    }
+
     /**
      * Constructor por defecto
-   
+     *
      * @param entity
      */
     public PedidoProveedorDetailDTO(PedidoProveedorEntity entity) {
         super(entity);
-        
-        if(pago != null){
+
+        if (pago != null) {
             this.pago = new PagoProveedorDetailDTO(entity.getPagoProveedor());
         }
-        if(proveedor != null){
+
+        if (proveedor != null) {
             this.proveedor = new ProveedorDetailDTO(entity.getProveedor());
         }
-        if(pedidoC != null){
+
+        if (pedidoC != null) {
             this.pedidoC = new PedidoClienteDetailDTO(entity.getPedidoCliente());
         }
-        
-         List<ViniloEntity> lista= entity.getViniloEntity();
-        List<ViniloDTO> list= new ArrayList<>();
+
+        List<ViniloEntity> lista = entity.getViniloEntity();
+        List<ViniloDTO>    list  = new ArrayList<>();
+
         for (ViniloEntity viniloEntity : lista) {
-            ViniloDTO dto= new ViniloDTO(viniloEntity);
+            ViniloDTO dto = new ViniloDTO(viniloEntity);
+
             list.add(dto);
         }
-        vinilo = (ArrayList<ViniloDTO>)list;
-        
-    }
 
-    
+        vinilo = list;
+    }
 
     /**
      * Transformar un DTO a un Entity
      *
-     * @return 
+     * @return
      */
     @Override
     public PedidoProveedorEntity toEntity() {
-        PedidoProveedorEntity pedidoP = super.toEntity();
-        
-        
-        ArrayList<ViniloEntity> cards=new ArrayList<>();
-        if(vinilo!=null)
-        {
-        for (ViniloDTO vinilos: vinilo) {
-            cards.add(vinilos.toEntity());
+        PedidoProveedorEntity   pedidoP = super.toEntity();
+        ArrayList<ViniloEntity> cards   = new ArrayList<>();
+
+        if (vinilo != null) {
+            for (ViniloDTO vinilos : vinilo) {
+                cards.add(vinilos.toEntity());
+            }
         }
-        }
-        
-         if(pago != null){
+
+        if (pago != null) {
             pedidoP.setPagoProveedor(pago.toEntity());
         }
-        if(proveedor != null){
+
+        if (proveedor != null) {
             pedidoP.setProveedor(proveedor.toEntity());
         }
-        if(pedidoC != null){
+
+        if (pedidoC != null) {
             pedidoP.setPedidoCliente(pedidoC.toEntity());
         }
-        
+
         return pedidoP;
     }
 
@@ -121,7 +126,7 @@ public class PedidoProveedorDetailDTO extends PedidoProveedorDTO{
     public void setVinilo(List<ViniloDTO> vinilo) {
         this.vinilo = vinilo;
     }
-
-    
-    
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

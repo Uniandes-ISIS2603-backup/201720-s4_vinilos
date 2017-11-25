@@ -1,9 +1,12 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
  */
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 
@@ -12,27 +15,27 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
  * @author jp.monsalvo
  */
 public class ViniloDTO {
-
-    
     private String nombre;
-    private int anio;
-    private long id;
+    private int    anio;
+    private long   id;
     private double precio;
-    private int cantUnidades;
-    
+    private int    cantUnidades;
+
     /**
      * Constructor por defecto
      */
-    public ViniloDTO(){
-        
+    public ViniloDTO() {
+    //Constructor por defecto
     }
-    public ViniloDTO(ViniloEntity entity){
-        this.anio= entity.getAnio();
-        this.cantUnidades= entity.getCantUnidades();
-        this.id= entity.getId();
-        this.nombre= entity.getName();
-        this.precio= entity.getPrecio();
+
+    public ViniloDTO(ViniloEntity entity) {
+        this.anio         = entity.getAnio();
+        this.cantUnidades = entity.getCantUnidades();
+        this.id           = entity.getId();
+        this.nombre       = entity.getName();
+        this.precio       = entity.getPrecio();
     }
+
     /**
      * @return the nombre
      */
@@ -102,18 +105,23 @@ public class ViniloDTO {
     public void setCantUnidades(int cantUnidades) {
         this.cantUnidades = cantUnidades;
     }
-    
+
     /**
      * Convertir DTO a Entity
-     * @return Un Entity con los valores del DTO 
+     * @return Un Entity con los valores del DTO
      */
     public ViniloEntity toEntity() {
         ViniloEntity entity = new ViniloEntity();
+
         entity.setId(this.id);
         entity.setAnio(anio);
         entity.setCantUnidades(cantUnidades);
         entity.setName(nombre);
         entity.setPrecio(precio);
+
         return entity;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

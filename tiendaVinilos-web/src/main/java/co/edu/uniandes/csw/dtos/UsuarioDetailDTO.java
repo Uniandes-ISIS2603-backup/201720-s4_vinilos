@@ -21,13 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
+
+
 package co.edu.uniandes.csw.dtos;
+
+//~--- non-JDK imports --------------------------------------------------------
 
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
-import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+
+//~--- JDK imports ------------------------------------------------------------
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,50 +43,58 @@ import java.util.List;
  * @author jd.arenas
  */
 public class UsuarioDetailDTO extends UsuarioDTO {
+    private List<TarjetaDTO>       tarjetas;
+    private List<FeedBackDTO>      feeds;
+    private List<PedidoClienteDTO> pedidos;
+    private CarroComprasDetailDTO  carrito;
 
-    private ArrayList<TarjetaDTO> tarjetas;
-
-    private ArrayList<FeedBackDTO> feeds;
-
-    private ArrayList<PedidoClienteDTO> pedidos;
-
-    private CarroComprasDetailDTO carrito;
-
-    //Constructor por defecto
+    // Constructor por defecto
     public UsuarioDetailDTO() {
-        //Constructor por defecto
+
+        // Constructor por defecto
     }
-     /**
+
+    /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity
      */
     public UsuarioDetailDTO(UsuarioEntity entity) {
         super(entity);
+
         List<TarjetaEntity> lista = entity.getTarjetas();
-        List<TarjetaDTO> list = new ArrayList<>();
+        List<TarjetaDTO>    list  = new ArrayList<>();
+
         for (TarjetaEntity tarjetaEntity : lista) {
             TarjetaDTO dto = new TarjetaDTO(tarjetaEntity);
+
             list.add(dto);
         }
-        tarjetas = (ArrayList<TarjetaDTO>) list;
+
+        tarjetas = list;
+
         List<FeedBackEntity> lista2 = entity.getFeedBacks();
-        List<FeedBackDTO> list2 = new ArrayList<>();
+        List<FeedBackDTO>    list2  = new ArrayList<>();
+
         for (FeedBackEntity feedback : lista2) {
             FeedBackDTO dto = new FeedBackDTO(feedback);
+
             list2.add(dto);
         }
-        feeds = (ArrayList<FeedBackDTO>) list2;
+
+        feeds = list2;
+
         List<PedidoClienteEntity> lista3 = entity.getPedidos();
-        List<PedidoClienteDTO> list3 = new ArrayList<>();
+        List<PedidoClienteDTO>    list3  = new ArrayList<>();
+
         for (PedidoClienteEntity pedido : lista3) {
             PedidoClienteDTO dto = new PedidoClienteDTO(pedido);
+
             list3.add(dto);
         }
-        pedidos = (ArrayList<PedidoClienteDTO>) list3;
 
+        pedidos = list3;
         carrito = new CarroComprasDetailDTO(entity.getCarrito());
-
     }
 
     public CarroComprasDetailDTO getCarrito() {
@@ -90,29 +105,30 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         this.carrito = carrito;
     }
 
-    public ArrayList<FeedBackDTO> getFeeds() {
+    public List<FeedBackDTO> getFeeds() {
         return feeds;
     }
 
-    public void setFeeds(ArrayList<FeedBackDTO> feeds) {
+    public void setFeeds(List<FeedBackDTO> feeds) {
         this.feeds = feeds;
     }
 
-    public ArrayList<PedidoClienteDTO> getPedidos() {
+    public List<PedidoClienteDTO> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(ArrayList<PedidoClienteDTO> pedidos) {
+    public void setPedidos(List<PedidoClienteDTO> pedidos) {
         this.pedidos = pedidos;
     }
 
-    public ArrayList<TarjetaDTO> getTarjetas() {
+    public List<TarjetaDTO> getTarjetas() {
         return tarjetas;
     }
 
-    public void setTarjetas(ArrayList<TarjetaDTO> tarjetas) {
+    public void setTarjetas(List<TarjetaDTO> tarjetas) {
         this.tarjetas = tarjetas;
     }
+
     /**
      * Transformar un DTO a un Entity
      *
@@ -120,14 +136,17 @@ public class UsuarioDetailDTO extends UsuarioDTO {
      */
     @Override
     public UsuarioEntity toEntity() {
-        UsuarioEntity usuarioE = super.toEntity();
-        ArrayList<TarjetaEntity> cards = new ArrayList<>();
+        UsuarioEntity            usuarioE = super.toEntity();
+        ArrayList<TarjetaEntity> cards    = new ArrayList<>();
+
         if (tarjetas != null) {
             for (TarjetaDTO tarjeta : tarjetas) {
                 cards.add(tarjeta.toEntity());
             }
         }
+
         ArrayList<FeedBackEntity> feedbacks = new ArrayList<>();
+
         if (feeds != null) {
             for (FeedBackDTO feed : feeds) {
                 feedbacks.add(feed.toEntity());
@@ -135,6 +154,7 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         }
 
         ArrayList<PedidoClienteEntity> pedidos2 = new ArrayList<>();
+
         if (pedidos != null) {
             for (PedidoClienteDTO pedido : pedidos) {
                 pedidos2.add(pedido.toEntity());
@@ -144,10 +164,14 @@ public class UsuarioDetailDTO extends UsuarioDTO {
         usuarioE.setPedidos(pedidos2);
         usuarioE.setTarjetas(cards);
         usuarioE.setFeedBacks(feedbacks);
+
         if (carrito != null) {
             usuarioE.setCarrito(carrito.toEntity());
         }
+
         return usuarioE;
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

@@ -96,10 +96,10 @@ public class ViniloEntity implements Serializable {
     }
 
     /**
-     * @param año the año to set
+     * @param anio the anio to set
      */
-    public void setAnio(int año) {
-        this.anio = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     /**

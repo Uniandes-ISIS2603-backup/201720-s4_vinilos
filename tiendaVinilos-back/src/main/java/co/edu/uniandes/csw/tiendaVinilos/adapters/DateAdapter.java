@@ -21,11 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
+
 package co.edu.uniandes.csw.tiendaVinilos.adapters;
+
+//~--- JDK imports ------------------------------------------------------------
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
@@ -38,7 +45,6 @@ public class DateAdapter extends XmlAdapter<String, Date> {
      * Thread safe {@link DateFormat}.
      */
     private static final ThreadLocal<DateFormat> DATE_FORMAT_TL = new ThreadLocal<DateFormat>() {
-
         @Override
         protected DateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd");
@@ -55,6 +61,10 @@ public class DateAdapter extends XmlAdapter<String, Date> {
         if (v == null) {
             return null;
         }
+
         return DATE_FORMAT_TL.get().format(v);
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

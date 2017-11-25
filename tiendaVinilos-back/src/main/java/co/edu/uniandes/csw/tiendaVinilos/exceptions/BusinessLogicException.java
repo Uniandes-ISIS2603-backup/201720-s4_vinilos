@@ -21,7 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+
+
 package co.edu.uniandes.csw.tiendaVinilos.exceptions;
+
+//~--- JDK imports ------------------------------------------------------------
 
 import javax.ejb.ApplicationException;
 
@@ -31,9 +36,7 @@ import javax.ejb.ApplicationException;
  */
 @ApplicationException(rollback = true)
 public class BusinessLogicException extends Exception {
-
-    public BusinessLogicException() {
-    }
+    public BusinessLogicException() {}
 
     /**
      * Constructor con un mensaje
@@ -62,5 +65,7 @@ public class BusinessLogicException extends Exception {
     public BusinessLogicException(String message, Throwable cause) {
         super(message, cause);
     }
-
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com
