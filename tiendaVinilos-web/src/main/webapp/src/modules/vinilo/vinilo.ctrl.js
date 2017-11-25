@@ -27,6 +27,9 @@
                             $scope.viniloPrecio = response.data.precio;
                             $scope.viniloCantUnidades = response.data.cantUnidades;
                             $scope.info=response.data.infos[0];
+                            $scope.cancionesRecord=response.data.canciones;
+                            $scope.recordsArtista=response.data.artistas;
+                            $scope.proveedor=response.data.proveedor;
                         });
 
                 // el controlador no recibió un cityId

@@ -1,0 +1,38 @@
+<h1>Agregar Cancion</h1>
+<p>Poner id en 0 si no existe la cancion, de lo contrario el id correspondiente</p>
+<div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
+    <form novalidate name="form" id="vinilo-form" role="form" ng-submit="createCancion()">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Fill the required fields!</div>
+        </div>
+
+        <fieldset>
+            <style>
+                label {
+                    color: #000;
+                }
+            </style>
+            <input  class="form-control" type="hidden" ng-model="currentVinilo.id" />
+            <div class="form-group col-md-12" >
+                
+                <label for="cancionId" class="col-md-2 control-label">Id</label>
+                <div class="col-md-10">
+                    <input id="cancionId" nombre="cancionId" class="form-control" type="text" ng-model="cancionId" ng-init="cancionId" required />
+                </div>
+                
+                <label for="cancionName" class="col-md-2 control-label">Nombre</label>
+                <div class="col-md-10">
+                    <input id="nombre" nombre="cancionName" class="form-control" type="text" ng-model="cancionName" ng-init="cancionName" required />
+                </div>
+                <label for="cancionDuracion" class="col-md-2 control-label">Duracion</label>
+                <div class="col-md-10">
+                    <input id="cancionDuracion" anio="anio" class="form-control" type="text" ng-model="cancionDuracion" ng-init="cancionDuracion" required/>
+                </div>
+                
+            </div>
+            <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="viniloList">Cancel</button>
+            <button type="submit">Save</button>
+        </fieldset>
+    </form>
+</div>

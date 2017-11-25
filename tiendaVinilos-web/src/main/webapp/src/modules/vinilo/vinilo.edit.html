@@ -7,11 +7,11 @@
         </div>
 
         <fieldset>
-             <style>
-            label {
-color: #000;
-}
-</style>
+            <style>
+                label {
+                    color: #000;
+                }
+            </style>
             <input  class="form-control" type="hidden" ng-model="currentVinilo.id" />
             <div class="form-group col-md-12" >
                 <label for="nombre" class="col-md-2 control-label">Nombre</label>
@@ -19,16 +19,16 @@ color: #000;
                     <input id="nombre" nombre="nombre" class="form-control" type="text" ng-model="viniloNombre" ng-init="viniloName" required />
                 </div>
                 <label for="anio" class="col-md-2 control-label">Anio</label>
-                 <div class="col-md-10">
-                <input id="anio" anio="anio" class="form-control" type="text" ng-model="viniloAnio" ng-init="viniloAnio" required/>
+                <div class="col-md-10">
+                    <input id="anio" anio="anio" class="form-control" type="text" ng-model="viniloAnio" ng-init="viniloAnio" required/>
                 </div>
                 <label for="precio" class="col-md-2 control-label">Precio</label>
                 <div class="col-md-10">
                     <input id="precio" nombre="precio" class="form-control" type="text" ng-model="viniloPrecio" ng-init="viniloPrecio" required />
                 </div>
-                 <label for="cantUnidades" class="col-md-2 control-label">Precio</label>
+                <label for="cantUnidades" class="col-md-2 control-label">Cantidad de unidades</label>
                 <div class="col-md-10">
-                    <input id="precio" nombre="precio" class="form-control" type="text" ng-model="viniloPrecio" ng-init="viniloPrecio" required />
+                    <input id="cantUnidades" nombre="cantUnidades" class="form-control" type="text" ng-model="cantUnidades" ng-init="cantUnidades" required />
                 </div>
             </div>
             <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="viniloList">Cancel</button>
