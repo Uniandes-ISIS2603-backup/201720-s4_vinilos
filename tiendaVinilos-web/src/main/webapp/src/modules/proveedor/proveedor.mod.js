@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("proveedorModules", []);
     mod.constant("proveedorContext", "api/proveedores");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/proveedor/';
             $stateProvider
                     .state('proveedorList',

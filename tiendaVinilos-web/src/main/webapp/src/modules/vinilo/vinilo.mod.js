@@ -1,9 +1,8 @@
 (function (ng) {
     var mod = ng.module("viniloModules", []);
     mod.constant("viniloContext", "api/vinilos");
-    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+    mod.config(['$stateProvider', function ($stateProvider) {
             var basePath = 'src/modules/vinilo/';
-            var basePathCancion = 'src/modules/cancion/';
             $stateProvider.state('viniloList', {
                 url: '/vinilos',
                 views: {

@@ -6,7 +6,7 @@
              if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.viniloId;
+                var id = $stateParams.viniloId;
                 // obtiene el dato del recurso REST
                 $http.get("api/vinilos/" + id)
                         .then(function (response) {

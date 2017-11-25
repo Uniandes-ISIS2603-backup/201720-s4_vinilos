@@ -41,8 +41,8 @@
 
                             var filteredBooks = $scope.Allbooks.filter(function (Allbooks) {
                                 return $scope.booksAuthor.filter(function (booksAuthor) {
-                                    return booksAuthor.id == Allbooks.id;
-                                }).length == 0
+                                    return booksAuthor.id === Allbooks.id;
+                                }).length === 0
                             });
 
                             $scope.allBooksShow = filteredBooks;
@@ -97,11 +97,14 @@
                     $scope.newBooks = function () {
                         $scope.allBooksAuthor = [];
                         for (var ite in idsBook) {
+                            if(ite===null||ite!=null)
+                            {
                             for (var all in $scope.Allbooks) {
                                 if ($scope.Allbooks[all].id === parseInt(idsBook[ite])) {
                                     $scope.allBooksAuthor.push($scope.Allbooks[all]);
                                 }
                             }
+                        }
                         }
                     };
                 }

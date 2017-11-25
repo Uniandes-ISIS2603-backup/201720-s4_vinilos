@@ -9,7 +9,7 @@
                 $http.post(viniloContext+"/"+idVinilo+"/artistas", {
                     id:$scope.artistaId,
                     name: $scope.artistaName                    
-                }).then(function (response) {
+                }).then(function () {
                     //Cancion created successfully
                     $state.go('viniloSee', {viniloId: idVinilo}, {reload: true});
                 });

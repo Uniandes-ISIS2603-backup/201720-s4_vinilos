@@ -15,7 +15,7 @@
             if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.viniloId;
+                var id = $stateParams.viniloId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
@@ -74,7 +74,7 @@
                                  $state.go('viniloList');
                             });
             };
-            this.addToCart = function() {
+            this.addToCart = function($rootScope) {
                  return $http.post("api/usuarios/"+$rootScope.currentUser.id+ "/carroCompras/"+$stateParams.viniloId)
                             .then(function () {
                                

@@ -16,7 +16,7 @@
             if ($stateParams.pedidoProveedoresId !== null && $stateParams.pedidoProveedoresId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.pedidoProveedoresId;
+                var id = $stateParams.pedidoProveedoresId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
