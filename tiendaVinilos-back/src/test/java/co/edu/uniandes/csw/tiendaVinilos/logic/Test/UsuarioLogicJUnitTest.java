@@ -15,11 +15,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.UsuarioPersistence;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -42,10 +37,9 @@ import javax.transaction.UserTransaction;
 //~--- JDK imports ------------------------------------------------------------
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -81,6 +75,7 @@ public class UsuarioLogicJUnitTest {
     /**
      *
      */
+    @PersistenceContext
     private EntityManager em;
 
     /**
@@ -124,6 +119,12 @@ public class UsuarioLogicJUnitTest {
             utx.commit();
         } catch (Exception e) {
             e.printStackTrace();
+
+            try {
+                utx.rollback();
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
@@ -136,12 +137,10 @@ public class UsuarioLogicJUnitTest {
         entity = new UsuarioEntity();
         try {
             logic.createUsuario(entity);
+            assertEquals(logic.getUsuario(entity.getId()).getId(), entity.getId());
         } catch (BusinessLogicException ex) {
             fail();
-
         }
-
-        assertEquals(logic.getUsuario(entity.getId()).getId(), entity.getId());
     }
 
     @Test
@@ -149,7 +148,6 @@ public class UsuarioLogicJUnitTest {
         for (int i = 0; i < 10; i++) {
             try {
                 UsuarioEntity usuario = new UsuarioEntity();
-
                 logic.createUsuario(usuario);
                 assertNotNull(logic.getUsuario(usuario.getId()));
                 assertEquals(usuario.getId(), logic.getUsuario(usuario.getId()).getId());
@@ -192,8 +190,8 @@ public class UsuarioLogicJUnitTest {
             for (int i = 0; i < 10; i++) {
                 TarjetaEntity tarjeta = new TarjetaEntity();
                 tarjeta.setName("tarjeta" + i);
-                tarjetas.add(tarjeta);
             }
+
             entity.setTarjetas(tarjetas);
             logic.createUsuario(entity);
             assertEquals(tarjetas, logic.getUsuario(entity.getId()).getTarjetas());
@@ -210,11 +208,11 @@ public class UsuarioLogicJUnitTest {
             for (int i = 0; i < 10; i++) {
                 PedidoClienteEntity pedido = new PedidoClienteEntity();
                 pedido.setName("pedido" + i);
-                pedidos.add(pedido);
-                entity.setPedidos(pedidos);
-                logic.createUsuario(entity);
-                assertEquals(pedidos, logic.getUsuario(entity.getId()).getPedidos());
             }
+
+            entity.setPedidos(pedidos);
+            logic.createUsuario(entity);
+            assertEquals(pedidos, logic.getUsuario(entity.getId()).getPedidos());
         } catch (BusinessLogicException ex) {
             fail();
         }
@@ -269,6 +267,3 @@ public class UsuarioLogicJUnitTest {
         }
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
