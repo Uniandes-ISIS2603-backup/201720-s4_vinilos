@@ -2,7 +2,7 @@
 
     var mod = ng.module("viniloModules");
 
-    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext','$rootScope', function ($scope, $state, $stateParams, $http, context,$rootScope) {
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
@@ -75,7 +75,7 @@
                             });
             };
             this.addToCart = function() {
-                 return $http.post("api/usuarios/943/carroCompras/"+$stateParams.viniloId)
+                 return $http.post("api/usuarios/"+$rootScope.currentUser.id+ "/carroCompras/"+$stateParams.viniloId)
                             .then(function () {
                                
                                  $state.go('viniloList');
