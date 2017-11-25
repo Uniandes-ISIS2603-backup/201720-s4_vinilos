@@ -86,7 +86,7 @@
     <body style="padding-top: 10px;">
         <style>
 
-            
+
             checkbox{
                 color : black;
             }
@@ -166,7 +166,7 @@
                 border: 1px solid #888;
                 width: 80%; /* Could be more or less, depending on screen size */
             }
-	
+
             /* The Close Button (x) */
             .close {
                 position: absolute;
@@ -296,7 +296,7 @@
             .btn{
                 padding-right: 100px;
                 text-align: center;
-width: 280px;
+                width: 280px;
                 font-family: BrandonText-Bold,Raleway,arial,sans-serif;
                 -webkit-font-smoothing: antialiased;
                 color: #fff;
@@ -337,23 +337,22 @@ width: 280px;
                             <li><a ui-serf="viniloList" href="#!/vinilos">VINILOS</a></li>
                             <li><a ui-sref="cancionList">CANCIONES</a></li>
                             <li><a ui-serf="infoList" href="#!/infos">INFOS</a></li>
-                            
+
                             <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto;">Login Usuario</button>
 
                             <div id="id01" class="modal">
 
-                                
-            
-                                
+
+
+
                                 <form class="modal-content animate"  >
-                                    
-                                                        <script>function clickyClick() {
-                                                            var x= document.getElementById("userInput").value ;
-    url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/'+ x;
-    window.open(url);
-}
-</script>
-                                    
+
+                                    <script>function clickyClick() {
+                                            var x = document.getElementById("userInput").value;
+                                            url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/' + x;
+                                        }
+                                    </script>
+
                                     <div class="imgcontainer">
                                         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
                                         <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
@@ -361,13 +360,13 @@ width: 280px;
 
                                     <div class="container">
                                         <label><b>Username</b></label>
-                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput">
+                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput" ng-model="userId">
 
                                         <label><b>Password</b></label>
                                         <input type="password" placeholder="Enter Password" >
-                                        
-                                        <button type="submit"  onclick="clickyClick()" >Login</button>
-                                        
+
+                                        <button type="submit"  onclick="clickyClick()" ui-sref="usuarioSee({usuarioId:userId})"  >Login</button>
+
                                         <input type="checkbox" checked="checked" style ="color: black"> Remember me
                                     </div>
 
@@ -375,26 +374,26 @@ width: 280px;
                                         <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
                                         <span class="psw"> <a href="#">Forgot password?</a></span>
                                     </div>
-                                        
+
                                 </form>
                             </div>
-                            
+
                             <button onclick="document.getElementById('id02').style.display = 'block'" style="width:auto;">Login Proveedor</button>
 
                             <div id="id02" class="modal">
 
-                                
-            
-                                
+
+
+
                                 <form class="modal-content animate"  >
-                                    
-                                                        <script>function clickyClick1() {
-                                                            var x= document.getElementById("userInput1").value ;
-    url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/'+ x;
-    window.open(url);
-}
-</script>
-                                    
+
+                                    <script>function clickyClick1() {
+                                            var x = document.getElementById("userInput1").value;
+                                            url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/' + x;
+                                            window.open(url);
+                                        }
+                                    </script>
+
                                     <div class="imgcontainer">
                                         <span onclick="document.getElementById('id02').style.display = 'none'" class="close" title="Close Modal">&times;</span>
                                         <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
@@ -406,9 +405,9 @@ width: 280px;
 
                                         <label><b>Password</b></label>
                                         <input type="password" placeholder="Enter Password" >
-                                        
+
                                         <button type="submit"  onclick="clickyClick1()" >Login</button>
-                                        
+
                                         <input type="checkbox" checked="checked" style ="color: black"> Remember me
                                     </div>
 
@@ -416,7 +415,7 @@ width: 280px;
                                         <button type="button" onclick="document.getElementById('id02').style.display = 'none'" class="cancelbtn">Cancel</button>
                                         <span class="psw"> <a href="#">Forgot password?</a></span>
                                     </div>
-                                        
+
                                 </form>
                             </div>
 
@@ -461,9 +460,9 @@ width: 280px;
         <p id="la">MÁS DE 1 MILLÓN DE VINILOS A LA VENTA</p>
 
         <a href="https://www.facebook.com/thevinylfactoryuk/" target="_blank">
-   <button id="boton" class="btn btn-default btn-sm"  > ¡MÁS INFORMACIÓN EN FACEBOOK!</button>
-</a>
-      
+            <button id="boton" class="btn btn-default btn-sm"  > ¡MÁS INFORMACIÓN EN FACEBOOK!</button>
+        </a>
+
 
     </div>  
 </body>

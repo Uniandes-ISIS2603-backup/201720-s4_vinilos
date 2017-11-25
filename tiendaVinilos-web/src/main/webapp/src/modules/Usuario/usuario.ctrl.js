@@ -2,7 +2,7 @@
 
     var mod = ng.module("usuarioModules");
 
-    mod.controller("usuarioCtrl", ['$scope', '$state', '$stateParams', '$http', 'usuarioContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("usuarioCtrl", ['$scope', '$state', '$stateParams', '$http', 'usuarioContext','$rootScope', function ($scope, $state, $stateParams, $http, context,$rootScope) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.usuarios = {};
@@ -21,7 +21,8 @@
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
-                            $scope.currentUsuario = response.data;
+                            $scope.currentUsuario=response.data;
+                            $rootScope.currentUser = response.data;
                         });
 
                 // el controlador no recibió un cityId
