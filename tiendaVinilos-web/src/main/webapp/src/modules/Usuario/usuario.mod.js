@@ -13,6 +13,20 @@ var mod = ng.module("usuarioModules", []);
                     }
                 }
             })
+          
+            
+            .state('detailView', {
+                url: '/list',
+                parent: 'usuarioSee',
+                views: {
+                    'detailView ':{
+                         controller: 'viniloCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: 'src/modules/vinilo/vinilo.list.html'
+                    }
+                }
+            })
+            
                    .state('usuarioSee', {
                 url: '/usuarios/:usuarioId',
                 param:{

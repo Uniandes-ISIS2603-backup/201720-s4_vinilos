@@ -1,22 +1,86 @@
-<div class="container-fluid">
-    <h1>Actualmente hay {{vinilos.length}} vinilos</h1>
-    <table class="table table-hover" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Anio</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="vinilo in vinilos">
-                <td id="{{$index}}-nombre">{{vinilo.nombre}}</td>
-                <td id="{{$index}}-precio">{{vinilo.precio}}</td>
-                <td>
-                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="viniloSee({viniloId: vinilo.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="viniloPost"><span class="glyphicon glyphicon-plus"></span>Agregar Vinilo</button>
-</div>
+
+<style>
+    #con{
+ 
+
+  margin:  auto;
+   
+  display: grid;
+   
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  #info{
+      color:white;
+  }
+  .card{
+     display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   flex: 0 1 calc(25% - 1em);
+   
+  }
+ 
+}</style>
+
+
+
+
+<div id="con" class='md-padding' layout="row" layout-wrap flex>
+    <md-card flex="40" flex-sm="80" ng-repeat="vinilo in vinilos" class="col-md-4" flex>
+        <div  flex="40" class="card" style="width: 20rem; border-color:#fff; "  flex>
+  <img class="card-img-top" src="https://image.flaticon.com/icons/svg/13/13510.svg" alt="Card image cap">
+  <div class="card-block">
+      <md-card-content id = "info">
+        <h2 style = "color: white">{{vinilo.id}} </h2>
+        <h2 style = "color: white">{{vinilo.precio}} $</h2>
+      </md-card-content>
+    <a  style = "width: 50px;" id="add-btn" class="btn btn-default btn-sm" ng-click="ctrl.addToCart(vinilo.id)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+  </div>
+        </div>
+</div >
+<body onload="checkCookie()">
+</body>
+    <script>
+
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user=getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+       user = prompt("Please enter your name:","");
+       if (user != "" && user != null) {
+           setCookie("username", user, 30);
+       }
+    }
+}
+
+</script>
+    
+     
+      
+  
+

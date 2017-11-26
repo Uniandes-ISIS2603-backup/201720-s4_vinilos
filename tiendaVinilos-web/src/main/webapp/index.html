@@ -15,6 +15,10 @@
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
+         <!-- modulos proveedor -->
+        <script src="src/modules/Carrito/carrito.mod.js" type="text/javascript"></script>
+        <script src="src/modules/Carrito/carro.ctrl.js" type="text/javascript"></script>
+        
         <!-- modulos proveedor -->
         <script src="src/modules/proveedor/proveedor.mod.js" type="text/javascript"></script>
         <script src="src/modules/proveedor/proveedor.ctrl.js" type="text/javascript"></script>
@@ -28,9 +32,8 @@
         <script src="src/modules/tarjeta2/tarjeta.mod.js" type="text/javascript"></script>
         <script src="src/modules/tarjeta2/tarjeta.ctrl.js" type="text/javaScript"> </script>
         <script src="src/modules/tarjeta2/tarjeta.create.ctrl.js" type="text/javaScript"> </script>
-        <!--modulos carrito -->
-        <script src="src/modules/Carrito/carrito.mod.js" type="text/javascript"></script>
-        <script src="src/modules/Carrito/carro.ctrl.js" type="text/javaScript"> </script>
+        <!-- -->
+
 
         <!-- modulos pedidoProveedor -->
         <script src="src/modules/pedidoProveedor/pedidoProveedor.mod.js" type="text/javascript"></script>
@@ -44,8 +47,6 @@
         <script src="src/modules/vinilo/vinilo.mod.js" type="text/javascript"></script>
         <script src="src/modules/vinilo/vinilo.ctrl.js" type="text/javaScript"> </script>
         <script src="src/modules/vinilo/vinilo.create.js" type="text/javaScript"> </script>  
-        <script src="src/modules/vinilo/cancionVinilo.new.ctrl.js" type="text/javaScript"> </script> 
-        <script src="src/modules/vinilo/artistaVinilo.new.ctrl.js" type="text/javaScript"> </script> 
 
         <!-- modulos info-->
         <script src="src/modules/info/info.mod.js" type="text/javascript"></script>
@@ -86,174 +87,18 @@
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script>
 
     </head>
-    <body style="padding-top: 10px;">
+    <body >
         <style>
 
 
-            checkbox{
-                color : black;
-            }
-            /* Full-width input fields */
-            input[type=text], input[type=password] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                box-sizing: border-box;
-                color : black;
-            }
-
-            /* Set a style for all buttons */
-            button {
-                background-color: #4CAF50;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                cursor: pointer;
-                width: 100%;
-            }
-
-            button:hover {
-                opacity: 0.8;
-            }
-
-            /* Extra styles for the cancel button */
-            .cancelbtn {
-                width: auto;
-                padding: 10px 18px;
-                background-color: #f44336;
-            }
-
-            /* Center the image and position the close button */
-            .imgcontainer {
-                text-align: center;
-                margin: 24px 0 12px 0;
-                position: relative;
-            }
-
-            img.avatar {
-                width: 40%;
-                border-radius: 50%;
-            }
-
-            .container {
-                padding: 16px;
-            }
-
-            span.psw {
-                float: right;
-                padding-top: 16px;
-            }
-
-            /* The Modal (background) */
-            .modal {
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
-                left: 0;
-                top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-                padding-top: 60px;
-            }
-
-            /* Modal Content/Box */
-            .modal-content {
-                background-color: #fefefe;
-                margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-                border: 1px solid #888;
-                width: 80%; /* Could be more or less, depending on screen size */
-            }
-
-            /* The Close Button (x) */
-            .close {
-                position: absolute;
-                right: 25px;
-                top: 0;
-                color: #000;
-                font-size: 35px;
-                font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: red;
-                cursor: pointer;
-            }
-
-            /* Add Zoom Animation */
-            .animate {
-                -webkit-animation: animatezoom 0.6s;
-                animation: animatezoom 0.6s
-            }
-
-            @-webkit-keyframes animatezoom {
-                from {-webkit-transform: scale(0)} 
-                to {-webkit-transform: scale(1)}
-            }
-
-            @keyframes animatezoom {
-                from {transform: scale(0)} 
-                to {transform: scale(1)}
-            }
-
-            /* Change styles for span and cancel button on extra small screens */
-            @media screen and (max-width: 300px) {
-                span.psw {
-                    display: block;
-                    float: none;
-                }
-                .cancelbtn {
-                    width: 100%;
-                }
-            }
-
-
-
-
             body , .jumbotron, .navbar{
-                background-image: url("https://scontent.fbog4-1.fna.fbcdn.net/v/t31.0-8/1618313_749574311744308_5704489124700386894_o.jpg?oh=baafb7e321cec579f47c1678bc427675&oe=5A91C8EC");
+                background-image: url("https://www.tomswallpapers.com/large/201502/5880.jpg");
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
 
             }  
-            .jumbotron { 
-
-                color: #fff;
-                padding-top: 18px;
-                padding-bottom: 18px;
-
-            }
-            .navbar {
-                margin-bottom: 0;
-                background-color: #fff;
-                z-index: 9999;
-                border: 0;
-                font-size: 12px;
-                line-height: 1.42857143 ;
-                letter-spacing: 8px;
-                border-radius: 0;
-                font-weight: 700;
-
-                -webkit-margin-before: -2em;
-                -webkit-margin-after: -1.5em;
-                -webkit-margin-start: 0px;
-                -webkit-margin-end: 0px;
-                -webkit-padding-start: 40px;
-                line-height: 1.42857143;
-
-            }
-
-            .navbar li a, .navbar .navbar-brand {
-                color: #fff !important;
-            }
 
             .titulo{
                 font-family: Open Sans Condensed;
@@ -316,158 +161,198 @@
                 padding: 10px 24px;
             }
 
+           
 
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+            button {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+            }
+
+            .imgcontainer {
+                text-align: center;
+                margin: 24px  12px ;
+            }
+
+            img.avatar {
+                width: 40%;
+                border-radius: 50%;
+            }
+
+            .container {
+                padding: 16px;
+            }
+
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+
+
+            #formato1{
+                width:350px;
+
+            }
+
+            #formato,#formatoX{
+                height:450px;
+                width:350px;
+                position: relative;
+
+            }
+
+            #formato {
+
+
+                float: left;
+                position: relative;
+                left: 250px;
+                border: 3px solid #f1f1f1;
+            }
+
+            #formatoX{
+                float: right;
+                position: relative;
+                right: 250px;
+                border: 3px solid #f1f1f1;
+            }
+
+
+            #imag{
+                background: hsla(180,0%,50%,0.25);;
+            }
+            #boton{
+                position: relative;
+                left: 520px;
+            }
 
 
         </style>
 
 
 
-        <div class="jumbotron text-center">
-            <div ui-view="mainView">
 
-                <nav class="navbar navbar-default navbar-fixed-top">
-
-                    <div class="collapse navbar-collapse" id="myNavbar">
-
-                        <ul class="nav navbar-nav navbar-left">
-                            <h1 class = "titulo">     TRUST IN VINYL</h1>
-                            <li><a ui-sref="proveedorList">PROVEEDORES</a></li>
-                            <li><a ui-serf="usuarioList" href="#!/usuarios">USUARIOS</a></li>
-                            <li><a ui-serf="tarjetaList" href="#!/tarjetas">TARJETAS</a></li>
-                            <li><a ui-serf="pedidoProveedorList" href="#!/pedidoProveedores">PEDIDO DEL PROVEEDOR</a></li>
-                            <li><a ui-serf="pagoProveedorList" href="#!/pagoProveedores">PAGO DEL PROVEEDOR</a></li>
-                            <li><a ui-serf="viniloList" href="#!/vinilos">VINILOS</a></li>
-                            <li><a ui-sref="cancionList">CANCIONES</a></li>
-                            <li><a ui-serf="infoList" href="#!/infos">INFOS</a></li>
-                            <li><a ui-serf="pedidoClienteList" href="#!/infos">PEDIDO CLIENTE</a></li>
-
-                            <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto;">Login Usuario</button>
-
-                            <div id="id01" class="modal">
+        <div ui-view="mainView">
+            <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 
 
 
 
-                                <form class="modal-content animate"  >
+            <div id="test" class = "text-center">    
+                <p id="subtest">BIENVENIDO A LA TIENDA DE VINILOS  </p>
+                <p id="subtest">ONLINE MÁS GRANDE DEL MUNDO</p>
+                <p id="la">MÁS DE 1 MILLÓN DE VINILOS A LA VENTA</p>
 
-                                    <script>function clickyClick() {
-                                            var x = document.getElementById("userInput").value;
-                                            url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/' + x;
-                                        }
-                                    </script>
+                <br>
+                <br>
+                <br>
 
-                                    <div class="imgcontainer">
-                                        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-                                        <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
-                                    </div>
+                <form id="formato" >
+                    <script>function clickyClick() {
+                            var x = document.getElementById("userInput").value
+                            document.cookie = "username="+x;
+                            url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/' + x;
+                            window.open(url);
+                        }
+                    </script>
 
-                                    <div class="container">
-                                        <label><b>Username</b></label>
-                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput" ng-model="userId">
+                    <div class="imgcontainer">
+                        <img id="imag" src="http://cdn.onlinewebfonts.com/svg/img_311846.png" alt="Avatar" class="avatar">
+                    </div>
 
-                                        <label><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" >
+                    <div id="formato1" class="container">
+                        <label><b style="color:white">Usuario</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput">
 
-                                        <button type="submit"  onclick="clickyClick()" ui-sref="usuarioSee({usuarioId:userId})"  >Login</button>
+                        <label><b style="color:white">Clave</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
 
-                                        <input type="checkbox" checked="checked" style ="color: black"> Remember me
-                                    </div>
-
-                                    <div class="container" style="background-color:#f1f1f1">
-                                        <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
-                                        <span class="psw"> <a href="#">Forgot password?</a></span>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            <button onclick="document.getElementById('id02').style.display = 'block'" style="width:auto;">Login Proveedor</button>
-
-                            <div id="id02" class="modal">
-
-
-
-
-                                <form class="modal-content animate"  >
-
-                                    <script>function clickyClick1() {
-                                            var x = document.getElementById("userInput1").value;
-                                            url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/' + x;
-                                            window.open(url);
-                                        }
-                                    </script>
-
-                                    <div class="imgcontainer">
-                                        <span onclick="document.getElementById('id02').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-                                        <img src= "http://www.dj-rooms.com/wp-content/uploads/2012/09/djrooms_vinylwomen042.jpg" alt="Avatar" class="avatar">
-                                    </div>
-
-                                    <div class="container">
-                                        <label><b>Username</b></label>
-                                        Name: <input type="text" placeholder="Enter Username" name="uname" required id="userInput1">
-
-                                        <label><b>Password</b></label>
-                                        <input type="password" placeholder="Enter Password" >
-
-                                        <button type="submit"  onclick="clickyClick1()" >Login</button>
-
-                                        <input type="checkbox" checked="checked" style ="color: black"> Remember me
-                                    </div>
-
-                                    <div class="container" style="background-color:#f1f1f1">
-                                        <button type="button" onclick="document.getElementById('id02').style.display = 'none'" class="cancelbtn">Cancel</button>
-                                        <span class="psw"> <a href="#">Forgot password?</a></span>
-                                    </div>
-
-                                </form>
-                            </div>
-
-                            <script>
-                                // Get the modal
-                                var modal = document.getElementById('id01');
-
-                                // When the user clicks anywhere outside of the modal, close it
-                                window.onclick = function (event) {
-                                    if (event.target == modal) {
-                                        modal.style.display = "none";
-                                    }
-                                }
-                            </script>
-                        </ul>
+                        <button id="buton1"  type="submit"  onclick="clickyClick()">Login Usuario</button>
 
                     </div>
 
-                </nav>
-            </div>    
-        </div>   
-    <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+
+                </form>
+
+                <form id="formatoX" > 
+
+                    <div class="imgcontainer">
+                        <img id="imag" src="http://cdn.onlinewebfonts.com/svg/img_311846.png" alt="Avatar" class="avatar">
+                    </div>
+
+                    <div id="formato1" class="container">
+                        <label><b style="color:white">Proveedor</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput1">
+
+                        <label><b style="color:white">Clave</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+
+                        <button id="butonX"  type="submit"  onclick="clickyClick1()">Login Proveedor</button>
+                        <script>function clickyClick1() {
+                                var x = document.getElementById("userInput1").value;
+                                url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/' + x;
+                                window.open(url);
+                            }
+                        </script>
+                    </div>
 
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+                </form>
+            </div> 
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
-    <div id="test" class = "text-center">    
-        <p id="subtest">BIENVENIDO A LA TIENDA DE VINILOS  </p>
-        <p id="subtest">ONLINE MÁS GRANDE DEL MUNDO</p>
-        <p id="la">MÁS DE 1 MILLÓN DE VINILOS A LA VENTA</p>
 
-        <a href="https://www.facebook.com/thevinylfactoryuk/" target="_blank">
-            <button id="boton" class="btn btn-default btn-sm"  > ¡MÁS INFORMACIÓN EN FACEBOOK!</button>
-        </a>
+            <a href="https://www.facebook.com/thevinylfactoryuk/" target="_blank">
+                <button id="boton" class="btn btn-default btn-sm"  > ¡MÁS INFORMACIÓN EN FACEBOOK!</button>
+            </a>
 
-
-    </div>  
-</body>
+            </div>
+    </body>
 </html>

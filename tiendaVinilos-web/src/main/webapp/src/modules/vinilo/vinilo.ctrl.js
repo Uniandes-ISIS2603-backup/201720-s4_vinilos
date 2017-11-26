@@ -2,7 +2,7 @@
 
     var mod = ng.module("viniloModules");
 
-    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext','$rootScope', function ($scope, $state, $stateParams, $http, context,$rootScope) {
+    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
@@ -15,7 +15,7 @@
             if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {
 
                 // toma el id del parámetro
-                var id = $stateParams.viniloId;
+                id = $stateParams.viniloId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
@@ -27,9 +27,6 @@
                             $scope.viniloPrecio = response.data.precio;
                             $scope.viniloCantUnidades = response.data.cantUnidades;
                             $scope.info=response.data.infos[0];
-                            $scope.cancionesRecord=response.data.canciones;
-                            $scope.recordsArtista=response.data.artistas;
-                            $scope.proveedor=response.data.proveedor;
                         });
 
                 // el controlador no recibió un cityId
@@ -74,8 +71,13 @@
                                  $state.go('viniloList');
                             });
             };
-            this.addToCart = function($rootScope) {
-                 return $http.post("api/usuarios/"+$rootScope.currentUser.id+ "/carroCompras/"+$stateParams.viniloId)
+            this.addToCart = function(id) {
+                
+                 var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split('=');
+    
+
+                 return $http.post("api/usuarios/"+ca[1]+"/carroCompras/"+id)
                             .then(function () {
                                
                                  $state.go('viniloList');
@@ -88,3 +90,4 @@
 //
         }]);
 })(window.angular);
+ 

@@ -15,7 +15,7 @@
             if ($stateParams.tarjetaId !== null && $stateParams.tarjetaId !== undefined) {
 
                 // toma el id del parámetro
-                var id = $stateParams.tarjetaId;
+                id = $stateParams.tarjetaId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {

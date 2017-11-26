@@ -1,9 +1,8 @@
 <div class="container-fluid">
-<h1>Vinilo {{currentVinilo.nombre}}</h1>
-    <table class="table table-hover" class="col-md-4">
+    <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
-                <th>Nombre.</th>
+                <th>Nombre</th>
                 <th>Año</th>
                 <th>Precio</th>
                 <th>CantUnidades</th>
@@ -26,47 +25,7 @@
             </tr>
         </tbody>
     </table>
-
-    <button id="agregar-info-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteVinilo(currentVinilo)"><span class="glyphicon-plus"></span>Agregar informacion</button>
     <button id="add-btn" class="btn btn-default btn-sm" ng-click="ctrl.addToCart()"><span class="glyphicon-plus"></span><span class="glyphicon-shopping-cart"></span>Agregar al carrito</button>
-    <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteVinilo(currentVinilo)"> Eliminar vinilo</button>
-    <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="viniloEdit({viniloId :currentVinilo.id})"><span class="glyphicon glyphicon-edit"></span>Modificar vinilo</button>
-    <button id="agregar-info-btn" class="btn btn-default btn-sm" ui-sref="viniloList"><span class="glyphicon-arrow-left"></span>Volver</button>
-    <br>
-<h1>Canciones del Vinilo {{currentVinilo.nombre}}</h1>
-    <table class="table table-hover" col-md-4>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Duracion(minutos)</th>
-                <th>Id</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="currentCancion in cancionesRecord">
-                <td><a ui-sref="cancionDetail({cancionId:currentCancion.id})">{{currentCancion.name}}</a></td>
-                <td>{{currentCancion.duracion}}</td>
-                <td>{{currentCancion.id}} </td>
-
-            </tr>
-        </tbody>
-    </table>
-    <button id="agregar-cancion-btn" class="btn btn-default btn-sm" ui-sref="viniloCancionCreate({idVinilo:currentVinilo.id})"><span class="glyphicon-arrow-left"></span>Agregar Cancion</button>
-    <h1>Artistas del Vinilo {{currentVinilo.nombre}}</h1>
-    <table class="table table-hover" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="artista in recordsArtista">
-                <td id="{{$index}}-name"><a ui-sref="">{{artista.name}}</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <button id="agregar-artista-btn" class="btn btn-default btn-sm" ui-sref="viniloArtistaCreate({idVinilo:currentVinilo.id})"><span class="glyphicon-arrow-left"></span>Agregar Artista</button>
-    </div>
-<h1>Proveedor:  <a ui-sref="proveedorSee({proveedorId:proveedor.id})">{{proveedor.name}}</a></h1>
+          <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteVinilo(currentVinilo)"> Eliminar vinilo</button>
+          <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="viniloEdit({viniloId :currentVinilo.id})"><span class="glyphicon glyphicon-edit"></span>Modificar vinilo</button>
+</div>
