@@ -275,7 +275,6 @@
                             var x = document.getElementById("userInput").value
                             document.cookie = "username="+x;
                             url = 'http://localhost:8080/tiendaVinilos-web/#!/usuarios/' + x;
-                            window.open(url);
                         }
                     </script>
 
@@ -285,12 +284,12 @@
 
                     <div id="formato1" class="container">
                         <label><b style="color:white">Usuario</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput">
+                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput" ng-model="userName">
 
                         <label><b style="color:white">Clave</b></label>
                         <input type="password" placeholder="Enter Password" name="psw" required>
 
-                        <button id="buton1"  type="submit"  onclick="clickyClick()">Login Usuario</button>
+                        <button id="buton1"  type="submit"  onclick="clickyClick()" ui-sref="usuarioSee({usuarioId:userName})">Login Usuario</button>
 
                     </div>
 

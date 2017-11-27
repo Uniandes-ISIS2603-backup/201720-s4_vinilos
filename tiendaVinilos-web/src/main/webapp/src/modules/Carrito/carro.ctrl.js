@@ -7,20 +7,22 @@
 
             $scope.carrito = {};
 
-            $http.get(context+$stateParams.id+"/carroCompras").then(function (response) {
+            $http.get(context + $stateParams.id + "/carroCompras").then(function (response) {
                 $scope.carrito = response.data;
             });
-            this.deleteVinilo = function(vinilo) {
-                 return $http.delete(context + "/" + $stateParams.idUsuario+"/carroCompras"+$stateParams.idVinilo)
-                            .then(function () {
-                                // $http.delete es una promesa
-                                // cuando termine bien, cambie de estado
-                                var index = $scope.usuarios.indexOf(vinilo);
-                                if (index > -1) {
-                                    $scope.usuarios.splice(index, 1);
-                                }
-                                 $state.go('carritoUsuario');
-                            });
+            this.deleteVinilo = function (vinilo) {
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split('=');
+                return $http.delete(context + ca[1] + "/carroCompras/" + vinilo.id)
+                        .then(function () {
+                            // $http.delete es una promesa
+                            // cuando termine bien, cambie de estado
+                            var index = $scope.usuarios.indexOf(vinilo);
+                            if (index > -1) {
+                                $scope.usuarios.splice(index, 1);
+                            }
+                            $state.go('usuarioSee({usuarioId:ca[1]})');
+                        });
             }
         }]);
 })(window.angular);

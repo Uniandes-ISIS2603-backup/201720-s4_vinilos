@@ -1,7 +1,5 @@
 <style>
     #titulo{
-       
-        
         letter-spacing: 8px;
         color: #fff;
     }
@@ -55,7 +53,6 @@
 <hr>
 
 
-<form action="https://thevinylfactory.com/cart/" method="post" id = "tablita" >
 
 
     <div class="col-sm-9 cart-items-wrap">
@@ -84,17 +81,19 @@
                         <a href="https://thevinylfactory.com/product/always-binary-deewee-dub/"><img width="180" height="180" src="//s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-180x180.gif" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" alt="" srcset="//s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-180x180.gif 180w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-150x150.gif 150w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-300x300.gif 300w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-250x250.gif 250w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-32x32.gif 32w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-50x50.gif 50w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-64x64.gif 64w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-96x96.gif 96w, //s3.amazonaws.com/vf-images/wp-content/uploads/2017/11/output_bRrNO3-128x128.gif 128w" sizes="(max-width: 180px) 100vw, 180px"></a>									</td>
 
                     <td class="product-name">
-                    <td id="{{$index}}-nombre">{{vinilo.nombre}}</td>
+                    <td id="{{$index}}-nombre">{{vinilo.id}}</td>
 
                     <td class="product-quantity">
                         <div style="color: black" class="quantity"><input type="number" step="1" min="0" max="130" name="cart[9b955e79e7187a50f57dcdf940d94363][qty]" value="1" title="Qty" class="input-text qty text" size="4"><div class="qty-adjust"><a class="qty-plus" href="#"><i class="sf-icon-chevron-up"></i></a><a class="qty-minus" href="#"><i class="sf-icon-chevron-down"></i></a></div></div>
                     </td>
 
-                    <td class="product-subtotal">
-                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span> <td id="{{$index}}-precio">{{vinilo.precio}}</td></span>									</td>
+                    <td class="product-subtotal"> 
+                        <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span> <td id="{{$index}}-precio">{{vinilo.precio}}</td>
+                            <td>
+                                <button ng-click="ctrl.deleteVinilo(vinilo)" id="borrarVinilo"><span class="glyphicon-trash"></button>
+                            </td>
 
-                    <td class="product-remove">
-                        <a href="https://thevinylfactory.com/cart/?remove_item=9b955e79e7187a50f57dcdf940d94363&amp;_wpnonce=6605583d69" class="remove" title="Remove this item">×</a>									</td>
+
                 </tr>
             <hr>
             <tr>
@@ -157,5 +156,4 @@
 
 </div>
 
-</form>
 

@@ -2,16 +2,16 @@
 
     var mod = ng.module("viniloModules");
 
-    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext','$sce', function ($scope, $state, $stateParams, $http, context, $sce) {
+    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext', '$sce', function ($scope, $state, $stateParams, $http, context, $sce) {
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
-            
+
             $scope.trustSrcurl = function (data)
             {
                 return $sce.trustAsResourceUrl(data);
             }
-            
+
             // carga los vinilos
             $http.get(context).then(function (response) {
                 $scope.vinilos = response.data;
@@ -32,10 +32,10 @@
                             $scope.viniloAnio = response.data.anio;
                             $scope.viniloPrecio = response.data.precio;
                             $scope.viniloCantUnidades = response.data.cantUnidades;
-                            $scope.info=response.data.infos[0];
+                            $scope.info = response.data.infos[0];
                             $scope.viniloCanciones = response.data.canciones;
                         });
-                
+
 
                 // el controlador no recibió un cityId
             } else {
@@ -52,46 +52,46 @@
             }
 
 
-            this.editVinilo = function(){
+            this.editVinilo = function () {
                 // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + $scope.currentVinilo.id, {
-                        nombre: $scope.viniloNombre,
-                        anio: $scope.viniloAnio,
-                        precio: $scope.viniloPrecio,
-                        cantUnidades: $scope.viniloCantUnidades
-                    })
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('viniloList');
-                            });
-                };
-            
-            this.deleteVinilo = function(vinilo) {
-                 return $http.delete(context + "/" + $stateParams.viniloId)
-                            .then(function () {
-                                // $http.delete es una promesa
-                                // cuando termine bien, cambie de estado
-                                var index = $scope.vinilos.indexOf(vinilo);
-                                if (index > -1) {
-                                    $scope.vinilos.splice(index, 1);
-                                }
-                                 $state.go('viniloList');
-                            });
+                return $http.put(context + "/" + $scope.currentVinilo.id, {
+                    nombre: $scope.viniloNombre,
+                    anio: $scope.viniloAnio,
+                    precio: $scope.viniloPrecio,
+                    cantUnidades: $scope.viniloCantUnidades
+                })
+                        .then(function () {
+                            // $http.put es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('viniloList');
+                        });
             };
-            this.addToCart = function(id) {
-                
-                 var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split('=');
-    
 
-                 return $http.post("api/usuarios/"+ca[1]+"/carroCompras/"+id)
-                            .then(function () {
-                               
-                                 $state.go('viniloList');
-                            });
+            this.deleteVinilo = function (vinilo) {
+                return $http.delete(context + "/" + $stateParams.viniloId)
+                        .then(function () {
+                            // $http.delete es una promesa
+                            // cuando termine bien, cambie de estado
+                            var index = $scope.vinilos.indexOf(vinilo);
+                            if (index > -1) {
+                                $scope.vinilos.splice(index, 1);
+                            }
+                            $state.go('viniloList');
+                        });
+            };
+            this.addToCart = function (id) {
+
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split('=');
+
+
+                return $http.post("api/usuarios/" + ca[1] + "/carroCompras/" + id)
+                        .then(function () {
+
+                            $state.go('viniloList');
+                        });
             }
-            
+
 //
 //// Código continua con las funciones de despliegue de errores
 //
