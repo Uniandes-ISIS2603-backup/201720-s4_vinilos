@@ -2,7 +2,7 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
-       
+
         // Internal modules dependencies       
         'proveedorModules',
         'usuarioModules',
@@ -11,7 +11,7 @@
         'pagoProveedorModules',
         'viniloModules',
         'infoModules',
-        
+
         'artistaModule',
         'cancionModule',
         'carritoModules'
@@ -20,5 +20,7 @@
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+   
+
 })(window.angular);
 

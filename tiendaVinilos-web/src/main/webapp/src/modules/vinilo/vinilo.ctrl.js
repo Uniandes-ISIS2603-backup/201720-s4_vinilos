@@ -2,10 +2,16 @@
 
     var mod = ng.module("viniloModules");
 
-    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("viniloCtrl", ['$scope', '$state', '$stateParams', '$http', 'viniloContext','$sce', function ($scope, $state, $stateParams, $http, context, $sce) {
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
+            
+            $scope.trustSrcurl = function (data)
+            {
+                return $sce.trustAsResourceUrl(data);
+            }
+            
             // carga los vinilos
             $http.get(context).then(function (response) {
                 $scope.vinilos = response.data;
@@ -27,7 +33,9 @@
                             $scope.viniloPrecio = response.data.precio;
                             $scope.viniloCantUnidades = response.data.cantUnidades;
                             $scope.info=response.data.infos[0];
+                            $scope.viniloCanciones = response.data.canciones;
                         });
+                
 
                 // el controlador no recibió un cityId
             } else {

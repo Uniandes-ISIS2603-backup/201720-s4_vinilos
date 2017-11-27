@@ -27,7 +27,7 @@
                 <td>{{currentCancion.id}} </td>
                 <td>
                     <button onclick="myFunction()">Escucha</button>
-                    <iframe id="frame1" src="" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe id="frame1" ng-src="{{trustSrcurl(currentCancion.link)}}" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
                 </td>
             </tr>
         </tbody>

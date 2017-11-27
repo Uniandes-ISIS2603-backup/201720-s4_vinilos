@@ -2,11 +2,18 @@
 
     var mod = ng.module("cancionModule");
 
-    mod.controller("cancionCtrl", ['$scope', '$state', '$stateParams', '$http', 'cancionContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("cancionCtrl", ['$scope', '$state', '$stateParams', '$http', 'cancionContext','$sce', function ($scope, $state, $stateParams, $http, context, $sce) {
 
             // inicialmente el listado de ciudades está vacio
             $scope.recordsCancion = {};
             // carga las ciudades
+            
+            //Arregla errores del spotify ¡NO TOCAR!
+            $scope.trustSrcurl = function (data)
+            {
+                return $sce.trustAsResourceUrl(data);
+            }
+
             $http.get(context).then(function (response) {
                 $scope.recordsCancion = response.data;
             });
@@ -64,7 +71,7 @@
 //                                $state.go('cancionList');
 //                            });
 //                };
-            
+
 //            this.deleteRecord = function(record) {
 //                 return $http.delete(context + "/" + $stateParams.cancionId)
 //                            .then(function () {

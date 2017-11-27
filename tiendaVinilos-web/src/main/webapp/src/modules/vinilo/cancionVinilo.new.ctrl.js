@@ -10,6 +10,7 @@
                     id:$scope.cancionId,
                     name: $scope.cancionName,
                     duracion: $scope.cancionDuracion,
+                    link: $scope.cancionLink,
                 }).then(function (response) {
                     //Cancion created successfully
                     $state.go('viniloSee', {viniloId: idVinilo}, {reload: true});
