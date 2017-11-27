@@ -16,10 +16,14 @@
                     }
                 }
             }).state('pedidoClienteList', {
-                url: '/list',
-                parent: 'pedidoCliente',
+                url: '/usuarios/{id}/pedidos',
+                params:{
+                    id:null
+                },
                 views: {
-                    'listView': {
+                    'mainView': {
+                        controller: 'pedidoClienteCtrl',
+                        controllerAs: 'ctrl',
                         templateUrl: basePath + 'pedidoCliente.list.html'
                     }
                 }
@@ -51,7 +55,7 @@
                     }
                 }
             }).state('pedidoClienteUpdate', {
-                url: '/update/{pedidoId:int}',
+                url: '/update/{pedidoClienteId}',
                 parent: 'pedidoCliente',
                 param: {
                     pedidoId: null
@@ -63,7 +67,7 @@
                     }
                 }
             }).state('pedidoClienteDelete', {
-                url: '/delete/{pedidoId:int}',
+                url: '/delete/{pedidoClienteId}',
                 parent: 'pedidoCliente',
                 param: {
                     pedidoId: null
