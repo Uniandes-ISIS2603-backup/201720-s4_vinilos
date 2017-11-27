@@ -4,18 +4,8 @@
                 <label style="color:black;" ng-if="edit" id="editAuthor">Editar Pedido</label></div>
             <div class="panel-body">
                 <form name="pedido">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label style="color:black;" for="pedidoEstado" class="col-sm-2">Estado:</label>
-                            <input id="pedidoEstado" required ng-model="data.estado" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label  style="color:black;" for="pedidoTotal" class="col-sm-2">Total:</label>
-                            <input style="color:black;" id="pedidoTotal" required ng-model="data.total" class="col-sm-6"/>
-                        </div>
-                    </div>
+
+
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label style="color:black;" for="pedidoTelefono" class="col-sm-2">Telefono:</label>
@@ -28,26 +18,20 @@
                             <input style="color:black;" id="pedidoDireccion" required ng-model="data.direccion" class="col-sm-6"/>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label style="color:black;" for="pedidoFechaEstimada" class="col-sm-2">Fecha Estimada:</label>
-                            <input style="color:black;" type="date" id="pedidoFechaEstimada" placeholder="DD/MM/YYYY" required ng-model="data.fechaEstimada" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    
+
 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!pedido.$valid">
 
                             <div style="color:black;" class="alert alert-warning" >
                                 <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div> 
-                        </div> 
-                    </div> 
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <input ng-click="createPedido()" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref=pedidoClienteList">Cancel</a>
+                            <input ng-click="ctrl.createPedido()" value="Save" class="btn btn-success"/>
+                            <a id="cancel-delete" ui-sref="pedidoClienteList" class="btn btn-info">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -55,5 +39,3 @@
             </div>
         </div>
 </div>
-
-

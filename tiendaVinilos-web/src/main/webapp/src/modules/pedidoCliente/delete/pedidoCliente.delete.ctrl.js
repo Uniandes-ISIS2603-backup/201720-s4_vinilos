@@ -7,7 +7,12 @@
             $scope.deletePedido = function () {
                 $http.delete(pedidoClienteContext + '/' + idPedido, {}).then(function (response) {
                     $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
-                });
+                }),
+                function(response) {
+                  $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
+                  $scope.data = response.data || 'Request failed';
+                  $scope.status = response.status;
+                };
             };
         }
     ]);

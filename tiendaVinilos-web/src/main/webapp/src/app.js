@@ -3,7 +3,7 @@
         // External dependencies
         'ui.router',
 
-        // Internal modules dependencies       
+        // Internal modules dependencies
         'proveedorModules',
         'usuarioModules',
         'tarjetaModules',
@@ -14,13 +14,13 @@
 
         'artistaModule',
         'cancionModule',
-        'carritoModules'
+        'carritoModules',
+        'pedidoClienteModules'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
-   
+
 
 })(window.angular);
-

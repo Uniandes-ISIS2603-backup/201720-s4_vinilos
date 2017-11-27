@@ -107,6 +107,16 @@ public class PedidoClienteResource {
         return new PedidoClienteDetailDTO(pedidoLogic.updatePedido(id, pedido.toEntity(),
                 pedido.getUsuario().toEntity()));
     }
+    
+    @PUT
+    @Path("cancelarPedido/{id: \\d+}")
+    public PedidoClienteDetailDTO cancelarPedido(@PathParam("id") Long id)
+            throws BusinessLogicException {
+        PedidoClienteDetailDTO pedido = new PedidoClienteDetailDTO();
+        pedido.setId(id);
+
+        return new PedidoClienteDetailDTO(pedidoLogic.cancelarPedido(id));
+    }
 
     /**
      * DELETE http://localhost:8080/tiendaVinilos-web/api/pedidocliente/1

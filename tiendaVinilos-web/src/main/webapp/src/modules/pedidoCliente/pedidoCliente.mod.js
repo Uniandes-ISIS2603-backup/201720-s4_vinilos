@@ -16,29 +16,15 @@
                     }
                 }
             }).state('pedidoClienteList', {
-                url: '/list',
-                parent: 'pedidoCliente',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'pedidoCliente.list.html'
-                    }
-                }
-            }).state('pedidoClienteDetail', {
-                url: '/{pedidoId:int}/detail',
-                parent: 'pedidoCliente',
-                param: {
-                    pedidoId: null
+                url: '/usuarios/{id}/pedidos',
+                params:{
+                    id:null
                 },
                 views: {
-                    'listView': {
-                        templateUrl: basePathPago + 'pagoCliente.list.html',
+                    'mainView': {
                         controller: 'pedidoClienteCtrl',
-                        controllerAs: 'ctrl'
-                    },
-                    'detailView': {
-                        templateUrl: basePath + 'pedidoCliente.detail.html',
-                        controller: 'pedidoClienteCtrl',
-                        controllerAs: 'ctrl'
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'pedidoCliente.list.html'
                     }
                 }
             }).state('pedidoClienteCreate', {
@@ -51,10 +37,10 @@
                     }
                 }
             }).state('pedidoClienteUpdate', {
-                url: '/update/{pedidoId:int}',
+                url: '/update/{pedidoClienteId}',
                 parent: 'pedidoCliente',
                 param: {
-                    pedidoId: null
+                    pedidoClienteId: null
                 },
                 views: {
                     'detailView': {
@@ -63,10 +49,10 @@
                     }
                 }
             }).state('pedidoClienteDelete', {
-                url: '/delete/{pedidoId:int}',
+                url: '/delete/{pedidoClienteId}',
                 parent: 'pedidoCliente',
                 param: {
-                    pedidoId: null
+                    pedidoClienteId: null
                 },
                 views: {
                     'detailView': {

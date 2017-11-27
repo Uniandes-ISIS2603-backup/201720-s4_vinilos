@@ -1,4 +1,4 @@
- 
+
 <style>
 
     @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
@@ -107,7 +107,7 @@
         margin-top: 100px;
         text-align: center;
 
-        -webkit-font-smoothing: antialiased; 
+        -webkit-font-smoothing: antialiased;
         color: #fff;
 
 
@@ -144,7 +144,7 @@
 
 
                     <li><a  href="#!/vinilos">VINILOS</a></li>
-                    <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})">PEDIDOS</a></li>
+                    <li><a id="{{$index}}-pedidos-btn"  ui-sref="pedidoClienteList({pedidoClienteId:currentUsuario.id})">PEDIDOS</a></li>
                     <li><a id="{{$index}}-edit-btn"  ui-sref="tarjetaSee({tarjetaId: tarjeta.id})"> TARJETAS</a></li>
                     <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
@@ -153,10 +153,10 @@
             </div>
 
         </nav>
-        <div id="test" class = "text-center" >    
+        <div id="test" class = "text-center" >
             <p id="subtest">BIENVENIDO A VINYL FACTORY  </p>
             <p id="subtest"><td>{{currentUsuario.name}}</td></p>
-            <p id="la">BUSCA EL VINILO QUE DESEAS :)</p>
+            <p id="la">BUSCA EL VINILO QUE DESEAS</p>
 
 
         </div>
@@ -165,8 +165,4 @@
                 <input id="search" name="search" type="text" placeholder=""><input id="search_submit" value="Rechercher" type="submit">
             </form>
         </div>
-    
-       
-
-
-
+</div>

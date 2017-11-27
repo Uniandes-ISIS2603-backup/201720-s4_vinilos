@@ -103,6 +103,37 @@ public class PedidoClienteLogic
         LOGGER.log(Level.INFO, "Termina proceso de actualizar pedido con id={0}", entity.getId());
         return newEntity;
     }
+    
+    /**
+     *
+     * Cancelar un pedido.
+     *
+     * @param id: id del pedido para buscarlo en la base de datos.
+     * @param entity: pedido con los cambios para ser actualizado, puede ser la direccion o el telefono de contacto.
+     * @throws BusinessLogicException
+     * @param usuario
+     * @return el pedido con los cambios actualizados en la base de datos.
+     */
+    public PedidoClienteEntity cancelarPedido(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
+        PedidoClienteEntity pedido = persistence.find(id);
+        UsuarioEntity usuario = pedido.getUsuario();
+        
+        if (pedido == null) {
+            throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
+        }
+        if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")))
+        {
+            throw new BusinessLogicException("El pedido no puede ser cancelado. El estado del pedido deber ser 'Rechazado' "
+                    + "'Cancelado' o 'Entregado', de lo contrario es posible cancelar el pedido.");
+        }
+        pedido.setEstado("CANCELADO");
+        // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
+        PedidoClienteEntity newEntity = persistence.update(pedido);
+        newEntity.setUsuario(usuario);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar pedido con id={0}", pedido.getId());
+        return newEntity;
+    }
    
     
     /**
@@ -116,10 +147,10 @@ public class PedidoClienteLogic
         if (pedido == null) {
             throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
-         if(!((pedido.getEstado()).equals("Rechazado")) && !((pedido.getEstado()).equals("Cancelado")) && !((pedido.getEstado()).equals("Entregado")))
+         if(!((pedido.getEstado()).equals("Rechazado")) && !((pedido.getEstado()).equals("CANCELADO")) && !((pedido.getEstado()).equals("Entregado")) && !((pedido.getEstado()).equals("Por Confirmar")))
         {
             throw new BusinessLogicException("El pedido no puede ser eliminado. El estado del pedido deber ser 'Rechazado' "
-                    + "'Cancelado' o 'Entregado', de lo contrario es posible eliminar el pedido.");
+                    + "'CANCELADO', 'Entregado' o 'Por Confirmar', de lo contrario es posible eliminar el pedido.");
         }
         // Note que, por medio de la inyección de dependencias se llama al método "delete(id)" que se encuentra en la persistencia.
         pedido.setUsuario(null);
