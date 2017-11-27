@@ -11,8 +11,7 @@
         'pagoProveedorModules',
         'viniloModules',
         'infoModules',
-        'pedidoClienteModules',
-        'pagoClienteModules',
+        
         'artistaModule',
         'cancionModule',
         'carritoModules'
