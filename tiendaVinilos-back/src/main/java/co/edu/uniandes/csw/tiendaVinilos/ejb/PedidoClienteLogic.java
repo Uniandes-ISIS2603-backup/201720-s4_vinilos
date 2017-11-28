@@ -117,11 +117,13 @@ public class PedidoClienteLogic
     public PedidoClienteEntity cancelarPedido(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
-        UsuarioEntity usuario = pedido.getUsuario();
         
         if (pedido == null) {
             throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
+        
+        UsuarioEntity usuario = pedido.getUsuario();
+         
         if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")))
         {
             throw new BusinessLogicException("El pedido no puede ser cancelado. El estado del pedido deber ser 'Rechazado' "

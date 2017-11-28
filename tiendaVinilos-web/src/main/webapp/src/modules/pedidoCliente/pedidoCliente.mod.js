@@ -3,8 +3,6 @@
     mod.constant("pedidoClienteContext", "api/pedidocliente");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/pedidoCliente/';
-            var basePathPago = 'src/modules/pagoCliente/';
-            $urlRouterProvider.otherwise("/pedidoClienteList");
             $stateProvider.state('pedidoCliente', {
                 url: '/pedidoCliente',
                 abstract: true,

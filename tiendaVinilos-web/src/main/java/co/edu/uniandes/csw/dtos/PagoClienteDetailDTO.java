@@ -31,17 +31,7 @@ public class PagoClienteDetailDTO extends PagoClienteDTO {
     public PagoClienteDetailDTO(PagoClienteEntity entity) {
         super(entity);
     }
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return
-     */
-    @Override
-    public PagoClienteEntity toEntity() {
-        return super.toEntity();
-    }
-
+    
     public void setPedido(PedidoClienteDTO pedido) {
         this.pedido = pedido;
     }

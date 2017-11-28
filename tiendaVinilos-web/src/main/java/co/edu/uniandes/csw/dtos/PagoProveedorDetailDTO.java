@@ -31,15 +31,6 @@ public class PagoProveedorDetailDTO extends PagoProveedorDTO {
         super(entity);
     }
 
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return
-     */
-    @Override
-    public PagoProveedorEntity toEntity() {
-        return super.toEntity();
-    }
 }
 
 

@@ -31,16 +31,6 @@ public class InfoDetailDTO extends InfoDTO {
     public InfoDetailDTO(InfoEntity entity) {
         super(entity);
     }
-
-    /**
-     * Transformar un DTO a un Entity
-     *
-     * @return
-     */
-    @Override
-    public InfoEntity toEntity() {
-        return super.toEntity();
-    }
 }
 
 
