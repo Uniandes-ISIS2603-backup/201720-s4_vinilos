@@ -8,6 +8,7 @@ import co.edu.uniandes.csw.dtos.ArtistaDTO;
 import co.edu.uniandes.csw.dtos.ArtistaDetailDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ArtistaEntity;
+import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -87,7 +88,7 @@ public class ViniloArtistasResource {
      */
     @GET
     @Path("{artistasId: \\d+}")
-    public ArtistaDetailDTO getArtistas(@PathParam("vinilosId") Long vinilosId, @PathParam("artistasId") Long artistasId) {
+    public ArtistaDetailDTO getArtistas(@PathParam("vinilosId") Long vinilosId, @PathParam("artistasId") Long artistasId) throws BusinessLogicException {
         return new ArtistaDetailDTO(viniloLogic.getArtista(vinilosId, artistasId));
     }
 

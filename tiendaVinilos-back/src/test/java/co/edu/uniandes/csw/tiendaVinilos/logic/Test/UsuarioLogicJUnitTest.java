@@ -177,6 +177,7 @@ public class UsuarioLogicJUnitTest {
         try {
             logic.createUsuario(entity);
             assertEquals(logic.getUsuario(entity.getId()).getId(), entity.getId());
+            assertTrue(logic.getUsuarios().size()>0);
         } catch (BusinessLogicException ex) {
             fail();
         }

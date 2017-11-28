@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ViniloLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
+import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 //~--- JDK imports ------------------------------------------------------------
 
@@ -63,7 +64,7 @@ public class CarroComprasVinilosResource {
 
     @POST
     @Path("/{idVin:\\d+}")
-    public ViniloDetailDTO addVinilo(@PathParam("carroComprasId") Long carId, @PathParam("idVin") Long vinId) {
+    public ViniloDetailDTO addVinilo(@PathParam("carroComprasId") Long carId, @PathParam("idVin") Long vinId) throws BusinessLogicException {
         CarroComprasEntity ent = carLogic.getCarroCompras(carId);
 
         if (ent == null) {

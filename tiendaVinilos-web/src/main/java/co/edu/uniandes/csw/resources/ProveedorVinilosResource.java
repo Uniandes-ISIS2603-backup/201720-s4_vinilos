@@ -96,7 +96,7 @@ public class ProveedorVinilosResource {
     @PUT
     @Path("/{idVin:\\d+}")
     public ViniloDetailDTO updateVinilo(@PathParam("idProveedor") Long idProv, @PathParam("idVin") Long idVin,
-            ViniloDetailDTO vinDto) {
+            ViniloDetailDTO vinDto) throws BusinessLogicException {
         vinDto.setId(idVin);
 
         return new ViniloDetailDTO(vinilosLogic.modificarVinilo(proveedorLogic.getProveedor(idProv), idVin,

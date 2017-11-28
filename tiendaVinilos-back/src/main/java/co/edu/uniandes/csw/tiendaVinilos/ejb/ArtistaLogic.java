@@ -37,10 +37,6 @@ public class ArtistaLogic {
      * @throws BusinessLogicException
      */
     public ArtistaEntity createArtista(ArtistaEntity entity) throws BusinessLogicException {
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe un Artista con el id\"" + entity.getId() + "\"");
-        }
-
         // Invoca la persistencia para crear el Artista
         persistence.create(entity);
 

@@ -45,7 +45,11 @@ public class UsuarioEntity implements Serializable {
     @OneToMany(mappedBy = "usuario")
     private List<FeedBackEntity>      feedBacks;
     @PodamExclude
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(
+        mappedBy                                  = "usuario",
+        cascade                                   = CascadeType.ALL,
+        orphanRemoval                             = true
+    )
     private List<PedidoClienteEntity> pedidos;
     @PodamExclude
     @OneToMany(
