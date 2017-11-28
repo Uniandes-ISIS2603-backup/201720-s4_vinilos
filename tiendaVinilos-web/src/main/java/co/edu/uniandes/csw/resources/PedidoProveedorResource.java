@@ -71,7 +71,7 @@ public class PedidoProveedorResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public PedidoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PedidoProveedorDetailDTO prov) {
+    public PedidoProveedorDetailDTO updateProveedor(PedidoProveedorDetailDTO prov) {
         PedidoProveedorEntity ent = logic.updatePedidoProveedor(prov.toEntity());
 
         return new PedidoProveedorDetailDTO(ent);

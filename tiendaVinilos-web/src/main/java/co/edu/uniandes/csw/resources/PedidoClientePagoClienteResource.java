@@ -44,22 +44,26 @@ public class PedidoClientePagoClienteResource
     @Inject
     PagoClienteLogic pagoLogic;
     
+     private static final String NOEXISTE = " no existe.";
+      private static final String PEDIDOID = "El pedido con el id: ";
+     
+    
     @GET
     public PagoClienteDetailDTO getPagoDePedido(@PathParam("id") Long id) throws BusinessLogicException {
         
         PedidoClienteEntity pedido = pedidoLogic.getPedido(id);
         if(pedido == null )
         {
-            throw new BusinessLogicException("El pedido con el id: " + id + " no existe.");
+            throw new BusinessLogicException(PEDIDOID + id + NOEXISTE);
         }
         return new PagoClienteDetailDTO(pedido.getPago());
     }
     
     @POST
-    public PedidoClienteDetailDTO createPagoCliente(PagoClienteDetailDTO pagoCliente,@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
+    public PedidoClienteDetailDTO createPagoCliente(PagoClienteDetailDTO pagoCliente,@PathParam("id") Long id) throws BusinessLogicException {
          if(pedidoLogic.getPedido(id) == null )
         {
-            throw new WebApplicationException("El pedido con el id: " + id + " no existe.", 404);
+            throw new WebApplicationException(PEDIDOID + id + NOEXISTE, 404);
         }
         pagoLogic.createPago(id, pagoCliente.toEntity());
         return new PedidoClienteDetailDTO(pedidoLogic.getPedido(id));
@@ -72,7 +76,7 @@ public class PedidoClientePagoClienteResource
          
         if(pedidoLogic.getPedido(id) == null )
         {
-            throw new BusinessLogicException("El pedido con el id: " + id + " no existe.");
+            throw new BusinessLogicException(PEDIDOID + id + NOEXISTE);
         }
         pagoLogic.updatePago(id, idPago, pagoCliente.toEntity());
         return new PedidoClienteDetailDTO(pedidoLogic.getPedido(id));
@@ -84,7 +88,7 @@ public class PedidoClientePagoClienteResource
         
         if(pedidoLogic.getPedido(id) == null )
         {
-            throw new BusinessLogicException("El pedido con el id: " + id + " no existe.");
+            throw new BusinessLogicException(PEDIDOID + id + NOEXISTE);
         }
         pagoLogic.deletePago(idPago, id);
     }

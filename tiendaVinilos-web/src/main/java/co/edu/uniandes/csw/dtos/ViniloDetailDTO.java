@@ -31,6 +31,7 @@ public class ViniloDetailDTO extends ViniloDTO {
      * Constructor por defecto
      */
     public ViniloDetailDTO() {
+        //Constructor por defecto
     }
 
     /**

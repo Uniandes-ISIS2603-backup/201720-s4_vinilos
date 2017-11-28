@@ -60,7 +60,7 @@ public class ArtistaCancionResource {
     }
 
     @POST
-    @Path(("/{idCan:\\d+}"))
+    @Path("/{idCan:\\d+}")
     public CancionDetailDTO addCancion(@PathParam("artistaId") Long artId, @PathParam("idCan") Long canId) {
         CancionEntity canEnt = canLogic.getCancion(canId);
         canLogic.addArtista(artLogic.getArtista(artId), canEnt);

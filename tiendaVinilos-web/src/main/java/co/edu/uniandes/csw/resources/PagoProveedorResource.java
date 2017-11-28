@@ -44,7 +44,7 @@ public class PagoProveedorResource {
 
     @GET
     public List<PagoProveedorDetailDTO> getProveedores() {
-        List<PagoProveedorDetailDTO> retList = new ArrayList<PagoProveedorDetailDTO>();
+        List<PagoProveedorDetailDTO> retList = new ArrayList<>();
         List<PagoProveedorEntity>    lista   = logic.getAll();
 
         for (PagoProveedorEntity en : lista) {
@@ -71,7 +71,7 @@ public class PagoProveedorResource {
 
     @PUT
     @Path("{id: \\d+}")
-    public PagoProveedorDetailDTO updateProveedor(@PathParam("id") Long id, PagoProveedorDetailDTO prov) {
+    public PagoProveedorDetailDTO updateProveedor(PagoProveedorDetailDTO prov) {
         PagoProveedorEntity ent = logic.updateProveedor(prov.toEntity());
 
         return new PagoProveedorDetailDTO(ent);
