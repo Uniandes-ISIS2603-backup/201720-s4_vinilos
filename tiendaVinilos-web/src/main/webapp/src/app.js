@@ -1,7 +1,7 @@
 (function (ng) {
     var app = angular.module('mainApp', [
         // External dependencies
-        'ui.router',
+        'ui.router', 'ui.bootstrap',
 
         // Internal modules dependencies
         'proveedorModules',
