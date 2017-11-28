@@ -154,7 +154,7 @@
 
         
         <div id="test" class = "text-center" >    
-            <p id="subtest">BIENVENIDO A VINYL FACTORY  </p>
+            <p id="subtest">BIENVENIDO A VINYL FACTORY . </p>
             <p id="subtest"><td>{{proveedorActual.name}}</td></p>
         <p id="la">¡Conoce la información de tu negocio !</p>
              
@@ -167,7 +167,7 @@
 
                     <li class ="fixed-center"><a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;color:white;">MI INFORMACIÓN</a></li>
                     <li class ="fixed-center"><a  onclick="document.getElementById('id02').style.display='block'" style="width:auto;color:white;">VINILOS</a></li>
-                    <li class ="fixed-center"><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})" style="color:white">PEDIDOS</a></li>
+                    <li class ="fixed-center"><a  onclick="document.getElementById('id04').style.display='block'" style="width:auto;color:white;">PEDIDOS</a></li>
                     <li class ="fixed-center"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;color:white;"> FEEDBACKS</a></li>
 
                 </ul>
@@ -267,6 +267,42 @@
 
     
       <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+    
+  </form>
+</div>
+</div>
+
+<div id="id04" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+   <div class="container-fluid">
+    
+      <h2 style ="font-weight: bold" >Pedidos</h2>
+      <table class="table table-hover" class="col-md-4">    
+        <thead>
+            <tr>
+                <th style ="font-weight: bold; color:black" >ID</th>
+                <th style ="font-weight: bold; color:black" >Fecha</th>
+                <th style ="font-weight: bold; color:black" >Precio</th>
+                 <th style ="font-weight: bold; color:black" >Estado</th>
+
+            </tr>
+        </thead>
+        <tbody>
+           <tr ng-repeat="pedidos in proveedorActual.pedidos">
+                <td style ="font-weight: bold"  id="{{$index}}-id">{{pedidos.id}}</td>
+                <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.fecha}}</td>
+                <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.precio}}</td>
+                  <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.estado}}</td>
+                <td>
+                     <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+
+        </tbody>
+    </table>
+
+    
+      <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
     
   </form>
 </div>
