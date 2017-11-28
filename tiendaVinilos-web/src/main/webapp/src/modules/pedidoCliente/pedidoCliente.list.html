@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-<div class="container-fluid">
+<div  class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><label>Pedidos del Cliente</label></div>
+            <div class="panel-heading" style="color:green;"><label>Pedidos del Cliente</label></div>
             <div class="panel-body">
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                     <div class="btn-group mr-2" role="group" aria-label="First group">
@@ -13,57 +12,55 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Estado</th>    
-                                <th>Precio</th> 
-                                <th>Fecha Estimada</th>  
-                                  
+                                <th>Estado</th>
+                                <th>Precio</th>
+                                <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>Fecha Estimada</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr ng-repeat="pedido in pedidosRecords">
-                                <td id="{{$index}}-estado"><a ui-sref="pedidoClienteDetail({pedidoId: pedido.id})">{{pedido.estado}}</a></td>
-                                <td id="{{$index}}-precio">{{pedido.precio}}</td>
-                                <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada| date:'yyyy-MM-dd'}}</td>
-                                <td id="{{$index}}-actions">
-                                    <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="pedidoClienteUpdate({pedidoId: pedido.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a id="{{$index}}-delete" class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
-                                </td>
-                            </tr>
+                <tbody>
+                <a ng-init="ctrl.pedidosUsuario()"></a>
+                <tr ng-repeat="pedido in pedidosRecords">
+                    <td id="{{$index}}-estado">{{pedido.estado}}</td>
+                    <td id="{{$index}}-precio">{{pedido.precio}}</td>
+                    <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
+                    <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
+                    <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
+                
+                <td id="{{$index}}-edit"> <a class="btn btn-info" ui-sref="pedidoClienteUpdate({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+                <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+                </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
 
 
-=======
-<div class="container-fluid"><div class="btn-group mr-2" role="group" aria-label="First group">
-<a class="btn btn-info" ui-sref="pedidoClienteCreate">
-<span class="glyphicon glyphicon-plus-sign"></span> Add new pedido</a>
-</div>
-    <table class="table table-striped" class="col-md-4">
-        <thead>
-            <tr>
-                <th>Estado</th>
-                <th>Precio</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
-                <th>Fecha Estimada</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="pedido in pedidos">
-                <td id="{{$index}}-estado">{{pedido.estado}}</td>
-                <td id="{{$index}}-precio">{{pedido.precio}}</td>
-                <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
-                <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
-                <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
-                
-                <td id="{{$index}}-actions"> <a class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
->>>>>>> origin/master
-</div>
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+</script>
+
+
