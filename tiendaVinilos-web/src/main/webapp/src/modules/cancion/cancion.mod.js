@@ -3,8 +3,6 @@
     mod.constant("cancionContext", "api/cancion");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/cancion/';
-            $urlRouterProvider.otherwise("/cancionList");
-
             $stateProvider.state('cancion', {
                 url: '/cancion',
                 abstract: true,
