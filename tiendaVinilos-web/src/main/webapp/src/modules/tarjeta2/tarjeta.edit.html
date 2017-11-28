@@ -16,7 +16,7 @@ color: #000;
             <div class="form-group col-md-12" >
                 <label for="number" class="col-md-2 control-label">Number</label>
                 <div class="col-md-10">
-                    <input id="number" name="number" class="form-control" type="text" ng-model="tarjetaNumber" ng-init="tarjetaNumber" required />
+                    <input id="number" name="number" class="form-control" type="text" ng-model="tarjetaNumber" ng-init="currentTarjeta.numero" required />
                 </div>
                 <label for="owner" class="col-md-2 control-label">Owner</label>
                  <div class="col-md-10">
@@ -24,7 +24,7 @@ color: #000;
                 </div>
                 
             </div>
-            <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaList">Cancel</button>
+            <button id="-edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaUsuario({usuarioId:userId})">Cancel</button>
             <button type="submit">Save</button>
         </fieldset>
     </form>

@@ -1,5 +1,6 @@
 <div class="container-fluid">
-    <h1>Actualmente hay {{tarjetas.length}} tarjetas</h1>
+    <h1>Medios de pago</h1>
+    <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaPost({usuarioId:userId})"><span class="glyphicon glyphicon-plus"></span>Agregar Tarjeta</button>
     <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
@@ -11,10 +12,9 @@
             <tr ng-repeat="tarjeta in tarjetas">
                 <td id="{{$index}}-name">{{tarjeta.numero}}</td>
                 <td>
-                  <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaSee({tarjetaId: tarjeta.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaSee({tarjetaId: tarjeta.id,usuarioId:userId})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
                 </td>
             </tr>
         </tbody>
     </table>
-    <button id="edit-btn" class="btn btn-default btn-sm" ui-sref="tarjetaPost"><span class="glyphicon glyphicon-plus"></span>Agregar Tarjeta</button>
 </div>

@@ -6,6 +6,8 @@
 
             // inicialmente el listado de ciudades está vacio
             $scope.tarjetas = {};
+            $scope.userId=$stateParams.usuarioId;
+            alert($scope.userId);
             // carga las ciudades
             $http.get(context).then(function (response) {
                 $scope.tarjetas = response.data;
