@@ -27,14 +27,16 @@
             this.getPedidosProveedor = function(pedidoClienteId){
               var decodedCookie = decodeURIComponent(document.cookie);
               var ca = decodedCookie.split('=');
-              $http.get("usuarios/" + ca[1]+'/pedidos/'+pedidoClienteId+ '/pedidoProveedor' ).then(function (response) {
+              document.getElementById('id01').style.display='block';
+              $http.get("api/usuarios/" + ca[1]+"/pedidos/"+pedidoClienteId+ "/pedidoProveedor" ).then(function (response) {
                     $scope.pedidosProveedorRecords = response.data;
+                    console.log(response.data)
                 });
             };
 
             this.cancelarPedido = function(pedidoClienteId){
-              $http.put(pedidoClienteContext + '/cancelarPedido/' + pedidoClienteId ).then(function(response){
-                $state.go('pedidoClienteList', {pedidoClienteId: response.data.id}, {reload: true});
+              $http.put(pedidoClienteContext + "/cancelarPedido/" + pedidoClienteId ).then(function(response){
+                $state.go("pedidoClienteList", {pedidoClienteId: response.data.id}, {reload: true});
               });
             };
 

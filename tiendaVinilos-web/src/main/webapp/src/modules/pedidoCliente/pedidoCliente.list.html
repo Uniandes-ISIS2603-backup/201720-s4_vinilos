@@ -292,11 +292,10 @@ span.psw {
                     <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
                     <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
                     <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
-                    <td id="{{$index}}-telefono">{{pedido.id}}</td>
 
 
 
-                <td><button ng-click="ctrl.getPedidosProveedor(pedido.id)" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Pedidos Asociados</button>
+                <td><button ng-click="ctrl.getPedidosProveedor(pedido.id)"  style="width:auto;">Pedidos Asociados</button>
                 </td>
                 <td><button ng-click="ctrl.cancelarPedido(pedido.id)"style="width:auto;">Cancelar</button>
                 </td>
@@ -315,6 +314,7 @@ span.psw {
 
 
                         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
                         <div class="row">
                             <div class="col-md-3">
                               <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
@@ -328,7 +328,7 @@ span.psw {
                                     <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
                                     <hr>
                                     <dt style="color:black;">Fecha Estimada</dt>
-                                    <dd style="color:black;">{{currentPedido.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
+                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
 
                                     <a ng-init="ctrl.getPagoPedido()"></a>
                                     <hr>
