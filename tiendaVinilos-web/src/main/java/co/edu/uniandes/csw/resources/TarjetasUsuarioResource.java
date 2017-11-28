@@ -94,8 +94,13 @@ public class TarjetasUsuarioResource {
 
     @PUT
     @Path("/{id2:\\d+}")
-    public TarjetaDetailDTO updateTarjeta(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2) {
+    public TarjetaDetailDTO updateTarjeta(@PathParam("usuarioId") Long id, @PathParam("id2") Long id2, TarjetaDetailDTO card) {
         TarjetaEntity tarjeta = tarjetaLogic.getTarjeta(id2);
+        tarjeta.setCvc(card.getCvc());
+        tarjeta.setGoodThru(card.getGoodThru());
+        tarjeta.setName(card.getName());
+        tarjeta.setNombrePropietario(card.getNombrePropietario());
+        tarjeta.setNumero(card.getNumero());
 
         tarjetaLogic.modificarTarjeta(usuarioLogic.getUsuario(id), tarjeta);
 

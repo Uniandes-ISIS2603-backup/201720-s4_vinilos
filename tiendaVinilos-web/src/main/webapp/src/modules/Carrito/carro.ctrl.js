@@ -21,7 +21,7 @@
                             if (index > -1) {
                                 $scope.usuarios.splice(index, 1);
                             }
-                            $state.go('carritoUsuario');
+                            $state.go('viniloList');
                         });
             }
         }]);
