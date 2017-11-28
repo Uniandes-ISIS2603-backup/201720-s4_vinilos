@@ -1,8 +1,8 @@
 (function (ng) {
     var mod = ng.module("pedidoClienteModules");
     mod.constant("pedidoClienteContext", "api/pedidocliente");
-    mod.controller('pedidoClienteCtrl', ['$scope', '$http', 'pedidoClienteContext', '$state',
-        function ($scope, $http, pedidoClienteContext, $state) {
+    mod.controller('pedidoClienteCtrl', ['$scope', '$http', 'pedidoClienteContext', '$state', '$uibModal',
+        function ($scope, $http, pedidoClienteContext, $state, $uibModal) {
 
 
             this.pedidosUsuario = function() {

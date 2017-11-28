@@ -1,37 +1,97 @@
-<div id="id01" class="modal">
-  <form class="modal-content animate" action="/action_page.php">
+<div  class="container-fluid">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+
+      <div class="collapse navbar-collapse" id="myNavbar">
+
+          <ul class="nav navbar-nav navbar-left">
 
 
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <li><a  href="#!/vinilos">VINILOS</a></li>
+              <li><a id="{{$index}}-pedidos-btn"  ui-sref="pedidoClienteList({pedidoClienteId:currentUsuario.id})">PEDIDOS</a></li>
+              <li><a id="{{$index}}-edit-btn"  ui-sref="tarjetaSee({tarjetaId: tarjeta.id})"> TARJETAS</a></li>
+              <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
-        <div class="row">
-            <div class="col-md-3">
-              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+          </ul>
 
-                    <hr>
-                    <dt style="color:black;">Estado</dt>
-                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
+      </div>
 
-                    <hr>
-                    <dt style="color:black;">Precio</dt>
-                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
-                    <hr>
-                    <dt style="color:black;">Fecha Estimada</dt>
-                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
+  </nav>
 
-                    <a ng-init="ctrl.getPagoPedido(pedido.id)"></a>
-                    <hr>
-                    <dt style="color:black;">Pago:</dt>
-                    <dt style="color:black;">Precio</dt>
-                    <dd style="color:black;">{{pagoPedido.precio}}</dd>
-                    <dt style="color:black;">Fecha de Pago</dt>
-                    <dd style="color:black;">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</dd>
+    <h1>Pedidos del Cliente</h1>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a  class="btn btn-info" ui-sref="pedidoClienteCreate"><span class="glyphicon glyphicon-plus-sign"></span> Agregar Pedido</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Estado</th>
+                                <th>Precio</th>
+                                <th>Dirección</th>
+                                <th>Telefono</th>
+                                <th>Fecha Estimada</th>
+                            </tr>
+                        </thead>
+                <tbody>
+                <a ng-init="ctrl.pedidosUsuario()"></a>
+                <tr ng-repeat="pedido in pedidosRecords">
+                    <td id="{{$index}}-estado">{{pedido.estado}}</td>
+                    <td id="{{$index}}-precio">{{pedido.precio}}</td>
+                    <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
+                    <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
+                    <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
 
 
-              </tr>
-            </div>
-        </div>
 
-  <div class="container" style="background-color:#f1f1f1"></div>
-  </form>
+                <td><button ng-click="ctrl.getPedidosProveedor(pedido.id)" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Pedidos Asociados</button>
+                </td>
+                <td><button ng-click="ctrl.cancelarPedido(pedido.id)"style="width:auto;">Cancelar</button>
+                </td>
+                <td id="{{$index}}-edit"> <a class="btn btn-info" ui-sref="pedidoClienteUpdate({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-edit"></span></a>
+                </td>
+                <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+                </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div id="id01" class="modal">
+                  <form class="modal-content animate" action="/action_page.php">
+
+
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+
+                                    <hr>
+                                    <dt style="color:black;">Estado</dt>
+                                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
+
+                                    <hr>
+                                    <dt style="color:black;">Precio</dt>
+                                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
+                                    <hr>
+                                    <dt style="color:black;">Fecha Estimada</dt>
+                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
+
+                                    <a ng-init="ctrl.getPagoPedido()"></a>
+                                    <hr>
+                                    <dt style="color:black;">Pago:</dt>
+                                    <dt style="color:black;">Precio</dt>
+                                    <dd style="color:black;">{{pagoPedido.precio}}</dd>
+                                    <dt style="color:black;">Fecha de Pago</dt>
+                                    <dd style="color:black;">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</dd>
+
+
+                              </tr>
+                            </div>
+                        </div>
+                      </div>
 </div>

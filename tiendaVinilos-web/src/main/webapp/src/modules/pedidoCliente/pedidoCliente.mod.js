@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("pedidoClienteModules", ['ui.router']);
+    var mod = ng.module("pedidoClienteModules", ['ui.router', 'ui.bootstrap']);
     mod.constant("pedidoClienteContext", "api/pedidocliente");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/pedidoCliente/';
