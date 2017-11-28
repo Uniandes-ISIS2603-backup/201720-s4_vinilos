@@ -105,13 +105,23 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
     }
     public ViniloEntity addCarrito(CarroComprasEntity carrito,ViniloEntity vinilo)
     {
-        vinilo.setCarrosCompras(carrito);
+        List<CarroComprasEntity> lista= vinilo.getCarrosCompras();
+        lista.add(carrito);
+        vinilo.setCarrosCompras(lista);
         return updateVinilo(vinilo.getId(), vinilo);
     }
-    public void sacraDelCarrito(ViniloEntity vinilo)
+    public void sacraDelCarrito(ViniloEntity vinilo,CarroComprasEntity carro)
     {
-        vinilo.setCarrosCompras(null);
-        deleteVinilo(vinilo.getId());
+        List<CarroComprasEntity> carros= vinilo.getCarrosCompras();
+        for (int i = 0; i < carros.size(); i++) {
+            System.out.println(carros.get(i).getId());
+            if(carros.get(i).getId()==carro.getId())
+            {
+                carros.remove(i);
+            }
+        }
+        vinilo.setCarrosCompras(carros);
+        updateVinilo(vinilo.getId(),vinilo);
     }
     
     

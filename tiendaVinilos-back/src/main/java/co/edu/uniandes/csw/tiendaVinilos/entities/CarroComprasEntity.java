@@ -20,6 +20,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
@@ -34,7 +35,7 @@ public class CarroComprasEntity implements Serializable {
     private double             precioTotal;
     private String             name;
     @PodamExclude
-    @OneToMany(mappedBy = "carrosCompras")
+    @ManyToMany
     private List<ViniloEntity> vinilos;
     @PodamExclude
     private UsuarioEntity      usuario;

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -19,12 +20,14 @@ public class InfoEntity implements Serializable {
     private String       descripcion;
     private String       urlCancion;
     private String       urlImagen;
+    @PodamExclude
     @ManyToOne
     private ViniloEntity vinilo;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String       name;
     private Long         id;
+        private String       name;
+
 
     public Long getId() {
         return id;

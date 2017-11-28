@@ -7,7 +7,6 @@
 package co.edu.uniandes.csw.resources;
 
 //~--- non-JDK imports --------------------------------------------------------
-
 import co.edu.uniandes.csw.dtos.CarroComprasDetailDTO;
 import co.edu.uniandes.csw.dtos.ViniloDTO;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.CarroComprasLogic;
@@ -17,8 +16,6 @@ import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 
 //~--- JDK imports ------------------------------------------------------------
-
-
 import javax.enterprise.context.RequestScoped;
 
 import javax.inject.Inject;
@@ -40,12 +37,13 @@ import javax.ws.rs.Produces;
 @RequestScoped
 @Path("usuarios/{usuarioId: \\d+}/carroCompras")
 public class UsuarioCarroComprasResource {
+
     @Inject
-    UsuarioLogic      usuarioLogic;
+    UsuarioLogic usuarioLogic;
     @Inject
     CarroComprasLogic carroComprasLogic;
     @Inject
-    ViniloLogic       viniloLogic;
+    ViniloLogic viniloLogic;
 
     @GET
     public CarroComprasDetailDTO getCarroCompras(@PathParam("usuarioId") Long id) throws BusinessLogicException {
@@ -65,14 +63,16 @@ public class UsuarioCarroComprasResource {
         ViniloEntity ent = viniloLogic.getVinilo(id2);
 
         viniloLogic.addCarrito(usuarioLogic.getCarrito(id), ent);
-
+        carroComprasLogic.addCarrito(usuarioLogic.getCarrito(id).getId(), ent);
         return new ViniloDTO(ent);
     }
 
     @DELETE
-    @Path("/{id2:\\d+}")
-    public void deleteCarroCompras(@PathParam("id2") Long id2) {
-        viniloLogic.sacraDelCarrito(viniloLogic.getVinilo(id2));
+    @Path("{idVin:\\d+}")
+    public void deleteCarroCompras(@PathParam("usuarioId") Long id,@PathParam("idVin") Long id2) {
+        ViniloEntity vinilo = viniloLogic.getVinilo(id2);
+        viniloLogic.sacraDelCarrito(vinilo, usuarioLogic.getUsuario(id).getCarrito());
+        carroComprasLogic.deleteVinilo(usuarioLogic.getUsuario(id).getCarrito().getId(), vinilo);
     }
 }
 

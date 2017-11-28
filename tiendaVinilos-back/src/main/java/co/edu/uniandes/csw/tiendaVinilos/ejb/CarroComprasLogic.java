@@ -7,13 +7,11 @@
 package co.edu.uniandes.csw.tiendaVinilos.ejb;
 
 //~--- non-JDK imports --------------------------------------------------------
-
 import co.edu.uniandes.csw.tiendaVinilos.entities.CarroComprasEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.CarroComprasPersistence;
 
 //~--- JDK imports ------------------------------------------------------------
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +25,7 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CarroComprasLogic {
+
     @Inject
     CarroComprasPersistence persistence;
 
@@ -62,14 +61,23 @@ public class CarroComprasLogic {
 
     public void addCarrito(Long id, ViniloEntity vinEnt) {
         CarroComprasEntity ent = persistence.find(id);
-
-        ent.getVinilos().add(vinEnt);
+        List<ViniloEntity> vinilos = ent.getVinilos();
+        vinilos.add(vinEnt);
+        ent.setVinilos(vinilos);
         persistence.update(ent);
     }
 
+    public void deleteVinilo(Long id, ViniloEntity vinEnt) {
+        CarroComprasEntity ent = persistence.find(id);
+        List<ViniloEntity> vinilos = ent.getVinilos();
+        vinilos.remove(vinEnt);
+        ent.setVinilos(vinilos);
+        updateCarroCompras(ent.getId(), ent);
+    }
+
     public ViniloEntity getViniloFromCarrito(CarroComprasEntity carro, Long idVinilo) {
-        ViniloEntity       viniloResp = null;
-        List<ViniloEntity> vinilos    = carro.getVinilos();
+        ViniloEntity viniloResp = null;
+        List<ViniloEntity> vinilos = carro.getVinilos();
 
         for (ViniloEntity vinilo : vinilos) {
             if (vinilo.getId() == idVinilo) {

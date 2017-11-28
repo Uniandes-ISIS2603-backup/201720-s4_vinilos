@@ -37,19 +37,13 @@
             }
             this.editTarjeta = function () {
                 // ejecuta PUT en el recurso REST
-                alert(ca[1]);
-                alert($scope.currentTarjeta.id);
-                alert($scope.tarjetaNumber);
-                alert("api/usuarios/" + ca[1] + "/tarjetas/" + $scope.currentTarjeta.id);
                 $http.put("api/usuarios/" + ca[1] + "/tarjetas/" + $scope.currentTarjeta.id, {
                     numero: $scope.tarjetaNumber,
                     nombrePropietario: $scope.tarjetaOwner
                 }).then(function () {
                     // $http.put es una promesa
                     // cuando termine bien, cambie de estado
-                    alert("exito")
                     $state.go('tarjetaUsuario', '{usuarioId:'+ca[1]+'}');
-                    alert("exito2")
                 });
             };
 
