@@ -10,9 +10,12 @@ package co.edu.uniandes.csw.tiendaVinilos.logic.Test;
 import co.edu.uniandes.csw.tiendaVinilos.ejb.ProveedorLogic;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.FeedBackEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PagoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoClienteEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.PedidoProveedorEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.TarjetaEntity;
 import co.edu.uniandes.csw.tiendaVinilos.entities.ProveedorEntity;
+import co.edu.uniandes.csw.tiendaVinilos.entities.ViniloEntity;
 import co.edu.uniandes.csw.tiendaVinilos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.tiendaVinilos.persistence.ProveedorPersistence;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -171,7 +174,7 @@ public class ProveedorLogicJUnitTest {
     }
 
     @Test
-    public void testGetProveedors() {
+    public void testGetProveedor() {
         entity = new ProveedorEntity();
         try {
             logic.createProveedor(entity);
@@ -181,6 +184,158 @@ public class ProveedorLogicJUnitTest {
         }
 
     }
+    
+    @Test
+    public void testGetPedidos() {
+        entity = new ProveedorEntity();
+       try {
+            List<PedidoProveedorEntity> pedidos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                PedidoProveedorEntity pedido = new PedidoProveedorEntity();
+                pedido.setName("pedido" + i);
+            }
+            entity.setPedidos(pedidos);
+            logic.createProveedor(entity);
+            assertEquals(pedidos, logic.getPedidos(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+    @Test
+    public void testGetPedido() {
+        entity = new ProveedorEntity();
+       try {
+            List<PedidoProveedorEntity> pedidos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                PedidoProveedorEntity pedido = new PedidoProveedorEntity();
+                pedido.setName("pedido" + i);
+            }
+            entity.setPedidos(pedidos);
+            logic.createProveedor(entity);
+            assertNotNull(logic.getPedidos(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+     @Test
+    public void testGetVinilos() {
+        entity = new ProveedorEntity();
+       try {
+            List<ViniloEntity> vinilos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                ViniloEntity vinilo = new ViniloEntity();
+                vinilo.setName("vinilo" + i);
+            }
+            entity.setVinilos(vinilos);
+            logic.createProveedor(entity);
+            assertEquals(vinilos, logic.getVinilos(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+     @Test
+    public void testGetVinilo() {
+        entity = new ProveedorEntity();
+       try {
+            List<ViniloEntity> vinilos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                ViniloEntity vinilo = new ViniloEntity();
+                vinilo.setName("vinilo" + i);
+            }
+            entity.setVinilos(vinilos);
+            logic.createProveedor(entity);
+            assertNotNull(logic.getVinilos(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+     @Test
+    public void testGetPagosProveedor() {
+        entity = new ProveedorEntity();
+       try {
+            List<PagoProveedorEntity> pagos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                PagoProveedorEntity pago = new PagoProveedorEntity();
+                pago.setName("pago" + i);
+            }
+            entity.setPagos(pagos);
+            logic.createProveedor(entity);
+            assertEquals(pagos, logic.getPagosProveedor(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+    @Test
+    public void testGetPagoProveedor() {
+        entity = new ProveedorEntity();
+       try {
+            List<PagoProveedorEntity> pagos = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                PagoProveedorEntity pago = new PagoProveedorEntity();
+                pago.setName("pago" + i);
+            }
+            entity.setPagos(pagos);
+            logic.createProveedor(entity);
+            assertNotNull(logic.getPagosProveedor(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+    @Test
+    public void testGetFeedbacks() {
+        entity = new ProveedorEntity();
+       try {
+            List<FeedBackEntity> feedbacks = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                FeedBackEntity feedback = new FeedBackEntity();
+                feedback.setComentario("feedback" + i);
+            }
+            entity.setFeedBacks(feedbacks);
+            logic.createProveedor(entity);
+            assertEquals(feedbacks, logic.getFeedBacks(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+     @Test
+    public void testGetFeedback() {
+        entity = new ProveedorEntity();
+       try {
+             List<FeedBackEntity> feedbacks = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                FeedBackEntity feedback = new FeedBackEntity();
+                feedback.setComentario("feedback" + i);
+            }
+            entity.setFeedBacks(feedbacks);
+            logic.createProveedor(entity);
+            assertNotNull(logic.getFeedBacks(entity.getId()));
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+    @Test
+    public void testGetAll() {
+        entity = new ProveedorEntity();
+       try {
+            logic.createProveedor(entity);
+            assertTrue(logic.getAll().size() >0);
+       }catch (BusinessLogicException ex) {
+           fail();
+        }
+    }
+    
+    
+    
+    
+    
 
     private void clearData() {
         em.createQuery("delete from usuarioEntity").executeUpdate();

@@ -210,7 +210,6 @@ public class UsuarioLogicJUnitTest {
                 PedidoClienteEntity pedido = new PedidoClienteEntity();
                 pedido.setName("pedido" + i);
             }
-
             entity.setPedidos(pedidos);
             logic.createUsuario(entity);
             assertEquals(pedidos, logic.getUsuario(entity.getId()).getPedidos());
