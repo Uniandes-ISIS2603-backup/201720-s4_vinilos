@@ -27,7 +27,7 @@
 
     <a ng-init="ctrl.pedidosUsuario()"></a>
 
-    <uib-accordion close-others="oneAtATime" ng-init="ctrl.getPedidosProveedor(pedido.id)">
+    <uib-accordion close-others="oneAtATime" ng-init="ctrl.getPedidosProveedor(pedido.id),ctrl.getPedidosProveedor(pedido.id) ">
     <div uib-accordion-group class="panel-default"
                         ng-repeat="pedido in pedidosRecords">
                         <uib-accordion-heading>
@@ -58,32 +58,40 @@
                           </td>
                               </tbody>
                           </table>
-       <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+       <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}" ></i>
 
-      </uib-accordion-heading>
+      </uib-accordion-heading> 
 
 
                         <div class="row">
                             <div class="col-md-3">
-
+                                <a ng-init="ctrl.getPedidosProveedor(pedido.id)"></a>
                               <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
-                                <table class="table table-striped">
-                                  <thead>
-                                      <tr>
-                                          <th>Estado</th>
-                                          <th>Precio</th>
-                                          <th>Fecha Estimada</th>
-                                      </tr>
-                                  </thead>
-                            <tbody>
-                              <tr ng-repeat="pedido in pedidosRecords">
-                                    <td id="{{$index}}-estado">{{pedidoProveedor.estado}}</td>
-                                    <td id="{{$index}}-precio">{{pedidoProveedor.precio}}</td>
-                                    <td id="{{$index}}-fechaEstimada">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</td>
+                               <table class="table table-hover">
+                    <thead>
+                        <tr>
 
-                                    </tr>
-                                        </tbody>
-                                    </table>
+                            <th style="color:black" >ID</th>
+                            <th style="color:black">Precio</th>
+                            <th style="color:black">Fecha</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.id}}</td>
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.precio}}</td>
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.fecha | date:'yyyy-MM-dd'}}</td>
+                            <td>
+
+                                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pagoProveedorSee({pagoProveedoresId: pagoProvedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
 
                               <hr>
