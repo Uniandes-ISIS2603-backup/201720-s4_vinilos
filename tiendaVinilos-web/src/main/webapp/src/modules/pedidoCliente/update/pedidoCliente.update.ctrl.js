@@ -2,37 +2,42 @@
         function (ng) {
             var mod = ng.module("pedidoClienteModules");
             mod.constant("pedidoClienteContext", "api/pedidocliente");
-            mod.constant("pagoClienteContext", "api/pagoCliente");
-            mod.controller('pedidoClienteUpdateCtrl', ['$scope', '$http', 'pedidoClienteContext', '$state', 'pagoClienteContext', '$rootScope',
-                function ($scope, $http, pedidoClienteContext, $state, pagoClienteContext) {
+            mod.controller('pedidoClienteUpdateCtrl', ['$scope', '$http', 'pedidoClienteContext', '$state', '$rootScope',
+                function ($scope, $http, pedidoClienteContext, $state) {
 
-                    $scope.data = {};
 
-                    var idPedido = $state.params.pedidoClienteId;
+                      // toma el id del parámetro
+                      var pedidoId = $state.params.pedidoClienteId;
+                      // obtiene el dato del recurso REST
+                      $http.get("api/pedidocliente/" + pedidoId)
+                              .then(function (response) {
 
-                    // Este arreglo guardara los ids de los books asociados y por asociar al autor.
-                    $http.get("api/pedidocliente/" + idPedido).then(function (response) {
-                        var pedido = response.data;
-                        $scope.data.direccion = pedido.direccion;
-                        $scope.data.telefono = pedido.telefono;
-                    });
-                    //Consulto el autor a editar.
-                    $scope.updatePedido = function () {
-                        /*Se llama a la función newBooks() para buscar cada uno de los ids de los books
-                         en el array que tiene todos los books y así saber como queda la lista final de los books asociados al autor.
-                         */
+                                  // $http.get es una promesa
+                                  // cuando llegue el dato, actualice currentRecord
+                                  $scope.pedidoActual = response.data;
+                                  console.log($scope.pedidoActual);
+                                  $scope.pedidoTelefono = response.data.telefono;
+                                  $scope.pedidoDireccion = response.data.direccion;
+                              });
 
-                         confirmarDelete =  confirm("Esta seguro que lo quiere modificar?");
-                          if (confirmarDelete)return $http.put("api/pedidocliente" + $stateParams.pedidoClienteId, {
-                                 direccion: $scope.pedidoDireccion,
-                                 telefono: $scope.pedidoTelefono
-                             }).then(function () {
-                                         // $http.put es una promesa
-                                         // cuando termine bien, cambie de estado
-                                         $state.go('pedidoClienteList');
-                                     });
-                    };
+                      // el controlador no recibió un cityId
 
+
+                  this.editPedidoCliente = function(){
+                      // ejecuta PUT en el recurso REST
+                      console.log($scope.pedidoActual);
+
+                       $http.put("api/pedidocliente/" + pedidoId, {
+                              telefono: $scope.pedidoTelefono,
+                              direccion: $scope.pedidoDireccion
+                          }).then(function () {
+                                      // $http.put es una promesa
+                                      // cuando termine bien, cambie de estado
+                                      $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
+                                  });
+                      };
+
+              //No poner nada
                 }
 
             ]);

@@ -6,22 +6,19 @@
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
+            var vinilos;
             $scope.trustSrcurl = function (data)
             {
                 return $sce.trustAsResourceUrl(data);
             }
 
-            // carga los vinilos
-            $http.get(context).then(function (response) {
-                $scope.vinilos = response.data;
-
-            });
-
             $scope.getProveedor = function (num) {
+                console.log("entro");
                 if (num !== undefined) {
 
 
                     var currentProveedor;
+                    console.log("num:" + num);
 
 
                     $http.get("api/proveedores" + "/" + num).then(function (response) {
@@ -29,9 +26,64 @@
                         $scope.proveedorFull = response.data;
                     });
 
+                    console.log("curr:" + currentProveedor);
 
                 }
             };
+            // carga los vinilos
+            $http.get(context).then(function (response) {
+                $scope.vinilos = response.data;
+                vinilos = response.data;
+                var str = $stateParams.viniloNombreP;
+                var pos = 0;
+                var seguir = true;
+                for (var i = 0; seguir && (i < vinilos.length); i++)
+                {
+                    if (vinilos[i].nombre === str)
+                    {
+                        pos = i;
+                        seguir = false;
+                    }
+                }
+                var idProv = 0;
+                $http.get(context + "/" + str)
+                        .then(function (response) {
+                            idProv = response.data.proveedor.id;
+                        });
+
+                var x = true;
+                var modalShow = function ()
+                {
+
+                    $(document).ready(function () {
+                        var func = $scope.getProveedor;
+                        console.log("odprov:" + idProv);
+                        if (!x) {
+                            func(idProv);
+                        }
+                        console.log("ready" + pos);
+                        $("#myModal" + pos).modal("show");
+                        console.log("read2");
+                    });
+                    if (x) {
+                        setTimeout(modalShow, 5500);
+                    }
+                    x = false;
+
+
+
+                };
+
+                if ($stateParams.viniloNombreP !== null && $stateParams.viniloNombreP !== undefined)
+                {
+                    var nombre = $stateParams.viniloNombreP;
+                    console.log(nombre);
+                    modalShow();
+                }
+
+            });
+
+
             // el controlador recibió un viniloId ??
             // revisa los parámetros (ver el :viniloId en la definición de la ruta)
             if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {

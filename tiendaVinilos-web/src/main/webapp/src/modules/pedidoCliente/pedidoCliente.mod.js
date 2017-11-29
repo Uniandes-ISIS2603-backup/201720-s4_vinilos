@@ -42,8 +42,9 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/update/pedidoCliente.update.html',
-                        controller: 'pedidoClienteUpdateCtrl'
+                        controller: 'pedidoClienteUpdateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + '/update/pedidoCliente.update.html'
                     }
                 }
             }).state('pedidoClienteDelete', {
@@ -58,6 +59,18 @@
                         controller: 'pedidoClienteDeleteCtrl'
                     }
                 }
-            });
+            }).state('pagoClienteDelete', {
+              url: '/deletePago/{pedidoClienteId}',
+              parent: 'pedidoCliente',
+              param: {
+                  pedidoClienteId: null
+              },
+              views: {
+                  'detailView': {
+                      templateUrl: basePath + '/delete/pagoCliente.delete.html',
+                      controller: 'pedidoClienteDeleteCtrl'
+                  }
+              }
+          });
         }]);
 })(window.angular);

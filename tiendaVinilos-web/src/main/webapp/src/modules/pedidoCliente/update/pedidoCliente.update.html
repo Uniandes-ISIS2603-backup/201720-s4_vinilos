@@ -1,40 +1,28 @@
-<div class="container-fluid">
-        <div class="panel panel-primary">
+<br>
+<br>
+    <h3 id="subtest" align="center"> Ingrese los datos de envío</h3>
+    <br>
+    <br>
+    <br>
 
-            <div class="panel-body">
-                <form name="pedido">
+    <center>
+      <input  class="form-control" type="hidden" ng-model="currentPedido.id" />
+      <div align="center" class="form-group col-md-12" >
+          <label id="la" for="number" class="col-md-2 control-label">Telefono</label>
+          <div class="col-md-10">
+              <input size="35" id="telefono" name="number" class="form-control" type="text" ng-model="pedidoTelefono" ng-init="currentPedido.telefono" required />
+          </div>
+          <label id="la" for="owner" class="col-md-2 control-label">Dirección</label>
+           <div class="col-md-10">
+          <input size="35" id="direccion" name="direccion" class="form-control" type="text" ng-model="pedidoDireccion" ng-init="currentPedido.direccion" required/>
+          </div>
 
-
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label style="color:black;" for="pedidoTelefono" class="col-sm-2">Telefono:</label>
-                            <input style="color:black;" id="pedidoTelefono" required ng-model="data.telefono" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label style="color:black;" for="pedidoDireccion" class="col-sm-2">Dirección:</label>
-                            <input style="color:black;" id="pedidoDireccion" required ng-model="data.direccion" class="col-sm-6"/>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!pedido.$valid">
-
-                            <div style="color:black;" class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div>
-                        </div>
-                    </div>
+      </div>
                     <div class="form-group row">
                         <div class="form-group col-sm-12">
-                            <button type="submit">Save</button>
-                            <a id="cancel-delete" ui-sref="pedidoClienteList" class="btn btn-info">Cancel</a>
+                            <button ng-click="ctrl.editPedidoCliente()" style="width: 150px;" type="submit">Save</button>
+                            <a style="width: 150px; background-color:red;" id="cancel-delete" ui-sref="pedidoClienteList" class="btn btn-info">Cancel</a>
                         </div>
                     </div>
                 </form>
-
-            </div>
-        </div>
-</div>
+</center>

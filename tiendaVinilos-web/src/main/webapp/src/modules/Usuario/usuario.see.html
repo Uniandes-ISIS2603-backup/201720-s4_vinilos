@@ -162,7 +162,8 @@
         </div>
         <div id="wrap">
             <form action="" autocomplete="on">
-                <input id="search" name="search" type="text" placeholder=""><input id="search_submit" value="Rechercher" type="submit">
+                
+                <input id="search" name="search" type="text" placeholder="" ng-model="valor" ><input id="search_submit" value="Rechercher" type="submit" ui-sref="viniloList({viniloNombreP:valor})">
             </form>
         </div>
 </div>
