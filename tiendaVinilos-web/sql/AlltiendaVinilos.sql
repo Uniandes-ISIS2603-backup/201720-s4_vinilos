@@ -128,16 +128,16 @@ insert into ViniloEntity (id, nombre, anio, precio, cantUnidades, proveedor_id) 
 insert into ViniloEntity (id, nombre, anio, precio, cantUnidades, proveedor_id) values (99, 'Cardguard', 2003, 89.8, 99,91);
 insert into ViniloEntity (id, nombre, anio, precio, cantUnidades, proveedor_id) values (100, 'Veribet', 2001, 940.5, 100,92);
 
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (51, 'Edyth', 'Gowlett', 'egowlett1e@histats.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (52, 'Antonia', 'Loghan', 'aloghan1f@google.es');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (53, 'Fernandina', 'Gasperi', 'fgasperi1g@chronoengine.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (54, 'Myrilla', 'Bineham', 'mbineham1h@drupal.org');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (55, 'Spense', 'Grand', 'sgrand1i@mit.edu');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (56, 'Oriana', 'McPhillimey', 'omcphillimey1j@huffingtonpost.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (57, 'Chrissy', 'Londing', 'clonding1k@amazon.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (58, 'Nicolis', 'Lynskey', 'nlynskey1l@vistaprint.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (59, 'Olimpia', 'Hallmark', 'ohallmark1m@nbcnews.com');
-insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (60, 'Juieta', 'Costello', 'jcostello1n@army.mil');
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (51, 'Edyth', 'Gowlett', 'egowlett1e@histats.com',51);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (52, 'Antonia', 'Loghan', 'aloghan1f@google.es',52);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (53, 'Fernandina', 'Gasperi', 'fgasperi1g@chronoengine.com',53);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (54, 'Myrilla', 'Bineham', 'mbineham1h@drupal.org',54);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (55, 'Spense', 'Grand', 'sgrand1i@mit.edu',55);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (56, 'Oriana', 'McPhillimey', 'omcphillimey1j@huffingtonpost.com',56);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (57, 'Chrissy', 'Londing', 'clonding1k@amazon.com',57);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (58, 'Nicolis', 'Lynskey', 'nlynskey1l@vistaprint.com',58);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (59, 'Olimpia', 'Hallmark', 'ohallmark1m@nbcnews.com',59);
+insert into InfoEntity (id, urlImagen, urlCancion, descripcion,vinilo_id) values (60, 'Juieta', 'Costello', 'jcostello1n@army.mil',60);
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (61, 'Minda', 'Buckley', 'mbuckley1o@phoca.cz');
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (62, 'Jimmy', 'Sofe', 'jsofe1p@ucla.edu');
 insert into InfoEntity (id, urlImagen, urlCancion, descripcion) values (63, 'Farris', 'Antrack', 'fantrack1q@ucoz.com');
