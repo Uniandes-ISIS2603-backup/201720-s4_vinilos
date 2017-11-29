@@ -4,7 +4,7 @@ var mod = ng.module("viniloModules", []);
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/vinilo/';
             $stateProvider.state('viniloList', {
-                url: '/vinilos/:viniloNombreP',
+                url: '/vinilos',
                 param:
                         {
                             viniloNombreP:null
@@ -47,7 +47,7 @@ var mod = ng.module("viniloModules", []);
                 }
             })
                     .state('viniloPost',{
-                        url:'/vinilos',
+                        url:'/vinilos/create',
                 views: {
                     'mainView': {
                         controller: 'viniloCreateCtrl',
