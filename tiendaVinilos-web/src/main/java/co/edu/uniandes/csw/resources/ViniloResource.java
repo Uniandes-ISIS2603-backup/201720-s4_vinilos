@@ -77,7 +77,7 @@ public class ViniloResource {
         return new ViniloDetailDTO(entity);
     }
     @GET
-    @Path("{name: [a-zA-Z][a-zA-Z]*}}")
+    @Path("{name}")
     public ViniloDetailDTO getViniloByName(@PathParam("name") String name){
         ViniloEntity entity= viniloLogic.getViniloByName(name);
         if(entity==null){

@@ -129,10 +129,10 @@ public class ViniloPersistence {
         LOGGER.log(Level.INFO, "Consultando Vinilo por nombre ", name);
 
         // Se crea un query para buscar Vinilos con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ViniloEntity e where e.nombre = :name", ViniloEntity.class);
+        TypedQuery query = em.createQuery("Select e From ViniloEntity e where e.nombre = :nombre", ViniloEntity.class);
 
         // Se remplaza el placeholder ":name" con el valor del argumento
-        query = query.setParameter("name", name);
+        query = query.setParameter("nombre", name);
 
         // Se invoca el query se obtiene la lista resultado
         List<ViniloEntity> sameName = query.getResultList();
