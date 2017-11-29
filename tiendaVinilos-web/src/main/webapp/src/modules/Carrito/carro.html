@@ -16,7 +16,7 @@
         left:0px;
         color :#fff;
         margin-top: 70px;
-        
+
 
     }
     #tablita, #formato{
@@ -38,7 +38,7 @@
     #boton{
         width: 50;
         position: relative;
-        
+
     }
 
 </style>
@@ -78,7 +78,7 @@
                 <col width="50">
                 <col width="150px">
             <thead>
-                
+
                 <tr>
                     <th class="product-thumbnail">Item</th>
                     <th class="product-name">   </th>
@@ -87,7 +87,7 @@
                     <th class="product-subtotal"></th>
                      <th class="product-subtotal">SubPrecio</th>
 
-                    
+
                     <th class="product-remove"></th>
 
                 </tr>
@@ -107,21 +107,27 @@
                         <div style="color: black" class="quantity"><input type="number" step="1" min="0" max="130" name="cart[9b955e79e7187a50f57dcdf940d94363][qty]" value="1" title="Qty" class="input-text qty text" size="4"><div class="qty-adjust"><a class="qty-plus" href="#"><i class="sf-icon-chevron-up"></i></a><a class="qty-minus" href="#"><i class="sf-icon-chevron-down"></i></a></div></div>
                     </td>
 
-                    <td class="product-subtotal"> 
+                    <td class="product-subtotal">
                         <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol"></span> <td id="{{$index}}-precio">${{vinilo.precio}}</td>
                             <td>
                                 <button ng-click="ctrl.deleteVinilo(vinilo)"><span class="glyphicon glyphicon-trash"></button>
-                            
+
                             </td>
 
 
                 </tr>
-                
+
             <hr>
-            
+
             </tbody>
-            
+
         </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
  <hr>
 
     </div>
@@ -137,7 +143,7 @@
 
                 <tbody><tr class="cart-subtotal">
                         <th style = "color:white">Subtotal</th>
-                        <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span >{{precioTotal}}</span></td>
+                        <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span >{{ctrl.precioTotal}}</span></td>
                 <hr>
                 </tr>
 
@@ -146,11 +152,17 @@
                     <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{precioTotal}}</span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span>0.00</span> VAT estimated for Colombia)</small></td>
                 </tr>
                 </tbody></table>
+                <br>
+                <br>
+                <br>
+                <br>
+                <a class="btn btn-info" style="width:200px;" ui-sref="pedidoClienteCreate({totalPedido: precioTotal})"><span class="glyphicon glyphicon-check"> Generar Pedido</span></a>
+
             <hr>
             <a href="https://www.facebook.com/thevinylfactoryuk/" target="_blank">
                         <button id="boton" class="btn btn-default btn-sm" > CHECKOUT</button>
                     </a>
-           
+
         </div>
 
 
@@ -158,5 +170,3 @@
     </div>
 
 </div>
-
-

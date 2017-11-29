@@ -27,8 +27,18 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ArtistaLogic {
-    @Inject
+    
     private ArtistaPersistence persistence;
+    
+    @Inject
+    public ArtistaLogic(ArtistaPersistence persistence)
+    {
+        this.persistence = persistence;
+    }
+    
+    public ArtistaLogic(){
+        this.persistence = null;
+    }
 
     /**
      *

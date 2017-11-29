@@ -9,6 +9,11 @@
 color: #000;
 }
 </style>
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
            <input  class="form-control" type="hidden" ng-model="proveedorActual.id" />
             <div   class="form-group col-md-12" >
                 <label for="viniloName" class="col-md-2 control-label">Nombre</label>
@@ -28,8 +33,8 @@ color: #000;
                 <input id="anioVinilo" class="form-control" type="text" required ng-model="viniloActual.anio"/>
                 </div>
             </div>
-            <button style= "color:black" type="button" ui-sref="proveedorList">Cancel</button>
-            <button style= "color:black" type="submit">Save</button>
+            <button style= "color:black" type="button" onclick="goBack()">Cancel</button>
+            <button style= "color:black" type="submit" onclick="goBack()">Save</button>
         </fieldset>
     </form>
 </div>

@@ -56,7 +56,14 @@ public class PedidoClientePagoClienteResource
         {
             throw new BusinessLogicException(PEDIDOID + id + NOEXISTE);
         }
-        return new PagoClienteDetailDTO(pedido.getPago());
+        if(pedido.getPago() != null)
+        {
+            return new PagoClienteDetailDTO(pedido.getPago());
+        }
+        else
+        {
+            throw new BusinessLogicException(" El ´pago del pedido con id= " + id + NOEXISTE);
+        }
     }
     
     @POST

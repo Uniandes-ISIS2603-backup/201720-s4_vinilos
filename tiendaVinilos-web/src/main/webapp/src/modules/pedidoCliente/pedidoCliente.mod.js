@@ -28,10 +28,14 @@
             }).state('pedidoClienteCreate', {
                 url: '/create',
                 parent: 'pedidoCliente',
+                params:{
+                    totalPedido:null
+                },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/pedidoCliente.new.html',
-                        controller: 'pedidoClienteNewCtrl'
+                        controller: 'pedidoClienteNewCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + '/new/pedidoCliente.new.html'
                     }
                 }
             }).state('pedidoClienteUpdate', {

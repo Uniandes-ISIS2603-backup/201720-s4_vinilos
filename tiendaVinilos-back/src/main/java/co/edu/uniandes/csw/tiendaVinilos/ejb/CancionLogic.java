@@ -29,8 +29,17 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CancionLogic {
-    @Inject
-    CancionPersistence persistence;
+    
+    private CancionPersistence persistence;
+    
+    @Inject 
+    public CancionLogic (CancionPersistence persistence){
+        this.persistence = persistence;
+    }
+    
+    public CancionLogic(){
+        this.persistence = null;
+    }
 
     public CancionEntity createCancion(CancionEntity entity) throws BusinessLogicException {
 

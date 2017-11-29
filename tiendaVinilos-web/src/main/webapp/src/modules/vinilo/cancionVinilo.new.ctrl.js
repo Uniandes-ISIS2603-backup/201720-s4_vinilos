@@ -1,19 +1,19 @@
 (function (ng) {
     var mod = ng.module("viniloModules");
     mod.constant("viniloContext", "api/vinilos");
-    mod.controller('viniloCreateCancionCtrl', ['$scope', '$http', 'viniloContext', '$state',  '$rootScope',
-        function ($scope, $http, viniloContext, $state,  $rootScope) {
+    mod.controller('viniloCreateCancionCtrl', ['$scope', '$http', 'viniloContext', '$state',  '$rootScope', '$stateParams',
+        function ($scope, $http, viniloContext, $state,  $rootScope, $stateParams) {
             $rootScope.edit = false;
-            var idVinilo=$state.params.idVinilo;
-            $scope.createCancion = function () {
-                $http.post(viniloContext+"/"+idVinilo+"/canciones", {
+            this.createCancion = function () {
+                            
+                $http.post(viniloContext+"/"+$state.params.viniloId+"/canciones", {
                     id:$scope.cancionId,
                     name: $scope.cancionName,
                     duracion: $scope.cancionDuracion,
                     link: $scope.cancionLink,
-                }).then(function (response) {
+                }).then(function () {
                     //Cancion created successfully
-                    $state.go('viniloSee', {viniloId: idVinilo}, {reload: true});
+                    $state.go('viniloList');
                 });
             };
         }

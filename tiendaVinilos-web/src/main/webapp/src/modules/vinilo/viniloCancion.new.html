@@ -1,7 +1,7 @@
 <h1>Agregar Cancion</h1>
 <p>Poner id en 0 si no existe la cancion, de lo contrario el id correspondiente</p>
 <div class="col-xs-6 col-sm-6 col-md-8 col-lg-12 well">
-    <form novalidate name="form" id="vinilo-form" role="form" ng-submit="createCancion()">
+    <form novalidate name="form" id="cancion-form" role="form" ng-submit="ctrl.createCancion()">
 
         <div ng-messages="form.$error">
             <div ng-message="required">Fill the required fields!</div>
@@ -18,20 +18,20 @@
                 
                 <label for="cancionId" class="col-md-2 control-label">Id</label>
                 <div class="col-md-10">
-                    <input id="cancionId" nombre="cancionId" class="form-control" type="text" ng-model="cancionId" ng-init="cancionId" required />
+                    <input id="cancionId" nombre="cancionId" class="form-control" type="text" ng-model="cancionId" ng-init="cancionActual.id" required />
                 </div>
                 
                 <label for="cancionName" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-10">
-                    <input id="nombre" nombre="cancionName" class="form-control" type="text" ng-model="cancionName" ng-init="cancionName" required />
+                    <input id="nombre" nombre="cancionName" class="form-control" type="text" ng-model="cancionName" ng-init="cancionActual.name" required />
                 </div>
                 <label for="cancionDuracion" class="col-md-2 control-label">Duracion</label>
                 <div class="col-md-10">
-                    <input id="cancionDuracion" anio="anio" class="form-control" type="text" ng-model="cancionDuracion" ng-init="cancionDuracion" required/>
+                    <input id="cancionDuracion" anio="anio" class="form-control" type="text" ng-model="cancionDuracion" ng-init="cancionActual.duracion" required/>
                 </div>
                 <label for="cancionLink" class="col-md-2 control-label">Link</label>
                 <div class="col-md-10">
-                    <input id="cancionLink" anio="anio" class="form-control" type="text" ng-model="cancionLink" ng-init="cancionLink" required/>
+                    <input id="cancionLink" anio="anio" class="form-control" type="text" ng-model="cancionLink" ng-init="cancionActual.link" required/>
                 </div>
                 
             </div>

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    
+
 
     <table class="table table-striped col-md-4">
         <thead>
@@ -8,21 +8,21 @@
                 <th>Año</th>
                 <th>Precio</th>
                 <th>CantUnidades</th>
-                
+
 
             </tr>
         </thead>
         <tbody >
             <tr>
-                
+
                 <td>{{currentVinilo.anio}} </td>             
                 <td>{{currentVinilo.precio}}</td>
                 <td>{{currentVinilo.cantUnidades}} </td>
-                
-            <td><iframe id="frame1" ng-src="{{trustSrcurl(cancion.link)}}" width="300" height="100" frameborder="0" allowtransparency="true"></iframe></td>
+
+                <td><iframe id="frame1" ng-src="{{trustSrcurl(cancion.link)}}" width="300" height="100" frameborder="0" allowtransparency="true"></iframe></td>
 
             </tr>
-            </tbody>
+        </tbody>
     </table>
     <h2 style="color: white">CANCIONES</h2>
     <table class="table table-striped col-md-4">
@@ -32,11 +32,11 @@
                 <th style="color: white">Nombre</th>
                 <th style="color: white">Duracion</th>
                 <th></th>
-                
+
 
             </tr>
         </thead>
-        
+
         <tbody ng-repeat="cancion in currentVinilo.canciones">
             <tr> 
                 <td>{{cancion.name}} </td>             
@@ -47,5 +47,7 @@
     </table>
     <button id="add-btn" class="btn btn-default btn-sm" ng-click="ctrl.addToCart()"><span class="glyphicon-plus"></span><span class="glyphicon-shopping-cart"></span>Agregar al carrito</button>
     <button id="delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteVinilo(currentVinilo)"> Eliminar vinilo</button>
-        <button id="edit-btn"     class="btn btn-default btn-sm" ui-sref="viniloEdit({viniloId :currentVinilo.id})"><span class="glyphicon glyphicon-edit"></span>Modificar vinilo</button>
-            </div>
+    <button id="edit-btn"     class="btn btn-default btn-sm" ui-sref="viniloEdit({viniloId :currentVinilo.id})"><span class="glyphicon glyphicon-edit"></span>Modificar vinilo</button>
+    <button     class="btn btn-default btn-sm" ui-sref="createCancion({viniloId :currentVinilo.id})"><span class="glyphicon glyphicon-cd"></span>Agregar Cancion</button>
+
+</div>

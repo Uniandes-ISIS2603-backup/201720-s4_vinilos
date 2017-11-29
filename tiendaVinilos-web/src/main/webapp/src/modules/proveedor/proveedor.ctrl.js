@@ -57,35 +57,37 @@
 //                } else {
 //
 // 
-            this.editProveedor = function(){
+            this.editProveedor = function () {
                 // ejecuta PUT en el recurso REST
-                confirmarDelete =  confirm("Esta seguro que lo quiere modificar?");
-                 if (confirmarDelete)return $http.put(context + "/" + $stateParams.proveedorId, {
+                confirmarDelete = confirm("Esta seguro que lo quiere modificar?");
+                if (confirmarDelete)
+                    return $http.put(context + "/" + $stateParams.proveedorId, {
                         name: $scope.proveedorName,
                         email: $scope.proveedorEmail
                     }).then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('proveedorList');
-                            });
-                };
-                
-                 this.editPedido = function(PedidoId, precio){
+                        // $http.put es una promesa
+                        // cuando termine bien, cambie de estado
+                        $state.go('proveedorSee', '({proveedorId: ' + proveedorActual.id + '})');
+                    });
+            };
+
+            this.editPedido = function (PedidoId, precio) {
                 // ejecuta PUT en el recurso REST
-                confirmarDelete =  confirm("¿Está seguro que lo quiere modificar y hacer el 25% de descuento?");
-                 if (confirmarDelete)$http.put("api/proveedores/"+$stateParams.proveedorId+"/pedidos/"+PedidoId,{
-                     precio:precio,
-                     id:PedidoId
-                 }).then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                
-                            });
-                };
-             
-            this.deleteProveedor = function(record) {
-                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
-                 if (confirmarDelete) return $http.delete(context + "/" + $stateParams.proveedorId)
+                confirmarDelete = confirm("¿Está seguro que lo quiere modificar y hacer el 25% de descuento?");
+                if (confirmarDelete)
+                    $http.put("api/proveedores/" + $stateParams.proveedorId + "/pedidos/" + PedidoId, {
+                        precio: precio,
+                        id: PedidoId
+                    }).then(function () {
+                        // $http.put es una promesa
+                        // cuando termine bien, cambie de estado
+                    });
+            };
+
+            this.deleteProveedor = function (record) {
+                confirmarDelete = confirm("Esta seguro que lo quiere eliminar?");
+                if (confirmarDelete)
+                    return $http.delete(context + "/" + $stateParams.proveedorId)
                             .then(function () {
                                 // $http.delete es una promesa
                                 // cuando termine bien, cambie de estado
@@ -93,54 +95,54 @@
                                 if (index > -1) {
                                     $scope.proveedores.splice(index, 1);
                                 }
-                                 $state.go('proveedorList');
+                                window.location = "src/index.html";
+                            }
+                            );
+            }
+
+
+            this.deleteFeedback = function (feedBackId) {
+                confirmarDelete = confirm("Esta seguro que lo quiere eliminar?");
+                if (confirmarDelete)
+                     $http.delete("api/feedbacks/" + feedBackId)
+                            .then(function () {
+                                var x=1;
+                        $state.reload();
+                         });
+            }
+
+            this.deleteVinilo = function (viniloId) {
+                confirmarDelete = confirm("Esta seguro que lo quiere eliminar?");
+                if (confirmarDelete)
+                     $http.delete("api/vinilos/" + viniloId)
+                            .then(function () {
+                                $state.reload();
                             });
             }
 
-            
-            this.deleteFeedback = function(feedBackId) {
-                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
-                 if (confirmarDelete) return $http.delete("api/feedbacks/"+ feedBackId)
+            this.deletePedido = function (PedidoId, proveedorID) {
+                confirmarDelete = confirm("Esta seguro que lo quiere eliminar?");
+                if (confirmarDelete)
+                    return $http.delete("api/proveedores/" + proveedorID + "/pedidos/" + PedidoId)
                             .then(function () {
                                 // $http.delete es una promesa
                                 // cuando termine bien, cambie de estado
-                                 $state.go('proveedorList');
+
                             });
             }
-            
-            this.deleteVinilo = function(viniloId) {
-                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
-                 if (confirmarDelete) return $http.delete("api/vinilos/"+ viniloId)
-                            .then(function () {
-                                // $http.delete es una promesa
-                                // cuando termine bien, cambie de estado
-                                 $state.go('proveedorList');
-                            });
-            }
-            
-            this.deletePedido = function(PedidoId, proveedorID) {
-                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
-                 if (confirmarDelete) return $http.delete("api/proveedores/"+proveedorID+"/pedidos/"+PedidoId)
-                            .then(function () {
-                                // $http.delete es una promesa
-                                // cuando termine bien, cambie de estado
-                               
-                            });
-            }
-            
-            this.addVinilo =  function(){
+
+            this.addVinilo = function () {
                 // ejecuta POST en el recurso REST
-                return $http.post(context + "/" + $stateParams.proveedorId + "/vinilos" , {
-                         nombre: $scope.viniloActual.nombre,
-                        precio: $scope.viniloActual.precio,
-                        anio: $scope.viniloActual.anio,
-                       cantUnidades: $scope.viniloActual.cantUnidades,
-                    }).then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('proveedorList');
-                            });
-                };   
+                return $http.post(context + "/" + $stateParams.proveedorId + "/vinilos", {
+                    nombre: $scope.viniloActual.nombre,
+                    precio: $scope.viniloActual.precio,
+                    anio: $scope.viniloActual.anio,
+                    cantUnidades: $scope.viniloActual.cantUnidades,
+                }).then(function () {
+                    // $http.post es una promesa
+                    // cuando termine bien, cambie de estado
+                });
+            };
 //
 //// Código continua con las funciones de despliegue de errores
 //

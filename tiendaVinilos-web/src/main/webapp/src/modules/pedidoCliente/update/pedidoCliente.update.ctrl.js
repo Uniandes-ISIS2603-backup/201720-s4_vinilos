@@ -8,8 +8,9 @@
 
                       // toma el id del parámetro
                       var pedidoId = $state.params.pedidoClienteId;
-                      // obtiene el dato del recurso REST
-                      $http.get("api/pedidocliente/" + pedidoId)
+                      var decodedCookie = decodeURIComponent(document.cookie);
+                      var ca = decodedCookie.split('=');
+                      $http.get("api/usuarios/" + ca[1]+ "/pedidos/"+ pedidoId)
                               .then(function (response) {
 
                                   // $http.get es una promesa
@@ -26,11 +27,12 @@
                   this.editPedidoCliente = function(){
                       // ejecuta PUT en el recurso REST
                       console.log($scope.pedidoActual);
-
-                       $http.put("api/pedidocliente/" + pedidoId, {
-                              telefono: $scope.pedidoTelefono,
-                              direccion: $scope.pedidoDireccion
-                          }).then(function () {
+                      var decodedCookie = decodeURIComponent(document.cookie);
+                      var ca = decodedCookie.split('=');
+                       $http.put("api/usuarios/" + ca[1] + "/pedidos/"+ pedidoId, {
+                         telefono: $scope.pedidoTelefono,
+                         direccion: $scope.pedidoDireccion
+                       }).then(function () {
                                       // $http.put es una promesa
                                       // cuando termine bien, cambie de estado
                                       $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});

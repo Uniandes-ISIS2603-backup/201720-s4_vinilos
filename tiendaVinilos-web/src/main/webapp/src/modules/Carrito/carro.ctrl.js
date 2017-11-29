@@ -21,15 +21,10 @@
             this.deleteVinilo = function (vinilo) {
                 var decodedCookie = decodeURIComponent(document.cookie);
                 var ca = decodedCookie.split('=');
-                return $http.delete(context + ca[1] + "/carroCompras/" + vinilo.id)
+                 $http.delete(context + ca[1] + "/carroCompras/" + vinilo.id)
                         .then(function () {
-                            // $http.delete es una promesa
-                            // cuando termine bien, cambie de estado
-                            var index = $scope.usuarios.indexOf(vinilo);
-                            if (index > -1) {
-                                $scope.usuarios.splice(index, 1);
-                            }
-                            $state.go('viniloList');
+                            void(0);
+                            $state.reload();
                         });
             }
         }]);
