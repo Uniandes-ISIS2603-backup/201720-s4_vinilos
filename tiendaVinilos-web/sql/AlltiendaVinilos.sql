@@ -315,3 +315,51 @@ insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (
 insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (98, 'nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque', 3.3, 96);
 insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (99, 'proin leo odio porttitor id consequat in consequat ut nulla sed', 2.7, 97);
 insert into FeedBackEntity (id, comentario, calificacion, proveedor_id) values (100, 'amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus', 2.4, 98);
+
+
+delete from PedidoProveedorEntity;
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (1, '2013-08-30 19:05:00' , '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (2, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (3, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (4,'2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (5, '2013-08-30 19:05:00', '', 882.);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (6, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (7, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (8, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (9, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (10, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (11, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (12, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (13, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (14, '2013-08-30 19:05:00', '', 882.7);
+
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (16, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (17, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (18, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (19,'2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (20, '2013-08-30 19:05:00', '', 882.7);
+insert into PedidoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (21, '2013-08-30 19:05:00', '', 882.7);
+
+
+delete from PagoProveedorEntity;
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (1, '2013-08-30 19:05:00' , '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (2, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (3, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (4,'2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (5, '2013-08-30 19:05:00', '', 882.);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (6, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (7, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (8, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (9, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (10, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (11, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (12, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (13, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (14, '2013-08-30 19:05:00', '', 882.7);
+
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (16, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (17, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (18, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (19,'2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (20, '2013-08-30 19:05:00', '', 882.7);
+insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (21, '2013-08-30 19:05:00', '', 882.7);
