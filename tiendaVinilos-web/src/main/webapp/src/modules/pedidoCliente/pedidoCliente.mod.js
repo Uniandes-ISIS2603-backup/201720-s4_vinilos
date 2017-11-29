@@ -42,7 +42,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/pedidoCliente.new.html',
+                        templateUrl: basePath + '/update/pedidoCliente.update.html',
                         controller: 'pedidoClienteUpdateCtrl'
                     }
                 }

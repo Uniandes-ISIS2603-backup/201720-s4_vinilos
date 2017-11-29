@@ -17,13 +17,6 @@
 
             };
 
-            this.getPagoPedido = function(pedidoClienteId) {
-
-               $http.get("api/pedido/"+pedidoClienteId+"/pago").then(function(response) {
-                   $scope.pagoPedido = response.data;
-              });
-            };
-
             this.getPedidosProveedor = function(pedidoClienteId){
               var decodedCookie = decodeURIComponent(document.cookie);
               var ca = decodedCookie.split('=');
@@ -31,7 +24,12 @@
               $http.get("api/usuarios/" + ca[1]+"/pedidos/"+pedidoClienteId+ "/pedidoProveedor" ).then(function (response) {
                     $scope.pedidosProveedorRecords = response.data;
                     console.log(response.data)
+                    console.log(pedidoClienteId)
                 });
+
+                $http.get("api/pedido/"+pedidoClienteId+"/pago").then(function(response) {
+                    $scope.pagoPedido = response.data;
+               });
             };
 
             this.cancelarPedido = function(pedidoClienteId){
@@ -40,7 +38,7 @@
               });
             };
 
-          
+
 
 
 
