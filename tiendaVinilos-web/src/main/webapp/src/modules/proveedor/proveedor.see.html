@@ -199,10 +199,10 @@
                 </tbody>
             </table>
 
+            
             <div class="container " >
                 <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
-                <button id =" abajo" style= "color:white"  class="btn btn-default btn-lg fixed-center " ng-click="ctrl.deleteProveedor(proveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
-                <button id =" abajo"  style= "color:white"  class="btn btn-default btn-lg  fixed-center" ui-sref="proveedorEdit({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                <button id =" abajo" style= "color:white"  class="btn btn-default btn-lg fixed-center "  ng-click="ctrl.deleteProveedor(proveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
             </div>
     </form>
 </div>
@@ -229,7 +229,7 @@
                     <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.anio}}</td>
                     <td  style ="font-weight: bold" id="{{$index}}-name">Hay {{vinilos.cantUnidades}} unidades</td>
                     <td>
-                        <button style= "float: right; color:black" id="delete-vin-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button style= "float: right; color:black" id="delete-vin-btn" class="btn btn-default btn-lg" ui-sref="proveedorSee({proveedorId: proveedorActual.id})" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
                         <button style="float: right; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="modificarVinilo({proveedorId: proveedorActual.id , viniloId: vinilos.id})"><span class="glyphicon glyphicon-edit"></span></button>
                     </td>
                     </tbody>
@@ -244,7 +244,7 @@
 
 <div id="id03" class="modal">
 
-    <form class="modal-content animate" action="/action_page.php">
+    <form class="modal-content animate" >
         <div class="container-fluid">
 
             <h2 style ="font-weight: bold" >Feedbacks</h2>

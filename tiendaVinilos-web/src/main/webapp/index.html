@@ -309,16 +309,15 @@
 
                     <div id="formato1" class="container">
                         <label><b style="color:white">Proveedor</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput1">
+                        <input type="text" placeholder="Enter Username" name="uname" required id="userInput1" ng-model="proveedorName">
 
                         <label><b style="color:white">Clave</b></label>
                         <input type="password" placeholder="Enter Password" name="psw" required>
 
-                        <button id="butonX"  type="submit"  onclick="clickyClick1()">Login Proveedor</button>
+                        <button id="butonX"  type="submit"  onclick="clickyClick1()", ui-sref="proveedorSee({proveedorId:proveedorName})">Login Proveedor</button>
                         <script>function clickyClick1() {
                                 var x = document.getElementById("userInput1").value;
                                 url = 'http://localhost:8080/tiendaVinilos-web/#!/proveedores/' + x;
-                                window.open(url);
                             }
                         </script>
                     </div>

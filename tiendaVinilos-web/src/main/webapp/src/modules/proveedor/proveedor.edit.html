@@ -20,8 +20,8 @@ color: #000;
                 <input id="proveedorEmail" class="form-control" type="text" required ng-model="proveedorEmail"/>
                 </div>
             </div>
-            <button style= "color:black" type="button" ui-sref="proveedorList">Cancel</button>
-            <button style= "color:black" type="submit">Save</button>
+            <button style= "color:black" type="button" ui-sref="proveedorSee({proveedorId: proveedorActual.id})">Cancel</button>
+            <button style= "color:black" type="submit" ui-sref="proveedorSee({proveedorId: proveedorActual.id})">Save</button>
         </fieldset>
     </form>
 </div>

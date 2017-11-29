@@ -30,9 +30,19 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ProveedorLogic {
-    @Inject
+    
     ProveedorPersistence persistence;
 
+    @Inject
+    public ProveedorLogic (ProveedorPersistence persistence)
+    {
+        this.persistence = persistence;
+    }
+    
+    public ProveedorLogic(){
+        this.persistence = null;
+    }
+    
     public List<PedidoProveedorEntity> getPedidos(Long id) {
         ProveedorEntity ent = persistence.find(id);
 
