@@ -125,7 +125,10 @@
         text-shadow: 3px 4px 8px rgba(0,0,0,.5);
     }
 
-
+    #abajo{
+        position : relative;
+        left: 600px;
+    }
 
 
 
@@ -164,7 +167,11 @@
         <div id="wrap">
             <form action="" autocomplete="on">
                 
-                <input id="search" name="search" type="text" placeholder="" ng-model="valor" ><input id="search_submit" value="Rechercher" type="submit" ui-sref="viniloList({viniloNombreP:valor})">
+                <input id="search" name="search" type="text" placeholder="" ng-model="valor" ><input id="search_submit" value="Rechercher" type="submit" ui-sref="viniloListP({viniloNombreP:valor})">
             </form>
         </div>
 </div>
+
+<a href="http://localhost:8080/tiendaVinilos-web">
+                <button id="abajo" style="color:white ; font-family: inherit;" class="btn btn-default btn-lg  fixed-center"><span>Logout</span></button>
+            </a>

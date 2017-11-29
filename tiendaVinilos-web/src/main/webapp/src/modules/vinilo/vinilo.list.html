@@ -29,6 +29,10 @@
 
 <div id="con" class='md-padding' >
 
+
+    <input id="search" name="search" type="text" placeholder="Inserta el nombre del vinilo a buscar" style="background: transparent;" >
+    <center><input id="search_submit" value="Buscar" type="submit" class="btn btn-default" ui-sref="viniloListP({viniloNombreP:valor})"></center>
+
     <div  flex="40" class="card row" style="border-color:#fff;"   >
         <!--<img class="card-img-top" src="https://image.flaticon.com/icons/svg/13/13510.svg" alt="Card image cap">-->
         <div class="card-block col-sm-12 col-md-6 col-lg-3 col-xs-3" ng-repeat="vinilo in vinilos">
