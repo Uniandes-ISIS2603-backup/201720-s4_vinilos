@@ -46,7 +46,7 @@ public class ViniloEntity implements Serializable {
     private List<ArtistaEntity> artistas = new ArrayList<ArtistaEntity>();
 
     @PodamExclude
-    @ManyToMany
+    @ManyToMany(mappedBy="vinilos")
     private List<CarroComprasEntity> carrosCompras;
 
     @PodamExclude

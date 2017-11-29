@@ -7,7 +7,6 @@
             // inicialmente el listado de ciudades está vacio
             $scope.tarjetas = {};
             $scope.userId=$stateParams.usuarioId;
-            alert($scope.userId);
             // carga las ciudades
             $http.get(context).then(function (response) {
                 $scope.tarjetas = response.data;
@@ -17,7 +16,7 @@
             if ($stateParams.tarjetaId !== null && $stateParams.tarjetaId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.tarjetaId;
+                var id = $stateParams.tarjetaId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {

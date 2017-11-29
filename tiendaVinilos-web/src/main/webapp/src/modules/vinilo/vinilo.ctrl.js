@@ -6,7 +6,6 @@
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
-            var vinilos;
             $scope.trustSrcurl = function (data)
             {
                 return $sce.trustAsResourceUrl(data);
@@ -15,17 +14,14 @@
             // carga los vinilos
             $http.get(context).then(function (response) {
                 $scope.vinilos = response.data;
-                vinilos = response.data;
 
             });
 
             $scope.getProveedor = function (num) {
-                console.log("entro");
                 if (num !== undefined) {
 
 
                     var currentProveedor;
-                    console.log("num:" + num);
 
 
                     $http.get("api/proveedores" + "/" + num).then(function (response) {
@@ -33,7 +29,6 @@
                         $scope.proveedorFull = response.data;
                     });
 
-                    console.log("curr:" + currentProveedor);
 
                 }
             };
@@ -42,7 +37,7 @@
             if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {
 
                 // toma el id del parámetro
-                id = $stateParams.viniloId;
+                var id = $stateParams.viniloId;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                         .then(function (response) {
