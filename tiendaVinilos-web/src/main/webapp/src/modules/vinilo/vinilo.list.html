@@ -27,7 +27,7 @@
     }</style>
 
 
-    <div id="con" class='md-padding' layout="row" layout-wrap flex >
+<div id="con" class='md-padding' layout="row" layout-wrap flex >
     <md-card flex="40" flex-sm="80"  class="col-md-4" flex >
         <div  flex="40" class="card" style="width: 20rem; border-color:#fff;"   ><hr>
             <!--<img class="card-img-top" src="https://image.flaticon.com/icons/svg/13/13510.svg" alt="Card image cap">-->
@@ -84,6 +84,26 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <h4>Proveedor: {{vinilo.proveedor.name}}</h4>
+                                        <h4>FeedBacks</h4>
+                                        <table class="table table-responsive ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>calificacion</th>
+                                                    <th>comentario</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody ng-repeat="feed in proveedorFull.feedBacks">
+                                                <tr>
+                                                    <td>{{feed.idFb}}</td>
+                                                    <td>{{feed.calificacion}} minutos</td>
+                                                    <td>{{feed.comentario}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,12 +114,12 @@
                     </div>
 
 
-                <iframe id="frame1" ng-src="{{trustSrcurl(vinilo.canciones[0].link)}}" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe id="frame1" ng-src="{{trustSrcurl(vinilo.canciones[0].link)}}" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>
 
                 </md-card-content>
                 <a  style = "width: 50px;" id="add-btn" class="btn btn-default btn-sm" ng-click="ctrl.addToCart(vinilo.id)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                 <!-- Boton que acciona el "modal" para ver la info de la cancion sin cambiar de estado -->
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$index}}">Ver Más</button>
+                <button ng-click="getProveedor(vinilo.proveedor.id)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$index}}" >Ver Más</button>
                 <a ui-sref="viniloSee({viniloId: vinilo.id})">detalle</a>
             </div  >
 

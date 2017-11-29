@@ -6,7 +6,7 @@
 
             // inicialmente el listado de vinilos está vacio
             $scope.vinilos = {};
-
+            var vinilos;
             $scope.trustSrcurl = function (data)
             {
                 return $sce.trustAsResourceUrl(data);
@@ -15,7 +15,28 @@
             // carga los vinilos
             $http.get(context).then(function (response) {
                 $scope.vinilos = response.data;
+                vinilos = response.data;
+
             });
+
+            $scope.getProveedor = function (num) {
+                console.log("entro");
+                if (num !== undefined) {
+
+
+                    var currentProveedor;
+                    console.log("num:" + num);
+
+
+                    $http.get("api/proveedores" + "/" + num).then(function (response) {
+                        currentProveedor = response.data;
+                        $scope.proveedorFull = response.data;
+                    });
+
+                    console.log("curr:" + currentProveedor);
+
+                }
+            };
             // el controlador recibió un viniloId ??
             // revisa los parámetros (ver el :viniloId en la definición de la ruta)
             if ($stateParams.viniloId !== null && $stateParams.viniloId !== undefined) {
@@ -34,6 +55,8 @@
                             $scope.viniloCantUnidades = response.data.cantUnidades;
                             $scope.info = response.data.infos[0];
                             $scope.viniloCanciones = response.data.canciones;
+
+
                         });
 
 
