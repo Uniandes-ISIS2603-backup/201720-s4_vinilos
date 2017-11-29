@@ -3,9 +3,9 @@
     mod.constant("pedidoClienteContext", "api/pedidocliente");
     mod.controller('pedidoClienteDeleteCtrl', ['$scope', '$http', 'pedidoClienteContext', '$state',
         function ($scope, $http, pedidoClienteContext, $state) {
-            var idPedido = $state.params.pedidoId;
+            var idPedido = $state.params.pedidoClienteId;
             $scope.deletePedido = function () {
-                $http.delete(pedidoClienteContext + '/' + idPedido, {}).then(function (response) {
+                $http.delete("api/pedidocliente/" + idPedido).then(function (response) {
                     $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
                 }),
                 function(response) {

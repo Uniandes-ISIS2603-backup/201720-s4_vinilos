@@ -27,7 +27,7 @@
 
     <a ng-init="ctrl.pedidosUsuario()"></a>
 
-    <uib-accordion close-others="oneAtATime" ng-init="ctrl.getPedidosProveedor(pedido.id)">
+    <uib-accordion close-others="oneAtATime">
     <div uib-accordion-group class="panel-default"
                         ng-repeat="pedido in pedidosRecords">
                         <uib-accordion-heading>
@@ -50,9 +50,11 @@
                           <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
                           <td id="{{$index}}-telefono">{{pedido.pago.id}}</td>
                           <span ng-init="ctr.getPedidosProveedor(pedido.id)"></span>
-                          <td><button ng-click="ctrl.cancelarPedido(pedido.id)" style="width:100px; background-color: #f44336;">Cancelar</button>
+                          <td><a class="btn btn-danger btn-sm" style="width:150px; background-color: #f44336;" ng-click="ctrl.cancelarPedido(pedido.id)"><span>Cancelar</span></a>
                           </td>
                           <td id="{{$index}}-edit"> <a class="btn btn-info" style="width:200px;" ui-sref="pedidoClienteUpdate({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-edit"> Cambiar datos</span></a>
+                          </td>
+                          <td><a class="btn btn-info" style="width:150px; background-color: #555555;" ng-click="ctrl.getPedidosProveedor(pedido.id)"><span class="glyphicon glyphicon-plus"> Ver más</span></a>
                           </td>
                           <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" style="width:80px; background-color: #f44336;" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
                           </td>
@@ -66,17 +68,17 @@
                         <div class="row">
                             <div class="col-md-3">
 
-                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                              <h3>Pedidos de cada proveedor</h3>
                                 <table class="table table-striped">
                                   <thead>
                                       <tr>
                                           <th>Estado</th>
                                           <th>Precio</th>
                                           <th>Fecha Estimada</th>
-                                      </tr>
+
                                   </thead>
                             <tbody>
-                              <tr ng-repeat="pedido in pedidosRecords">
+                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
                                     <td id="{{$index}}-estado">{{pedidoProveedor.estado}}</td>
                                     <td id="{{$index}}-precio">{{pedidoProveedor.precio}}</td>
                                     <td id="{{$index}}-fechaEstimada">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</td>
@@ -85,13 +87,22 @@
                                         </tbody>
                                     </table>
 
+                                    <h3>Pago Realizado</h3>
+                                    <table class="table table-striped">
+                                      <thead>
+                                          <tr>
+                                              <th>Valor</th>
+                                              <th>Fecha de Pago</th>
 
-                              <hr>
-                              <dt style="color:black;">Pago:</dt>
-                              <dt style="color:black;">Precio</dt>
-                              <dd style="color:black;">{{pagoPedido.precio}}</dd>
-                              <dt style="color:black;">Fecha de Pago</dt>
-                              <dd style="color:black;">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</dd>
+                                      </thead>
+                                <tbody>
+                                  <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                                        <td id="{{$index}}-estado">{{pagoPedido.valor}}</td>
+                                        <td id="{{$index}}-fechaPago">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</td>
+
+                                        </tr>
+                                            </tbody>
+                                        </table>
 
                             </div>
                         </div>
