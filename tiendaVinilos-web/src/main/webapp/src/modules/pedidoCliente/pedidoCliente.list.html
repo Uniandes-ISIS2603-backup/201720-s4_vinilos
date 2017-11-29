@@ -64,7 +64,7 @@
 
       </uib-accordion-heading>
 
-
+<a ng-init="ctrl.getPedidosProveedor()"></a>
                         <div class="row">
                             <div class="col-md-3">
 
@@ -72,16 +72,16 @@
                                 <table class="table table-striped">
                                   <thead>
                                       <tr>
-                                          <th>Estado</th>
+                                          <th>id</th>
                                           <th>Precio</th>
                                           <th>Fecha Estimada</th>
 
                                   </thead>
                             <tbody>
                               <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
-                                    <td id="{{$index}}-estado">{{pedidoProveedor.estado}}</td>
+                                    <td id="{{$index}}-estado">{{pedidoProveedor.id}}</td>
                                     <td id="{{$index}}-precio">{{pedidoProveedor.precio}}</td>
-                                    <td id="{{$index}}-fechaEstimada">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</td>
+                                    <td id="{{$index}}-fechaEstimada">{{pedidoProveedor.fecha| date:'yyyy-MM-dd'}}</td>
 
                                     </tr>
                                         </tbody>
