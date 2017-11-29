@@ -76,6 +76,15 @@ public class ViniloResource {
 
         return new ViniloDetailDTO(entity);
     }
+    @GET
+    @Path("{name: [a-zA-Z][a-zA-Z]*}}")
+    public ViniloDetailDTO getViniloByName(@PathParam("name") String name){
+        ViniloEntity entity= viniloLogic.getViniloByName(name);
+        if(entity==null){
+             throw new WebApplicationException(RESVINILO + name + NOEXISTE, 404);
+        }
+        return new ViniloDetailDTO(entity);
+    }
 
     /**
      * POST http://localhost:8080/tiendaVinilos-web/api/Vinilos Ejemplo json: {

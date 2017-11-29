@@ -51,9 +51,9 @@
 
 
             <li><a  href="#!/vinilos" style = "color: #fff;">VINILOS</a></li>
-            <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})"style = "color: #fff;">PEDIDOS</a></li>
-            <li><a id="{{$index}}-edit-btn"  ui-sref="tarjetaSee({tarjetaId: tarjeta.id})"style = "color: #fff;"> TARJETAS</a></li>
-            <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuario.id})"style = "color: #fff;"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+            <li><a id="{{$index}}-crro-btn"  ui-sref="pedidoClienteList({id:currentUsuarioId})"style = "color: #fff;">PEDIDOS</a></li>
+            <li><a id="{{$index}}-edit-btn"  ui-sref="tarjetaUsuario({usuarioId: currentUsuarioId})"style = "color: #fff;"> TARJETAS</a></li>
+            <li><a id="{{$index}}-crro-btn"  ui-sref="carritoUsuario({id:currentUsuarioId})"style = "color: #fff;"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 
         </ul>
 
@@ -137,13 +137,13 @@
 
                 <tbody><tr class="cart-subtotal">
                         <th style = "color:white">Subtotal</th>
-                        <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span >12.50</span></td>
+                        <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span >{{precioTotal}}</span></td>
                 <hr>
                 </tr>
 
                 <tr class="order-total">
                     <th style = "color:white">Total</th>
-                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>12.50</span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span>0.00</span> VAT estimated for Colombia)</small></td>
+                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">£</span>{{precioTotal}}</span></strong> <small class="includes_tax">(includes <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol" style = "color:white">£</span>0.00</span> VAT estimated for Colombia)</small></td>
                 </tr>
                 </tbody></table>
             <hr>
