@@ -33,7 +33,7 @@ var mod = ng.module("viniloModules", []);
                     viniloId: null,
                     usuarioId:943,
                     viniloNombreP: null
-                    
+
                 },
                 views: {
                     'mainView': {
@@ -81,9 +81,7 @@ var mod = ng.module("viniloModules", []);
                         }
                     }
                     )
-            
+
         }]);
 
 })(window.angular);
-
-

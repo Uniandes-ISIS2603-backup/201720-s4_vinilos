@@ -64,15 +64,13 @@
 
       </uib-accordion-heading>
 
-<a ng-init="ctrl.getPedidosProveedor()"></a>
                         <div class="row">
-                            <div class="col-md-3">
-
-                              <h3>Pedidos de cada proveedor</h3>
+                              <div style="float: left">
+                              <p id="la">Info Pedidos</p>
                                 <table class="table table-striped">
                                   <thead>
                                       <tr>
-                                          <th>id</th>
+                                          <th>Id</th>
                                           <th>Precio</th>
                                           <th>Fecha Estimada</th>
 
@@ -86,8 +84,10 @@
                                     </tr>
                                         </tbody>
                                     </table>
-
-                                    <h3>Pago Realizado</h3>
+                            </div>
+                            <div style="display: inline-block"></div>
+                            <div style="display: inline-block">
+                                    <p id="la">Pago Realizado</p>
                                     <table class="table table-striped">
                                       <thead>
                                           <tr>
@@ -96,14 +96,15 @@
 
                                       </thead>
                                 <tbody>
-                                  <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
-                                        <td id="{{$index}}-estado">{{pagoPedido.valor}}</td>
-                                        <td id="{{$index}}-fechaPago">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</td>
 
-                                        </tr>
+
+                                          <td id="{{$index}}-estado">{{pagoPedido.valor}}</td>
+                                          <td id="{{$index}}-fechaPago">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</td>
+                                          <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" style="width:80px; background-color: #f44336;" ui-sref="pagoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                                          </td>
                                             </tbody>
                                         </table>
-
+                                      </div>
                             </div>
                         </div>
 

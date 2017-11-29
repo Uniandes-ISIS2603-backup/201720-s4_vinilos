@@ -86,6 +86,10 @@ public class UsuarioPedidoClienteResource {
     @POST
     public PedidoClienteDetailDTO createPedidoCliente(PedidoClienteDetailDTO pedidoCliente, @PathParam("id") Long id)
             throws BusinessLogicException {
+        if(pedidoCliente == null)
+        {
+            throw new BusinessLogicException("El pedido llegó vacío");
+        }
         pedidoClienteLogic.createPedido(pedidoCliente.toEntity(), usuarioLogic.getUsuario(id));
 
         return pedidoCliente;

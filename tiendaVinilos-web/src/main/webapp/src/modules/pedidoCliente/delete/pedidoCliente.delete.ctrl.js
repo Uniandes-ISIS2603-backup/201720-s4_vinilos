@@ -14,6 +14,17 @@
                   $scope.status = response.status;
                 };
             };
+
+            $scope.deletePago = function () {
+                $http.delete("api/pedido/" + idPedido + "/pago").then(function (response) {
+                    $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
+                }),
+                function(response) {
+                  $state.go('pedidoClienteList', {pedidoId: response.data.id}, {reload: true});
+                  $scope.data = response.data || 'Request failed';
+                  $scope.status = response.status;
+                };
+            };
         }
     ]);
 }

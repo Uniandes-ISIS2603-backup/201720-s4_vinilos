@@ -28,10 +28,14 @@
             }).state('pedidoClienteCreate', {
                 url: '/create',
                 parent: 'pedidoCliente',
+                params:{
+                    totalPedido:null
+                },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/pedidoCliente.new.html',
-                        controller: 'pedidoClienteNewCtrl'
+                        controller: 'pedidoClienteNewCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + '/new/pedidoCliente.new.html'
                     }
                 }
             }).state('pedidoClienteUpdate', {
@@ -42,8 +46,9 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/update/pedidoCliente.update.html',
-                        controller: 'pedidoClienteUpdateCtrl'
+                        controller: 'pedidoClienteUpdateCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + '/update/pedidoCliente.update.html'
                     }
                 }
             }).state('pedidoClienteDelete', {
@@ -58,6 +63,18 @@
                         controller: 'pedidoClienteDeleteCtrl'
                     }
                 }
-            });
+            }).state('pagoClienteDelete', {
+              url: '/deletePago/{pedidoClienteId}',
+              parent: 'pedidoCliente',
+              param: {
+                  pedidoClienteId: null
+              },
+              views: {
+                  'detailView': {
+                      templateUrl: basePath + '/delete/pagoCliente.delete.html',
+                      controller: 'pedidoClienteDeleteCtrl'
+                  }
+              }
+          });
         }]);
 })(window.angular);

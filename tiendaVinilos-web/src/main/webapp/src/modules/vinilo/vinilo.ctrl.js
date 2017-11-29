@@ -18,12 +18,15 @@
 
 
                     var currentProveedor;
+                    console.log("num:" + num);
 
 
                     $http.get("api/proveedores" + "/" + num).then(function (response) {
                         currentProveedor = response.data;
                         $scope.proveedorFull = response.data;
                     });
+
+                    console.log("curr:" + currentProveedor);
 
                 }
             };
@@ -165,4 +168,3 @@
 //
         }]);
 })(window.angular);
- 
