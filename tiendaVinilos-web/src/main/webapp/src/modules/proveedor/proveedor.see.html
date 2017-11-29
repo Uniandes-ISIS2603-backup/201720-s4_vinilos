@@ -279,7 +279,7 @@
     <form class="modal-content animate" >
         <div class="container-fluid">
 
-            <h2 style ="font-weight: bold" >Pedidos</h2>
+            <h2 style ="font-weight: bold" >Pedidos {{proveedorActual.name}}</h2>
             <table class="table table-hover" class="col-md-4">    
                 <thead>
                     <tr>
@@ -287,6 +287,7 @@
                         <th style ="font-weight: bold; color:black" >Fecha</th>
                         <th style ="font-weight: bold; color:black" >Precio</th>
                         <th style ="font-weight: bold; color:black" >Estado</th>
+                        
 
                     </tr>
                 </thead>
@@ -296,9 +297,20 @@
                         <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.fecha| date:'yyyy-MM-dd'}}</td>
                         <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.precio}}</td>
                         <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.estado}}</td>
-                        <td>
+                        
                             <button style= "color:white" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deletePedido(pedidos.id, proveedorActual.id)"><span class="glyphicon glyphicon-trash"></span></button>
-                            <button id =" abajo"  style= "color:white"  class="btn btn-default btn-lg  fixed-center" ui-sref="proveedorEdit({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button id =" abajo"  style= "color:white"  class="btn btn-default btn-lg  fixed-center" ng-click="ctrl.editPedido(pedidos.id, pedidos.precio * 0.25)"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button id =" abajo"  style= "color:white"  class="btn btn-default btn-lg  fixed-center" ng-click="ctrl.editPedido(pedidos.id, pedidos.precio * 0.25)"><span class="glyphicon glyphicon-edit"></span></button>
+
+                           
+
+                            <input type="text" name="firstname" value="Mickey" id = "userInput">
+                            <script>function clickyClick() {
+                                        return   document.getElementById("userInput").value;
+
+
+                                    }
+                            </script>
 
                         </td>
 
@@ -311,61 +323,15 @@
     </form>
 </div>
 </div>
-
-<div id="id05" class="modal" href = "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/">
-
-
-</div>
-</div>
-
-<script>
-// Get the modal
-    var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-<script>
-// Get the modal
-    var modal = document.getElementById('id02');
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-<script>
-// Get the modal
-    var modal = document.getElementById('id03');
-
-// When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
-
-
-
-
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br>
+
 
 
 
 <a href="http://localhost:8080/tiendaVinilos-web/#!/pagoProveedores" target="_blank">
-    <button   id =" abajo"  style= "color:white ; font-family: inherit;"  class="btn btn-default btn-lg  fixed-center"   ><span >Pagos</span></button>
+    <button id=" abajo" style="color:white ; font-family: inherit;" class="btn btn-default btn-lg  fixed-center"><span>Pagos</span></button>
 
 </a>

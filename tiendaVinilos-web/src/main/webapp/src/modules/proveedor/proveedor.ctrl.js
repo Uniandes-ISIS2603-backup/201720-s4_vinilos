@@ -69,6 +69,19 @@
                                 $state.go('proveedorList');
                             });
                 };
+                
+                 this.editPedido = function(PedidoId, precio){
+                // ejecuta PUT en el recurso REST
+                confirmarDelete =  confirm("¿Está seguro que lo quiere modificar y hacer el 25% de descuento?");
+                 if (confirmarDelete)$http.put("api/proveedores/"+$stateParams.proveedorId+"/pedidos/"+PedidoId,{
+                     precio:precio,
+                     id:PedidoId
+                 }).then(function () {
+                                // $http.put es una promesa
+                                // cuando termine bien, cambie de estado
+                                
+                            });
+                };
              
             this.deleteProveedor = function(record) {
                 confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
@@ -105,6 +118,16 @@
                             });
             }
             
+            this.deletePedido = function(PedidoId, proveedorID) {
+                confirmarDelete =  confirm("Esta seguro que lo quiere eliminar?");
+                 if (confirmarDelete) return $http.delete("api/proveedores/"+proveedorID+"/pedidos/"+PedidoId)
+                            .then(function () {
+                                // $http.delete es una promesa
+                                // cuando termine bien, cambie de estado
+                               
+                            });
+            }
+            
             this.addVinilo =  function(){
                 // ejecuta POST en el recurso REST
                 return $http.post(context + "/" + $stateParams.proveedorId + "/vinilos" , {
@@ -124,4 +147,3 @@
 //
         }]);
 })(window.angular);
-
