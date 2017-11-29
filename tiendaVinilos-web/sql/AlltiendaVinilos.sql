@@ -16,6 +16,7 @@ delete from TarjetaEntity;
 delete from FeedBackEntity;
 delete from ProveedorEntity;
 delete from UsuarioEntity;
+delete from CancionEntity;
 
 insert into ProveedorEntity (id, name, email) values (46, 'Filmore', 'fsilverwood19@fotki.com');
 insert into ProveedorEntity (id, name, email) values (47, 'Guillermo', 'gkille1a@latimes.com');
@@ -363,3 +364,34 @@ insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (18, '2
 insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (19,'2013-08-30 19:05:00', '', 882.7);
 insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (20, '2013-08-30 19:05:00', '', 882.7);
 insert into PagoProveedorEntity (ID, FECHAESTIMADA, NAME, PRECIO) values (21, '2013-08-30 19:05:00', '', 882.7);
+
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(100,8,'https://open.spotify.com/embed?uri=spotify:track:2fuCquhmrzHpu5xcA1ci9x','Under Pressure',500,51);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(101,8,'https://open.spotify.com/embed?uri=spotify:track:1AhDOtG9vPSOmsWgNW0BEY','Bohemian Rapsody',500,51);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(102,5,'https://open.spotify.com/embed?uri=spotify:track:7qiZfU4dY1lWllzX7mPBI3','Shape of you',500,52);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(103,6,'https://open.spotify.com/embed?uri=spotify:track:0tgVpDi06FyKpA1z0VMD4v','Perfect',500,52);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(104,5,'https://open.spotify.com/embed?uri=spotify:track:2hYlWnPvVZtQZGWfb35HPQ','Im not the only one',500,53);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(105,6,'https://open.spotify.com/embed?uri=spotify:track:2whoe0pPKh4JRn6eWSIqTV','Stay with me',500,53);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(106,5,'https://open.spotify.com/embed?uri=spotify:track:1I8tHoNBFTuoJAlh4hfVVE','Stole the show',500,54);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(107,6,'https://open.spotify.com/embed?uri=spotify:track:5masKPHeAOVNgxdLebIcK7','Firestone',500,54);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(108,5,'https://open.spotify.com/embed?uri=spotify:track:0uuEqOyKlABOB7hzWKcEeG','A las Nueve',500,55);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(109,6,'https://open.spotify.com/embed?uri=spotify:track:7D5yebasDybJ83PTpwQNfx','Tan lejos',500,55);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(110,8,'https://open.spotify.com/embed?uri=spotify:track:2fuCquhmrzHpu5xcA1ci9x','Under Pressure',500,56);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(111,8,'https://open.spotify.com/embed?uri=spotify:track:1AhDOtG9vPSOmsWgNW0BEY','Bohemian Rapsody',500,56);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(112,5,'https://open.spotify.com/embed?uri=spotify:track:7qiZfU4dY1lWllzX7mPBI3','Shape of you',500,57);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(113,6,'https://open.spotify.com/embed?uri=spotify:track:0tgVpDi06FyKpA1z0VMD4v','Perfect',500,57);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(114,5,'https://open.spotify.com/embed?uri=spotify:track:2hYlWnPvVZtQZGWfb35HPQ','Im not the only one',500,58);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(115,6,'https://open.spotify.com/embed?uri=spotify:track:2whoe0pPKh4JRn6eWSIqTV','Stay with me',500,58);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(116,5,'https://open.spotify.com/embed?uri=spotify:track:1I8tHoNBFTuoJAlh4hfVVE','Stole the show',500,59);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(117,6,'https://open.spotify.com/embed?uri=spotify:track:5masKPHeAOVNgxdLebIcK7','Firestone',500,59);
+
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(118,5,'https://open.spotify.com/embed?uri=spotify:track:0uuEqOyKlABOB7hzWKcEeG','A las Nueve',500,60);
+insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(119,6,'https://open.spotify.com/embed?uri=spotify:track:7D5yebasDybJ83PTpwQNfx','Tan lejos',500,60);
