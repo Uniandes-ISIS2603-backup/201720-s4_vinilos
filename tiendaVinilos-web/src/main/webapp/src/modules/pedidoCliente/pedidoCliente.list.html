@@ -56,26 +56,35 @@
                       </td>
                               </tbody>
                           </table>
-       <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-      </uib-accordion-heading>
+       <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}" ng-click="ctrl.getPedidosProveedor(pedido.id)" onclick="document.getElementById('id01').style.display='none'"></i>
+      </uib-accordion-heading >
 
                         <div class="row">
-                            <div class="col-md-3" is-open="ctrl.getPedidosProveedor(pedido.id)">
+                                <table class="table table-hover">
+                    <thead>
+                        <tr>
 
-                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                            <th style="color:black" >ID</th>
+                            <th style="color:black">Precio</th>
+                            <th style="color:black">Fecha</th>
 
-                                    <hr>
-                                    <dt style="color:black;">Estado</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
 
-                                    <hr>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
-                                    <hr>
-                                    <dt style="color:black;">Fecha Estimada</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.id}}</td>
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.precio}}</td>
+                            <td style ="font-weight: bold;color:black" {{$index}}-id">{{pedidoProveedor.fecha | date:'yyyy-MM-dd'}}</td>
+                            <td>
 
-                              </tr>
+                                <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="pagoProveedorSee({pagoProveedoresId: pagoProvedor.id})"><span class="glyphicon glyphicon-edit"></span> Ver mas</button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
                               <hr>
                               <dt style="color:black;">Pago:</dt>
@@ -97,33 +106,7 @@
 
                         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 
-                        <div class="row">
-                            <div class="col-md-3">
-                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
-
-                                    <hr>
-                                    <dt style="color:black;">Estado</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
-
-                                    <hr>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
-                                    <hr>
-                                    <dt style="color:black;">Fecha Estimada</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
-
-                                    <a ng-init="ctrl.getPagoPedido()"></a>
-                                    <hr>
-                                    <dt style="color:black;">Pago:</dt>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pagoPedido.precio}}</dd>
-                                    <dt style="color:black;">Fecha de Pago</dt>
-                                    <dd style="color:black;">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</dd>
-
-
-                              </tr>
-                            </div>
-                        </div>
+                        
 
                   <div class="container" style="background-color:#f1f1f1"></div>
                   </form>
