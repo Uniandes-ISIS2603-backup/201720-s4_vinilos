@@ -3,12 +3,22 @@ var mod = ng.module("viniloModules", []);
     mod.constant("viniloContext", "api/vinilos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/vinilo/';
-            $stateProvider.state('viniloList', {
-                url: '/vinilos',
+            $stateProvider.state('viniloListP', {
+                url: '/vinilos/:viniloNombreP',
                 param:
                         {
                             viniloNombreP:null
                         },
+                views: {
+                    'mainView': {
+                        controller: 'viniloCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'vinilo.list.html'
+                    }
+                }
+            }).state('viniloList', {
+                url: '/vinilos',
+               
                 views: {
                     'mainView': {
                         controller: 'viniloCtrl',
