@@ -57,6 +57,21 @@ var mod = ng.module("viniloModules", []);
                 }
             }
                     )
+            .state('createCancion', {
+                        url: '/vinilos/:viniloId/cancion',
+                        params:{
+                            viniloId:null
+                        },
+                        views: {
+                            'mainView': {
+                                controller: 'viniloCreateCancionCtrl',
+                                controllerAs: 'ctrl',
+                                templateUrl: basePath + 'viniloCancion.new.html'
+                            }
+                        }
+                    }
+                    )
+            
         }]);
 
 })(window.angular);

@@ -231,6 +231,8 @@
                     <td>
                         <button style= "float: right; color:black" id="delete-vin-btn" class="btn btn-default btn-lg" ui-sref="proveedorSee({proveedorId: proveedorActual.id})" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
                         <button style="float: right; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="modificarVinilo({proveedorId: proveedorActual.id , viniloId: vinilos.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button style="float: right; color:black" id="see-vin-btn" class="btn btn-default btn-lg" ui-sref="viniloSee({viniloId: vinilos.id})"><span class="glyphicon glyphicon-edit"></span> Ver Vinilo</button>
+
                     </td>
                     </tbody>
             </table>
