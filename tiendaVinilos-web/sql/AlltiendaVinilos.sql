@@ -17,6 +17,9 @@ delete from FeedBackEntity;
 delete from ProveedorEntity;
 delete from UsuarioEntity;
 delete from CancionEntity;
+delete from PedidoClienteEntity;
+delete from PagoClienteEntity;
+delete from PedidoProveedorEntity;
 
 insert into ProveedorEntity (id, name, email) values (46, 'Filmore', 'fsilverwood19@fotki.com');
 insert into ProveedorEntity (id, name, email) values (47, 'Guillermo', 'gkille1a@latimes.com');
@@ -395,3 +398,20 @@ insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(1
 
 insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(118,5,'https://open.spotify.com/embed?uri=spotify:track:0uuEqOyKlABOB7hzWKcEeG','A las Nueve',500,60);
 insert into Cancionentity (ID,DURACION,LINK,NAME,ARTISTAS_ID,VINILO_ID) values(119,6,'https://open.spotify.com/embed?uri=spotify:track:7D5yebasDybJ83PTpwQNfx','Tan lejos',500,60);
+
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'CANCELADO',943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'CANCELADO',943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUSARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'CANCELADO',943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'CANCELADO',943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Aceptado',943);
+
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Aceptado', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Aceptado', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Aceptado', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Por Confirmar', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Por Confirmar', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Por Confirmar', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Por Confirmar', 943);
+insert into PedidoClienteEntity (FECHAESTIMADA, PRECIO, ESTADO, USUARIO_ID) values ('2013-08-30 19:05:00', 882.7, 'Por Confirmar', 943);
+
+
