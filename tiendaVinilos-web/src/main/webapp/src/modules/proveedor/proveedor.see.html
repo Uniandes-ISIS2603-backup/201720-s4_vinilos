@@ -131,17 +131,17 @@
         position: relative;
         left : 440px;
         color:white;
-      
-   
+
+
     }
     #centro{
         background: rgba(0,0, 0, 0.4);
     }
-    
+
     #abajo{
         position : relative ;
         left : 440x;
-        
+
     }
 
 
@@ -152,198 +152,207 @@
 
 
 
-        
-        <div id="test" class = "text-center" >    
-            <p id="subtest">BIENVENIDO A VINYL FACTORY . </p>
-            <p id="subtest"><td>{{proveedorActual.name}}</td></p>
-        <p id="la">¡Conoce la información de tu negocio !</p>
-             
-        </div>
+
+<div id="test" class = "text-center" >    
+    <p id="subtest">BIENVENIDO A VINYL FACTORY . </p>
+    <p id="subtest"><td>{{proveedorActual.name}}</td></p>
+<p id="la">¡Conoce la información de tu negocio !</p>
+
+</div>
 <nav class=" navbar-default navbar-fixed-center" id = "centro">
 
-            <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar">
 
-                <ul class="nav navbar-nav navbar-center">
+        <ul class="nav navbar-nav navbar-center">
 
-                    <li class ="fixed-center"><a  onclick="document.getElementById('id01').style.display='block'" style="width:auto;color:white;">MI INFORMACIÓN</a></li>
-                    <li class ="fixed-center"><a  onclick="document.getElementById('id02').style.display='block'" style="width:auto;color:white;">VINILOS</a></li>
-                    <li class ="fixed-center"><a  onclick="document.getElementById('id04').style.display='block'" style="width:auto;color:white;">PEDIDOS</a></li>
-                    <li class ="fixed-center"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;color:white;"> FEEDBACKS</a></li>
+            <li class ="fixed-center"><a  onclick="document.getElementById('id01').style.display = 'block'" style="width:auto;color:white;">MI INFORMACIÓN</a></li>
+            <li class ="fixed-center"><a  onclick="document.getElementById('id02').style.display = 'block'" style="width:auto;color:white;">VINILOS</a></li>
+            <li class ="fixed-center"><a  onclick="document.getElementById('id04').style.display = 'block'" style="width:auto;color:white;">PEDIDOS</a></li>
+            <li class ="fixed-center"><a onclick="document.getElementById('id03').style.display = 'block'" style="width:auto;color:white;"> FEEDBACKS</a></li>
 
-                </ul>
+        </ul>
 
-            </div>
+    </div>
 
-        </nav>
+</nav>
 
 
 
 <div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-   <div class="container-fluid">
-    
-    <h2 style ="font-weight: bold" >Información</h2>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th style ="font-weight: bold; color:black" >Nombre  </th>
-                <th style ="font-weight: bold; color:black" >Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style ="font-weight: bold" >{{proveedorActual.name}}</td>
-                <td style ="font-weight: bold" >{{proveedorActual.email}}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <div class="container " >
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-    </div>
-  </form>
+    <form class="modal-content animate" action="/action_page.php">
+        <div class="container-fluid">
+
+            <h2 style ="font-weight: bold" >Información</h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style ="font-weight: bold; color:black" >Nombre  </th>
+                        <th style ="font-weight: bold; color:black" >Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style ="font-weight: bold" >{{proveedorActual.name}}</td>
+                        <td style ="font-weight: bold" >{{proveedorActual.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="container " >
+                <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancel</button>
+                <button id =" abajo" style= "color:white"  class="btn btn-default btn-lg fixed-center " ng-click="ctrl.deleteProveedor(proveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
+<button id =" abajo"  style= "color:white"  class="btn btn-default btn-lg  fixed-center" ui-sref="proveedorEdit({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-edit"></span></button>
+            </div>
+    </form>
 </div>
 </div>
 
 <div id="id02" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-   <div class="container-fluid">
-    
-      <h2 style ="font-weight: bold" >Vinilos</h2>
-     <table class="table table-hover" class="col-md-4">
-        <thead>
-            <tr>
-                <th style ="font-weight: bold; color:black" >Nombre</th>
-                <th style ="font-weight: bold;color:black" >Anio</th>
-                <th style ="font-weight: bold; color:black" >Cantidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <button style="float: left; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="viniloCreate({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-plus"></span></button>
-            <tr ng-repeat="vinilos in proveedorActual.vinilos">
-                <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.nombre}}</td>
-                 <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.anio}}</td>
-                  <td  style ="font-weight: bold" id="{{$index}}-name">Hay {{vinilos.cantUnidades}} unidades</td>
-                 <td>
-                     <button style= "float: right; color:black" id="delete-vin-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
-                 <button style="float: right; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="modificarVinilo({proveedorId: proveedorActual.id , viniloId: vinilos.id})"><span class="glyphicon glyphicon-edit"></span></button>
-          </td>
-        </tbody>
-    </table>
 
-    
-      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-    
-  </form>
+    <form class="modal-content animate" action="/action_page.php">
+        <div class="container-fluid">
+
+            <h2 style ="font-weight: bold" >Vinilos</h2>
+            <table class="table table-hover" class="col-md-4">
+                <thead>
+                    <tr>
+                        <th style ="font-weight: bold; color:black" >Nombre</th>
+                        <th style ="font-weight: bold;color:black" >Anio</th>
+                        <th style ="font-weight: bold; color:black" >Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <button style="float: left; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="viniloCreate({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-plus"></span></button>
+                <tr ng-repeat="vinilos in proveedorActual.vinilos">
+                    <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.nombre}}</td>
+                    <td  style ="font-weight: bold" id="{{$index}}-name">{{vinilos.anio}}</td>
+                    <td  style ="font-weight: bold" id="{{$index}}-name">Hay {{vinilos.cantUnidades}} unidades</td>
+                    <td>
+                        <button style= "float: right; color:black" id="delete-vin-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteVinilo(vinilos.id)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button style="float: right; color:black" id="create-vin-btn" class="btn btn-default btn-lg" ui-sref="modificarVinilo({proveedorId: proveedorActual.id , viniloId: vinilos.id})"><span class="glyphicon glyphicon-edit"></span></button>
+                    </td>
+                    </tbody>
+            </table>
+
+
+            <button type="button" onclick="document.getElementById('id02').style.display = 'none'" class="cancelbtn">Cancel</button>
+
+    </form>
 </div>
 </div>
 
 <div id="id03" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-   <div class="container-fluid">
-    
-      <h2 style ="font-weight: bold" >Feedbacks</h2>
-      <table class="table table-hover" class="col-md-4">    
-        <thead>
-            <tr>
-                <th style ="font-weight: bold; color:black" >Comentario</th>
-                <th style ="font-weight: bold; color:black" >Calificacion</th>
 
-            </tr>
-        </thead>
-        <tbody>
-           <tr ng-repeat="feedback in proveedorActual.feedBacks">
-                <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.comentario}}</td>
-                <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.calificacion}}</td>
-                <td>
-                     <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
+    <form class="modal-content animate" action="/action_page.php">
+        <div class="container-fluid">
 
-        </tbody>
-    </table>
+            <h2 style ="font-weight: bold" >Feedbacks</h2>
+            <table class="table table-hover" class="col-md-4">    
+                <thead>
+                    <tr>
+                        <th style ="font-weight: bold; color:black" >Comentario</th>
+                        <th style ="font-weight: bold; color:black" >Calificacion</th>
 
-    
-      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
-    
-  </form>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="feedback in proveedorActual.feedBacks">
+                        <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.comentario}}</td>
+                        <td style ="font-weight: bold"  id="{{$index}}-name">{{feedback.calificacion}}</td>
+                        <td>
+                            <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+
+                </tbody>
+            </table>
+
+
+            <button type="button" onclick="document.getElementById('id03').style.display = 'none'" class="cancelbtn">Cancel</button>
+
+    </form>
 </div>
 </div>
 
 <div id="id04" class="modal">
-  
-  <form class="modal-content animate" action="/action_page.php">
-   <div class="container-fluid">
-    
-      <h2 style ="font-weight: bold" >Pedidos</h2>
-      <table class="table table-hover" class="col-md-4">    
-        <thead>
-            <tr>
-                <th style ="font-weight: bold; color:black" >ID</th>
-                <th style ="font-weight: bold; color:black" >Fecha</th>
-                <th style ="font-weight: bold; color:black" >Precio</th>
-                 <th style ="font-weight: bold; color:black" >Estado</th>
 
-            </tr>
-        </thead>
-        <tbody>
-           <tr ng-repeat="pedidos in proveedorActual.pedidos">
-                <td style ="font-weight: bold"  id="{{$index}}-id">{{pedidos.id}}</td>
-                <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.fecha}}</td>
-                <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.precio}}</td>
-                  <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.estado}}</td>
-                <td>
-                     <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
+    <form class="modal-content animate" action="/action_page.php">
+        <div class="container-fluid">
 
-        </tbody>
-    </table>
+            <h2 style ="font-weight: bold" >Pedidos</h2>
+            <table class="table table-hover" class="col-md-4">    
+                <thead>
+                    <tr>
+                        <th style ="font-weight: bold; color:black" >ID</th>
+                        <th style ="font-weight: bold; color:black" >Fecha</th>
+                        <th style ="font-weight: bold; color:black" >Precio</th>
+                        <th style ="font-weight: bold; color:black" >Estado</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="pedidos in proveedorActual.pedidos">
+                        <td style ="font-weight: bold"  id="{{$index}}-id">{{pedidos.id}}</td>
+                        <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.fecha}}</td>
+                        <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.precio}}</td>
+                        <td style ="font-weight: bold"  id="{{$index}}-name">{{pedidos.estado}}</td>
+                        <td>
+                            <button style= "color:black" id="delete-fb-btn" class="btn btn-default btn-lg" ng-click="ctrl.deleteFeedback(feedback.idFb)"><span class="glyphicon glyphicon-trash"></span></button>
+                        </td>
+
+                </tbody>
+            </table>
+
+
+            <button type="button" onclick="document.getElementById('id04').style.display = 'none'" class="cancelbtn">Cancel</button>
+
+    </form>
+</div>
+</div>
+
+<div id="id05" class="modal" href = "http://localhost:8080/tiendaVinilos-web/api/pedidoProveedor/">
 
     
-      <button type="button" onclick="document.getElementById('id04').style.display='none'" class="cancelbtn">Cancel</button>
-    
-  </form>
 </div>
 </div>
 
 <script>
 // Get the modal
-var modal = document.getElementById('id01');
+    var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
-}
 </script>
 <script>
 // Get the modal
-var modal = document.getElementById('id02');
+    var modal = document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
-}
 </script>
 <script>
 // Get the modal
-var modal = document.getElementById('id03');
+    var modal = document.getElementById('id03');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
-}
 </script>
 
 
 
+
 <br>
 <br>
 <br>
@@ -352,8 +361,9 @@ window.onclick = function(event) {
 <br>
 <br>
 
-    
- 
-          <button id =" abajo" style= "color:black"  class="btn btn-default btn-lg fixed-center " ng-click="ctrl.deleteProveedor(proveedorActual)"><span class="glyphicon glyphicon-trash"></span></button>
-          <button id =" abajo"  style= "color:black"  class="btn btn-default btn-lg  fixed-center" ui-sref="proveedorEdit({proveedorId: proveedorActual.id})"><span class="glyphicon glyphicon-edit"></span></button>
 
+
+<a href="http://localhost:8080/tiendaVinilos-web/#!/pagoProveedores" target="_blank">
+    <button   id =" abajo"  style= "color:white ; font-family: inherit;"  class="btn btn-default btn-lg  fixed-center"   ><span >Pagos</span></button>
+
+            </a>

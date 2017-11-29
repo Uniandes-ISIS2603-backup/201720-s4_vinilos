@@ -6,9 +6,17 @@
 
 
             $scope.carrito = {};
-
+            $scope.precioTotal=0;
+            $scope.currentUsuarioId=$stateParams.id; 
             $http.get(context + $stateParams.id + "/carroCompras").then(function (response) {
                 $scope.carrito = response.data;
+                var total=0;
+                for (i = 0; i<$scope.carrito.vinilos.length;i++) {
+                    var vinilo=$scope.carrito.vinilos[i];
+                    var precio=vinilo.precio;
+                    total+=precio;
+                }
+                $scope.precioTotal=total;
             });
             this.deleteVinilo = function (vinilo) {
                 var decodedCookie = decodeURIComponent(document.cookie);

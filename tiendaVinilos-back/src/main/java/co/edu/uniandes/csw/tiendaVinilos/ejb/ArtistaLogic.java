@@ -52,16 +52,14 @@ public class ArtistaLogic {
     public List<ArtistaEntity> getArtistas() {
 
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<ArtistaEntity> artista = persistence.findAll();
-
-        return artista;
+        return persistence.findAll();
     }
 
     public ArtistaEntity getArtista(long id) {
         return persistence.find(id);
     }
 
-    public ArtistaEntity updateArtista(long id, ArtistaEntity us) {
+    public ArtistaEntity updateArtista(long id,ArtistaEntity us) {
         persistence.update(us);
 
         return us;

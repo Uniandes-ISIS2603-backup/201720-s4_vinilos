@@ -20,62 +20,71 @@
 <br>
 <br>
 <br>
-    <h2>Pedidos del Cliente</h2></div>
+<br>
+  <p id="subtest">Pedidos del Cliente</p></div>
     <br>
+    <br>
+
     <a ng-init="ctrl.pedidosUsuario()"></a>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Estado</th>
-                <th>Precio</th>
-                <th>Dirección</th>
-                <th>Telefono</th>
-                <th>Fecha Estimada</th>
-            </tr>
-        </thead>
-      </table>
-    <uib-accordion close-others="oneAtATime">
+    <uib-accordion close-others="oneAtATime" ng-init="ctrl.getPedidosProveedor(pedido.id)">
     <div uib-accordion-group class="panel-default"
                         ng-repeat="pedido in pedidosRecords">
                         <uib-accordion-heading>
+
                           <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Precio</th>
+                                    <th>Dirección</th>
+                                    <th>Telefono</th>
+                                    <th>Fecha Estimada</th>
+
+                                </tr>
+                            </thead>
                       <tbody>
                           <td id="{{$index}}-estado">{{pedido.estado}}</td>
                           <td id="{{$index}}-precio">{{pedido.precio}}</td>
                           <td id="{{$index}}-direccion">{{pedido.direccion}}</td>
                           <td id="{{$index}}-telefono">{{pedido.telefono}}</td>
-                          <td id="{{$index}}-fechaEstimada">{{pedido.fechaEstimada}}</td>
-
-
-
-                      
-                      <td id="{{$index}}-edit"> <a class="btn btn-info" ui-sref="pedidoClienteUpdate({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-edit"></span></a>
-                      </td>
-                      <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
-                      </td>
+                          <td id="{{$index}}-telefono">{{pedido.pago.id}}</td>
+                          <span ng-init="ctr.getPedidosProveedor(pedido.id)"></span>
+                          <td><button ng-click="ctrl.cancelarPedido(pedido.id)" style="width:100px; background-color: #f44336;">Cancelar</button>
+                          </td>
+                          <td id="{{$index}}-edit"> <a class="btn btn-info" style="width:200px;" ui-sref="pedidoClienteUpdate({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-edit"> Cambiar datos</span></a>
+                          </td>
+                          <td id="{{$index}}-trash"> <a class="btn btn-danger btn-sm" style="width:80px; background-color: #f44336;" ui-sref="pedidoClienteDelete({pedidoClienteId: pedido.id})"><span class="glyphicon glyphicon-trash"></span></a>
+                          </td>
                               </tbody>
                           </table>
        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+
       </uib-accordion-heading>
 
+
                         <div class="row">
-                            <div class="col-md-3" is-open="ctrl.getPedidosProveedor(pedido.id)">
+                            <div class="col-md-3">
 
                               <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
+                                <table class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th>Estado</th>
+                                          <th>Precio</th>
+                                          <th>Fecha Estimada</th>
+                                      </tr>
+                                  </thead>
+                            <tbody>
+                              <tr ng-repeat="pedido in pedidosRecords">
+                                    <td id="{{$index}}-estado">{{pedidoProveedor.estado}}</td>
+                                    <td id="{{$index}}-precio">{{pedidoProveedor.precio}}</td>
+                                    <td id="{{$index}}-fechaEstimada">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</td>
 
-                                    <hr>
-                                    <dt style="color:black;">Estado</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
+                                    </tr>
+                                        </tbody>
+                                    </table>
 
-                                    <hr>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
-                                    <hr>
-                                    <dt style="color:black;">Fecha Estimada</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
-
-                              </tr>
 
                               <hr>
                               <dt style="color:black;">Pago:</dt>
@@ -86,48 +95,13 @@
 
                             </div>
                         </div>
-    </div>
+
+  </div>
     </uib-accordion>
 
 
 
-                <div id="id01" class="modal">
-                  <form class="modal-content animate" action="/action_page.php">
 
-
-                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-
-                        <div class="row">
-                            <div class="col-md-3">
-                              <tr ng-repeat="pedidoProveedor in pedidosProveedorRecords">
-
-                                    <hr>
-                                    <dt style="color:black;">Estado</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.estado}}</dd>
-
-                                    <hr>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.precio}}</dd>
-                                    <hr>
-                                    <dt style="color:black;">Fecha Estimada</dt>
-                                    <dd style="color:black;">{{pedidoProveedor.fechaEstimada| date:'yyyy-MM-dd'}}</dd>
-
-                                    <a ng-init="ctrl.getPagoPedido()"></a>
-                                    <hr>
-                                    <dt style="color:black;">Pago:</dt>
-                                    <dt style="color:black;">Precio</dt>
-                                    <dd style="color:black;">{{pagoPedido.precio}}</dd>
-                                    <dt style="color:black;">Fecha de Pago</dt>
-                                    <dd style="color:black;">{{pagoPedido.fechaPago| date:'yyyy-MM-dd'}}</dd>
-
-
-                              </tr>
-                            </div>
-                        </div>
-
-                  <div class="container" style="background-color:#f1f1f1"></div>
-                  </form>
-                </div>
 
 <script>
 

@@ -27,7 +27,7 @@
             this.getPedidosProveedor = function(pedidoClienteId){
               var decodedCookie = decodeURIComponent(document.cookie);
               var ca = decodedCookie.split('=');
-              document.getElementById('id01').style.display='block';
+
               $http.get("api/usuarios/" + ca[1]+"/pedidos/"+pedidoClienteId+ "/pedidoProveedor" ).then(function (response) {
                     $scope.pedidosProveedorRecords = response.data;
                     console.log(response.data)
@@ -40,6 +40,7 @@
               });
             };
 
+          
 
 
 

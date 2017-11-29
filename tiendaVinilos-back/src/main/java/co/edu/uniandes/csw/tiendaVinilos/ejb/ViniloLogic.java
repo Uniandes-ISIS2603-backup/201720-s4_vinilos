@@ -70,6 +70,11 @@ private static final Logger LOGGER = Logger.getLogger(ViniloLogic.class.getName(
         ViniloEntity ent=persistence.find(id);
         return ent;
     }
+    public ViniloEntity getViniloByName(String nombre)
+    {
+        ViniloEntity ent= persistence.findByName(nombre);
+        return ent;
+    }
     public ViniloEntity updateVinilo(long id,ViniloEntity us)
     {
         persistence.update(us);
