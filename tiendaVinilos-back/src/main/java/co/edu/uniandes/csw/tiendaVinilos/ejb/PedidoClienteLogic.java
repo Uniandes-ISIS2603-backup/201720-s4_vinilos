@@ -42,10 +42,10 @@ public class PedidoClienteLogic
         // Verifica la regla de negocio que dice (asociasiones)
         //FALTA: excepcion
         // Invoca la persistencia para crear la editorial
-        persistence.create(entity);
+        PedidoClienteEntity otherEntity = persistence.create(entity);
         entity.setUsuario(usuario);
         LOGGER.info("Termina proceso de creación de pedido");
-        return entity;
+        return otherEntity;
     }
     
     /**
@@ -117,11 +117,11 @@ public class PedidoClienteLogic
     public PedidoClienteEntity cancelarPedido(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar pedido con id={0}", id);
         PedidoClienteEntity pedido = persistence.find(id);
-        
+        System.out.print("-------------------------- HOOLAAAAAAAA -----");
         if (pedido == null) {
             throw new BusinessLogicException( "El Pedido con el id " + id +" no existe");
         }
-        
+            System.out.print("-------------------------- HOOLAAAAAAAA XXX2222222 -----");
         UsuarioEntity usuario = pedido.getUsuario();
          
         if(!((pedido.getEstado()).equals("Aceptado")) && !((pedido.getEstado()).equals("Por Confirmar")))
@@ -129,10 +129,12 @@ public class PedidoClienteLogic
             throw new BusinessLogicException("El pedido no puede ser cancelado. El estado del pedido deber ser 'Rechazado' "
                     + "'Cancelado' o 'Entregado', de lo contrario es posible cancelar el pedido.");
         }
+        System.out.print("-------------------------- HOOLAAAAAAAA XXX3333333 -----");
         pedido.setEstado("CANCELADO");
         // Note que, por medio de la inyección de dependencias se llama al método "update(entity)" que se encuentra en la persistencia.
         PedidoClienteEntity newEntity = persistence.update(pedido);
         newEntity.setUsuario(usuario);
+        System.out.print("-------------------------- HOOLAAAAAAAA XXX444444 -----");
         LOGGER.log(Level.INFO, "Termina proceso de actualizar pedido con id={0}", pedido.getId());
         return newEntity;
     }
@@ -177,6 +179,7 @@ public class PedidoClienteLogic
     public List<PedidoProveedorEntity>getPedidoProveedor(Long id) throws BusinessLogicException
     {
         PedidoClienteEntity cli = getPedido(id);
+        System.out.print("---------------------------------------- EL PEDIDO TIENE " + cli.getPedidoProveedor().size() + " pedidos de proveedor ");
         return cli.getPedidoProveedor();
     }
     

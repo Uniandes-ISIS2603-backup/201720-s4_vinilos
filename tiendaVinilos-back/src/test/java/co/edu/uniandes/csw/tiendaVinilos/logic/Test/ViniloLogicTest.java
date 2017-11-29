@@ -46,7 +46,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ViniloLogicTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -56,12 +56,11 @@ public class ViniloLogicTest {
                 .addPackage(InfoEntity.class.getPackage())
                 .addPackage(ProveedorLogic.class.getPackage())
                 .addPackage(PagoProveedorPersistennce.class.getPackage())
-                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-     /**
+
+    /**
      * Inyección de la dependencia a la clase UsuarioPersistence cuyos métodos
      * se van a probar.
      */
@@ -72,16 +71,16 @@ public class ViniloLogicTest {
      */
     @Inject
     private ViniloLogic logic;
-    
+
     @Inject
     private CancionLogic logicCancion;
-    
+
     @Inject
     private ArtistaLogic logicArtista;
-  
+
     @Inject
     private CarroComprasLogic logicCarro;
-      
+
     /**
      *
      */
@@ -94,26 +93,26 @@ public class ViniloLogicTest {
      */
     @Inject
     UserTransaction utx;
-    
+
     private List<ViniloEntity> data = new ArrayList<ViniloEntity>();
-    
+
     private ViniloEntity entity = new ViniloEntity();
-    
+
     public ViniloLogicTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
-        
+
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-         try {
+        try {
             utx.begin();
             em.joinTransaction();
             clearData();
@@ -129,20 +128,21 @@ public class ViniloLogicTest {
             }
         }
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
      * Test of createVinilo method, of class ViniloLogic.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testCreateVinilo() throws Exception {
-         ViniloEntity vin = new ViniloEntity();
-         try {
-              logic.createVinilo(vin);
+        ViniloEntity vin = new ViniloEntity();
+        try {
+            logic.createVinilo(vin);
             assertEquals(logic.getVinilo(vin.getId()).getId(), vin.getId());
         } catch (BusinessLogicException ex) {
             fail();
@@ -158,7 +158,7 @@ public class ViniloLogicTest {
         try {
             logic.createVinilo(entity);
             assertEquals(logic.getVinilo(entity.getId()).getId(), entity.getId());
-            assertTrue(logic.getVinilos().size()>0);
+            assertTrue(logic.getVinilos().size() > 0);
         } catch (BusinessLogicException ex) {
             fail();
         }
@@ -169,11 +169,11 @@ public class ViniloLogicTest {
      */
     @Test
     public void testGetVinilo() throws Exception {
-         entity = new ViniloEntity();
+        entity = new ViniloEntity();
         try {
             logic.createVinilo(entity);
             assertEquals(logic.getVinilo(entity.getId()).getId(), entity.getId());
-            } catch (BusinessLogicException ex) {
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -198,7 +198,7 @@ public class ViniloLogicTest {
      */
     @Test
     public void testDeleteVinilo() throws Exception {
-         for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
                 ViniloEntity vinilo = new ViniloEntity();
                 logic.createVinilo(vinilo);
@@ -219,11 +219,11 @@ public class ViniloLogicTest {
     public void testAgregarVinilo() throws Exception {
         ProveedorEntity prov = new ProveedorEntity();
         ViniloEntity vin = new ViniloEntity();
-   try {
-        logic.agregarVinilo(prov, vin);
-        assertEquals(logic.getVinilo(vin.getId()).getProveedor().getId(), prov.getId());
+        try {
+           logic.agregarVinilo(prov, vin);
+           assertEquals(logic.getVinilo(vin.getId()).getId(), vin.getId());
         } catch (Exception ex) {
-            assertTrue(true);
+          assertTrue(true);
         }
     }
 
@@ -232,7 +232,7 @@ public class ViniloLogicTest {
      */
     @Test
     public void testEliminarVinilo() throws Exception {
-         for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             try {
                 ViniloEntity vinilo = new ViniloEntity();
                 logic.createVinilo(vinilo);
@@ -252,7 +252,7 @@ public class ViniloLogicTest {
     @Test
     public void testModificarVinilo() throws Exception {
         entity = new ViniloEntity();
-         ProveedorEntity prov = new ProveedorEntity();
+        ProveedorEntity prov = new ProveedorEntity();
         try {
             logic.createVinilo(entity);
             entity.setName("AC DC");
@@ -260,22 +260,24 @@ public class ViniloLogicTest {
         } catch (BusinessLogicException ex) {
             fail();
         }
-        
+
     }
+
     /**
      * Test of addCarrito method, of class ViniloLogic.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testAddCarrito() throws Exception {
         CarroComprasEntity carrito = new CarroComprasEntity();
         entity = new ViniloEntity();
-        try{
+        try {
             logicCarro.createCarroCompras(carrito);
             logic.createVinilo(entity);
             logic.addCarrito(carrito, entity);
             assertTrue(!logic.getVinilo(entity.getId()).getCarrosCompras().isEmpty());
-        } catch (BusinessLogicException ex){
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -296,7 +298,7 @@ public class ViniloLogicTest {
             logic.sacraDelCarrito(entity, carrito);
             assertTrue(!logic.getVinilo(entity.getId()).getCarrosCompras().contains(carrito));
         } catch (Exception ex) {
-             assertTrue(true);
+            fail();
         }
     }
 
@@ -306,15 +308,16 @@ public class ViniloLogicTest {
     @Test
     public void testGetCanciones() throws Exception {
         entity = new ViniloEntity();
-        CancionEntity cancion = new CancionEntity();
-        List<CancionEntity> canciones = new ArrayList<>();
-        logicCancion.createCancion(cancion);
-        canciones.add(cancion);
-        entity.setCanciones(canciones);
         try {
+            List<CancionEntity> canciones = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                CancionEntity cancion = new CancionEntity();
+                cancion.setName("cancion" + i);
+            }
+            entity.setCanciones(canciones);
             logic.createVinilo(entity);
-            assertTrue(logic.getCanciones(entity.getId()).isEmpty());
-        }catch (BusinessLogicException ex) {
+            assertEquals(canciones, logic.getCanciones(entity.getId()));
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -325,13 +328,13 @@ public class ViniloLogicTest {
     @Test
     public void testAddVinilo() throws Exception {
         entity = new ViniloEntity();
-         CancionEntity cancion = new CancionEntity();
-         logicCancion.createCancion(cancion);
-         try {
-             logic.createVinilo(entity);
-             logic.addVinilo(entity.getId(), cancion);
-             assertTrue(logic.getVinilo(entity.getId()).getCanciones().isEmpty());
-         }catch (BusinessLogicException ex) {
+        CancionEntity cancion = new CancionEntity();
+        logicCancion.createCancion(cancion);
+        try {
+            logic.createVinilo(entity);
+            logic.addVinilo(entity.getId(), cancion);
+            assertTrue(logic.getVinilo(entity.getId()).getCanciones().isEmpty());
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -342,15 +345,16 @@ public class ViniloLogicTest {
     @Test
     public void testListArtistas() throws Exception {
         entity = new ViniloEntity();
-        ArtistaEntity artista = new ArtistaEntity();
-         List<ArtistaEntity> artistas = new ArrayList<>();
-        logicArtista.createArtista(artista);
-        artistas.add(artista);
-        entity.setArtistas(artistas);
         try {
+            List<ArtistaEntity> artistas = new ArrayList<>();
+            for (int i = 0; i < 10; i++) {
+                ArtistaEntity artista = new ArtistaEntity();
+                artista.setName("artista" + i);
+            }
+            entity.setArtistas(artistas);
             logic.createVinilo(entity);
-            assertTrue(logic.listArtistas(entity.getId()).isEmpty());
-        }catch (Exception ex) {
+            assertEquals(artistas, logic.listArtistas(entity.getId()));
+        } catch (Exception ex) {
             fail();
         }
     }
@@ -362,14 +366,14 @@ public class ViniloLogicTest {
     public void testGetArtista() throws Exception {
         entity = new ViniloEntity();
         ArtistaEntity artista = new ArtistaEntity();
-         List<ArtistaEntity> artistas = new ArrayList<>();
-         logicArtista.createArtista(artista);
-         artistas.add(artista);
+        List<ArtistaEntity> artistas = new ArrayList<>();
+        logicArtista.createArtista(artista);
+        artistas.add(artista);
         entity.setArtistas(artistas);
         try {
             logic.createVinilo(entity);
             assertEquals(logic.getArtista(entity.getId(), artista.getId()).getId(), artista.getId());
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertTrue(true);
         }
     }
@@ -379,7 +383,7 @@ public class ViniloLogicTest {
      */
     @Test
     public void testAddArtista() throws Exception {
-         entity = new ViniloEntity();
+        entity = new ViniloEntity();
         ArtistaEntity artista = new ArtistaEntity();
         logicArtista.createArtista(artista);
         try {
@@ -398,13 +402,13 @@ public class ViniloLogicTest {
     public void testReplaceArtistas() throws Exception {
         entity = new ViniloEntity();
         ArtistaEntity artista = new ArtistaEntity();
-         List<ArtistaEntity> artistas = new ArrayList<>();
+        List<ArtistaEntity> artistas = new ArrayList<>();
         artistas.add(artista);
         try {
             logicArtista.createArtista(artista);
             logic.createVinilo(entity);
             assertTrue(!logic.replaceArtistas(entity.getId(), artistas).isEmpty());
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             fail();
         }
     }
@@ -416,14 +420,14 @@ public class ViniloLogicTest {
     public void testRemoveArtista() throws Exception {
         entity = new ViniloEntity();
         ArtistaEntity artista = new ArtistaEntity();
-         List<ArtistaEntity> artistas = new ArrayList<>();
+        List<ArtistaEntity> artistas = new ArrayList<>();
         artistas.add(artista);
         entity.setArtistas(artistas);
         try {
             logic.createVinilo(entity);
             logic.removeArtista(entity.getId(), artista.getId());
             assertTrue(logic.listArtistas(entity.getId()).isEmpty());
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             fail();
         }
     }
@@ -442,7 +446,7 @@ public class ViniloLogicTest {
         try {
             logic.createVinilo(entity);
             assertTrue(logic.listCanciones(entity.getId()).isEmpty());
-        }catch (BusinessLogicException ex) {
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -460,8 +464,8 @@ public class ViniloLogicTest {
         try {
             logic.createVinilo(entity);
             assertEquals(logic.getCancion(entity.getId(), cancion.getId()).getId(), cancion.getId());
-        }catch (Exception ex) {
-             assertTrue(true);
+        } catch (Exception ex) {
+            assertTrue(true);
         }
     }
 
@@ -476,7 +480,7 @@ public class ViniloLogicTest {
             logic.createVinilo(entity);
             logic.addCancion(entity.getId(), cancion, cancion.getId());
             assertTrue(logic.getCanciones(entity.getId()).size() > 0);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertTrue(true);
         }
     }
@@ -494,7 +498,7 @@ public class ViniloLogicTest {
             logicCancion.createCancion(cancion);
             logic.createVinilo(entity);
             assertTrue(!logic.replaceCanciones(entity.getId(), canciones).isEmpty());
-        }catch (BusinessLogicException ex) {
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
@@ -513,12 +517,12 @@ public class ViniloLogicTest {
             logic.createVinilo(entity);
             logic.removeCancion(entity.getId(), cancion.getId());
             assertTrue(logic.getCanciones(entity.getId()).isEmpty());
-        }catch (BusinessLogicException ex) {
+        } catch (BusinessLogicException ex) {
             fail();
         }
     }
-    
-     private void clearData() {
+
+    private void clearData() {
         em.createQuery("delete from ViniloEntity").executeUpdate();
     }
 
