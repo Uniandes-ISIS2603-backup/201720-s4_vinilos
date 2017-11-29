@@ -27,14 +27,15 @@
     }</style>
 
 
-<div id="con" class='md-padding' layout="row" layout-wrap flex >
-    <md-card flex="40" flex-sm="80"  class="col-md-4" flex >
-        <div  flex="40" class="card" style="width: 20rem; border-color:#fff;"   ><hr>
-            <!--<img class="card-img-top" src="https://image.flaticon.com/icons/svg/13/13510.svg" alt="Card image cap">-->
-            <div class="card-block" ng-repeat="vinilo in vinilos">
+<div id="con" class='md-padding' >
 
+    <div  flex="40" class="card row" style="border-color:#fff;"   >
+        <!--<img class="card-img-top" src="https://image.flaticon.com/icons/svg/13/13510.svg" alt="Card image cap">-->
+        <div class="card-block col-sm-12 col-md-6 col-lg-3 col-xs-3" ng-repeat="vinilo in vinilos">
+
+            <div class="thumbnail" style="background: transparent; background-color: transparent; border-color: transparent; border-width: 5px;">
                 <md-card-content id = "info">
-                    <h2 style = "color: white">Vinilo N° {{vinilo.id}}</h2>
+                    <hr><h2 style = "color: white">Vinilo N° {{vinilo.id}}</h2>
                     <h2 style = "color: white">{{vinilo.precio}} $</h2>
 
 
@@ -51,6 +52,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Id</th>
+                                                    <th>Nombre</th>
                                                     <th>año</th>
                                                     <th>Existencias</th>
                                                     <th>Precio C/U</th>
@@ -59,6 +61,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>{{vinilo.id}}</td>
+                                                    <td>{{vinilo.nombre}}</td>
                                                     <td>{{vinilo.anio}}</td>
                                                     <td>{{vinilo.cantUnidades}}</td>
                                                     <td>{{vinilo.precio}}   $</td>
@@ -80,7 +83,7 @@
                                                 <tr>
                                                     <td>{{cancion.name}}</td>
                                                     <td>{{cancion.duracion}} minutos</td>
-                                                    <td><iframe id="frame1" ng-src="{{trustSrcurl(cancion.link)}}" width="300" height="100" frameborder="0" allowtransparency="true"></iframe></td>
+                                                    <td><iframe  ng-src="{{trustSrcurl(cancion.link)}}" width="300" height="100" frameborder="0" allowtransparency="true"></iframe></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -102,8 +105,8 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        
-                                        
+
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -114,16 +117,18 @@
                     </div>
 
 
-                    <iframe id="frame1" ng-src="{{trustSrcurl(vinilo.canciones[0].link)}}" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>
+                    <iframe ng-src="{{trustSrcurl(vinilo.canciones[0].link)}}" width="300" height="300" frameborder="0" allowtransparency="true"></iframe>
 
                 </md-card-content>
                 <a  style = "width: 50px;" id="add-btn" class="btn btn-default btn-sm" ng-click="ctrl.addToCart(vinilo.id)"><span class="glyphicon glyphicon-shopping-cart"></span></a>
                 <!-- Boton que acciona el "modal" para ver la info de la cancion sin cambiar de estado -->
                 <button ng-click="getProveedor(vinilo.proveedor.id)" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{$index}}" >Ver Más</button>
                 <a ui-sref="viniloSee({viniloId: vinilo.id})">detalle</a>
-            </div  >
+            </div> 
 
-        </div>
+        </div  >
+
+    </div>
 
 
 </div >
